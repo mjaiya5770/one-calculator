@@ -1,7 +1,7 @@
 {
-  "name": "One Calculator \u2014 Free Online Calculators",
+  "name": "One Calculator — Free Online Calculators",
   "short_name": "One Calculator",
-  "description": "One Calculator is the minimal calculator library: one clean, single-purpose tool for each job \u2014 154 of them \u2014 with no clutter, no signup and nothing between you and the answer.",
+  "description": "One Calculator is the minimal calculator library: one clean, single-purpose tool for each job — 154 of them — with no clutter, no signup and nothing between you and the answer.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -17,6 +17,12 @@
       "src": "/assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
