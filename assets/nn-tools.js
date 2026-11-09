@@ -1,7 +1,10 @@
 /* Shared tool actions + effects for the calculator network — loaded by every tool page and homepage.
    Features: shareable result links (inputs in the URL), copy result, saved calculations
    (localStorage, no account), print / save-as-PDF, count-up results, verdict pulse, confetti on save.
-   No external requests. Brand-neutral: colors come from each site's CSS variables. */
+   No external requests. Brand-neutral: colors come from each site's CSS variables.
+   NN-SHELL-P1 build (R1 rollout build, + NN-EFFECTS-P1): adds the NN-SHELL-P1
+   section (stale-state contract, result anatomy, sticky result strip). The PURE block,
+   the print markers and the NN-MODAL logic are unchanged from the fleet canonical. */
 (function () {
   'use strict';
 
@@ -186,6 +189,12 @@
       touched.push(el);
     });
     touched.forEach(fireEvents);
+    /* NN-SHELL-P1: a restored value inside a collapsed disclosure opens it,
+       so restored state is never hidden (POLISH-SPEC §4 disclosure rule). */
+    touched.forEach(function (el) {
+      var d = el.closest && el.closest('details');
+      if (d && !d.open) d.open = true;
+    });
     triggerCalc();
     return true;
   }
@@ -589,6 +598,7 @@
     window.addEventListener('beforeprint', function bp() { nnCloseModal(overlay, 'print'); window.removeEventListener('beforeprint', bp); });
   }
   function nnMaybeModal() {
+    if (nnSuppressModalOnce) { nnSuppressModalOnce = false; return; } /* NN-SHELL-P1: silent recalc (print refresh) */
     if (nnModalFired || nnRestoredLink || !nnUserArmed || document.documentElement.classList.contains('nn-embed')) return;
     nnModalFired = true;
     nnOpenModal();
@@ -600,6 +610,24 @@
     var act = t.closest && t.closest('[data-nn]');
     if (act) {
       var kind = act.getAttribute('data-nn');
+      /* NN-SHELL-P1 stale holds: never copy / share / save a stale result.
+         Print is never blocked — it recalculates synchronously instead. */
+      if (nnStale.active && (kind === 'copy' || kind === 'share' || kind === 'save')) {
+        if (nnStale.line) {
+          nnStale.line.classList.remove('nn-stale-flash');
+          void nnStale.line.offsetWidth;
+          nnStale.line.classList.add('nn-stale-flash');
+          nnStale.line.scrollIntoView({ block: 'center', behavior: reducedMotion ? 'auto' : 'smooth' });
+        }
+        return;
+      }
+      if (kind === 'print' && nnStale.active) {
+        nnSuppressModalOnce = true;
+        triggerCalc();
+        nnStaleSyncFromRender();
+        window.print();
+        return;
+      }
       if (kind === 'share') { copyText(shareUrl(), act); }
       else if (kind === 'copy') { copyText(extractResult().text, act); }
       else if (kind === 'save') { saveCurrent(act); }
@@ -622,6 +650,335 @@
       renderHomeSaves();
     }
   });
+
+  /* ---------- NN-SHELL-P1: supremacy pilot shell (the P1 pilot trees) ----------
+     Stale-state contract (POLISH-SPEC §3/§4): once a result is on screen, an
+     input change that has not re-rendered marks the result stale — a standing
+     line above the result says so (never color alone), the calculate button
+     becomes "Update results", and Copy link / Copy result / Save are held
+     until the result is fresh. Print never ships a stale result: it
+     recalculates synchronously first, without the interstitial. Live tools
+     re-render on edit, so their snapshot syncs in the same tick and they
+     never show the stale state. Also: the action bar moves BELOW the result
+     (result anatomy, POLISH-SPEC §6), results get aria-live, numeric fields
+     get inputmode, seg buttons get aria-pressed, an empty signature slot is
+     mounted inside .results for the P2+ signature visuals, and a mobile
+     sticky result strip follows the answer when it scrolls off-screen
+     (suppressed while typing, with the keyboard open, in embed mode and in
+     print — CSS). Tap-target sizes live in style.css (NN-SHELL-P1 block).
+     Live-vs-commit policy: a card declaring data-update="live" hides its
+     calculate button and recalcs debounced as the user types. */
+  var nnSuppressModalOnce = false;
+  var nnStale = { active: false, snap: null, line: null, region: null, btn: null, btnLabel: null, strip: null };
+  var nnStripState = { regionVisible: true, kb: false, focusField: false };
+
+  function nnResultRegion() {
+    return document.querySelector('.results') || document.querySelector('.stat-grid');
+  }
+  function nnFindCalcBtn(scope) {
+    if (!scope) return null;
+    var btns = $all('button', scope);
+    for (var i = 0; i < btns.length; i++) {
+      var b = btns[i];
+      if (b.hasAttribute('data-nn') || b.closest('.nn-actions') || b.closest('.nn-saves') || b.classList.contains('seg-btn')) continue;
+      var oc = (b.getAttribute('onclick') || '').trim();
+      var tx = (b.textContent || '').trim();
+      if (/^(calc|calculate|compute|count|generate|update)\s*\(/.test(oc) || /^(calculate|compute|generate|update results|recalculate)$/i.test(tx)) return b;
+    }
+    return null;
+  }
+  function nnSnapNow() {
+    try { return JSON.stringify(currentParams()); } catch (e) { return null; }
+  }
+  function nnRegionAnswerText() {
+    var r = nnStale.region;
+    if (!r) return '';
+    var v = r.querySelector('#verdict');
+    if (v && v.textContent.trim()) return v.textContent.trim();
+    var b = r.querySelector('.big');
+    if (b && b.textContent.trim()) return b.textContent.trim();
+    var st = r.querySelector('.stat .v');
+    if (st) {
+      var k = r.querySelector('.stat .k');
+      return (k ? k.textContent.trim() + ': ' : '') + st.textContent.trim();
+    }
+    return '';
+  }
+  function nnStripSync() {
+    var strip = nnStale.strip;
+    if (!strip) return;
+    var ans = nnStale.active ? 'Inputs changed — result out of date' : nnRegionAnswerText();
+    var span = strip.querySelector('.nn-strip-answer');
+    if (span && ans) span.textContent = ans;
+    var btn = strip.querySelector('.nn-strip-btn');
+    if (btn) btn.textContent = nnStale.active ? 'Update' : 'View result';
+    nnStripVisibility();
+  }
+  function nnStripVisibility() {
+    var strip = nnStale.strip;
+    if (!strip) return;
+    strip.hidden = nnStripState.regionVisible || nnStripState.kb || nnStripState.focusField || !nnResultShown();
+  }
+  function nnSetStale(on) {
+    if (nnStale.active === on) { if (on) nnStripSync(); return; }
+    nnStale.active = on;
+    if (nnStale.line) nnStale.line.hidden = !on;
+    if (nnStale.region) nnStale.region.classList.toggle('nn-is-stale', on);
+    if (nnStale.btn) {
+      if (on) {
+        if (nnStale.btnLabel == null) nnStale.btnLabel = nnStale.btn.textContent;
+        nnStale.btn.textContent = 'Update results';
+      } else if (nnStale.btnLabel != null) {
+        nnStale.btn.textContent = nnStale.btnLabel;
+      }
+    }
+    nnStripSync();
+  }
+  function nnStaleSyncFromRender() {
+    /* A result render just happened: the snapshot behind it is current. */
+    nnStale.snap = nnSnapNow();
+    if (nnStale.active) nnSetStale(false);
+    nnStripSync();
+  }
+  function nnStaleCheck() {
+    if (!nnStale.region || nnStale.snap == null) return;
+    if (!nnResultShown()) return;
+    var now = nnSnapNow();
+    if (now != null && now !== nnStale.snap) nnSetStale(true);
+    else if (now === nnStale.snap) nnSetStale(false);
+  }
+  function nnSegSync() {
+    $all('.seg-btn').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.classList.contains('is-on') ? 'true' : 'false');
+    });
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target && e.target.closest && e.target.closest('.seg-btn')) nnSegSync();
+  });
+  function nnShellInit() {
+    var region = nnResultRegion();
+    var actions = $('.nn-actions');
+    /* Result anatomy: the action bar sits BELOW the result (POLISH-SPEC §6). */
+    if (actions && region && actions.parentNode === region.parentNode &&
+        (actions.compareDocumentPosition(region) & Node.DOCUMENT_POSITION_FOLLOWING)) {
+      region.parentNode.insertBefore(actions, region.nextSibling);
+    }
+    /* inputmode on numeric fields (POLISH-SPEC §7). */
+    $all('main input[type="number"]').forEach(function (el) {
+      if (el.getAttribute('inputmode')) return;
+      var st = el.getAttribute('step');
+      el.setAttribute('inputmode', (st && st !== 'any' && String(st).indexOf('.') < 0) ? 'numeric' : 'decimal');
+    });
+    nnSegSync();
+    if (!region) return;
+    region.setAttribute('aria-live', 'polite');
+    region.setAttribute('aria-atomic', 'true');
+    /* Signature slot: P2+ waves mount each tool's signature visual here. */
+    if (region.classList.contains('results') && !region.querySelector('.nn-signature')) {
+      var sig = document.createElement('div');
+      sig.className = 'nn-signature';
+      sig.setAttribute('data-nn-signature', '');
+      region.appendChild(sig);
+    }
+    nnStale.region = region;
+    var card = region.closest('.nn-calc-card') || region.closest('.card') || document.querySelector('main');
+    nnStale.btn = nnFindCalcBtn(card);
+    var line = document.createElement('div');
+    line.className = 'nn-stale-line no-print';
+    line.setAttribute('role', 'status');
+    line.hidden = true;
+    line.textContent = nnStale.btn
+      ? 'Inputs changed — this result is out of date. Press “Update results” to recalculate.'
+      : 'Inputs changed — this result is out of date. Recalculate to update it.';
+    region.parentNode.insertBefore(line, region);
+    nnStale.line = line;
+    if (nnResultShown()) nnStale.snap = nnSnapNow();
+    var rObs = new MutationObserver(function () { nnStaleSyncFromRender(); });
+    rObs.observe(region, { childList: true, characterData: true, subtree: true });
+    document.addEventListener('input', function () { setTimeout(nnStaleCheck, 0); });
+    document.addEventListener('change', function () { setTimeout(nnStaleCheck, 0); });
+    if (nnStale.btn) {
+      /* Explicit refresh intent: even if a tool renders outside the observed
+         region, clicking its calculate button re-baselines the snapshot. */
+      nnStale.btn.addEventListener('click', function () {
+        setTimeout(function () { nnStale.snap = nnSnapNow(); nnSetStale(false); }, 0);
+      });
+    }
+    /* Sticky result strip (mobile pattern; CSS hides it on wide screens). */
+    if (!document.documentElement.classList.contains('nn-embed')) {
+      var strip = document.createElement('div');
+      strip.className = 'nn-strip no-print';
+      strip.hidden = true;
+      strip.innerHTML = '<span class="nn-strip-answer"></span><button type="button" class="nn-btn nn-strip-btn">View result</button>';
+      document.body.appendChild(strip);
+      nnStale.strip = strip;
+      strip.querySelector('.nn-strip-btn').addEventListener('click', function () {
+        if (nnStale.active && nnStale.btn) nnStale.btn.click();
+        region.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+      });
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          nnStripState.regionVisible = !!(entries[0] && entries[0].isIntersecting);
+          nnStripVisibility();
+        }, { threshold: 0.05 });
+        io.observe(region);
+      }
+      document.addEventListener('focusin', function (e) {
+        if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName || '')) nnStripState.focusField = true;
+        nnStripVisibility();
+      });
+      document.addEventListener('focusout', function () {
+        setTimeout(function () {
+          var a = document.activeElement;
+          nnStripState.focusField = !!(a && /INPUT|TEXTAREA|SELECT/.test(a.tagName || ''));
+          nnStripVisibility();
+        }, 0);
+      });
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', function () {
+          nnStripState.kb = window.visualViewport.height < window.innerHeight * 0.75;
+          nnStripVisibility();
+        });
+      }
+      nnStripSync();
+    }
+    /* Print: never ship a stale result — recalc synchronously, no modal. */
+    window.addEventListener('beforeprint', function () {
+      if (!nnStale.active) return;
+      nnSuppressModalOnce = true;
+      triggerCalc();
+      nnStaleSyncFromRender();
+    });
+    /* Live-update policy: a card declaring data-update="live" hides its
+       calculate button and recalcs (debounced) as the user types. */
+    $all('[data-update="live"]').forEach(function (liveCard) {
+      var lb = nnFindCalcBtn(liveCard);
+      if (lb) lb.classList.add('nn-live-hidden');
+      var t = null;
+      liveCard.addEventListener('input', function () {
+        clearTimeout(t);
+        t = setTimeout(function () { triggerCalc(); }, 250);
+      });
+    });
+  }
+
+  /* ---------- NN-EFFECTS-P1: shell effects layer (R1 rollout build) ----------
+     Presentation only — no math, no state: the final rendered text of every
+     value is always the tool's own computed string (tweens end by writing the
+     exact final text, print snaps any in-flight tween to it). Layers on top
+     of the fleet's existing count-up (.results .big via watchBig) and the
+     first-show verdict pulse:
+       - result reveal: the panel fades/rises when a fresh result lands
+         (hidden->shown transition, or a render that follows a button-style
+         calculation rather than live typing);
+       - headline tween for stat-grid tools (no .big): the first .stat .v
+         counts up with the fleet's own animateBig/nnParseBig machinery;
+       - milestone sparkle: a restrained CSS spark burst, at most once per
+         page view, only after a genuine user calculation (nnUserArmed),
+         only when the rendered result itself carries the milestone copy
+         the tools already print ("debt-free" / "mortgage-free");
+       - the sticky strip slides in (CSS), buttons get tactile press depth
+         (CSS). GPU-cheap transform/opacity only, zero layout shift, all of
+         it inert under prefers-reduced-motion, in embed mode and in print. */
+  var nnFx = { celebrated: false, wasShown: false, lastReveal: 0, lastInput: 0, animating: false, celebTimer: null };
+
+  function nnFxSparkle(region) {
+    try {
+      var host = document.createElement('div');
+      host.className = 'nn-fx-burst';
+      host.setAttribute('aria-hidden', 'true');
+      for (var i = 0; i < 12; i++) {
+        var s = document.createElement('span');
+        s.className = 'nn-fx-spark';
+        var ang = (Math.PI * 2 * i) / 12 + (Math.random() * 0.35 - 0.175);
+        var dist = 46 + Math.random() * 42;
+        s.style.setProperty('--nn-fx-x', (Math.cos(ang) * dist).toFixed(1) + 'px');
+        s.style.setProperty('--nn-fx-y', (Math.sin(ang) * dist - 14).toFixed(1) + 'px');
+        s.style.setProperty('--nn-fx-r', Math.round(Math.random() * 160 - 80) + 'deg');
+        host.appendChild(s);
+      }
+      region.appendChild(host);
+      setTimeout(function () { if (host.parentNode) host.remove(); }, 1050);
+    } catch (e) {}
+  }
+  function nnFxMaybeCelebrate(region) {
+    if (nnFx.celebrated || reducedMotion) return;
+    if (!nnUserArmed || nnStale.active) return;
+    if (document.documentElement.classList.contains('nn-embed')) return;
+    if (!nnResultShown()) return;
+    var text = region.textContent || '';
+    if (!/debt-free|mortgage-free/i.test(text)) return;
+    nnFx.celebrated = true;
+    nnFxSparkle(region);
+  }
+  function nnFxTweenStat(region) {
+    /* .big already tweens via watchBig; stat-grid tools have no .big, so
+       their primary value (first .stat .v) snaps today — tween it with the
+       same machinery, but never mid-typing (the value would roll from 0 on
+       every keystroke settle) and never away from the exact final text. */
+    if (region.querySelector('.big')) return;
+    var v = region.querySelector('.stat .v');
+    if (!v) return;
+    var finalText = v.textContent;
+    if (v._nnFxLast === finalText) return;
+    v._nnFxLast = finalText;
+    if (reducedMotion) return;
+    if (Date.now() - nnFx.lastInput < 600) return; /* live typing: snap */
+    var spec = nnParseBig(finalText);
+    if (!spec || spec.num === 0) return;
+    nnFx.animating = true;
+    animateBig(v, { num: 0 }, spec, finalText);
+    setTimeout(function () { nnFx.animating = false; }, 700);
+  }
+  function nnFxSnap(region) {
+    /* beforeprint: an in-flight stat tween must never print an intermediate
+       value — cancel it and write the exact final text. */
+    if (!region) return;
+    var v = region.querySelector('.stat .v');
+    if (v && v._nnAnim) {
+      if (v._nnRaf) cancelAnimationFrame(v._nnRaf);
+      v._nnAnim = false; v._nnRaf = null;
+      if (v._nnFxLast != null) v.textContent = v._nnFxLast;
+      nnFx.animating = false;
+    }
+  }
+  function nnFxOnRender(region) {
+    var shown = nnResultShown();
+    if (!shown) { nnFx.wasShown = false; return; }
+    if (nnStale.active) { nnFx.wasShown = true; return; }
+    var now = Date.now();
+    var typing = now - nnFx.lastInput < 600;
+    if (!reducedMotion && (!nnFx.wasShown || !typing) && now - nnFx.lastReveal > 1200) {
+      nnFx.lastReveal = now;
+      region.classList.remove('nn-fx-reveal');
+      void region.offsetWidth;
+      region.classList.add('nn-fx-reveal');
+    }
+    nnFx.wasShown = true;
+    nnFxTweenStat(region);
+    nnFxMaybeCelebrate(region);
+  }
+  function nnFxInit() {
+    if (document.documentElement.classList.contains('nn-embed')) return;
+    var region = nnResultRegion();
+    if (!region) return; /* document tools (invoice) carry their own chrome */
+    region.classList.add('nn-fx-host');
+    document.addEventListener('input', function () {
+      nnFx.lastInput = Date.now();
+      clearTimeout(nnFx.celebTimer);
+      nnFx.celebTimer = setTimeout(function () { nnFxMaybeCelebrate(region); }, 900);
+    });
+    document.addEventListener('change', function () { nnFx.lastInput = Date.now(); });
+    var pending = false;
+    var obs = new MutationObserver(function () {
+      if (nnFx.animating || pending) return;
+      pending = true;
+      requestAnimationFrame(function () { pending = false; nnFxOnRender(region); });
+    });
+    obs.observe(region, { childList: true, characterData: true, subtree: true });
+    window.addEventListener('beforeprint', function () { nnFxSnap(region); });
+    if (nnResultShown()) nnFx.wasShown = true;
+  }
 
   /* ---------- init ---------- */
   function init() {
@@ -657,6 +1014,8 @@
     }
     /* NN-MODAL: capture this site's own 300x250 key for the interstitial seat */
     nnModalKey = nnSiteAdKey('300');
+    nnShellInit(); /* NN-SHELL-P1 */
+    nnFxInit(); /* NN-EFFECTS-P1 */
   }
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
   else { init(); }

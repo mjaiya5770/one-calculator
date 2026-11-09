@@ -60,66 +60,128 @@
 <main class="wrap">
   <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/invoice-generator.html" target="_top" rel="noopener">One Calculator</a></div>
   <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../calculators.html#cat-freelancer-tools">Freelancer tools</a> › Free Invoice Generator (Printable)</div>
-<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+<div class="nn-ad nn-ad-top" data-k728="f9659324b3834602de5ad139f13988d6" data-k320="7ca8d01ff6de0c35ae33df12254574ff"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
   <h1 class="tool-title no-print">Free Invoice Generator (Printable)</h1>
   <p class="lede">Fill in your details, add line items, and print or save a clean professional invoice as PDF — right from your browser. No signup, no watermark.</p>
 
-  <div class="card no-print nn-calc-card">
-    <div class="row">
-      <div class="field"><label for="biz">Your business name</label><input id="biz" type="text" placeholder="Your business name"></div>
-      <div class="field"><label for="client">Client name</label><input id="client" type="text" value="" placeholder="Acme Corp"></div>
-    </div>
-    <div class="row">
-      <div class="field"><label for="invnum">Invoice #</label><input id="invnum" type="text" value="INV-1001"></div>
-      <div class="field"><label for="invdate">Date</label><input id="invdate" type="date"></div>
-    </div>
-    <h2 style="margin-top:6px">Line items</h2>
-    <div id="items"></div>
-    <button class="btn" style="background:#fff;color:var(--accent);border:2px solid var(--accent);padding:8px 16px" onclick="addRow()">+ Add line</button>
-    <div class="row" style="margin-top:14px">
-      <div class="field"><label for="tax">Tax (%)</label><input id="tax" type="number" value="0" min="0" step="0.01"></div>
-      <div class="field"><label for="notes">Notes / payment terms</label><input id="notes" type="text" value="Payment due within 14 days. Thank you!"></div>
-    </div>
-    <button class="btn" onclick="calc()">Update preview</button>
-  </div>
+<div class="inv-layout">
+ <div class="card no-print nn-calc-card">
+ <div class="inv-editor" data-update="live" data-output="document">
+ <div class="inv-draft" id="invDraft" role="status"></div>
+ <div class="row">
+ <div class="field"><label for="biz">Your business name</label><input id="biz" type="text" placeholder="Your business name" autocomplete="organization"></div>
+ <div class="field"><label for="client">Client name</label><input id="client" type="text" placeholder="Acme Corp" autocomplete="off"></div>
+ </div>
+ <div class="row">
+ <div class="field"><label for="invnum">Invoice #</label><input id="invnum" type="text" placeholder="INV-1001"></div>
+ <div class="field"><label for="currency">Currency</label><select id="currency"><option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option><option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="NZD">NZD $</option><option value="CHF">CHF</option><option value="JPY">JPY ¥</option><option value="INR">INR ₹</option><option value="ZAR">ZAR R</option><option value="AED">AED</option><option value="SGD">SGD $</option></select></div>
+ </div>
+ <div class="row">
+ <div class="field"><label for="invdate">Invoice date</label><input id="invdate" type="date"></div>
+ <div class="field"><label for="terms">Payment terms</label><select id="terms"><option value="receipt">Due on receipt</option><option value="net7">Net 7 — due in 7 days</option><option value="net14" selected>Net 14 — due in 14 days</option><option value="net30">Net 30 — due in 30 days</option><option value="custom">Custom date</option></select></div>
+ <div class="field"><label for="duedate">Due date</label><input id="duedate" type="date"></div>
+ </div>
+ <h2 style="margin-top:6px">Line items</h2>
+ <p class="inv-sample"><button type="button" class="nn-btn" id="invSample">Load a sample invoice</button></p>
+ <div id="items"></div>
+ <button type="button" class="btn" style="background:#fff;color:var(--accent);border:2px solid var(--accent);padding:8px 16px;min-height:44px" id="invAddRow">+ Add line</button>
+ <details class="nn-details" id="invDetAdjust">
+ <summary>Tax &amp; adjustments</summary>
+ <div class="row">
+ <div class="field"><label for="tax">Sales tax rate (%)</label><input id="tax" type="number" min="0" step="any" inputmode="decimal" placeholder="0"></div>
+ <div class="field"><label for="discKind">Discount type</label><select id="discKind"><option value="pct">Percent (%)</option><option value="amt">Flat amount</option></select></div>
+ <div class="field"><label for="disc">Discount</label><input id="disc" type="number" min="0" step="any" inputmode="decimal" placeholder="0"></div>
+ </div>
+ <div class="row">
+ <div class="field"><label for="paid">Amount already paid</label><input id="paid" type="number" min="0" step="any" inputmode="decimal" placeholder="0"></div>
+ </div>
+ <p style="color:var(--muted);font-size:.88rem;margin:6px 0 10px">The discount comes off the subtotal <strong>before</strong> tax. Anything already paid is subtracted at the end to leave the balance due.</p>
+ </details>
+ <details class="nn-details" id="invDetParties">
+ <summary>Business &amp; client details</summary>
+ <div class="row">
+ <div class="field"><label for="bizaddr">Your address</label><input id="bizaddr" type="text" placeholder="Street, city, ZIP"></div>
+ <div class="field"><label for="cliaddr">Client address</label><input id="cliaddr" type="text" placeholder="Street, city, ZIP"></div>
+ </div>
+ <div class="row">
+ <div class="field"><label for="bizemail">Your email</label><input id="bizemail" type="text" placeholder="you@business.com"></div>
+ <div class="field"><label for="cliemail">Client email</label><input id="cliemail" type="text" placeholder="client@company.com"></div>
+ </div>
+ <div class="row">
+ <div class="field"><label for="bizphone">Your phone</label><input id="bizphone" type="text" placeholder="(555) 010-0100"></div>
+ <div class="field"><label for="cliphone">Client phone</label><input id="cliphone" type="text" placeholder="(555) 010-0100"></div>
+ </div>
+ <div class="row">
+ <div class="field"><label for="biztaxid">Your tax / registration ID</label><input id="biztaxid" type="text" placeholder="Optional"></div>
+ <div class="field"><label for="clitaxid">Client tax ID</label><input id="clitaxid" type="text" placeholder="Optional"></div>
+ </div>
+ </details>
+ <details class="nn-details" id="invDetDoc">
+ <summary>Document options</summary>
+ <div class="row">
+ <div class="field"><label for="paper">Paper size</label><select id="paper"><option value="letter">Letter</option><option value="a4">A4</option></select></div>
+ <div class="field"><label for="lblDoc">Document title</label><input id="lblDoc" type="text" placeholder="Invoice"></div>
+ </div>
+ <div class="row">
+ <div class="field"><label for="lblBill">“Bill to” label</label><input id="lblBill" type="text" placeholder="Bill to"></div>
+ <div class="field"><label for="lblTotal">“Total due” label</label><input id="lblTotal" type="text" placeholder="Total due"></div>
+ </div>
+ <div class="field"><label for="logoFile">Logo (optional — stays on your device)</label><input id="logoFile" type="file" accept="image/*"></div>
+ <p style="margin:6px 0 10px"><span id="invLogoMsg" style="color:var(--muted);font-size:.88rem">No logo. The image is stored only in this browser, never uploaded.</span> <button type="button" class="nn-mini" id="invLogoRemove" hidden>Remove logo</button></p>
+ </details>
+ <div class="field" style="margin-top:12px"><label for="notes">Notes</label><textarea id="notes" rows="3" placeholder="e.g. Bank transfer to …, or a thank-you line"></textarea></div>
+ </div>
+ </div>
 
-  <div class="nn-actions no-print" data-nn-actions>
-  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
-  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
-  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
-  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+ <div class="inv-side">
+ <div class="card nn-calc-card" id="preview">
+ <div class="inv-rail no-print" id="invRail" aria-label="Invoice readiness"></div>
+ <div class="inv-summary no-print"><span id="invSumText" style="font-weight:700">Total due $0.00</span><button type="button" class="nn-btn" id="invDocToggle" aria-expanded="false">Preview invoice</button></div>
+ <div class="inv-doc" id="invDoc">
+ <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+ <div><img id="pLogo" alt="" style="max-height:56px;max-width:180px;display:none;margin-bottom:6px"><h2 style="margin:0" id="pBiz">Your Business</h2><div style="color:var(--muted);font-size:.9rem" id="pDocLabel">Invoice</div><div style="color:var(--muted);font-size:.85rem;white-space:pre-line" id="pBizMeta"></div></div>
+ <div style="text-align:right"><div><strong>Invoice #</strong> <span id="pNum">—</span></div><div><strong>Date</strong> <span id="pDate">—</span></div><div><strong>Due</strong> <span id="pDue">—</span></div></div>
+ </div>
+ <p style="margin:12px 0"><strong id="pBillLabel">Bill to:</strong> <span id="pClient">—</span><br><span style="color:var(--muted);font-size:.85rem;white-space:pre-line" id="pClientMeta"></span></p>
+ <table id="pTable">
+ <thead><tr style="border-bottom:2px solid var(--line)"><th style="text-align:left">Description</th><th style="text-align:right">Qty</th><th style="text-align:right">Rate</th><th style="text-align:right">Amount</th></tr></thead>
+ <tbody id="pRows"></tbody>
+ </table>
+ <table class="inv-totals" style="margin-top:10px">
+ <tr><td style="border-top:1px solid var(--line)">Subtotal</td><td style="border-top:1px solid var(--line);text-align:right;font-weight:600" id="pSub">$0.00</td></tr>
+ <tr id="pDiscRow" hidden><td id="pDiscLabel">Discount</td><td style="text-align:right;font-weight:600" id="pDisc">−$0.00</td></tr>
+ <tr><td>Tax (<span id="pTaxPct">0</span>%)</td><td style="text-align:right;font-weight:600" id="pTax">$0.00</td></tr>
+ <tr><td style="font-size:1.1rem"><strong id="pTotalLabel">Total due</strong></td><td style="text-align:right;font-size:1.2rem;font-weight:800;color:var(--accent-dark)" id="pTotal">$0.00</td></tr>
+ <tr id="pPaidRow" hidden><td>Amount paid</td><td style="text-align:right;font-weight:600" id="pPaid">$0.00</td></tr>
+ <tr id="pBalRow" hidden><td><strong id="pBalLabel">Balance due</strong></td><td style="text-align:right;font-weight:800" id="pBal">$0.00</td></tr>
+ </table>
+ <p style="color:var(--muted);font-size:.9rem;margin-top:12px;white-space:pre-line" id="pNotes"></p>
+ </div>
+ </div>
+ </div>
 </div>
-<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+
+<div class="nn-actions no-print inv-toolbar" data-nn-actions>
+ <span class="inv-bar-total" id="invBarTotal">Balance due $0.00</span>
+ <button type="button" class="nn-btn" id="invPrint">🖨️ Print / Save PDF</button>
+ <button type="button" class="nn-btn" id="invCopy" data-nn="copy">📋 Copy result</button>
+ <button type="button" class="nn-btn" id="invExport">⬇ Export invoice data</button>
+ <button type="button" class="nn-btn" id="invImport">⬆ Import invoice data</button>
+ <button type="button" class="nn-btn" id="invNew">Start new</button>
+</div>
+<input type="file" id="invImportFile" accept="application/json,.json" hidden>
 <p class="nn-embed-link no-print"><a href="../embed.html#invoice-generator">Embed this calculator on your site — free</a></p>
-<div class="card nn-calc-card" id="preview">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
-      <div><h2 style="margin:0" id="pBiz">Your Business</h2><div style="color:var(--muted);font-size:.9rem">Invoice</div></div>
-      <div style="text-align:right"><div><strong>Invoice #</strong> <span id="pNum">INV-1001</span></div><div><strong>Date</strong> <span id="pDate">—</span></div></div>
-    </div>
-    <p style="margin:12px 0"><strong>Bill to:</strong> <span id="pClient">—</span></p>
-    <table style="width:100%;border-collapse:collapse;font-size:.95rem" id="pTable">
-      <thead><tr style="border-bottom:2px solid var(--line)"><td style="padding:6px 4px"><strong>Description</strong></td><td style="padding:6px 4px;text-align:right"><strong>Qty</strong></td><td style="padding:6px 4px;text-align:right"><strong>Rate</strong></td><td style="padding:6px 4px;text-align:right"><strong>Amount</strong></td></tr></thead>
-      <tbody id="pRows"></tbody>
-    </table>
-    <table style="width:100%;border-collapse:collapse;margin-top:10px;font-size:.95rem">
-      <tr><td style="padding:6px 4px;border-top:1px solid var(--line)">Subtotal</td><td style="padding:6px 4px;border-top:1px solid var(--line);text-align:right;font-weight:600" id="pSub">$0.00</td></tr>
-      <tr><td style="padding:6px 4px">Tax (<span id="pTaxPct">0</span>%)</td><td style="padding:6px 4px;text-align:right;font-weight:600" id="pTax">$0.00</td></tr>
-      <tr><td style="padding:6px 4px;font-size:1.1rem"><strong>Total due</strong></td><td style="padding:6px 4px;text-align:right;font-size:1.2rem;font-weight:800;color:var(--accent-dark)" id="pTotal">$0.00</td></tr>
-    </table>
-    <p style="color:var(--muted);font-size:.9rem;margin-top:12px" id="pNotes"></p>
-    <button class="btn no-print" onclick="window.print()">Print / Save PDF</button>
-  </div>
 
   <div class="card">
     <h2>How it works</h2>
-    <p style="color:var(--muted)">Enter your details and line items above, then hit <strong>Update preview</strong>. The invoice updates live: <strong>amount = qty × rate</strong> per line, subtotal is the sum, tax is applied to the subtotal, and total = subtotal + tax. Use your browser's print dialog and choose "Save as PDF" to keep a copy. Everything stays on your device — nothing is uploaded.</p>
+    <p style="color:var(--muted)">Type in the form and the invoice updates as you go — there is no update button. <strong>Amount = qty × rate</strong> per line and the subtotal is the sum of the lines. A discount comes off the subtotal first, then tax applies to what remains, and anything already paid is subtracted to leave the balance due. Use your browser's print dialog and choose "Save as PDF" to keep a copy. Everything stays on your device — nothing is uploaded.</p>
   </div>
-<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+<div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
 
   <div class="card">
     <h2>Formula &amp; worked example</h2>
-    <p><strong>Formula:</strong> Each line amount = quantity × rate. Subtotal = the sum of all line amounts. Tax = subtotal × tax rate %. Total due = subtotal + tax.</p>
+    <p><strong>Formula:</strong> Each line amount = quantity × rate. Subtotal = the sum of all line amounts. A discount (if any) is subtracted from the subtotal first; tax = (subtotal − discount) × tax rate %. Total = subtotal − discount + tax, and balance due = total − amount already paid.</p>
     <p><strong>Worked example:</strong> The sample invoice — 10 hours of website design at $75 ($750), one logo design at $300 and 5 consulting hours at $100 ($500) — subtotals $1,550.00. Add 8% tax ($124.00) and the total due is $1,674.00.</p>
   </div>
 
@@ -131,9 +193,9 @@
 
   <div class="card">
     <h2>How to use it, step by step</h2>
-    <ol><li>Enter your business name and the client's name, and check the invoice number and date.</li><li>Add one line per piece of work: a description, a quantity (hours, items, days) and the rate for each.</li><li>Use Add line for more items, or the remove button on a line you do not need.</li><li>Set the tax percentage if you charge tax; leave it at zero if you do not.</li><li>Put your payment terms in the notes field, click Update preview, then print or save the preview as a PDF for the client.</li></ol>
+    <ol><li>Enter your business name and the client's name, and check the invoice number and date.</li><li>Add one line per piece of work: a description, a quantity (hours, items, days) and the rate for each.</li><li>Use Add line for more items, or the remove button on a line you do not need.</li><li>Set the tax percentage if you charge tax; leave it at zero if you do not.</li><li>Set the payment terms — the due date follows them — add any notes, then print or save the invoice as a PDF for the client. The preview updates itself as you type.</li></ol>
     <h3>What the inputs mean</h3>
-    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Line items: description, quantity, rate</strong></td><td style="padding:6px 8px">Each piece of work billed; the line amount is quantity times rate</td><td style="padding:6px 8px">Hours at an hourly rate, fixed-fee items at quantity 1, days at a day rate</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Tax percent</strong></td><td style="padding:6px 8px">A single tax rate applied to the whole subtotal</td><td style="padding:6px 8px">0 if you do not charge tax; otherwise your local rate</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Notes / payment terms</strong></td><td style="padding:6px 8px">Free text printed under the totals on the invoice</td><td style="padding:6px 8px">For example: payment due within 14 days, with your payment details</td></tr></tbody></table>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Line items: description, quantity, rate</strong></td><td style="padding:6px 8px">Each piece of work billed; the line amount is quantity times rate</td><td style="padding:6px 8px">Hours at an hourly rate, fixed-fee items at quantity 1, days at a day rate</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Tax percent</strong></td><td style="padding:6px 8px">A single tax rate applied to the whole subtotal</td><td style="padding:6px 8px">0 if you do not charge tax; otherwise your local rate</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Payment terms &amp; due date</strong></td><td style="padding:6px 8px">Due on receipt, Net 7, Net 14 or Net 30 set the due date from the invoice date; or pick a custom date</td><td style="padding:6px 8px">Net 14 is the common default for freelance work</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Discount</strong></td><td style="padding:6px 8px">A percentage or a flat amount, taken off the subtotal before tax is calculated</td><td style="padding:6px 8px">For example 10% for a repeat client, shown as its own line on the invoice</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Amount already paid</strong></td><td style="padding:6px 8px">A deposit or part-payment; the invoice then shows the balance due (or a credit balance if overpaid)</td><td style="padding:6px 8px">For example a 50% deposit taken up front</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Notes</strong></td><td style="padding:6px 8px">Free text printed under the totals on the invoice</td><td style="padding:6px 8px">For example: payment due within 14 days, with your payment details</td></tr></tbody></table>
   </div>
 
   <div class="card">
@@ -150,11 +212,11 @@
     <h3>How should I number my invoices?</h3>
     <p>Use sequential numbers that never repeat — e.g. INV-1001, INV-1002 — optionally prefixed by year (INV-2026-001). Sequential numbering makes bookkeeping and tax time far easier.</p>
     <h3>Can I add a discount to an invoice here?</h3>
-    <p>There is no separate discount field in this generator — the totals are subtotal, one tax rate, and total due. To show a discount, lower the rate on the line it applies to, or describe the reduction in that line's description so the client can see it; the arithmetic the preview prints only ever runs on the quantities and rates you enter.</p>
+    <p>Yes — open “Tax &amp; adjustments” above and enter a discount as a percentage or a flat amount. The discount comes off the subtotal before tax is calculated, and the printed invoice shows it as its own line, so the client can see exactly what was reduced.</p>
     <h3>Is anything I type uploaded or stored by the site?</h3>
-    <p>No. The invoice is built and totalled in your own browser and nothing is sent to a server — which also means nothing is saved for you. Print or save the PDF before you close the page, and keep your own copy with the invoice number for your records.</p>
+    <p>Nothing is uploaded — the invoice is built and totalled in your own browser and never sent to a server. Your draft autosaves on this device only (in your browser's local storage), so you can close the page and come back to it. Use Export invoice data in the toolbar to move a copy to another device, and print or save the PDF for your records.</p>
     <h3>There is a date field but no due date — where does the due date go?</h3>
-    <p>In the notes and payment terms field. The form carries one date, the invoice date; terms such as payment due within 14 days, written in the notes, are what tells the client the deadline, and that wording is printed on the document under the totals.</p>
+    <p>It has its own field. Pick payment terms (Due on receipt, Net 7, Net 14, Net 30) and the due date is set from the invoice date automatically, or choose Custom date and pick any date yourself — the due date prints on the invoice next to the invoice date.</p>
   </div>
 
   <div class="cta-box">
@@ -163,7 +225,7 @@
     <p><a class="btn" href="freelance-rate-calculator.html">Try the rate calculator</a> &nbsp; <a href="https://systeme.io/?sa=sa0282319360b751c361a91532f45e2eaea0ddbeb8">Free business tools →</a></p>
   </div>
 </main>
-<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+<div class="nn-ad nn-ad-bottom" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 <section class="related-tools">
   <h2>Related tools</h2>
   <ul>
@@ -175,74 +237,574 @@
 </section>
 <footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
 <script>
-function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});}
-const DEFAULTS=[["Website design",10,75],["Logo design",1,300],["Consulting call",5,100]];
-function rowHTML(d,q,r){
-  return '<div class="row item-row" style="margin-bottom:8px">'
-    +'<div class="field" style="margin:0"><input class="i-desc" type="text" value="'+d+'" placeholder="Description"></div>'
-    +'<div class="field" style="margin:0;max-width:90px"><input class="i-qty" type="number" value="'+q+'" min="0" step="any" placeholder="Qty"></div>'
-    +'<div class="field" style="margin:0;max-width:120px"><input class="i-rate" type="number" value="'+r+'" min="0" step="any" placeholder="Rate"></div>'
-    +'<div class="field" style="margin:0;max-width:48px"><button class="btn" style="padding:8px 12px;background:#c0392b" onclick="rmRow(this)">×</button></div>'
-    +'</div>';
+/* NN-INVOICE-V2 (P1, the pilot trees): the invoice maker as a
+   true live editor on one structured state object — typing repaints the
+   document instantly, there is no Update button. The draft autosaves on this
+   device only; Export / Import JSON moves an invoice between devices. No
+   invoice content ever goes in a URL (the Nov 8 2026 privacy rule, now
+   permanent): no share link exists for this tool and any query string is
+   stripped on arrival. Copy result copies the invoice summary (totals), not
+   the tool title. Money math is the PURE block below, mirrored 1:1 in
+   calc-invoice.py — discount applies to the subtotal BEFORE tax. */
+/*PURE-BEGIN*/
+function invParseScaled(s) {
+  if (s == null) s = '';
+  s = String(s).trim();
+  if (s === '') return { ok: true, empty: true, neg: false, val: 0 };
+  var neg = false;
+  if (s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+  else if (s.charAt(0) === '+') { s = s.slice(1); }
+  if (!/^\d*(\.\d*)?$/.test(s) || s === '' || s === '.') return { ok: false, empty: false, neg: neg, val: 0 };
+  var dot = s.indexOf('.');
+  var ip = dot >= 0 ? s.slice(0, dot) : s;
+  var fp = dot >= 0 ? s.slice(dot + 1) : '';
+  var val = (parseInt(ip || '0', 10) || 0) * 10000;
+  var fp4 = (fp + '0000').slice(0, 4);
+  val += parseInt(fp4 || '0', 10) || 0;
+  if (fp.length > 4 && fp.charAt(4) >= '5') val += 1;
+  return { ok: true, empty: false, neg: neg, val: val };
 }
-function addRow(){document.getElementById('items').insertAdjacentHTML('beforeend',rowHTML('','1','0'));syncItemIds();calc();}
-function calc(){
-  document.getElementById('pBiz').textContent=document.getElementById('biz').value||'Your Business';
-  document.getElementById('pClient').textContent=document.getElementById('client').value||'—';
-  document.getElementById('pNum').textContent=document.getElementById('invnum').value||'—';
-  document.getElementById('pDate').textContent=document.getElementById('invdate').value||'—';
-  document.getElementById('pNotes').textContent=document.getElementById('notes').value||'';
-  let sub=0,rows='';
-  document.querySelectorAll('.item-row').forEach(function(el){
-    const d=el.querySelector('.i-desc').value||'Item',
-          q=+el.querySelector('.i-qty').value||0,
-          r=+el.querySelector('.i-rate').value||0,
-          amt=q*r;
-    sub+=amt;
-    rows+='<tr><td style="padding:6px 4px;border-top:1px solid var(--line)">'+d+'</td><td style="padding:6px 4px;border-top:1px solid var(--line);text-align:right">'+q+'</td><td style="padding:6px 4px;border-top:1px solid var(--line);text-align:right">'+fmt(r)+'</td><td style="padding:6px 4px;border-top:1px solid var(--line);text-align:right">'+fmt(amt)+'</td></tr>';
+function invRoundDiv(num, den) { return Math.floor((2 * num + den) / (2 * den)); }
+function invParseMoney(s) {
+  var p = invParseScaled(s);
+  if (!p.ok) return p;
+  return { ok: true, empty: p.empty, neg: p.neg, val: invRoundDiv(p.val, 100) };
+}
+function invCompute(inp) {
+  var QTY_MAX = 10000 * 10000, RATE_MAX = 100000 * 100, PCT_MAX = 100 * 10000, AMT_MAX = 10000000 * 100;
+  var lines = [], subtotal = 0, provisional = false, invalid = false;
+  (inp.items || []).forEach(function (it) {
+    var q = invParseScaled(it.q), r = invParseMoney(it.r);
+    var hasQ = !q.empty, hasR = !r.empty, hasD = !!String(it.d == null ? '' : it.d).trim();
+    if (!hasQ && !hasR && !hasD) { lines.push({ status: 'empty', amt: 0 }); return; }
+    if (!q.ok || !r.ok || q.neg || r.neg || (hasQ && q.val > QTY_MAX) || (hasR && r.val > RATE_MAX)) {
+      lines.push({ status: 'invalid', amt: 0 }); invalid = true; return;
+    }
+    if (!hasQ || !hasR) { lines.push({ status: 'incomplete', amt: 0 }); provisional = true; return; }
+    var amt = invRoundDiv(q.val * r.val, 10000);
+    lines.push({ status: 'ok', amt: amt });
+    subtotal += amt;
   });
-  const taxPct=+document.getElementById('tax').value||0,
-        tax=sub*taxPct/100, total=sub+tax;
-  document.getElementById('pRows').innerHTML=rows||'<tr><td colspan="4" style="padding:12px 4px;color:var(--muted)">No line items yet — add one above.</td></tr>';
-  document.getElementById('pSub').textContent=fmt(sub);
-  document.getElementById('pTaxPct').textContent=taxPct;
-  document.getElementById('pTax').textContent=fmt(tax);
-  document.getElementById('pTotal').textContent=fmt(total);
+  var flags = { discInvalid: false, taxInvalid: false, paidInvalid: false, discCapped: false };
+  var discount = 0;
+  if (inp.discKind === 'pct' || inp.discKind === 'amt') {
+    var d = inp.discKind === 'pct' ? invParseScaled(inp.disc) : invParseMoney(inp.disc);
+    if (!d.empty) {
+      if (inp.discKind === 'pct') {
+        if (!d.ok || d.neg || d.val > PCT_MAX) flags.discInvalid = true;
+        else discount = invRoundDiv(subtotal * d.val, 10000 * 100);
+      } else {
+        if (!d.ok || d.neg || d.val > AMT_MAX) flags.discInvalid = true;
+        else { discount = Math.min(d.val, subtotal); if (d.val > subtotal) flags.discCapped = true; }
+      }
+    }
+  }
+  if (flags.discInvalid) provisional = true;
+  var taxable = subtotal - discount, tax = 0;
+  var t = invParseScaled(inp.tax);
+  if (!t.empty) {
+    if (!t.ok || t.neg || t.val > PCT_MAX) flags.taxInvalid = true;
+    else tax = invRoundDiv(taxable * t.val, 10000 * 100);
+  }
+  if (flags.taxInvalid) provisional = true;
+  var total = taxable + tax, paid = 0;
+  var p = invParseMoney(inp.paid);
+  if (!p.empty) {
+    if (!p.ok || p.neg || p.val > AMT_MAX) flags.paidInvalid = true;
+    else paid = p.val;
+  }
+  if (flags.paidInvalid) provisional = true;
+  return {
+    lines: lines, subtotal: subtotal, discount: discount, taxable: taxable,
+    tax: tax, total: total, paid: paid,
+    balance: Math.max(total - paid, 0), credit: Math.max(paid - total, 0),
+    provisional: provisional, invalid: invalid, flags: flags
+  };
 }
-document.getElementById('items').innerHTML=DEFAULTS.map(function(x){return rowHTML(x[0],x[1],x[2]);}).join('');
-/* default the invoice date to the visitor's today (was a hard-coded stale date) */
-(function(){var _d=document.getElementById('invdate');if(_d&&!_d.value){var _t=new Date();_d.value=_t.getFullYear()+'-'+String(_t.getMonth()+1).padStart(2,'0')+'-'+String(_t.getDate()).padStart(2,'0');}})();
-/* NN-INVOICE-STATE (Nov 8 2026): the generic save/share serializer in
-   nn-tools.js only collects inputs that carry an id — the line-item inputs
-   are class-only, so saved/shared invoices silently lost every billed
-   item, and share URLs carried the client's name and the notes (a privacy
-   leak). This block gives the invoice its complete state: positional ids
-   on the item inputs (so the generic save + share flows capture them),
-   row hydration before any restore, a share handler that never puts the
-   client name or the notes in a URL, and a strip of those two fields from
-   incoming links. Local saves stay complete (they never leave the
-   visitor's own device); only URLs are sanitized. */
-function syncItemIds(){document.querySelectorAll('.item-row').forEach(function(row,i){row.querySelector('.i-desc').id='it'+i+'d';row.querySelector('.i-qty').id='it'+i+'q';row.querySelector('.i-rate').id='it'+i+'r';});}
-function ensureRows(n){var tb=document.getElementById('items');while(tb.querySelectorAll('.item-row').length<n)tb.insertAdjacentHTML('beforeend',rowHTML('','1','0'));while(tb.querySelectorAll('.item-row').length>n)tb.querySelector('.item-row:last-child').remove();syncItemIds();}
-function invItemCount(params){var max=-1;for(var k in params){var m=/^it(\d+)[dqr]$/.exec(k);if(m)max=Math.max(max,parseInt(m[1],10));}return max+1;}
-function rmRow(btn){btn.closest('.item-row').remove();syncItemIds();calc();}
-function invCopyFallback(text,done){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
-/* incoming share link: build the rows its item params need before nn-tools
-   restores (its init runs on DOMContentLoaded; this runs at parse time),
-   and strip any client name / notes an older link may carry */
-(function(){var q=window.location.search;if(!q)return;var params={};q.slice(1).split('&').forEach(function(p){if(!p)return;var eq=p.indexOf('=');var k=eq>=0?p.slice(0,eq):p;try{k=decodeURIComponent(k.replace(/\+/g,' '));}catch(e){}params[k]=eq>=0?p.slice(eq+1):'';});var n=invItemCount(params);if(n>0)ensureRows(n);if(('client' in params)||('notes' in params)){var keep=q.slice(1).split('&').filter(function(p){var k=p.split('=')[0];return k!=='client'&&k!=='notes';});try{history.replaceState(null,'',window.location.pathname+(keep.length?'?'+keep.join('&'):''));}catch(e){}}})();
-/* outgoing share: same field collection as the generic serializer, minus
-   the client name and the notes; save loads: hydrate rows first so the
-   generic restore finds every item input (capture phase — runs before
-   the nn-tools bubble-phase handler) */
-document.addEventListener('click',function(e){
- var share=e.target.closest&&e.target.closest('[data-nn="share"]');
- if(share){e.stopPropagation();e.preventDefault();var parts=[];document.querySelectorAll('main input[id], main select[id], main textarea[id]').forEach(function(el){if(el.id==='client'||el.id==='notes')return;var tag=el.tagName;if((tag==='INPUT'&&el.readOnly)||el.type==='file'||el.type==='submit'||el.type==='button'||el.type==='hidden'||el.closest('.nn-actions, .nn-saves'))return;if(el.type==='radio'){if(el.checked)parts.push(encodeURIComponent(el.id)+'='+encodeURIComponent(el.value));}else if(el.type==='checkbox'){parts.push(encodeURIComponent(el.id)+'='+encodeURIComponent(el.checked?'1':'0'));}else{parts.push(encodeURIComponent(el.id)+'='+encodeURIComponent(el.value));}});var url=window.location.origin+window.location.pathname+(parts.length?'?'+parts.join('&'):'');var done=function(){var old=share.getAttribute('data-label')||share.textContent;share.setAttribute('data-label',old);share.textContent='\u2713 Copied';setTimeout(function(){share.textContent=old;},1600);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done,function(){invCopyFallback(url,done);});}else{invCopyFallback(url,done);}return;}
- var load=e.target.closest&&e.target.closest('[data-nn-load]');
- if(load){try{var saves=JSON.parse(window.localStorage.getItem('nnSavesV1')||'[]');var en=saves[parseInt(load.getAttribute('data-nn-load'),10)];if(en&&en.inputs){var n=invItemCount(en.inputs);if(n>0)ensureRows(n);}}catch(err){}}
-},true);
-syncItemIds();
-calc();
+/*PURE-END*/
+(function () {
+  'use strict';
+  /* Strip any incoming query string (an old share link may carry fields —
+     including, from before the Nov 8 fix, a client name). Only embed mode
+     survives. Runs at parse time, before nn-tools init can restore fields. */
+  (function () {
+    var q = window.location.search;
+    if (!q) return;
+    var keep = /[?&]embed=1(&|$)/.test(q) ? '?embed=1' : '';
+    if (q !== keep) { try { history.replaceState(null, '', window.location.pathname + keep); } catch (e) {} }
+  })();
+
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  function isoOf(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+  function todayStr() { return isoOf(new Date()); }
+  function addDays(iso, n) {
+    var p = String(iso || '').split('-');
+    if (p.length !== 3) return todayStr();
+    var d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]) + n * 86400000);
+    return d.getUTCFullYear() + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') + '-' + String(d.getUTCDate()).padStart(2, '0');
+  }
+  function fmtDateDisp(iso) {
+    var p = String(iso || '').split('-');
+    if (p.length !== 3) return '—';
+    return MONTHS[(+p[1]) - 1] + ' ' + (+p[2]) + ', ' + p[0];
+  }
+  var TERM_DAYS = { receipt: 0, net7: 7, net14: 14, net30: 30 };
+  var SCALARS = ['biz', 'client', 'invnum', 'invdate', 'terms', 'duedate', 'currency', 'bizaddr', 'bizemail', 'bizphone', 'biztaxid', 'cliaddr', 'cliemail', 'cliphone', 'clitaxid', 'tax', 'discKind', 'disc', 'paid', 'paper', 'lblDoc', 'lblBill', 'lblTotal', 'notes'];
+  var SAMPLE = [['Website design', '10', '75'], ['Logo design', '1', '300'], ['Consulting call', '5', '100']];
+  var LS_MAIN = 'nnInvoiceV2:' + location.pathname, LS_BAK = LS_MAIN + ':bak';
+  var uidN = 0;
+  function uid() { uidN += 1; return 'r' + Date.now().toString(36) + uidN; }
+  function blankItem() { return { id: uid(), d: '', q: '', r: '' }; }
+  function blankState() {
+    return { v: 2, biz: '', client: '', invnum: '', invdate: todayStr(), terms: 'net14', duedate: '', currency: 'USD', bizaddr: '', bizemail: '', bizphone: '', biztaxid: '', cliaddr: '', cliemail: '', cliphone: '', clitaxid: '', tax: '', discKind: 'pct', disc: '', paid: '', paper: 'letter', lblDoc: '', lblBill: '', lblTotal: '', notes: '', logo: '', items: [blankItem()] };
+  }
+  function str(v, max) { return String(v == null ? '' : v).slice(0, max); }
+  function sanitizeState(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+    var s = blankState(), i;
+    for (i = 0; i < SCALARS.length; i++) s[SCALARS[i]] = str(raw[SCALARS[i]], SCALARS[i] === 'notes' ? 2000 : 300);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(s.invdate)) s.invdate = todayStr();
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(s.duedate)) s.duedate = '';
+    if (!(s.terms in TERM_DAYS) && s.terms !== 'custom') s.terms = 'net14';
+    if (s.discKind !== 'pct' && s.discKind !== 'amt') s.discKind = 'pct';
+    if (!/^[A-Z]{3}$/.test(s.currency)) s.currency = 'USD';
+    if (s.paper !== 'a4') s.paper = 'letter';
+    s.logo = (typeof raw.logo === 'string' && raw.logo.indexOf('data:image/') === 0 && raw.logo.length <= 400000) ? raw.logo : '';
+    s.items = [];
+    if (Array.isArray(raw.items)) {
+      raw.items.slice(0, 200).forEach(function (it) {
+        if (it && typeof it === 'object') s.items.push({ id: str(it.id, 40) || uid(), d: str(it.d, 300), q: str(it.q, 20), r: str(it.r, 20) });
+      });
+    }
+    if (!s.items.length) s.items = [blankItem()];
+    return s;
+  }
+
+  var state = blankState(), lastCalc = null, saveTimer = null, lastSaveTs = 0;
+  var dirty = false, uiLock = false, undoState = null, undoTimer = null, pendingImport = null;
+  var pageStyle = document.createElement('style');
+  document.head.appendChild(pageStyle);
+
+  function deriveDue() { return state.terms === 'custom' ? (state.duedate || addDays(state.invdate, 14)) : addDays(state.invdate, TERM_DAYS[state.terms] || 0); }
+  function fmt(cents) {
+    try { return new Intl.NumberFormat('en-US', { style: 'currency', currency: state.currency }).format(cents / 100); }
+    catch (e) { return '$' + (cents / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  }
+  function compute() {
+    lastCalc = invCompute({ items: state.items, tax: state.tax, discKind: state.discKind, disc: state.disc, paid: state.paid });
+    return lastCalc;
+  }
+
+  /* ---------- draft bar ---------- */
+  function draftBar(text, warn, buttons) {
+    var bar = $('invDraft');
+    bar.innerHTML = '';
+    var span = document.createElement('span');
+    if (warn) span.className = 'inv-warn';
+    span.textContent = text;
+    bar.appendChild(span);
+    (buttons || []).forEach(function (b) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'nn-mini';
+      btn.textContent = b.label;
+      btn.addEventListener('click', b.fn);
+      bar.appendChild(btn);
+    });
+    uiLock = !!(buttons && buttons.length);
+    if (!uiLock && !text) bar.innerHTML = '';
+  }
+  function saveDraft() {
+    try {
+      var prev = localStorage.getItem(LS_MAIN);
+      if (prev) localStorage.setItem(LS_BAK, prev);
+      lastSaveTs = Date.now();
+      localStorage.setItem(LS_MAIN, JSON.stringify({ v: 2, ts: lastSaveTs, state: state }));
+      dirty = false;
+      if (!uiLock) draftBar('Saved on this device ✓ · ' + new Date(lastSaveTs).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
+    } catch (e) {
+      if (!uiLock) draftBar('Couldn’t save on this device — export a backup from the toolbar.', true);
+    }
+  }
+  function scheduleSave() {
+    dirty = true;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveDraft, 500);
+  }
+
+  /* ---------- editor <-> state ---------- */
+  function readScalars() {
+    SCALARS.forEach(function (id) { var el = $(id); if (el) state[id] = el.value; });
+    state.items = [];
+    Array.prototype.forEach.call(document.querySelectorAll('#items .inv-item'), function (row) {
+      state.items.push({ id: row.getAttribute('data-rid') || uid(), d: row.querySelector('.i-desc').value, q: row.querySelector('.i-qty').value, r: row.querySelector('.i-rate').value });
+    });
+  }
+  function writeScalars() {
+    SCALARS.forEach(function (id) { var el = $(id); if (el && el.value !== state[id]) el.value = state[id]; });
+    pageStyle.textContent = '@page{size:' + (state.paper === 'a4' ? 'A4' : 'letter') + ';margin:12mm}';
+  }
+  function buildRow(item) {
+    var row = document.createElement('div');
+    row.className = 'inv-item';
+    row.setAttribute('data-rid', item.id);
+    row.innerHTML = '<div><label class="inv-lab">Description</label><input class="i-desc" type="text" placeholder="What did you do or sell?"></div>' +
+      '<div class="inv-item-grid">' +
+      '<div><label class="inv-lab">Qty</label><input class="i-qty" type="number" min="0" step="any" inputmode="decimal"></div>' +
+      '<div><label class="inv-lab">Rate</label><input class="i-rate" type="number" min="0" step="any" inputmode="decimal"></div>' +
+      '<div class="inv-item-amt"><span class="inv-lab">Amount</span><strong class="i-amt">$0.00</strong></div>' +
+      '<button type="button" class="inv-remove">Remove</button></div>' +
+      '<div class="inv-item-flag" hidden></div>';
+    row.querySelector('.i-desc').value = item.d;
+    row.querySelector('.i-qty').value = item.q;
+    row.querySelector('.i-rate').value = item.r;
+    return row;
+  }
+  function buildRows() {
+    var box = $('items');
+    box.innerHTML = '';
+    state.items.forEach(function (it) { box.appendChild(buildRow(it)); });
+  }
+
+  /* ---------- render ---------- */
+  function metaLine(parts) { return parts.filter(function (x) { return x; }).join('\n'); }
+  function render() {
+    var c = compute();
+    state.duedate = deriveDue();
+    writeScalars();
+    /* item rows: amounts + flags */
+    var rows = document.querySelectorAll('#items .inv-item');
+    Array.prototype.forEach.call(rows, function (row, i) {
+      var ln = c.lines[i] || { status: 'empty', amt: 0 };
+      row.querySelector('.i-amt').textContent = fmt(ln.amt);
+      var flag = row.querySelector('.inv-item-flag');
+      row.classList.toggle('inv-bad', ln.status === 'invalid');
+      if (ln.status === 'invalid') { flag.hidden = false; flag.textContent = 'Check this line — quantity and rate must be numbers (rate up to $100,000).'; }
+      else if (ln.status === 'incomplete') { flag.hidden = false; flag.textContent = 'Incomplete — add a quantity and a rate.'; }
+      else flag.hidden = true;
+    });
+    /* document */
+    $('pBiz').textContent = state.biz || 'Your Business';
+    $('pDocLabel').textContent = state.lblDoc || 'Invoice';
+    $('pBizMeta').textContent = metaLine([state.bizaddr, state.bizemail, state.bizphone, state.biztaxid ? 'Tax ID: ' + state.biztaxid : '']);
+    $('pNum').textContent = state.invnum || '—';
+    $('pDate').textContent = fmtDateDisp(state.invdate);
+    $('pDue').textContent = fmtDateDisp(state.duedate);
+    $('pBillLabel').textContent = (state.lblBill || 'Bill to') + ':';
+    $('pClient').textContent = state.client || '—';
+    $('pClientMeta').textContent = metaLine([state.cliaddr, state.cliemail, state.cliphone, state.clitaxid ? 'Tax ID: ' + state.clitaxid : '']);
+    var html = '';
+    state.items.forEach(function (it, i) {
+      var ln = c.lines[i] || { status: 'empty', amt: 0 };
+      if (ln.status === 'empty') return;
+      html += '<tr><td style="border-top:1px solid var(--line)">' + esc(it.d || 'Item') + '</td><td style="border-top:1px solid var(--line);text-align:right">' + esc(it.q) + '</td><td style="border-top:1px solid var(--line);text-align:right">' + fmt(invParseMoney(it.r).val || 0) + '</td><td style="border-top:1px solid var(--line);text-align:right">' + fmt(ln.amt) + '</td></tr>';
+    });
+    $('pRows').innerHTML = html || '<tr><td colspan="4" style="padding:12px 4px;color:var(--muted)">No line items yet — add one above.</td></tr>';
+    $('pSub').textContent = fmt(c.subtotal);
+    $('pDiscRow').hidden = !(c.discount > 0);
+    $('pDisc').textContent = '−' + fmt(c.discount);
+    $('pTaxPct').textContent = String(state.tax).trim() || '0';
+    $('pTax').textContent = fmt(c.tax);
+    $('pTotalLabel').textContent = state.lblTotal || 'Total due';
+    $('pTotal').textContent = fmt(c.total);
+    $('pPaidRow').hidden = !(c.paid > 0);
+    $('pPaid').textContent = fmt(c.paid);
+    $('pBalRow').hidden = !(c.paid > 0);
+    $('pBalLabel').textContent = c.credit > 0 ? 'Credit balance' : 'Balance due';
+    $('pBal').textContent = fmt(c.credit > 0 ? c.credit : c.balance);
+    $('pNotes').textContent = state.notes || '';
+    var logo = $('pLogo');
+    if (state.logo) { logo.src = state.logo; logo.style.display = 'block'; } else { logo.removeAttribute('src'); logo.style.display = 'none'; }
+    $('invLogoRemove').hidden = !state.logo;
+    /* sample chip: a first-paint affordance only */
+    var anyContent = state.items.some(function (it) { return it.d.trim() || it.q.trim() || it.r.trim(); });
+    $('invSample').closest('.inv-sample').style.display = anyContent ? 'none' : '';
+    /* toolbar total + phone summary */
+    var dueText = c.credit > 0 ? 'Credit ' + fmt(c.credit) : (c.paid > 0 ? 'Balance due ' + fmt(c.balance) : (state.lblTotal || 'Total due') + ' ' + fmt(c.total));
+    $('invBarTotal').textContent = dueText;
+    $('invSumText').textContent = dueText;
+    renderRail(c);
+  }
+  function renderRail(c) {
+    var rail = $('invRail');
+    rail.innerHTML = '';
+    function chip(text, bad, focusFn) {
+      var el = document.createElement(focusFn ? 'button' : 'span');
+      el.className = 'inv-chip' + (bad ? ' inv-chip-bad' : '');
+      if (focusFn) { el.type = 'button'; el.addEventListener('click', focusFn); }
+      el.textContent = text;
+      rail.appendChild(el);
+    }
+    var count = c.lines.filter(function (l) { return l.status !== 'empty'; }).length;
+    chip(count <= 12 ? '✓ 1 page' : 'Long invoice — check the print preview');
+    chip(c.provisional && !c.invalid ? 'Totals provisional' : 'Totals current', c.provisional);
+    if (c.invalid) {
+      var badIdx = c.lines.findIndex(function (l) { return l.status === 'invalid'; });
+      chip('Fix item ' + (badIdx + 1) + ' to print', true, function () { focusBadRow(badIdx); });
+    }
+    if (c.flags.discInvalid) chip('Discount ignored — use 0–100% or an amount', true);
+    if (c.flags.taxInvalid) chip('Tax rate ignored — use 0–100%', true);
+    if (c.flags.paidInvalid) chip('Amount paid ignored — check the number', true);
+    if (c.flags.discCapped) chip('Discount capped at the subtotal');
+    if (!state.client.trim()) chip('Missing: client name', false, function () { $('client').focus(); });
+    if (!state.biz.trim()) chip('Missing: your business name', false, function () { $('biz').focus(); });
+    if (!c.invalid && !c.provisional && count > 0 && state.client.trim() && state.biz.trim()) chip('Ready to print ✓');
+  }
+  function focusBadRow(i) {
+    var row = document.querySelectorAll('#items .inv-item')[i];
+    if (!row) return;
+    var q = row.querySelector('.i-qty'), r = row.querySelector('.i-rate');
+    var qp = invParseScaled(q.value), rp = invParseMoney(r.value);
+    var target = (!qp.ok || qp.neg) ? q : r;
+    row.scrollIntoView({ block: 'center' });
+    target.focus();
+  }
+  function refresh(changedId) {
+    readScalars();
+    if (changedId === 'duedate') state.terms = 'custom';
+    state.duedate = deriveDue();
+    render();
+    scheduleSave();
+  }
+  function applyAll() {
+    writeScalars();
+    buildRows();
+    state.duedate = deriveDue();
+    render();
+  }
+
+  /* ---------- summary / export / import ---------- */
+  function summaryText() {
+    var c = lastCalc || compute();
+    var count = c.lines.filter(function (l) { return l.status !== 'empty'; }).length;
+    var lines = [];
+    lines.push((state.lblDoc || 'Invoice') + ' ' + (state.invnum || '—') + ' — ' + (state.biz || 'Your Business') + ' → ' + (state.client || '—'));
+    lines.push('Date ' + fmtDateDisp(state.invdate) + ' · Due ' + fmtDateDisp(state.duedate));
+    var mid = 'Items: ' + count + ' · Subtotal ' + fmt(c.subtotal);
+    if (c.discount > 0) mid += ' · Discount −' + fmt(c.discount);
+    mid += ' · Tax (' + (String(state.tax).trim() || '0') + '%) ' + fmt(c.tax);
+    lines.push(mid);
+    var end = (state.lblTotal || 'Total due') + ' ' + fmt(c.total);
+    if (c.paid > 0) end += ' · Amount paid ' + fmt(c.paid) + (c.credit > 0 ? ' · Credit balance ' + fmt(c.credit) : ' · Balance due ' + fmt(c.balance));
+    lines.push(end);
+    return lines.join('\n');
+  }
+  window.__nnInvoiceSummary = summaryText;
+  window.__nnInvoiceState = function () { return JSON.parse(JSON.stringify(state)); };
+  window.__nnInvoiceExport = function () {
+    return JSON.stringify({ app: 'nn-invoice', v: 2, exportedAt: new Date().toISOString(), state: state }, null, 1);
+  };
+  window.__nnInvoiceImport = function (text) {
+    var obj;
+    try { obj = JSON.parse(text); } catch (e) { return { ok: false, error: 'That file is not valid invoice data (JSON).' }; }
+    var raw = obj && obj.state ? obj.state : obj;
+    var clean = sanitizeState(raw);
+    if (!clean || (obj && obj.app && obj.app !== 'nn-invoice')) return { ok: false, error: 'That file is not an invoice exported from this tool.' };
+    var c = invCompute({ items: clean.items, tax: clean.tax, discKind: clean.discKind, disc: clean.disc, paid: clean.paid });
+    var count = c.lines.filter(function (l) { return l.status !== 'empty'; }).length;
+    pendingImport = clean;
+    draftBar('Import invoice for ' + (clean.client || '—') + ' — ' + count + ' items, total ' + fmt(c.total) + '? This replaces the current draft.', false, [
+      { label: 'Replace draft', fn: function () { state = pendingImport; pendingImport = null; applyAll(); scheduleSave(); draftBar('Invoice imported — check the details, then print.', false); } },
+      { label: 'Cancel', fn: function () { pendingImport = null; draftBar('Import cancelled — your draft is unchanged.', false); } }
+    ]);
+    return { ok: true, summary: { client: clean.client, items: count, total: c.total } };
+  };
+
+  /* ---------- events ---------- */
+  var editor = document.querySelector('.inv-editor');
+  editor.addEventListener('input', function (e) { refresh(e.target.id || ''); });
+  editor.addEventListener('change', function (e) { if (e.target.id !== 'logoFile') refresh(e.target.id || ''); });
+  editor.addEventListener('focusout', function (e) {
+    var el = e.target;
+    if (!el.classList) return;
+    if (el.classList.contains('i-rate')) {
+      var p = invParseMoney(el.value);
+      if (p.ok && !p.empty && !p.neg) el.value = String(p.val / 100);
+    } else if (el.classList.contains('i-qty')) {
+      var q = invParseScaled(el.value);
+      if (q.ok && !q.empty && !q.neg) el.value = String(q.val / 10000);
+    }
+  });
+  $('items').addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('.inv-remove');
+    if (!btn) return;
+    readScalars();
+    var row = btn.closest('.inv-item');
+    var idx = Array.prototype.indexOf.call(document.querySelectorAll('#items .inv-item'), row);
+    if (idx >= 0) state.items.splice(idx, 1);
+    if (!state.items.length) state.items = [blankItem()];
+    buildRows();
+    render();
+    scheduleSave();
+  });
+  $('invAddRow').addEventListener('click', function () {
+    readScalars();
+    state.items.push(blankItem());
+    buildRows();
+    render();
+    scheduleSave();
+    var rows = document.querySelectorAll('#items .inv-item');
+    var last = rows[rows.length - 1];
+    if (last) last.querySelector('.i-desc').focus();
+  });
+  $('invSample').addEventListener('click', function () {
+    state.items = SAMPLE.map(function (x) { return { id: uid(), d: x[0], q: x[1], r: x[2] }; });
+    buildRows();
+    render();
+    scheduleSave();
+  });
+  $('invDocToggle').addEventListener('click', function () {
+    var doc = $('invDoc');
+    var open = doc.classList.toggle('inv-open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    this.textContent = open ? 'Hide invoice' : 'Preview invoice';
+  });
+  $('logoFile').addEventListener('change', function () {
+    var f = this.files && this.files[0];
+    if (!f) return;
+    if (f.size > 3000000) { $('invLogoMsg').textContent = 'That image is over 3 MB — pick a smaller logo.'; return; }
+    var url = URL.createObjectURL(f);
+    var img = new Image();
+    img.onload = function () {
+      URL.revokeObjectURL(url);
+      var scale = Math.min(1, 480 / Math.max(img.width, img.height));
+      var cv = document.createElement('canvas');
+      cv.width = Math.max(1, Math.round(img.width * scale));
+      cv.height = Math.max(1, Math.round(img.height * scale));
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+      var data = cv.toDataURL('image/png');
+      if (data.length > 380000) data = cv.toDataURL('image/jpeg', 0.85);
+      if (data.length > 400000) { $('invLogoMsg').textContent = 'That logo is too detailed to store in the browser — try a simpler image.'; return; }
+      state.logo = data;
+      $('invLogoMsg').textContent = 'Logo set — stored only in this browser, never uploaded.';
+      render();
+      scheduleSave();
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); $('invLogoMsg').textContent = 'That file could not be read as an image.'; };
+    img.src = url;
+  });
+  $('invLogoRemove').addEventListener('click', function () {
+    state.logo = '';
+    $('logoFile').value = '';
+    $('invLogoMsg').textContent = 'No logo. The image is stored only in this browser, never uploaded.';
+    render();
+    scheduleSave();
+  });
+  $('invPrint').addEventListener('click', function () {
+    if (lastCalc && lastCalc.invalid) {
+      var badIdx = lastCalc.lines.findIndex(function (l) { return l.status === 'invalid'; });
+      draftBar('Fix item ' + (badIdx + 1) + ' before printing — every line needs a quantity and a rate.', true);
+      focusBadRow(badIdx);
+      return;
+    }
+    window.print();
+  });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('#invCopy');
+    if (!b) return;
+    e.stopPropagation();
+    e.preventDefault();
+    var text = summaryText();
+    function done() {
+      var old = b.getAttribute('data-label') || b.textContent;
+      b.setAttribute('data-label', old);
+      b.textContent = '✓ Copied';
+      setTimeout(function () { b.textContent = old; }, 1600);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { fallback(); });
+    else fallback();
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (err) {}
+      document.body.removeChild(ta);
+      done();
+    }
+  }, true);
+  $('invExport').addEventListener('click', function () {
+    var blob = new Blob([window.__nnInvoiceExport()], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'invoice-' + (state.invnum || 'draft').replace(/[^\w-]+/g, '') + '.json';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 400);
+  });
+  $('invImport').addEventListener('click', function () { $('invImportFile').click(); });
+  $('invImportFile').addEventListener('change', function () {
+    var f = this.files && this.files[0];
+    this.value = '';
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      var res = window.__nnInvoiceImport(String(reader.result || ''));
+      if (!res.ok) draftBar(res.error, true);
+    };
+    reader.readAsText(f);
+  });
+  function isPopulated() {
+    return !!(state.client.trim() || state.notes.trim() || state.paid.trim() || state.disc.trim() ||
+      state.items.some(function (it) { return it.d.trim() || it.q.trim() || it.r.trim(); }));
+  }
+  function resetInvoice() {
+    var keep = { biz: state.biz, bizaddr: state.bizaddr, bizemail: state.bizemail, bizphone: state.bizphone, biztaxid: state.biztaxid, currency: state.currency, terms: state.terms, paper: state.paper, lblDoc: state.lblDoc, lblBill: state.lblBill, lblTotal: state.lblTotal, logo: state.logo };
+    state = blankState();
+    Object.keys(keep).forEach(function (k) { state[k] = keep[k]; });
+    applyAll();
+  }
+  $('invNew').addEventListener('click', function () {
+    readScalars();
+    if (!isPopulated()) { resetInvoice(); scheduleSave(); draftBar('New invoice started.', false); return; }
+    draftBar('Start a new invoice? The current draft stays recoverable with Undo.', false, [
+      { label: 'Start new', fn: function () {
+          undoState = JSON.parse(JSON.stringify(state));
+          try { localStorage.setItem(LS_BAK, JSON.stringify({ v: 2, ts: Date.now(), state: undoState })); } catch (e) {}
+          resetInvoice();
+          scheduleSave();
+          draftBar('New invoice started.', false, [{ label: 'Undo', fn: function () {
+            if (!undoState) return;
+            state = undoState; undoState = null;
+            applyAll(); scheduleSave();
+            draftBar('Draft restored.', false);
+          } }]);
+          clearTimeout(undoTimer);
+          undoTimer = setTimeout(function () { undoState = null; if (!uiLock) return; draftBar('Saved on this device ✓', false); }, 15000);
+        } },
+      { label: 'Keep editing', fn: function () { draftBar('Kept your draft.', false); } }
+    ]);
+  });
+  window.addEventListener('storage', function (e) {
+    if (e.key !== LS_MAIN || !e.newValue) return;
+    try {
+      var incoming = JSON.parse(e.newValue);
+      if (incoming && incoming.ts > lastSaveTs && dirty) {
+        draftBar('A newer draft was saved in another tab — your typing here was kept, not overwritten.', true);
+      }
+    } catch (err) {}
+  });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', function () {
+      document.body.classList.toggle('inv-kb', window.visualViewport.height < window.innerHeight * 0.75);
+    });
+  }
+
+  /* ---------- init ---------- */
+  var restored = false, restoredTs = 0;
+  try {
+    var raw = localStorage.getItem(LS_MAIN);
+    var parsed = raw ? JSON.parse(raw) : null;
+    if (!parsed || !parsed.state) { var bakRaw = localStorage.getItem(LS_BAK); parsed = bakRaw ? JSON.parse(bakRaw) : null; }
+    var clean = parsed ? sanitizeState(parsed.state) : null;
+    if (clean) { state = clean; restored = true; restoredTs = parsed.ts || 0; lastSaveTs = restoredTs; }
+  } catch (e) {}
+  applyAll();
+  if (restored) draftBar('Draft restored from ' + new Date(restoredTs).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' — autosaves on this device as you type.', false);
+})();
 </script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

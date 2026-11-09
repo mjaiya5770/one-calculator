@@ -1416,3 +1416,95 @@ html.nn-embed body{background:transparent}
 .lib-grid .tool-card h3{font-size:.95rem;margin:0;line-height:1.25}
 .lib-grid .tool-card p{font-size:.8rem;line-height:1.35;margin:0;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 .lib-grid .tool-card::after{display:none}
+
+/* NN-SHELL-P1 — supremacy pilot shell v1 (the P1 pilot trees, P1):
+   44px secondary targets, stale-state line, sticky result strip, disclosure
+   component, signature slot. Brand-neutral — palette vars only. Appended at
+   the end of style.css so these rules win at equal specificity. */
+.nn-btn,.nn-mini{min-height:44px}
+.seg-btn{min-height:44px}
+.nn-stale-line{margin:14px 0 0;padding:10px 14px;border:1px solid var(--amber);border-left:5px solid var(--amber);border-radius:var(--radius);background:var(--surface-warm);color:var(--text);font-size:.92rem;font-weight:600}
+.nn-stale-line[hidden]{display:none}
+.nn-stale-flash{animation:nnStaleFlash .6s ease}
+@keyframes nnStaleFlash{0%,100%{box-shadow:none}30%{box-shadow:0 0 0 4px var(--amber)}}
+.nn-strip{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:900;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 16px;background:var(--surface);border:1px solid var(--border-strong);border-radius:999px;box-shadow:var(--shadow-lg)}
+.nn-strip[hidden]{display:none}
+.nn-strip-answer{flex:1 1 auto;min-width:0;font-weight:700;color:var(--teal-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nn-strip .nn-strip-btn{flex:0 0 auto;border-radius:999px}
+@media (min-width:901px){.nn-strip{display:none!important}}
+@media print{.nn-strip{display:none!important}}
+html.nn-embed .nn-strip{display:none!important}
+details.nn-details{margin:14px 0;padding:2px 16px 8px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface)}
+details.nn-details>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:700;color:var(--teal-dark)}
+.nn-signature{margin-top:12px}
+.nn-signature:empty{display:none}
+.nn-live-hidden{display:none!important}
+
+/* NN-INVOICE-V2 — invoice pilot page styles (the P1 pilot trees, P1) */
+.inv-layout{display:grid;gap:18px;align-items:start}
+@media(min-width:1025px){.inv-layout{grid-template-columns:55fr 45fr}.inv-side{position:sticky;top:calc(var(--header-height,68px) + 12px)}}
+.inv-draft{font-size:.9rem;color:var(--muted);margin-bottom:12px}
+.inv-draft:empty{display:none}
+.inv-draft .inv-warn{color:#b45309;font-weight:600}
+.inv-draft button{margin-left:8px}
+.inv-sample{margin:0 0 10px}
+.inv-item{border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;margin-bottom:10px;background:var(--surface)}
+.inv-item.inv-bad{border-color:#c0392b}
+.inv-lab{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:3px}
+.inv-item input{width:100%}
+.inv-item-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px;align-items:end}
+.inv-item-amt strong{display:block;font-size:1.02rem;padding:10px 0 2px}
+.inv-remove{grid-column:1/-1;min-height:44px;background:none;border:1px solid var(--border-strong);border-radius:var(--radius-pill);color:#c0392b;font:inherit;font-weight:600;font-size:.85rem;cursor:pointer}
+@media(min-width:641px){.inv-item-grid{grid-template-columns:1fr 1fr 1fr auto}.inv-remove{grid-column:auto;padding:0 16px}}
+.inv-item-flag{color:#b45309;font-size:.85rem;font-weight:600;margin-top:6px}
+.inv-editor select,.inv-editor textarea{width:100%}
+.inv-rail{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.inv-chip{display:inline-flex;align-items:center;min-height:32px;padding:4px 10px;border-radius:999px;border:1px solid var(--border-strong);background:var(--surface-warm);font-size:.82rem;font-weight:600;color:var(--teal-dark)}
+button.inv-chip{cursor:pointer;font:inherit;font-size:.82rem;font-weight:600}
+.inv-chip.inv-chip-bad{border-color:#c0392b;color:#c0392b}
+.inv-summary{display:none}
+@media(max-width:1024px){.inv-summary{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.inv-doc{display:none}.inv-doc.inv-open{display:block}}
+.inv-toolbar .inv-bar-total{display:none}
+@media(max-width:640px){
+ .inv-toolbar{position:fixed;left:0;right:0;bottom:0;z-index:900;margin:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1px solid var(--border-strong);box-shadow:0 -6px 18px rgba(0,0,0,.08);align-items:center}
+ .inv-toolbar .inv-bar-total{display:block;font-weight:800;color:var(--teal-dark);margin-right:auto}
+ body.inv-kb .inv-toolbar{display:none}
+}
+html.nn-embed .inv-toolbar{position:static;box-shadow:none;border-top:none}
+.inv-doc table{width:100%;border-collapse:collapse;font-size:.95rem}
+.inv-doc td,.inv-doc th{padding:6px 4px}
+.inv-totals{break-inside:avoid}
+@media print{
+ .inv-doc{display:block!important}
+ .inv-doc thead{display:table-header-group}
+ #preview{box-shadow:none}
+}
+
+/* NN-EFFECTS-P1 — shell effects layer (R1 rollout build): result reveal,
+   sticky-strip slide-in, tactile press depth, milestone sparkle burst.
+   Transform/opacity only — zero layout shift; brand palette vars only;
+   every animation is disabled under prefers-reduced-motion and in print. */
+@media (prefers-reduced-motion: no-preference){
+ .results.nn-fx-reveal,.stat-grid.nn-fx-reveal{animation:nnFxReveal .45s cubic-bezier(.2,.8,.25,1)}
+ .nn-strip:not([hidden]){animation:nnFxStripIn .3s cubic-bezier(.2,.9,.25,1)}
+ .nn-fx-spark{animation:nnFxSpark .9s cubic-bezier(.15,.8,.3,1) forwards}
+}
+@keyframes nnFxReveal{0%{opacity:.25;transform:translateY(7px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes nnFxStripIn{from{transform:translateY(110%);opacity:.4}to{transform:translateY(0);opacity:1}}
+.btn,.nn-btn,.nn-mini,.seg-btn{transition:transform .12s ease}
+.seg-btn:active{transform:translateY(1px) scale(.97)}
+.nn-actions .nn-btn:active{transform:translateY(1px) scale(.97)}
+.results.nn-fx-host{position:relative}
+.nn-fx-burst{position:absolute;top:14px;left:50%;width:0;height:0;pointer-events:none;z-index:5}
+.nn-fx-spark{position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:2px;background:var(--amber);opacity:0}
+.nn-fx-spark:nth-child(3n){background:var(--gold);border-radius:50%}
+.nn-fx-spark:nth-child(3n+1){background:var(--teal)}
+@keyframes nnFxSpark{0%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}100%{opacity:0;transform:translate(var(--nn-fx-x,0px),var(--nn-fx-y,0px)) rotate(var(--nn-fx-r,0deg)) scale(.55)}}
+@media (prefers-reduced-motion: reduce){
+ .results.nn-fx-reveal,.stat-grid.nn-fx-reveal,.nn-strip:not([hidden]),.nn-fx-spark{animation:none!important}
+ .btn,.nn-btn,.nn-mini,.seg-btn{transition:none}
+}
+@media print{
+ .nn-fx-burst{display:none!important}
+ .results,.stat-grid{animation:none!important}
+}
