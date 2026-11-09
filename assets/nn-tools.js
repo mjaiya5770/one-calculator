@@ -625,12 +625,17 @@
 
   /* ---------- init ---------- */
   function init() {
-    /* print scoping: mark cards that hold results */
-    if (document.querySelector('.results, .stat-grid') || $('#pwout')) {
+    /* print scoping: mark cards that hold results. Markers: .results /
+       .stat-grid (standard tools), #pwout (password generator) and
+       #preview (document-style tools: the invoice generator renders its
+       printable document there and has no .results element — leaving it
+       out once kept nn-has-results unset on that page, so the print
+       report shipped every detail card; muni defect report Nov 8 2026). */
+    if (document.querySelector('.results, .stat-grid, #preview') || $('#pwout')) {
       document.body.classList.add('nn-has-results');
     }
     $all('.card').forEach(function (card) {
-      if (card.querySelector('.results, .stat-grid') || card.querySelector('#pwout')) {
+      if (card.querySelector('.results, .stat-grid, #preview') || card.querySelector('#pwout') || card.id === 'preview') {
         card.classList.add('nn-calc-card');
       }
     });

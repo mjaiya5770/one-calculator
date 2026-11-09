@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Rafter Length Calculator — Common & Hip Rafters, Birdsmouth, Overhang | One Calculator</title>
+<meta name="robots" content="noindex,follow">
+  <meta name="description" content="Free rafter length calculator: common and hip rafter lengths from span and pitch, with ridge deduction, birdsmouth seat, overhang tail, total rise and plumb height — the full cut list, not just a per-foot factor.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/rafter-length-calculator.html">
+<meta property="og:title" content="Free Rafter Length Calculator — Common & Hip Rafters, Birdsmouth, Overhang | One Calculator">
+<meta property="og:description" content="Free rafter length calculator: common and hip rafter lengths from span and pitch, with ridge deduction, birdsmouth seat, overhang tail, total rise and plumb height — the full cut list, not just a per-foot factor.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/rafter-length-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Rafter Length Calculator — Common & Hip Rafters, Birdsmouth, Overhang | One Calculator">
+<meta name="twitter:description" content="Free rafter length calculator: common and hip rafter lengths from span and pitch, with ridge deduction, birdsmouth seat, overhang tail, total rise and plumb height — the full cut list, not just a per-foot factor.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Rafter Length Calculator",
+  "description": "Free rafter length calculator: common and hip rafter lengths from span and pitch, with ridge deduction, birdsmouth seat, overhang tail, total rise and plumb height \u2014 the full cut list, not just a per-foot factor.",
+  "url": "https://onecalculator.site/tools/rafter-length-calculator.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long is a common rafter for a 28 ft span at 6/12 pitch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Unit run is 14 ft. The 6/12 unit length is \u221a(144+36) = 13.42 in per foot of run, a slope factor of 1.118. Theoretical length 14 \u00d7 1.118 = 15.65 ft; minus a 0.07 ft ridge deduction, plus a 1.12 ft tail for a 12 in overhang = 16.70 ft to cut \u2014 order 18 ft stock."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the ridge deduction and why is it halved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The theoretical rafter length runs to the centerline of the ridge. A real rafter stops at the face of the ridge board, so you deduct half the board thickness \u2014 measured along the slope, which is why a 1.5 in board deducts about 0.07 ft (0.84 in along the slope at 6/12), not a full 0.75 in horizontally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is a hip rafter different from a common rafter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A hip rafter travels diagonally in plan view, so for every 12 in of common run it covers 12\u221a2 \u2248 16.97 in horizontally. Its unit length at 6/12 is \u221a(288+36) = 18.00 in per 16.97 in of plan run \u2014 a factor of about 1.06 per foot of hip run. On a 14 ft hip run at 6/12 that is 15.84 ft with the same ridge deduction and tail logic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the birdsmouth change the rafter length?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 the birdsmouth is a notch, not a length change. Its seat (horizontal) cut equals the wall thickness (3.5 in on a 2\u00d74 wall), which is 0.33 ft measured along the slope at 6/12. It sets where the rafter bears on the plate. Cutting the seat deeper than about a third of the rafter depth weakens it \u2014 keep the heel stand (plumb height above the plate) in mind."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is plumb height and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The vertical distance from the top of the wall plate to the ridge line: total rise (7.00 ft on the example) plus the plate/heel allowance. It is the number you need for gable-end studs, ridge board height and checking that the roof clears doors, windows and the floor below before you cut anything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My span is measured inside the walls. Does that matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Rafters bear on the outside face line of the wall plates in this geometry, so span means outside-to-outside. An inside measurement on 2\u00d74 walls understates the span by 7 in, which at 6/12 shortens each rafter by about 3.9 in \u2014 enough to ruin a cut list. Add both wall thicknesses first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much extra should I order beyond the cut length?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Buy the next stock length up (lengths come in 2 ft steps) and add one spare pair per roof plane on a first build. The tail is the usual casualty: if the fascia line moves, a longer board still works, a shorter one becomes blocking."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../calculators.html">Calculators</a><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/rafter-length-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../calculators.html#cat-home-diy-tools">Home & DIY tools</a> › Rafter Length Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+  <h1 class="tool-title">Rafter Length Calculator</h1>
+  <p class="lede">A rafter is a right triangle with deductions. Enter the building span and pitch and get the actual board length to cut — common and hip rafters, ridge deduction, birdsmouth and overhang tail all worked out, where the roof-pitch tool only gives a per-foot factor.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="span">Building span (ft, outside to outside)</label><input id="span" type="number" value="28" min="0" step="any"></div>
+      <div class="field"><label for="pitch">Roof pitch (rise per 12 in of run)</label><input id="pitch" type="number" value="6" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="wall">Wall thickness (in)</label><select id="wall"><option value="3.5" selected>3.5 in — 2×4 wall</option><option value="5.5">5.5 in — 2×6 wall</option></select></div>
+      <div class="field"><label for="plate">Top plate height (in)</label><input id="plate" type="number" value="3.5" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="over">Overhang / eave (in, horizontal)</label><input id="over" type="number" value="12" min="0" step="any"></div>
+      <div class="field"><label for="ridge">Ridge board thickness (in)</label><input id="ridge" type="number" value="1.5" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="hip">Hip run (ft) — 0 for a gable roof</label><input id="hip" type="number" value="14" min="0" step="any"></div>
+    </div>
+    <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Span is the full outside-to-outside width; each common rafter covers half of it (the unit run). The hip run is the horizontal distance the hip rafter travels — on a square hip roof it equals the common rafter's unit run. Lengths are the theoretical cut lengths along the top edge; always confirm against a story pole or the first pair of rafters on a real build.</p>
+
+    <button class="btn" onclick="calc()">Calculate rafter lengths</button>
+<div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#rafter-length-calculator">Embed this calculator on your site — free</a></p>
+    <div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Common rafter length (to cut)</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Everything starts from the unit rafter: for a pitch of P (rise per 12 in of run), the unit length is √(12² + P²) inches of rafter per 12 in of run, and the slope factor is that ÷ 12. The theoretical common rafter is unit run (half the span) × slope factor. From there the real-world adjustments land: subtract half the ridge board thickness laid along the slope, add the overhang tail (horizontal overhang × slope factor). The birdsmouth seat is the wall thickness laid along the slope — it tells you where the seat cut falls, it does not change the board length. Hip rafters run at 45° in plan, so their unit run is 12√2 and the unit length is √(288 + P²).</p>
+    <div class="note">Geometry only — this sizes lengths, not lumber. Rafter span tables, snow/wind loads and local code decide the board size and grade; a length that fits on paper still needs a legal span. Round up to the next stock length (2 ft increments) when ordering.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Unit length = √(12² + pitch²) inches of rafter per 12 in of run; slope factor = unit length ÷ 12. Common rafter = (span ÷ 2) × slope factor − (ridge thickness ÷ 2, along the slope) + overhang × slope factor. Hip unit length = √(288 + pitch²) per 12√2 in of plan run. Birdsmouth seat along slope = wall thickness × slope factor. Total rise = (span ÷ 2) × pitch ÷ 12.</p>
+    <p><strong>Worked example:</strong> A 28 ft span at 6/12: unit length 13.42 in, slope factor 1.118, theoretical 15.65 ft, ridge deduction 0.07 ft, 12 in overhang tail 1.12 ft — common rafter 16.70 ft. The hip on a 14 ft hip run: unit length 18.00 in, 15.84 ft to cut.</p>
+  </div>
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are cutting a roof and need real board lengths, not a per-foot multiplier.</li><li>A quote lists rafter lengths you want to verify before paying for lumber.</li><li>You are framing a hip roof and need hip lengths alongside the commons.</li><li>You need the ridge height (plumb height) for gable studs or a permit drawing.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Measure the building span outside-to-outside and enter it in feet.</li><li>Enter the pitch as rise per 12 (6 means 6/12).</li><li>Pick the wall thickness and confirm plate height and ridge board thickness.</li><li>Enter the horizontal overhang in inches; set hip run to 0 for a gable roof, or to the hip’s horizontal travel for a hip roof.</li><li>Read the common rafter cut length, then the hip length if shown, and round each up to a stock length.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Span</strong></td><td style="padding:6px 8px">Full building width, outside of wall to outside of wall</td><td style="padding:6px 8px">24–40 ft for most houses</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Pitch</strong></td><td style="padding:6px 8px">Rise in inches per 12 inches of horizontal run</td><td style="padding:6px 8px">4/12 low slope; 6/12 common; 8–12/12 steep</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Overhang</strong></td><td style="padding:6px 8px">Horizontal distance the eave extends past the wall</td><td style="padding:6px 8px">12 in typical; 16–24 in on wide eaves</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Hip run</strong></td><td style="padding:6px 8px">Horizontal travel of the hip rafter in plan view</td><td style="padding:6px 8px">Equals half the span on a square hip roof; 0 = gable</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A 24 ft span at 8/12 with 2×6 walls (5.5 in) and an 18 in overhang: unit length √(144+64) = 14.42 in, slope factor 1.202. Theoretical rafter 12 × 1.202 = 14.42 ft; ridge deduction 0.08 ft; tail 1.5 × 1.202 = 1.80 ft — cut length 16.15 ft, total rise 8.00 ft. The steeper pitch adds length fast: the same span at 6/12 cuts at about 14.6 ft.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How long is a common rafter for a 28 ft span at 6/12 pitch?</h3>
+    <p>Unit run is 14 ft. The 6/12 unit length is √(144+36) = 13.42 in per foot of run, a slope factor of 1.118. Theoretical length 14 × 1.118 = 15.65 ft; minus a 0.07 ft ridge deduction, plus a 1.12 ft tail for a 12 in overhang = 16.70 ft to cut — order 18 ft stock.</p>
+    <h3>What is the ridge deduction and why is it halved?</h3>
+    <p>The theoretical rafter length runs to the centerline of the ridge. A real rafter stops at the face of the ridge board, so you deduct half the board thickness — measured along the slope, which is why a 1.5 in board deducts about 0.07 ft (0.84 in along the slope at 6/12), not a full 0.75 in horizontally.</p>
+    <h3>How is a hip rafter different from a common rafter?</h3>
+    <p>A hip rafter travels diagonally in plan view, so for every 12 in of common run it covers 12√2 ≈ 16.97 in horizontally. Its unit length at 6/12 is √(288+36) = 18.00 in per 16.97 in of plan run — a factor of about 1.06 per foot of hip run. On a 14 ft hip run at 6/12 that is 15.84 ft with the same ridge deduction and tail logic.</p>
+    <h3>Does the birdsmouth change the rafter length?</h3>
+    <p>No — the birdsmouth is a notch, not a length change. Its seat (horizontal) cut equals the wall thickness (3.5 in on a 2×4 wall), which is 0.33 ft measured along the slope at 6/12. It sets where the rafter bears on the plate. Cutting the seat deeper than about a third of the rafter depth weakens it — keep the heel stand (plumb height above the plate) in mind.</p>
+    <h3>What is plumb height and why does it matter?</h3>
+    <p>The vertical distance from the top of the wall plate to the ridge line: total rise (7.00 ft on the example) plus the plate/heel allowance. It is the number you need for gable-end studs, ridge board height and checking that the roof clears doors, windows and the floor below before you cut anything.</p>
+    <h3>My span is measured inside the walls. Does that matter?</h3>
+    <p>Yes. Rafters bear on the outside face line of the wall plates in this geometry, so span means outside-to-outside. An inside measurement on 2×4 walls understates the span by 7 in, which at 6/12 shortens each rafter by about 3.9 in — enough to ruin a cut list. Add both wall thicknesses first.</p>
+    <h3>How much extra should I order beyond the cut length?</h3>
+    <p>Buy the next stock length up (lengths come in 2 ft steps) and add one spare pair per roof plane on a first build. The tail is the usual casualty: if the fascia line moves, a longer board still works, a shorter one becomes blocking.</p>
+    
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="roof-pitch-calculator.html">Roof Pitch Calculator</a></li>
+    <li><a href="framing-estimator.html">Framing Estimator</a></li>
+    <li><a href="board-foot-estimator.html">Board Foot Estimator</a></li>
+    <li><a href="stair-estimator.html">Stair Estimator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function sv(id){return document.getElementById(id).value;}
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmt0(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});}
+function fmt1(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function money(n){return '$'+fmt(n);}
+function money0(n){return '$'+fmt0(Math.round(n));}
+function ceilg(x){return Math.ceil(x-1e-9);}
+
+/*PURE-BEGIN*/
+function rafterCalc(span,pitch,wallT,plateH,overhangFt,ridgeT,hipRun){
+  var unitRun=span/2, unitLen=Math.sqrt(144+pitch*pitch), slope=unitLen/12;
+  var theo=unitRun*slope, deduct=(ridgeT/2)/12*slope, bird=wallT/12*slope, tail=overhangFt*slope;
+  var common=theo-deduct+tail, rise=unitRun*pitch/12, plumb=rise+plateH/12, hip=null;
+  if(hipRun>0){
+    var hu=Math.sqrt(288+pitch*pitch), per=hu/(12*Math.sqrt(2));
+    hip={unitLen:hu,perFt:per,theo:hipRun*per,deduct:deduct,tail:overhangFt*per,total:hipRun*per-deduct+overhangFt*per};
+  }
+  return {unitLen:unitLen,slope:slope,theo:theo,deduct:deduct,bird:bird,tail:tail,common:common,rise:rise,plumb:plumb,hip:hip};
+}
+/*PURE-END*/
+function calc(){
+  var r=rafterCalc(Math.max(0,v('span')),Math.max(0,v('pitch')),+sv('wall'),Math.max(0,v('plate')),Math.max(0,v('over'))/12,Math.max(0,v('ridge')),Math.max(0,v('hip')));
+  var res=document.getElementById('results');
+  if(!(r.theo>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter a span and a pitch to size the rafters.';document.getElementById('rows').innerHTML='';res.classList.add('show');return;}
+  document.getElementById('rMain').textContent=fmt(r.common)+' ft';
+  document.getElementById('verdict').textContent='Cut common rafters at '+fmt(r.common)+' ft ('+fmt(r.common*12)+' in) — theoretical '+fmt(r.theo)+' ft, ridge deduction '+fmt(r.deduct)+' ft, overhang tail '+fmt(r.tail)+' ft.';
+  var h=row('Unit rafter length (per 12 in run)',fmt(r.unitLen)+' in')+row('Slope factor',fmt(r.slope))+row('Theoretical length (to ridge centerline)',fmt(r.theo)+' ft')
+    +row('Ridge deduction',fmt(r.deduct)+' ft')+row('Birdsmouth seat (along slope)',fmt(r.bird)+' ft')+row('Overhang tail',fmt(r.tail)+' ft')
+    +row('Total rise',fmt(r.rise)+' ft')+row('Plumb height (rise + plate)',fmt(r.plumb)+' ft');
+  if(r.hip){h+=row('Hip unit length (per 12√2 in plan run)',fmt(r.hip.unitLen)+' in')+row('Hip rafter length (to cut)',fmt(r.hip.total)+' ft');}
+  document.getElementById('rows').innerHTML=h;
+  res.classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

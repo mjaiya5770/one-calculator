@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Snow Load Calculator — ASCE 7 Roof Snow Load & Actual Snow Weight | One Calculator</title>
+<meta name="robots" content="noindex,follow">
+  <meta name="description" content="Free snow load calculator: ASCE 7 sloped-roof snow load from ground snow load, exposure, thermal and importance factors — plus the actual weight of snow on your roof in tons and the equivalent depth.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/snow-load-calculator.html">
+<meta property="og:title" content="Free Snow Load Calculator — ASCE 7 Roof Snow Load & Actual Snow Weight | One Calculator">
+<meta property="og:description" content="Free snow load calculator: ASCE 7 sloped-roof snow load from ground snow load, exposure, thermal and importance factors — plus the actual weight of snow on your roof in tons and the equivalent depth.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/snow-load-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Snow Load Calculator — ASCE 7 Roof Snow Load & Actual Snow Weight | One Calculator">
+<meta name="twitter:description" content="Free snow load calculator: ASCE 7 sloped-roof snow load from ground snow load, exposure, thermal and importance factors — plus the actual weight of snow on your roof in tons and the equivalent depth.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Snow Load Calculator",
+  "description": "Free snow load calculator: ASCE 7 sloped-roof snow load from ground snow load, exposure, thermal and importance factors \u2014 plus the actual weight of snow on your roof in tons and the equivalent depth.",
+  "url": "https://onecalculator.site/tools/snow-load-calculator.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What snow load is a roof designed for at pg 40?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Flat-roof design load pf = 0.7 \u00d7 1.0 \u00d7 1.0 \u00d7 1.0 \u00d7 40 = 28.0 psf. At a 26.57\u00b0 pitch (a 6/12 roof) the slope factor is still 1.00 \u2014 sliding relief has not started on a non-slippery warm roof \u2014 so the sloped design load is also 28.0 psf, which on 1,500 sq ft totals 42,000 lb: 21.0 tons."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How deep is 28 psf of snow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Density at pg 40 by the code line is \u03b3 = 0.13 \u00d7 40 + 14 = 19.2 lb/ft\u00b3. Depth = 28 \u00f7 19.2 = 1.46 ft \u2248 17.5 inches of settled snow. Fresh powder at half that density needs three feet to weigh the same \u2014 which is why \"inches of snow\" headlines mislead and weight is the honest unit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does a steep metal roof carry almost nothing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Slope factor. On a slippery surface the slide-off line starts at 5\u00b0, so at 45\u00b0 with a ground load of 50 (and Ce 0.9, Ct 1.1 giving pf 34.7) the factor falls to 0.38 and the design load to 13.3 psf \u2014 the roof sheds before it accumulates. The snow does not vanish, though: it lands at the eaves, on the deck below, and on whoever is standing there. Sliding-snow loads are their own design case."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I find my ground snow load?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your local building department enforces it, and ASCE 7\u2019s maps (and the free ATC Hazards tool) publish it by location. If you are between map lines, use the higher. Mountain properties: site-specific case studies govern in much of the high country \u2014 the map will say so, and a local engineer is not optional there."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I shovel my roof?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Watch the load, not the calendar. Warning signs: interior doors newly sticking, ceiling cracks or sag, icicle-heavy ice dams adding hidden weight, and snow depth approaching the design-depth figure this tool prints for your roof. Ground-level roof rakes from the eaves up a few feet are the safe DIY limit; beyond that, insured roof-snow services exist in every snow market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is unbalanced snow load?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wind strips one slope and dumps it on the other; gable roofs are designed for a fraction of the load on the windward side and more than full on the leeward. Valleys, dormers and lower roofs below sliding upper roofs collect the same effect. This calculator gives the balanced uniform case \u2014 the drift and unbalanced cases are why rafters that \"met code\" sometimes still complain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does rain on snow matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enormously. A saturated snowpack drinks rain and gains weight without gaining depth \u2014 the mechanism behind many late-season collapses of flat and low-slope roofs. If heavy rain is forecast on a loaded low-slope roof, the weight math here (already at settled density) becomes optimistic: clear what you safely can before the rain arrives."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../calculators.html">Calculators</a><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/snow-load-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../calculators.html#cat-home-diy-tools">Home & DIY tools</a> › Snow Load Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+  <h1 class="tool-title">Snow Load Calculator</h1>
+  <p class="lede">Two questions, one tool: what load is my roof designed for (the ASCE 7 number an engineer uses), and what is the snow actually sitting on it right now weighing (the number that decides whether you shovel)? Ground snow load in, both answers out.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="pg">Ground snow load pg (psf — from your local code / ASCE map)</label><input id="pg" type="number" value="40" min="0" step="any"></div>
+      <div class="field"><label for="area">Roof plan area (sq ft)</label><input id="area" type="number" value="1500" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="ce">Exposure factor Ce</label><select id="ce"><option value="0.9">0.9 — fully exposed, windy site</option><option value="1" selected>1.0 — partially exposed (typical)</option><option value="1.2">1.2 — sheltered by trees / other roofs</option></select></div>
+      <div class="field"><label for="ct">Thermal factor Ct</label><select id="ct"><option value="1" selected>1.0 — normally heated structure</option><option value="1.1">1.1 — unheated / open</option><option value="1.2">1.2 — kept below freezing (freezer buildings)</option></select></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="imp">Importance factor Is</label><select id="imp"><option value="0.8">0.8 — low hazard / agricultural</option><option value="1" selected>1.0 — standard occupancy</option><option value="1.1">1.1 — substantial hazard / schools</option><option value="1.2">1.2 — essential facilities</option></select></div>
+      <div class="field"><label for="pitch">Roof pitch (degrees)</label><input id="pitch" type="number" value="26.57" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="slip">Slippery surface (metal / slate, unobstructed slide-off)?</label><select id="slip"><option value="0" selected>No — shingles / obstructed</option><option value="1">Yes — slippery</option></select></div>
+    </div>
+    <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Ground snow load (pg) is a code-map value, not a weather report: ASCE 7 maps and your local building department publish it (roughly 0 psf in the deep South, 20–50 across the northern US, 100+ in mountain snow belts). The slope factor here uses the standard warm-roof line for a roof kept at normal heat; cold-roof and drift cases (against taller walls, in valleys, behind parapets) carry additional loads an engineer handles — drifts, not uniform load, are what actually collapse roofs.</p>
+
+    <button class="btn" onclick="calc()">Calculate snow load</button>
+<div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#snow-load-calculator">Embed this calculator on your site — free</a></p>
+    <div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Roof snow load & snow weight</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Design side (ASCE 7): flat-roof load pf = 0.7 × Ce × Ct × Is × pg. Sloped-roof load ps = Cs × pf, where the slope factor Cs = 1.0 up to the slide-off angle (30° for a non-slippery warm roof, 5° for slippery) and decreases linearly to 0 at 70°. Weight side: snow density γ = 0.13 × pg + 14 lb/ft³ (capped at 30) — the code’s own density line — so the current load of fresh snow at design depth implies a depth of ps ÷ γ, and the total weight on the roof is ps × plan area. A 28 psf design load on 1,500 sq ft is 21 tons of snow: roofs are quietly the strongest thing you own.</p>
+    <div class="note">Design-method calculator, not an engineering certification. Real roofs fail at drifts, ice dams and unbalanced loads more than at uniform design load; if your ceiling is sagging, doors are sticking mid-winter, or you hear cracking, the correct next step is a professional with a roof rake and a structural eye, not a calculator. Never climb a snow-loaded roof yourself.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> ASCE 7: flat-roof snow load pf = 0.7 × Ce × Ct × Is × pg. Slope factor Cs = 1.0 up to 30° (non-slippery) or 5° (slippery), then linear to 0 at 70°. Sloped load ps = Cs × pf. Snow density γ = 0.13 pg + 14 pcf (cap 30). Total weight = ps × area; equivalent depth = ps ÷ γ.</p>
+    <p><strong>Worked example:</strong> pg 40, standard factors, 6/12 roof on 1,500 sq ft: pf = ps = 28.0 psf; total snow weight 21.0 tons; equivalent settled depth 17.5 in.</p>
+  </div>
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>A big storm is sitting on your roof and you want weight, not inches.</li><li>You are checking a design, shed or carport plan against code snow load.</li><li>You are comparing a metal roof’s shedding behavior against shingles.</li><li>An insurer or permit office asked for the design snow load.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Find pg for your address (building department or ASCE map) and enter it.</li><li>Set exposure, thermal and importance factors — defaults are the standard house.</li><li>Enter your roof pitch honestly; pick slippery only for true slide-off surfaces.</li><li>Read the design load, the total tons, and the equivalent depth to watch for.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Ground snow load pg</strong></td><td style="padding:6px 8px">Code-map design value for your location, psf</td><td style="padding:6px 8px">20–50 northern US; 100+ mountains</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Slope factor inputs</strong></td><td style="padding:6px 8px">Pitch + slippery surface drive Cs</td><td style="padding:6px 8px">6/12 = 26.57°, Cs 1.0 non-slippery</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Roof area</strong></td><td style="padding:6px 8px">Plan (horizontal) area the snow sits on</td><td style="padding:6px 8px">1,200–2,000 sq ft typical houses</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Factors Ce/Ct/Is</strong></td><td style="padding:6px 8px">Exposure, thermal and importance multipliers from the standard</td><td style="padding:6px 8px">Typical house: 1.0 / 1.0 / 1.0</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A slippery 45° roof at pg 50 with Ce 0.9 and Ct 1.1: pf = 0.7 × 0.9 × 1.1 × 1.0 × 50 = 34.7 psf, but Cs falls to 0.38 at that pitch, so the design load is 13.3 psf and the 1,200 sq ft roof carries 8.0 tons at design — the sliding roof’s whole structural bargain, in one line.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What snow load is a roof designed for at pg 40?</h3>
+    <p>Flat-roof design load pf = 0.7 × 1.0 × 1.0 × 1.0 × 40 = 28.0 psf. At a 26.57° pitch (a 6/12 roof) the slope factor is still 1.00 — sliding relief has not started on a non-slippery warm roof — so the sloped design load is also 28.0 psf, which on 1,500 sq ft totals 42,000 lb: 21.0 tons.</p>
+    <h3>How deep is 28 psf of snow?</h3>
+    <p>Density at pg 40 by the code line is γ = 0.13 × 40 + 14 = 19.2 lb/ft³. Depth = 28 ÷ 19.2 = 1.46 ft ≈ 17.5 inches of settled snow. Fresh powder at half that density needs three feet to weigh the same — which is why "inches of snow" headlines mislead and weight is the honest unit.</p>
+    <h3>Why does a steep metal roof carry almost nothing?</h3>
+    <p>Slope factor. On a slippery surface the slide-off line starts at 5°, so at 45° with a ground load of 50 (and Ce 0.9, Ct 1.1 giving pf 34.7) the factor falls to 0.38 and the design load to 13.3 psf — the roof sheds before it accumulates. The snow does not vanish, though: it lands at the eaves, on the deck below, and on whoever is standing there. Sliding-snow loads are their own design case.</p>
+    <h3>Where do I find my ground snow load?</h3>
+    <p>Your local building department enforces it, and ASCE 7’s maps (and the free ATC Hazards tool) publish it by location. If you are between map lines, use the higher. Mountain properties: site-specific case studies govern in much of the high country — the map will say so, and a local engineer is not optional there.</p>
+    <h3>Should I shovel my roof?</h3>
+    <p>Watch the load, not the calendar. Warning signs: interior doors newly sticking, ceiling cracks or sag, icicle-heavy ice dams adding hidden weight, and snow depth approaching the design-depth figure this tool prints for your roof. Ground-level roof rakes from the eaves up a few feet are the safe DIY limit; beyond that, insured roof-snow services exist in every snow market.</p>
+    <h3>What is unbalanced snow load?</h3>
+    <p>Wind strips one slope and dumps it on the other; gable roofs are designed for a fraction of the load on the windward side and more than full on the leeward. Valleys, dormers and lower roofs below sliding upper roofs collect the same effect. This calculator gives the balanced uniform case — the drift and unbalanced cases are why rafters that "met code" sometimes still complain.</p>
+    <h3>Does rain on snow matter?</h3>
+    <p>Enormously. A saturated snowpack drinks rain and gains weight without gaining depth — the mechanism behind many late-season collapses of flat and low-slope roofs. If heavy rain is forecast on a loaded low-slope roof, the weight math here (already at settled density) becomes optimistic: clear what you safely can before the rain arrives.</p>
+    
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="rafter-length-calculator.html">Rafter Length Calculator</a></li>
+    <li><a href="roof-pitch-calculator.html">Roof Pitch Calculator</a></li>
+    <li><a href="btu-estimator.html">BTU Estimator</a></li>
+    <li><a href="material-weight-calculator.html">Material Weight Calculator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function sv(id){return document.getElementById(id).value;}
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmt0(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});}
+function fmt1(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function money(n){return '$'+fmt(n);}
+function money0(n){return '$'+fmt0(Math.round(n));}
+function ceilg(x){return Math.ceil(x-1e-9);}
+
+/*PURE-BEGIN*/
+function snowCalc(pg,ce,ct,isF,pitchDeg,slippery,area){
+  var pf=0.7*ce*ct*isF*pg, start=slippery?5.0:30.0, cs=1.0;
+  if(pitchDeg>start){cs=Math.max(0,1.0-(pitchDeg-start)/(70.0-start));}
+  var ps=cs*pf, gamma=Math.min(0.13*pg+14,30);
+  return {pf:pf,cs:cs,ps:ps,gamma:gamma,depth:gamma>0?ps/gamma*12:0,totalLb:ps*area,tons:ps*area/2000};
+}
+/*PURE-END*/
+function calc(){
+  var r=snowCalc(Math.max(0,v('pg')),+sv('ce'),+sv('ct'),+sv('imp'),Math.max(0,v('pitch')),sv('slip')==='1',Math.max(0,v('area')));
+  var res=document.getElementById('results');
+  if(!(r.ps>=0&&v('pg')>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter your ground snow load to run the ASCE 7 math.';document.getElementById('rows').innerHTML='';res.classList.add('show');return;}
+  document.getElementById('rMain').textContent=fmt1(r.ps)+' psf — '+fmt1(r.tons)+' tons on this roof';
+  document.getElementById('verdict').textContent='Flat-roof design load '+fmt1(r.pf)+' psf; slope factor '+fmt(r.cs)+' brings the sloped load to '+fmt1(r.ps)+' psf. That equals about '+fmt1(r.depth)+' in of settled snow at code density.';
+  document.getElementById('rows').innerHTML=row('Flat-roof load pf',fmt1(r.pf)+' psf')+row('Slope factor Cs',fmt(r.cs))+row('Sloped-roof load ps',fmt1(r.ps)+' psf')+row('Snow density (code line)',fmt1(r.gamma)+' lb/ft³')+row('Total weight at design load',fmt0(r.totalLb)+' lb ('+fmt1(r.tons)+' tons)')+row('Equivalent settled depth',fmt1(r.depth)+' in');
+  res.classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

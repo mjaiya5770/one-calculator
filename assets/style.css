@@ -1306,7 +1306,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,textarea:focus-visible
 }
 /* Print / Save-as-PDF report: brand bar, tool title, verdict + results only */
 @media print{
-  .nn-ad,.nn-actions,.nn-saves,.nn-saved-home,.cta-box,.breadcrumb,.related-tools,.site-footer,.keypad,.hero-search-wrap,.hero-meta{display:none!important}
+  .nn-ad,.nn-actions,.nn-saves,.nn-saved-home,.cta-box,.breadcrumb,.related-tools,.site-footer,.keypad,.hero-search-wrap,.hero-meta,.nn-compare{display:none!important}
   .site-header{display:block!important;position:static!important;background:#fff!important;box-shadow:none!important;border-bottom:2px solid #000}
   .site-header nav{display:none!important}
   .brand,.brand span{color:#000!important}
@@ -1314,6 +1314,7 @@ a:focus-visible,button:focus-visible,select:focus-visible,textarea:focus-visible
   body.nn-has-results .lede{display:none!important}
   .nn-calc-card .field,.nn-calc-card label,.nn-calc-card .btn,.nn-calc-card button,.nn-calc-card .hint,.nn-calc-card textarea,.nn-calc-card select,.nn-calc-card input:not([readonly]){display:none!important}
   .nn-calc-card{border:none!important;box-shadow:none!important}
+  #preview{border:none!important;box-shadow:none!important}
   .results{display:block!important;background:#fff!important;color:#000!important;box-shadow:none!important;border:1px solid #ccc}
   .results .big{color:#000!important}
   .results table{border-top:2px solid #000!important}

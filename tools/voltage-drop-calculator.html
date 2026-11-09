@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Voltage Drop Calculator & Wire Size Selector — AWG by Amps, Distance & Drop | One Calculator</title>
+<meta name="robots" content="noindex,follow">
+  <meta name="description" content="Free voltage drop calculator with a built-in wire-size selector: amps, volts, distance and conductor → voltage drop and percent, plus the smallest AWG that meets both NEC ampacity and your drop limit. Copper and aluminum.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/voltage-drop-calculator.html">
+<meta property="og:title" content="Free Voltage Drop Calculator & Wire Size Selector — AWG by Amps, Distance & Drop | One Calculator">
+<meta property="og:description" content="Free voltage drop calculator with a built-in wire-size selector: amps, volts, distance and conductor → voltage drop and percent, plus the smallest AWG that meets both NEC ampacity and your drop limit. Copper and aluminum.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/voltage-drop-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Voltage Drop Calculator & Wire Size Selector — AWG by Amps, Distance & Drop | One Calculator">
+<meta name="twitter:description" content="Free voltage drop calculator with a built-in wire-size selector: amps, volts, distance and conductor → voltage drop and percent, plus the smallest AWG that meets both NEC ampacity and your drop limit. Copper and aluminum.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Voltage Drop & Wire Size Calculator",
+  "description": "Free voltage drop calculator with a built-in wire-size selector: amps, volts, distance and conductor \u2192 voltage drop and percent, plus the smallest AWG that meets both NEC ampacity and your drop limit. Copper and aluminum.",
+  "url": "https://onecalculator.site/tools/voltage-drop-calculator.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much voltage drop on 100 ft of 12 AWG at 16 amps, 120 V?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "VD = 2 \u00d7 12.9 \u00d7 16 \u00d7 100 \u00f7 6,530 cmil = 6.32 V, which is 5.27% \u2014 over the 3% guidance. The amps are fine on 12 AWG; the distance is the problem. Holding 3% on this run takes 8 AWG. This is the single most common surprise in garage and outbuilding wiring."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What gauge do I need for 32 amps at 240 V over 150 ft?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On 8 AWG the drop is 7.50 V = 3.13% \u2014 just over a 3% limit \u2014 so the recommendation steps up to 6 AWG. At a 5% limit, even 10 AWG passes: its ampacity (35 A) covers the load and its drop is 4.97%, so 10 AWG is the recommended size there. The limit you choose is a design decision: motors and heaters tolerate 5%; electronics and long-term efficiency argue for 3%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does 240 V halve the problem twice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Percentage drop depends on amps and volts together. The same 3,840 W load draws 32 A at 120 V but 16 A at 240 V, and the percentage is computed against twice the voltage: the drop percentage falls to a quarter. Whenever a load can be served at 240 V over distance \u2014 well pumps, shop tools, EV chargers \u2014 it should be."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Copper or aluminum for a long feeder?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aluminum\u2019s K is 21.2 against copper\u2019s 12.9, so an aluminum conductor needs about 64% more circular mils \u2014 roughly two AWG sizes \u2014 for the same drop, and its ampacity per size is lower. It is also much cheaper per amp-foot at feeder sizes, which is why service feeders are aluminum and branch circuits are copper. Terminations must be AL-rated and torqued to spec; that is an installer discipline item, not a math one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is 3% a code requirement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is an informational note in the NEC (210.19 and 215.2) recommending design so that branch-circuit drop stays under 3% and feeder-plus-branch under 5% \"for reasonable efficiency of operation.\" Many specs and inspectors treat it as a limit; the enforceable code governs ampacity and protection. Design to 3% on branch runs and nobody argues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I ignore voltage drop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Motors run hot and start hard (a pump at 105 V works measurably harder), heaters under-deliver (output falls with the square of voltage: 5% drop \u2248 10% less heat), lights dim on load steps, and electronics complain. The wire itself also wastes the dropped energy as heat along the run \u2014 you pay for volts your tools never see."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I handle a run longer than the table likes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Upsize the conductor (this tool\u2019s recommendation), raise the voltage (240 V or a transformer), shorten the route, split the load across two circuits, or move the source (a subpanel fed by a properly sized feeder, with drops budgeted in two legs that must sum under your limit). Real designs often combine the first two."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../calculators.html">Calculators</a><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/voltage-drop-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../calculators.html#cat-home-diy-tools">Home & DIY tools</a> › Voltage Drop & Wire Size Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+  <h1 class="tool-title">Voltage Drop & Wire Size Calculator</h1>
+  <p class="lede">One page, both questions: how much voltage will this run lose, and what gauge should it actually be? Enter load, voltage and one-way distance, and get the drop for any AWG plus the recommended gauge that satisfies both the NEC ampacity table and a 3% drop limit.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="amps">Load current (amps)</label><input id="amps" type="number" value="16" min="0" step="any"></div>
+      <div class="field"><label for="volts">Circuit voltage</label><select id="volts"><option value="120" selected>120 V</option><option value="240">240 V</option><option value="208">208 V</option><option value="480">480 V</option></select></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="feet">One-way distance (ft)</label><input id="feet" type="number" value="100" min="0" step="any"></div>
+      <div class="field"><label for="gauge">Wire gauge to check (AWG)</label><select id="gauge"><option value="14">14 AWG</option><option value="12" selected>12 AWG</option><option value="10">10 AWG</option><option value="8">8 AWG</option><option value="6">6 AWG</option><option value="4">4 AWG</option><option value="3">3 AWG</option><option value="2">2 AWG</option><option value="1">1 AWG</option><option value="1/0">1/0 AWG</option><option value="2/0">2/0 AWG</option><option value="3/0">3/0 AWG</option><option value="4/0">4/0 AWG</option></select></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="mat">Conductor material</label><select id="mat"><option value="cu" selected>Copper (K = 12.9)</option><option value="al">Aluminum (K = 21.2)</option></select></div>
+      <div class="field"><label for="limit">Drop limit for the recommendation (%)</label><select id="limit"><option value="3" selected>3% — branch-circuit guidance</option><option value="5">5% — total feeder + branch guidance</option><option value="2">2% — sensitive / long runs</option><option value="1">1% — very strict</option></select></div>
+    </div>
+    <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">The math is the standard NEC Chapter 9 method: VD = 2 × K × I × L ÷ circular mils for single-phase (K = 12.9 copper, 21.2 aluminum, Ω·cmil/ft). Ampacity checks use NEC Table 310.16 at 75 °C (copper: 12 AWG 25 A, 10 AWG 35 A, 8 AWG 50 A, 6 AWG 65 A, 4 AWG 85 A; aluminum runs roughly two sizes larger for the same amps). The 3% / 5% figures are the NEC’s informational-note guidance for reasonable efficiency — widely treated as design limits, not letter-of-law mandates. Breaker and termination rules (including the 14/12/10 AWG overcurrent caps of 240.4(D)) still apply on top.</p>
+
+    <button class="btn" onclick="calc()">Calculate drop & gauge</button>
+<div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#voltage-drop-calculator">Embed this calculator on your site — free</a></p>
+    <div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Voltage drop & recommended gauge</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Voltage drop grows with current and distance and shrinks with conductor cross-section. The recommendation works the shelf in order: starting from the smallest gauge whose 75 °C ampacity covers the load, it tests each size against your drop limit and returns the first that passes both. That is why long runs upsized for drop are normal — a 100 ft run at 16 A needs 8 AWG to hold 3% at 120 V even though 12 AWG carries the amps easily. Distance hurts at 120 V four times as much as at 240 V for the same wattage (half the amps, half the percentage) — the quiet argument for 240 V circuits to outbuildings.</p>
+    <div class="note">Design calculator using the standard K-constant method and NEC Table 310.16 (75 °C) — actual installations must also satisfy termination temperature limits, conduit fill, ambient correction, the small-conductor overcurrent rules, and your AHJ. Three-phase runs use a √3 factor in place of 2; this tool models single-phase, the residential case. When a calculation decides a real install, an electrician verifies it.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Single-phase voltage drop VD = 2 × K × I × L ÷ CM, with K = 12.9 (copper) or 21.2 (aluminum) Ω·cmil/ft, I in amps, L one-way feet, CM the conductor’s circular mils (12 AWG 6,530; 10 AWG 10,380; 8 AWG 16,510; 6 AWG 26,240). Percent = VD ÷ circuit volts × 100. Recommended gauge = smallest size passing both NEC Table 310.16 (75 °C) ampacity and your drop limit.</p>
+    <p><strong>Worked example:</strong> 16 A, 120 V, 100 ft on 12 AWG copper: VD = 6.32 V = 5.27% — and the recommended gauge for a 3% limit is 8 AWG.</p>
+  </div>
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are wiring a garage, barn, shed or dock beyond the house wall.</li><li>A well pump, compressor or EV charger sits far from the panel.</li><li>Lights dim when a motor starts and you want the cause quantified.</li><li>You are choosing between copper and aluminum feeders on price.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the load’s actual running amps (nameplate, not breaker size).</li><li>Pick the circuit voltage and measure the one-way run honestly — conduit path, not straight-line.</li><li>Check your intended gauge; read the drop volts and percent.</li><li>Read the recommended gauge for your chosen limit — that is the buy decision.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Load amps</strong></td><td style="padding:6px 8px">Running current of the load</td><td style="padding:6px 8px">16 A space-heater circuit; 32 A EV charger at 240 V</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>One-way distance</strong></td><td style="padding:6px 8px">Panel to load along the actual route, feet</td><td style="padding:6px 8px">50–150 ft outbuilding runs</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Gauge</strong></td><td style="padding:6px 8px">AWG size to test; recommendation searches all sizes</td><td style="padding:6px 8px">12 AWG branch standard; 6–8 AWG long runs</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Material / limit</strong></td><td style="padding:6px 8px">Copper vs aluminum constants; drop ceiling for the recommendation</td><td style="padding:6px 8px">Cu K 12.9; Al K 21.2; limit 3% typical</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A 32 A, 240 V load at 150 ft: on 8 AWG copper the drop is 7.50 V = 3.13% — close, but over a strict 3% line, so the recommendation is 6 AWG. Relax the limit to the 5% feeder-plus-branch guidance and 10 AWG stands instead (35 A ampacity, 4.97% drop). Same run, answers two sizes apart — the limit is the decision, the math just enforces it.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How much voltage drop on 100 ft of 12 AWG at 16 amps, 120 V?</h3>
+    <p>VD = 2 × 12.9 × 16 × 100 ÷ 6,530 cmil = 6.32 V, which is 5.27% — over the 3% guidance. The amps are fine on 12 AWG; the distance is the problem. Holding 3% on this run takes 8 AWG. This is the single most common surprise in garage and outbuilding wiring.</p>
+    <h3>What gauge do I need for 32 amps at 240 V over 150 ft?</h3>
+    <p>On 8 AWG the drop is 7.50 V = 3.13% — just over a 3% limit — so the recommendation steps up to 6 AWG. At a 5% limit, even 10 AWG passes: its ampacity (35 A) covers the load and its drop is 4.97%, so 10 AWG is the recommended size there. The limit you choose is a design decision: motors and heaters tolerate 5%; electronics and long-term efficiency argue for 3%.</p>
+    <h3>Why does 240 V halve the problem twice?</h3>
+    <p>Percentage drop depends on amps and volts together. The same 3,840 W load draws 32 A at 120 V but 16 A at 240 V, and the percentage is computed against twice the voltage: the drop percentage falls to a quarter. Whenever a load can be served at 240 V over distance — well pumps, shop tools, EV chargers — it should be.</p>
+    <h3>Copper or aluminum for a long feeder?</h3>
+    <p>Aluminum’s K is 21.2 against copper’s 12.9, so an aluminum conductor needs about 64% more circular mils — roughly two AWG sizes — for the same drop, and its ampacity per size is lower. It is also much cheaper per amp-foot at feeder sizes, which is why service feeders are aluminum and branch circuits are copper. Terminations must be AL-rated and torqued to spec; that is an installer discipline item, not a math one.</p>
+    <h3>Is 3% a code requirement?</h3>
+    <p>It is an informational note in the NEC (210.19 and 215.2) recommending design so that branch-circuit drop stays under 3% and feeder-plus-branch under 5% "for reasonable efficiency of operation." Many specs and inspectors treat it as a limit; the enforceable code governs ampacity and protection. Design to 3% on branch runs and nobody argues.</p>
+    <h3>What happens if I ignore voltage drop?</h3>
+    <p>Motors run hot and start hard (a pump at 105 V works measurably harder), heaters under-deliver (output falls with the square of voltage: 5% drop ≈ 10% less heat), lights dim on load steps, and electronics complain. The wire itself also wastes the dropped energy as heat along the run — you pay for volts your tools never see.</p>
+    <h3>How do I handle a run longer than the table likes?</h3>
+    <p>Upsize the conductor (this tool’s recommendation), raise the voltage (240 V or a transformer), shorten the route, split the load across two circuits, or move the source (a subpanel fed by a properly sized feeder, with drops budgeted in two legs that must sum under your limit). Real designs often combine the first two.</p>
+    
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="electrical-load-calculator.html">Electrical Load Calculator</a></li>
+    <li><a href="generator-sizing-calculator.html">Generator Sizing Calculator</a></li>
+    <li><a href="electricity-cost-calculator.html">Electricity Cost Calculator</a></li>
+    <li><a href="material-weight-calculator.html">Material Weight Calculator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function sv(id){return document.getElementById(id).value;}
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmt0(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});}
+function fmt1(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function money(n){return '$'+fmt(n);}
+function money0(n){return '$'+fmt0(Math.round(n));}
+function ceilg(x){return Math.ceil(x-1e-9);}
+
+/*PURE-BEGIN*/
+var CMIL={'14':4110,'12':6530,'10':10380,'8':16510,'6':26240,'4':41740,'3':52620,'2':66360,'1':83690,'1/0':105600,'2/0':133100,'3/0':167800,'4/0':211600};
+var CU_75={'14':20,'12':25,'10':35,'8':50,'6':65,'4':85,'3':100,'2':115,'1':130,'1/0':150,'2/0':175,'3/0':200,'4/0':230};
+var AL_75={'12':20,'10':30,'8':40,'6':50,'4':65,'3':75,'2':90,'1':100,'1/0':120,'2/0':135,'3/0':155,'4/0':180};
+var GAUGE_ORDER=['14','12','10','8','6','4','3','2','1','1/0','2/0','3/0','4/0'];
+function vdropCalc(amps,volts,feet,gauge,mat){
+  var K=mat==='cu'?12.9:21.2, vd=2*K*amps*feet/CMIL[gauge];
+  return {vd:vd,pct:vd/volts*100};
+}
+function recommendGauge(amps,volts,feet,mat,limit){
+  var table=mat==='cu'?CU_75:AL_75, i, g;
+  for(i=0;i<GAUGE_ORDER.length;i++){g=GAUGE_ORDER[i];
+    if(!(g in table))continue;
+    if(table[g]<amps)continue;
+    if(vdropCalc(amps,volts,feet,g,mat).pct<=limit)return g;
+  }
+  return null;
+}
+/*PURE-END*/
+function calc(){
+  var amps=Math.max(0,v('amps')), volts=+sv('volts'), feet=Math.max(0,v('feet')), gauge=sv('gauge'), mat=sv('mat'), limit=+sv('limit');
+  var r=vdropCalc(amps,volts,feet,gauge,mat), rec=recommendGauge(amps,volts,feet,mat,limit);
+  var res=document.getElementById('results');
+  if(!(amps>0&&feet>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter amps and distance to compute the drop.';document.getElementById('rows').innerHTML='';res.classList.add('show');return;}
+  document.getElementById('rMain').textContent=fmt(r.vd)+' V drop ('+fmt(r.pct)+'%) — recommended: '+(rec?rec+' AWG':'beyond 4/0');
+  document.getElementById('verdict').textContent='On '+gauge+' AWG '+(mat==='cu'?'copper':'aluminum')+' this run drops '+fmt(r.vd)+' V ('+fmt(r.pct)+'% of '+fmt0(volts)+' V), leaving '+fmt(volts-r.vd)+' V at the load. '+(rec?('Smallest gauge meeting ampacity and your '+fmt0(limit)+'% limit: '+rec+' AWG.'):'No gauge through 4/0 meets both tests — raise the voltage or shorten the run.');
+  document.getElementById('rows').innerHTML=row('Voltage drop',fmt(r.vd)+' V')+row('Drop percent',fmt(r.pct)+'%')+row('Voltage at load',fmt(volts-r.vd)+' V')+row('Ampacity of checked gauge (75 °C)',fmt0((mat==='cu'?CU_75:AL_75)[gauge]||0)+' A')+row('Recommended gauge',rec?rec+' AWG':'Beyond 4/0 — redesign');
+  res.classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

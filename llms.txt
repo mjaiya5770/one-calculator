@@ -1,15 +1,15 @@
 # One Calculator
 
-One Calculator is a free library of single-purpose online calculators — 154 tools, one clean calculator for each job: payments, percentages, health numbers, dates and project materials. One Calculator has nothing to do with numerology; results are estimates.
+One Calculator is a free library of single-purpose online calculators — 176 tools, one clean calculator for each job: payments, percentages, health numbers, dates and project materials. One Calculator has nothing to do with numerology; results are estimates.
 
 Made for people who want one answer without the clutter — and for businesses, workers and students who value speed.
 
-All 154 calculators are free, with no account or sign-up. Every calculator shows its formula or method and at least one worked example.
+All 176 calculators are free, with no account or sign-up. Every calculator shows its formula or method and at least one worked example.
 
 ## Key pages
 
-- [Home](https://onecalculator.site/): all 154 calculators, organized by category.
-- [Embed these calculators](https://onecalculator.site/embed.html): put any of the 154 One Calculator calculators on your own site for free — no account, no attribution required.
+- [Home](https://onecalculator.site/): all 176 calculators, organized by category.
+- [Embed these calculators](https://onecalculator.site/embed.html): put any of the 176 One Calculator calculators on your own site for free — no account, no attribution required.
 - [Partnerships](https://onecalculator.site/partnerships.html): the network One Calculator belongs to, and how to partner with us.
 - [Creator ROI Hub — Earnings, Sponsorship & Fee Calculators](https://onecalculator.site/creator-roi-calculators.html): The Creator ROI Hub: free calculators for people who publish for a living — YouTube and TikTok earnings, sponsorship rates, payment fees and AI API costs, with honest ranges and the math shown.
 - [How to Get Out of Debt: The Avalanche vs Snowball Playbook](https://onecalculator.site/guides/get-out-of-debt-avalanche-vs-snowball.html)
@@ -26,7 +26,7 @@ All 154 calculators are free, with no account or sign-up. Every calculator shows
 - [CD vs Savings Account: The APY Math, Honestly Compared](https://onecalculator.site/guides/cd-vs-savings-account.html)
 - [Tip Calculator — Split the Bill & Tip in Seconds](https://onecalculator.site/tools/tip-calculator.html)
 
-## All calculators (7 owned of 154/158 — one-owner rule)
+## All calculators (7 owned of 176/180 — one-owner rule)
 
 ### Real estate investor tools
 

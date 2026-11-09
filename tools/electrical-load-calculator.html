@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Electrical Load Calculator — NEC 220.82 Panel Load & Spare Capacity | One Calculator</title>
+<meta name="robots" content="noindex,follow">
+  <meta name="description" content="Free electrical load calculator: NEC 220.82 optional-method dwelling load calculation — general load, demand factors, HVAC at 100%, total amps and the spare capacity left on your panel.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/electrical-load-calculator.html">
+<meta property="og:title" content="Free Electrical Load Calculator — NEC 220.82 Panel Load & Spare Capacity | One Calculator">
+<meta property="og:description" content="Free electrical load calculator: NEC 220.82 optional-method dwelling load calculation — general load, demand factors, HVAC at 100%, total amps and the spare capacity left on your panel.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/electrical-load-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Electrical Load Calculator — NEC 220.82 Panel Load & Spare Capacity | One Calculator">
+<meta name="twitter:description" content="Free electrical load calculator: NEC 220.82 optional-method dwelling load calculation — general load, demand factors, HVAC at 100%, total amps and the spare capacity left on your panel.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Electrical Load Calculator",
+  "description": "Free electrical load calculator: NEC 220.82 optional-method dwelling load calculation \u2014 general load, demand factors, HVAC at 100%, total amps and the spare capacity left on your panel.",
+  "url": "https://onecalculator.site/tools/electrical-load-calculator.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What load does a 2,000 sq ft all-electric house calculate to?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "General load: 6,000 (area) + 3,000 (two small-appliance circuits) + 1,500 (laundry) + 20,000 (fixed appliances) = 30,500 VA. Demand: 10,000 + 40% \u00d7 20,500 = 18,200 VA. Plus AC 3,500 at 100% = 21,700 VA \u00f7 240 = 90.4 A calculated load. On a 200 A panel that leaves about 110 A of calculated headroom \u2014 plenty for an EV charger by this method."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a 100 A panel take an EV charger?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The worked second example: a 1,200 sq ft home with a smaller appliance bundle calculates to 21,800 VA general, demand-factored plus the larger of AC/heat (9,000 VA electric heat) to 23,720 VA = 98.8 A \u2014 technically under 100 A, with 1.2 A to spare. Adding a 40 A EV circuit does not fit this calculation: that house needs load management, a smaller charger setting, or a service upgrade. This is precisely the question 220.82 exists to answer before anyone buys anything."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is only part of the load counted at 100%?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Diversity. Not every receptacle, light and appliance in a home runs at once \u2014 decades of metered data sit behind the demand factors. The first 10 kVA at 100% covers the always-on core; the 40% remainder reflects realistic coincidence. HVAC skips the discount because when it runs, it runs at full nameplate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between this and the standard method?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The optional method (220.82) is simpler and usually yields a lower calculated load; it is permitted for dwellings with a single service of 100 A+ where the AHJ accepts it. The standard method applies appliance-by-appliance demand tables. Either can govern a permit \u2014 your electrician and inspector decide which one your project files under."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does spare capacity here mean I can add a 60 A breaker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It means the service calculation has room. The breaker itself must still be sized to the load (a 48 A EV charger on a 60 A breaker is a continuous load at 125%), the panel needs physical spaces and bus rating for it, and the AHJ has the final word. Calculated headroom is the start of the conversation, not the permit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My bill shows peak demand way below this. Who is right?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both \u2014 they answer different questions. Metered peak is what your house did; 220.82 is what the code assumes it could do with nameplate loads and diversity. Many utilities accept 12 months of meter data (NEC 220.87) as an alternative basis for additions. If your metered peak is 40 A, that path may save a service upgrade."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about a hot tub or a workshop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hot tubs enter as fixed appliances at nameplate (typically 5,500\u201311,000 VA with the heater) \u2014 add yours to the appliance total. Workshop welders, kilns and compressors likewise. Then watch the calculated load: those single big nameplates move the answer more than everything else in the house combined."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../calculators.html">Calculators</a><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/electrical-load-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../calculators.html#cat-home-diy-tools">Home & DIY tools</a> › Electrical Load Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+  <h1 class="tool-title">Electrical Load Calculator</h1>
+  <p class="lede">Before the EV charger, the hot tub or the addition: what does the code’s own math say your house already draws? This is the NEC 220.82 optional method, step by step — general load, demand factor, HVAC, total amps, and the headroom left on your panel.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="sqft">Living area (sq ft)</label><input id="sqft" type="number" value="2000" min="0" step="any"></div>
+      <div class="field"><label for="small">Small-appliance branch circuits (kitchen, min 2)</label><input id="small" type="number" value="2" min="0" step="1"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="laundry">Include laundry circuit (1,500 VA)?</label><select id="laundry"><option value="1" selected>Yes</option><option value="0">No</option></select></div>
+      <div class="field"><label for="appl">Fixed appliances total (VA — range, dryer, water heater, dishwasher…)</label><input id="appl" type="number" value="20000" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="ac">Air conditioning load (VA)</label><input id="ac" type="number" value="3500" min="0" step="any"></div>
+      <div class="field"><label for="heat">Electric heating load (VA)</label><input id="heat" type="number" value="0" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="panel">Panel / service size (amps)</label><select id="panel"><option value="100">100 A</option><option value="125">125 A</option><option value="150">150 A</option><option value="200" selected>200 A</option><option value="320">320 A</option><option value="400">400 A</option></select></div>
+    </div>
+    <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Method: NEC 220.82 (optional method for dwellings) — 3 VA per sq ft of living area, 1,500 VA per small-appliance circuit, 1,500 VA laundry, plus nameplate VA of fixed appliances. The first 10 kVA of that general load counts at 100%, the rest at 40%. The larger of AC or heating then adds at 100%. Fixed-appliance default of 20,000 VA is a typical all-electric bundle (range 8,000 + dryer 5,000 + water heater 4,500 + dishwasher 1,500 + disposal/fans 1,000) — replace it with your nameplates for a real answer.</p>
+
+    <button class="btn" onclick="calc()">Calculate panel load</button>
+<div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#electrical-load-calculator">Embed this calculator on your site — free</a></p>
+    <div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Calculated load & panel headroom</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Step 1, general load: living area × 3 VA + small-appliance circuits × 1,500 VA + laundry 1,500 VA + fixed appliances at nameplate. Step 2, demand factor: the code knows not everything runs at once — first 10,000 VA at 100%, remainder at 40%. Step 3, HVAC: the larger of air conditioning or electric heat at 100% (they do not run together, so never both). Total VA ÷ 240 V = calculated amps. Spare capacity = panel rating − calculated load: the honest headroom for the EV charger conversation, stated in amps instead of vibes.</p>
+    <div class="note">This is the code’s calculation method for planning — it is not a permit, a load letter, or a substitute for an electrician, and utilities/AHJs may require the standard method (220.40s) or metered demand data instead. The continuous-load 80% convention applies to individual branch circuits and EV charging, not to this service calculation — do not double-derate. Panels also fill physically: spare amps in a panel with no free breaker spaces still means a subpanel.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> NEC 220.82 optional method: general load = 3 VA/sq ft + 1,500 VA per small-appliance circuit + 1,500 VA laundry + fixed appliances at nameplate. Demand = first 10,000 VA at 100% + remainder at 40%. Add the larger of AC or electric heat at 100%. Amps = total VA ÷ 240. Spare = panel amps − calculated amps.</p>
+    <p><strong>Worked example:</strong> 2,000 sq ft, 20,000 VA of appliances, 3,500 VA AC: general load 30,500 VA → demand 18,200 + 3,500 = 21,700 VA = 90.4 A — about 110 A spare on a 200 A panel.</p>
+  </div>
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are planning an EV charger, hot tub, addition or electric range.</li><li>An electrician quoted a service upgrade and you want the code math first.</li><li>You are buying a house and want to know what its panel can grow into.</li><li>You are comparing load management against a bigger service.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter living area, small-appliance circuits, and laundry.</li><li>Total your fixed appliances from nameplates (VA ≈ watts for resistance loads) and enter the sum.</li><li>Enter AC and electric heat nameplates — only the larger counts.</li><li>Pick your panel size and read calculated amps and the spare headroom.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>General load</strong></td><td style="padding:6px 8px">3 VA/sq ft + 1,500 VA per small-appliance circuit + 1,500 laundry</td><td style="padding:6px 8px">2,000 sq ft → 10,500 VA before appliances</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Fixed appliances</strong></td><td style="padding:6px 8px">Nameplate VA sum: range, dryer, water heater, dishwasher…</td><td style="padding:6px 8px">All-electric bundle ≈ 20,000 VA</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>HVAC</strong></td><td style="padding:6px 8px">Larger of AC or electric heat at 100%</td><td style="padding:6px 8px">AC 3.5 kVA; resistance heat often 9–15 kVA</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Panel size</strong></td><td style="padding:6px 8px">Your service rating — the ceiling the load is compared to</td><td style="padding:6px 8px">100 A older homes; 200 A modern standard</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A 1,200 sq ft home, 13,700 VA of fixed appliances, 2,500 VA AC but 9,000 VA of electric heat, on a 100 A panel: general load 21,800 VA, demand-factored to 14,720, plus heat at 100% = 23,720 VA = 98.8 A. It fits — with 1.2 A of calculated headroom, which is to say it does not fit anything new.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What load does a 2,000 sq ft all-electric house calculate to?</h3>
+    <p>General load: 6,000 (area) + 3,000 (two small-appliance circuits) + 1,500 (laundry) + 20,000 (fixed appliances) = 30,500 VA. Demand: 10,000 + 40% × 20,500 = 18,200 VA. Plus AC 3,500 at 100% = 21,700 VA ÷ 240 = 90.4 A calculated load. On a 200 A panel that leaves about 110 A of calculated headroom — plenty for an EV charger by this method.</p>
+    <h3>Can a 100 A panel take an EV charger?</h3>
+    <p>The worked second example: a 1,200 sq ft home with a smaller appliance bundle calculates to 21,800 VA general, demand-factored plus the larger of AC/heat (9,000 VA electric heat) to 23,720 VA = 98.8 A — technically under 100 A, with 1.2 A to spare. Adding a 40 A EV circuit does not fit this calculation: that house needs load management, a smaller charger setting, or a service upgrade. This is precisely the question 220.82 exists to answer before anyone buys anything.</p>
+    <h3>Why is only part of the load counted at 100%?</h3>
+    <p>Diversity. Not every receptacle, light and appliance in a home runs at once — decades of metered data sit behind the demand factors. The first 10 kVA at 100% covers the always-on core; the 40% remainder reflects realistic coincidence. HVAC skips the discount because when it runs, it runs at full nameplate.</p>
+    <h3>What is the difference between this and the standard method?</h3>
+    <p>The optional method (220.82) is simpler and usually yields a lower calculated load; it is permitted for dwellings with a single service of 100 A+ where the AHJ accepts it. The standard method applies appliance-by-appliance demand tables. Either can govern a permit — your electrician and inspector decide which one your project files under.</p>
+    <h3>Does spare capacity here mean I can add a 60 A breaker?</h3>
+    <p>It means the service calculation has room. The breaker itself must still be sized to the load (a 48 A EV charger on a 60 A breaker is a continuous load at 125%), the panel needs physical spaces and bus rating for it, and the AHJ has the final word. Calculated headroom is the start of the conversation, not the permit.</p>
+    <h3>My bill shows peak demand way below this. Who is right?</h3>
+    <p>Both — they answer different questions. Metered peak is what your house did; 220.82 is what the code assumes it could do with nameplate loads and diversity. Many utilities accept 12 months of meter data (NEC 220.87) as an alternative basis for additions. If your metered peak is 40 A, that path may save a service upgrade.</p>
+    <h3>What about a hot tub or a workshop?</h3>
+    <p>Hot tubs enter as fixed appliances at nameplate (typically 5,500–11,000 VA with the heater) — add yours to the appliance total. Workshop welders, kilns and compressors likewise. Then watch the calculated load: those single big nameplates move the answer more than everything else in the house combined.</p>
+    
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="voltage-drop-calculator.html">Voltage Drop & Wire Size</a></li>
+    <li><a href="generator-sizing-calculator.html">Generator Sizing Calculator</a></li>
+    <li><a href="water-heater-sizing-calculator.html">Water Heater Sizing</a></li>
+    <li><a href="electricity-cost-calculator.html">Electricity Cost Calculator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function sv(id){return document.getElementById(id).value;}
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmt0(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});}
+function fmt1(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function money(n){return '$'+fmt(n);}
+function money0(n){return '$'+fmt0(Math.round(n));}
+function ceilg(x){return Math.ceil(x-1e-9);}
+
+/*PURE-BEGIN*/
+function necCalc(sqft,smallCircuits,laundry,appliancesVa,acVa,heatVa,panelAmps){
+  var gen=sqft*3+smallCircuits*1500+laundry*1500+appliancesVa;
+  var dem=Math.min(gen,10000)+Math.max(0,gen-10000)*0.40;
+  var hvac=Math.max(acVa,heatVa), total=dem+hvac, amps=total/240;
+  return {gen:gen,dem:dem,hvac:hvac,total:total,amps:amps,spare:panelAmps-amps};
+}
+/*PURE-END*/
+function calc(){
+  var r=necCalc(Math.max(0,v('sqft')),Math.max(0,v('small')),sv('laundry')==='1'?1:0,Math.max(0,v('appl')),Math.max(0,v('ac')),Math.max(0,v('heat')),+sv('panel'));
+  var res=document.getElementById('results');
+  if(!(r.total>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter your home’s figures to run the 220.82 calculation.';document.getElementById('rows').innerHTML='';res.classList.add('show');return;}
+  var p=+sv('panel');
+  document.getElementById('rMain').textContent=fmt1(r.amps)+' A calculated — '+fmt0(r.spare)+' A spare on '+fmt0(p)+' A';
+  document.getElementById('verdict').textContent=r.spare>=0?'By the NEC 220.82 optional method this service carries the calculated load with '+fmt0(r.spare)+' A to spare.':'Calculated load exceeds the '+fmt0(p)+' A service by '+fmt0(-r.spare)+' A under 220.82 — additions need load management, metered-data justification (220.87), or a service upgrade.';
+  document.getElementById('rows').innerHTML=row('General load (before demand)',fmt0(r.gen)+' VA')+row('After 220.82 demand factor',fmt0(r.dem)+' VA')+row('HVAC at 100% (larger of AC / heat)',fmt0(r.hvac)+' VA')+row('Total calculated load',fmt0(r.total)+' VA = '+fmt1(r.amps)+' A')+row('Spare capacity',fmt0(r.spare)+' A');
+  res.classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

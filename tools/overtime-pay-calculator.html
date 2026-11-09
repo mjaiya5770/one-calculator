@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Overtime Pay Calculator — Auto Time-and-a-Half & Double Time Split | One Calculator</title>
+<meta name="robots" content="noindex,follow">
+  <meta name="description" content="Free overtime pay calculator: enter total hours and it splits regular, time-and-a-half and double time automatically under federal or California-style rules — weekly gross and blended rate. No manual buckets.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/overtime-pay-calculator.html">
+<meta property="og:title" content="Free Overtime Pay Calculator — Auto Time-and-a-Half & Double Time Split | One Calculator">
+<meta property="og:description" content="Free overtime pay calculator: enter total hours and it splits regular, time-and-a-half and double time automatically under federal or California-style rules — weekly gross and blended rate. No manual buckets.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/overtime-pay-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Overtime Pay Calculator — Auto Time-and-a-Half & Double Time Split | One Calculator">
+<meta name="twitter:description" content="Free overtime pay calculator: enter total hours and it splits regular, time-and-a-half and double time automatically under federal or California-style rules — weekly gross and blended rate. No manual buckets.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Overtime Pay Calculator",
+  "description": "Free overtime pay calculator: enter total hours and it splits regular, time-and-a-half and double time automatically under federal or California-style rules \u2014 weekly gross and blended rate. No manual buckets.",
+  "url": "https://onecalculator.site/tools/overtime-pay-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much is 48 hours at $25 an hour with overtime?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Federal split: 40 regular + 8 at time-and-a-half. 40 \u00d7 $25 = $1,000; 8 \u00d7 $37.50 = $300; gross $1,300 for the week \u2014 a blended rate of $27.08 per hour, and $67,600 a year if every week looked like that."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between this and the Overtime Calculator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The classic Overtime Calculator takes hours you have already sorted into regular, 1.5\u00d7 and 2\u00d7 buckets. This one takes a single total and a rule set and does the sorting. Use the manual one for a known or negotiated split (a specific day at double time, say); use this one to check a week from total hours alone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the California-style mode work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "California pays daily overtime: past 8 in a day at 1.5\u00d7, past 12 at 2\u00d7, plus weekly overtime past 40 \u2014 without ever paying two premiums on the same hour. Modeled on five equal days, a 50-hour week (five 10-hour days) at $30 becomes 40 regular and 10 at 1.5\u00d7, none at 2\u00d7: the daily premiums already cover all 10 weekly excess hours, so the weekly rule adds nothing. Gross $1,650, blended $33.00. The same 50 hours worked as longer days would push some hours to 2\u00d7 and pay more \u2014 uneven days change the split, and payroll software reading your actual timecard is the exact tool."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a blended rate and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gross \u00f7 total hours. It is the honest per-hour value of a heavy week: 48 hours at $25 base blends to $27.08, not $25 and not $37.50. Comparing job offers, side work, or a salary conversion, the blended rate on your typical week beats the headline rate every time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is overtime taxed more?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 overtime dollars are taxed as ordinary income at your marginal rate. A fat paycheck can be withheld as if you earned that every week, which feels like a higher tax rate; the annual return settles it. (Recent federal changes to overtime premium taxation have specific caps and definitions \u2014 check current IRS guidance for your filing year.)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My employer pays overtime after 80 hours in two weeks. Is that legal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most private employers under the FLSA, no \u2014 the threshold is 40 per workweek, and averaging two weeks is not permitted (hospitals and public employers have specific exceptions). If your stub shows biweekly thresholds, that is worth a conversation with HR or your state labor agency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do salaried workers get overtime?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Salaried non-exempt workers do; exempt workers (a legal category based on duties and salary level, not job title) do not. Being paid a salary alone does not make you exempt. If you are salaried non-exempt, your regular rate is salary \u00f7 hours the salary covers, and premiums build from there."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../calculators.html">Calculators</a><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/overtime-pay-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../calculators.html#cat-everyday-tools">Everyday tools</a> › Overtime Pay Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+  <h1 class="tool-title">Overtime Pay Calculator</h1>
+  <p class="lede">Most overtime calculators make you sort your own hours into buckets. This one does the split: enter total hours for the week, pick the rule set, and it works out regular, 1.5× and 2× hours, the gross, and the blended rate your paycheck actually reflects.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="rate">Hourly rate ($)</label><input id="rate" type="number" value="25" min="0" step="any"></div>
+      <div class="field"><label for="hours">Total hours worked this week</label><input id="hours" type="number" value="48" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="mode">Overtime rule set</label><select id="mode"><option value="federal" selected>Federal (FLSA): 1.5× after 40 in a week</option><option value="ca">California-style: daily 1.5× after 8, 2× after 12, weekly after 40*</option><option value="double48">Contract-style: 1.5× from 40–48, 2× beyond 48</option></select></div>
+    </div>
+    <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">*The California-style mode approximates a 5-day week of equal days for the daily rules, then applies the weekly rule without double-counting — a planning model of CA rules, not a payroll engine. Union contracts, alternative workweek schedules, and exempt status all change real paychecks; your pay stub is the authority. For manual bucket entry or a single known split, the classic Overtime Calculator is linked in the nav.</p>
+
+    <button class="btn" onclick="calc()">Calculate overtime pay</button>
+<div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#overtime-pay-calculator">Embed this calculator on your site — free</a></p>
+    <div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Weekly gross pay</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Federal rule: hours to 40 pay at the base rate, everything beyond pays 1.5×. Contract-style adds a 2× tier beyond 48. The California-style mode models five equal days: daily hours past 8 earn 1.5×, past 12 earn 2×; the weekly rule then counts the hours past 40 that the daily rules have not already covered and lifts that many straight-time hours to 1.5× — and when the daily premiums already cover the whole weekly excess (the usual case), nothing is added, because premiums never stack on the same hour (no pyramiding, which is also the law). The blended rate is gross ÷ total hours: the single number that tells you what the week really paid per hour.</p>
+    <div class="note">Gross pay before taxes and deductions, for non-exempt hourly work. Salary non-exempt, fluctuating workweek, weighted-average (multiple rates), bonus-inclusive regular rate, and tipped-credit cases all have their own rules — payroll departments exist because the edge cases are endless. Estimates only; not payroll or legal advice.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Gross = regular hours × rate + overtime hours × rate × 1.5 + double-time hours × rate × 2. Federal split: regular = min(hours, 40), 1.5× = the rest. Contract-style: 1.5× covers hours 40–48, 2× beyond 48. California-style: daily premiums on five equal days first (1.5× past 8/day, 2× past 12/day); the weekly rule covers only weekly-excess hours the daily rules missed — no pyramiding, so a uniform week adds nothing. Blended rate = gross ÷ total hours.</p>
+    <p><strong>Worked example:</strong> 48 hours at $25/h, federal: 40 × $25 + 8 × $37.50 = $1,300 gross, blended $27.08/h.</p>
+  </div>
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You have total hours and a rate and want the paycheck number without bucket math.</li><li>You are checking a pay stub against the hours you know you worked.</li><li>You are comparing a heavy-overtime job against a higher base rate elsewhere.</li><li>You work under California-style daily rules and want a planning estimate.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter your base hourly rate.</li><li>Enter total hours for the workweek (one week, not a pay period).</li><li>Pick the rule set that matches your situation (the California-style mode assumes five equal-length days).</li><li>Read the split, the gross, and the blended rate — the blended rate is the comparison number.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Hourly rate</strong></td><td style="padding:6px 8px">Your base (straight-time) rate</td><td style="padding:6px 8px">$15–$40 typical hourly range</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Total hours</strong></td><td style="padding:6px 8px">All hours worked in the single workweek</td><td style="padding:6px 8px">40 standard; 48–60 heavy weeks</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Rule set</strong></td><td style="padding:6px 8px">Which overtime law/contract structure applies</td><td style="padding:6px 8px">Federal 40-hour; CA-style daily; contract 48-hour double tier</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A 50-hour week at $30 under California-style rules, modeled as five equal 10-hour days: each day pays 8 regular + 2 at 1.5×, giving 40 regular and 10 premium hours. The weekly overtime rule then adds nothing — all 10 hours past the weekly 40 already carry the daily premium, and pyramiding is prohibited — so the split stays 40 / 10 / 0: 40 × $30 + 10 × $45 = $1,650 gross, blended $33.00. Work the same 50 hours as 12.5-hour days and 2.5 hours reach double time instead — real CA stubs follow the actual daily pattern.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How much is 48 hours at $25 an hour with overtime?</h3>
+    <p>Federal split: 40 regular + 8 at time-and-a-half. 40 × $25 = $1,000; 8 × $37.50 = $300; gross $1,300 for the week — a blended rate of $27.08 per hour, and $67,600 a year if every week looked like that.</p>
+    <h3>What is the difference between this and the Overtime Calculator?</h3>
+    <p>The classic Overtime Calculator takes hours you have already sorted into regular, 1.5× and 2× buckets. This one takes a single total and a rule set and does the sorting. Use the manual one for a known or negotiated split (a specific day at double time, say); use this one to check a week from total hours alone.</p>
+    <h3>How does the California-style mode work?</h3>
+    <p>California pays daily overtime: past 8 in a day at 1.5×, past 12 at 2×, plus weekly overtime past 40 — without ever paying two premiums on the same hour. Modeled on five equal days, a 50-hour week (five 10-hour days) at $30 becomes 40 regular and 10 at 1.5×, none at 2×: the daily premiums already cover all 10 weekly excess hours, so the weekly rule adds nothing. Gross $1,650, blended $33.00. The same 50 hours worked as longer days would push some hours to 2× and pay more — uneven days change the split, and payroll software reading your actual timecard is the exact tool.</p>
+    <h3>What is a blended rate and why does it matter?</h3>
+    <p>Gross ÷ total hours. It is the honest per-hour value of a heavy week: 48 hours at $25 base blends to $27.08, not $25 and not $37.50. Comparing job offers, side work, or a salary conversion, the blended rate on your typical week beats the headline rate every time.</p>
+    <h3>Is overtime taxed more?</h3>
+    <p>No — overtime dollars are taxed as ordinary income at your marginal rate. A fat paycheck can be withheld as if you earned that every week, which feels like a higher tax rate; the annual return settles it. (Recent federal changes to overtime premium taxation have specific caps and definitions — check current IRS guidance for your filing year.)</p>
+    <h3>My employer pays overtime after 80 hours in two weeks. Is that legal?</h3>
+    <p>For most private employers under the FLSA, no — the threshold is 40 per workweek, and averaging two weeks is not permitted (hospitals and public employers have specific exceptions). If your stub shows biweekly thresholds, that is worth a conversation with HR or your state labor agency.</p>
+    <h3>Do salaried workers get overtime?</h3>
+    <p>Salaried non-exempt workers do; exempt workers (a legal category based on duties and salary level, not job title) do not. Being paid a salary alone does not make you exempt. If you are salaried non-exempt, your regular rate is salary ÷ hours the salary covers, and premiums build from there.</p>
+    
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="overtime-calculator.html">Overtime Calculator (manual buckets)</a></li>
+    <li><a href="time-card-calculator.html">Time Card Calculator</a></li>
+    <li><a href="paycheck-calculator.html">Paycheck Calculator</a></li>
+    <li><a href="hourly-salary-converter.html">Hourly to Salary Converter</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function sv(id){return document.getElementById(id).value;}
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmt0(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});}
+function fmt1(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function money(n){return '$'+fmt(n);}
+function money0(n){return '$'+fmt0(Math.round(n));}
+function ceilg(x){return Math.ceil(x-1e-9);}
+
+/*PURE-BEGIN*/
+function otSplit(hours,mode){
+  var reg,ot15,ot2;
+  if(mode==='ca'){
+    var d=hours/5, dReg=Math.min(d,8), d15=Math.min(Math.max(d-8,0),4), d2=Math.max(d-12,0);
+    reg=dReg*5; ot15=d15*5; ot2=d2*5;
+    var lift=Math.min(reg,Math.max(0,(hours-40)-ot15-ot2)); if(lift<0)lift=0;
+    reg-=lift; ot15+=lift;
+  } else if(mode==='double48'){
+    reg=Math.min(hours,40); ot15=Math.min(Math.max(hours-40,0),8); ot2=Math.max(hours-48,0);
+  } else {
+    reg=Math.min(hours,40); ot15=Math.max(hours-40,0); ot2=0;
+  }
+  return {reg:reg,ot15:ot15,ot2:ot2};
+}
+function otPayCalc(rate,reg,ot15,ot2){
+  var gross=reg*rate+ot15*rate*1.5+ot2*rate*2, hours=reg+ot15+ot2;
+  return {gross:gross,blended:hours>0?gross/hours:0,annual:gross*52,monthly:gross*52/12};
+}
+/*PURE-END*/
+function calc(){
+  var s=otSplit(Math.max(0,v('hours')),sv('mode'));
+  var r=otPayCalc(Math.max(0,v('rate')),s.reg,s.ot15,s.ot2);
+  var res=document.getElementById('results');
+  if(!(r.gross>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter a rate and hours to split the week.';document.getElementById('rows').innerHTML='';res.classList.add('show');return;}
+  document.getElementById('rMain').textContent=money(r.gross)+' / week';
+  document.getElementById('verdict').textContent='Split: '+fmt1(s.reg)+' regular, '+fmt1(s.ot15)+' at 1.5×, '+fmt1(s.ot2)+' at 2× — blended '+money(r.blended)+' per hour.';
+  document.getElementById('rows').innerHTML=row('Regular hours',fmt1(s.reg)+' × '+money(v('rate')))+row('Time-and-a-half hours',fmt1(s.ot15)+' × '+money(v('rate')*1.5))+row('Double-time hours',fmt1(s.ot2)+' × '+money(v('rate')*2))
+    +row('Weekly gross',money(r.gross))+row('Blended rate',money(r.blended)+' /h')+row('If every week matched',money0(r.annual)+' / yr');
+  res.classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

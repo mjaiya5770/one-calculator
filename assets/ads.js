@@ -35,7 +35,7 @@
   function houseHTML() {
     var deep = /\/(tools|guides)\//.test(location.pathname);
     return '<a class="nn-house" href="' + (deep ? '../' : '') + 'calculators.html">' +
-      '<strong>One Calculator — one tool per job, done properly</strong><span>154 single-purpose calculators. No signup, ever →</span></a>';
+      '<strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a>';
   }
 
   function watchSeat(el, startedAt) {
