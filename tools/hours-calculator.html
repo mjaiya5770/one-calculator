@@ -222,8 +222,8 @@ function calc(){
   document.getElementById('rows').innerHTML=rows;
   document.getElementById('results').classList.add('show');
 }
-document.querySelector('.tools').addEventListener('input',calc);
-document.querySelector('.tools').addEventListener('change',calc);
+document.querySelector('.nn-calc-card').addEventListener('input',calc);
+document.querySelector('.nn-calc-card').addEventListener('change',calc);
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
 
