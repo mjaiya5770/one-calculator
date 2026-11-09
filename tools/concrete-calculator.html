@@ -118,17 +118,17 @@
     </div>
     <div class="shape-panel" id="panel-slab">
       <div class="row">
-        <div class="field"><label for="sL">Length (ft)</label><input id="sL" type="number" value="10" min="0" step="any"></div>
-        <div class="field"><label for="sW">Width (ft)</label><input id="sW" type="number" value="10" min="0" step="any"></div>
+        <div class="field"><label for="sL">Length (ft)</label><input id="sL" type="text" inputmode="decimal" value="10" min="0" step="any"></div>
+        <div class="field"><label for="sW">Width (ft)</label><input id="sW" type="text" inputmode="decimal" value="10" min="0" step="any"></div>
       </div>
       <div class="row">
         <div class="field"><label for="sT">Thickness (in)</label><input id="sT" type="number" value="4" min="0" step="any"></div>
         <div class="field"><label>&nbsp;</label><span class="hint">4 in is standard for patios and walkways; 6 in for driveways.</span></div>
       </div>
     </div>
-    <div class="shape-panel" id="panel-footing" style="display:none">
+    <div class="shape-panel" id="panel-footing" hidden>
       <div class="row">
-        <div class="field"><label for="fL">Length of trench (ft)</label><input id="fL" type="number" value="40" min="0" step="any"></div>
+        <div class="field"><label for="fL">Length of trench (ft)</label><input id="fL" type="text" inputmode="decimal" value="40" min="0" step="any"></div>
         <div class="field"><label for="fW">Width (in)</label><input id="fW" type="number" value="16" min="0" step="any"></div>
       </div>
       <div class="row">
@@ -136,19 +136,19 @@
         <div class="field"><label>&nbsp;</label><span class="hint">Total length of all footing runs added together.</span></div>
       </div>
     </div>
-    <div class="shape-panel" id="panel-tube" style="display:none">
+    <div class="shape-panel" id="panel-tube" hidden>
       <div class="row">
         <div class="field"><label for="tDia">Tube diameter (in)</label><input id="tDia" type="number" value="12" min="0" step="any"></div>
-        <div class="field"><label for="tDepth">Depth (ft)</label><input id="tDepth" type="number" value="4" min="0" step="any"></div>
+        <div class="field"><label for="tDepth">Depth (ft)</label><input id="tDepth" type="text" inputmode="decimal" value="4" min="0" step="any"></div>
       </div>
       <div class="row">
         <div class="field"><label for="tCount">How many tubes</label><input id="tCount" type="number" value="4" min="1" step="1"></div>
         <div class="field"><label>&nbsp;</label><span class="hint">Deck posts, fence posts and piers — count them all at once.</span></div>
       </div>
     </div>
-    <div class="shape-panel" id="panel-steps" style="display:none">
+    <div class="shape-panel" id="panel-steps" hidden>
       <div class="row">
-        <div class="field"><label for="stW">Step width (ft)</label><input id="stW" type="number" value="4" min="0" step="any"></div>
+        <div class="field"><label for="stW">Step width (ft)</label><input id="stW" type="text" inputmode="decimal" value="4" min="0" step="any"></div>
         <div class="field"><label for="stN">Number of steps</label><input id="stN" type="number" value="4" min="1" step="1"></div>
       </div>
       <div class="row">
@@ -156,9 +156,9 @@
         <div class="field"><label for="stRise">Riser height per step (in)</label><input id="stRise" type="number" value="7" min="0" step="any"></div>
       </div>
     </div>
-    <div class="shape-panel" id="panel-curb" style="display:none">
+    <div class="shape-panel" id="panel-curb" hidden>
       <div class="row">
-        <div class="field"><label for="cL">Length (ft)</label><input id="cL" type="number" value="50" min="0" step="any"></div>
+        <div class="field"><label for="cL">Length (ft)</label><input id="cL" type="text" inputmode="decimal" value="50" min="0" step="any"></div>
         <div class="field"><label for="cW">Width (in)</label><input id="cW" type="number" value="6" min="0" step="any"></div>
       </div>
       <div class="row">
@@ -167,14 +167,16 @@
       </div>
     </div>
     <div class="row">
-      <div class="field"><label for="waste">Waste / spillage (%)</label><input id="waste" type="number" value="10" min="0" max="50" step="any"><span class="hint">Pros order 5–10% extra. Running short mid-pour is far worse.</span></div>
+      <div class="field"><label for="waste">Waste / spillage (%)</label><input id="waste" type="number" value="10" min="0" max="50" step="any"><span class="hint">Pros order 5–10% extra. Running short mid-pour is far worse.</span></div><div class="field"><label for="pours">Identical pours (count)</label><input id="pours" type="number" value="1" min="1" step="1"></div>
       <div class="field"><label for="bagSize">Bag size</label><select id="bagSize"><option value="80">80-lb bags (yield 0.60 ft³)</option><option value="60">60-lb bags (yield 0.45 ft³)</option></select></div>
     </div>
-    <div class="row">
-      <div class="field"><label for="bagPrice">Price per bag ($)</label><input id="bagPrice" type="number" value="5.50" min="0" step="any"></div>
-      <div class="field"><label for="mixPrice">Ready-mix price ($ / yd³, optional)</label><input id="mixPrice" type="number" value="160" min="0" step="any"></div>
-    </div>
+    
 
+    <details class="nn-disc"><summary>More options: prices for bags & ready-mix</summary><div class="field"><label for="bagPrice">Price per bag ($)</label><input id="bagPrice" type="number" value="5.50" min="0" step="any"></div><div class="row">
+      
+      <div class="field"><label for="mixPrice">Ready-mix price ($ / yd³, optional)</label><input id="mixPrice" type="number" value="160" min="0" step="any"></div>
+    </div></details>
+    <p class="nn-dim-help">Tip: dimensions accept tape-measure entries — try 6' 8 5/16" or 6.5.</p>
     <button class="btn" onclick="calc()">Calculate</button>
     <div class="nn-actions no-print" data-nn-actions>
   <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
@@ -189,7 +191,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -279,10 +281,35 @@ function yd3(ft3){return ft3/27;}
 function m3FromFt3(ft3){return ft3*0.0283168466;}
 function withWaste(ft3,pct){return ft3*(1+pct/100);}
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
+function sigRectSVG(l,w,lLab,wLab,cap){var W=300,H=170,sx=54,sy=26,iw=W-2*sx,ih=H-2*sy;var sc=Math.min(iw/Math.max(l,0.01),ih/Math.max(w,0.01));var rw=Math.max(10,l*sc),rh=Math.max(10,w*sc),x=(W-rw)/2,y=(H-rh)/2;var h='<svg class="sig-diagram" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Dimension diagram"><rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+rw.toFixed(1)+'" height="'+rh.toFixed(1)+'" rx="3"/><text class="sig-dim" x="'+(W/2)+'" y="'+(y-8)+'" text-anchor="middle">'+lLab+'</text><text class="sig-dim" x="'+(x+rw+8)+'" y="'+(H/2)+'" text-anchor="middle" transform="rotate(90 '+(x+rw+8)+' '+(H/2)+')">'+wLab+'</text>';if(cap){h+='<text class="sig-dimcap" x="'+(W/2)+'" y="'+(H/2+4)+'" text-anchor="middle">'+cap+'</text>';}return h+'</svg>';}
+function sigWallSVG(l,ht,lLab,hLab,cap){return sigRectSVG(l,ht,lLab,hLab,cap);}
+function sigLineSVG(lab){var h='<svg class="sig-diagram sig-line-diagram" viewBox="0 0 300 54" role="img" aria-label="Run diagram"><line x1="24" y1="30" x2="276" y2="30"/><line x1="24" y1="20" x2="24" y2="40"/><line x1="276" y1="20" x2="276" y2="40"/><text class="sig-dim" x="150" y="16" text-anchor="middle">'+lab+'</text></svg>';return h;}
+function sigGridSVG(cols,rows,cap){cols=Math.max(1,Math.min(24,Math.round(cols)));rows=Math.max(1,Math.min(24,Math.round(rows)));var W=300,H=170,sx=30,sy=16,iw=W-2*sx,ih=H-2*sy,cw=iw/cols,ch=ih/rows;var h='<svg class="sig-diagram" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Layout grid"><rect x="'+sx+'" y="'+sy+'" width="'+iw+'" height="'+ih+'"/>';for(var i=1;i<cols;i++){h+='<line x1="'+(sx+i*cw).toFixed(1)+'" y1="'+sy+'" x2="'+(sx+i*cw).toFixed(1)+'" y2="'+(sy+ih)+'"/>';}for(var j=1;j<rows;j++){h+='<line x1="'+sx+'" y1="'+(sy+j*ch).toFixed(1)+'" x2="'+(sx+iw)+'" y2="'+(sy+j*ch).toFixed(1)+'"/>';}if(cap){h+='<text class="sig-dimcap" x="'+(W/2)+'" y="'+(H-3)+'" text-anchor="middle">'+cap+'</text>';}return h+'</svg>';}
+function sigTriSVG(run,rise,hypLab,riseLab,runLab){var W=300,H=170,sx=46,sy=24,iw=W-2*sx,ih=H-2*sy;var sc=Math.min(iw/Math.max(run,0.01),ih/Math.max(rise,0.01));var rw=run*sc,rh=rise*sc,x=sx,y=H-sy;var h='<svg class="sig-diagram" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Slope triangle diagram"><polygon points="'+x+','+y+' '+(x+rw).toFixed(1)+','+y+' '+(x+rw).toFixed(1)+','+(y-rh).toFixed(1)+'"/><text class="sig-dim" x="'+(x+rw/2)+'" y="'+(y+16)+'" text-anchor="middle">'+runLab+'</text><text class="sig-dim" x="'+(x+rw+8)+'" y="'+(y-rh/2)+'" text-anchor="middle" transform="rotate(90 '+(x+rw+8)+' '+(y-rh/2)+')">'+riseLab+'</text><text class="sig-dim" x="'+(x+rw/2-14)+'" y="'+(y-rh/2-8)+'" text-anchor="middle" transform="rotate('+(-Math.atan2(rh,rw)*180/Math.PI).toFixed(1)+' '+(x+rw/2-14)+' '+(y-rh/2-8)+')">'+hypLab+'</text></svg>';return h;}
+function sigStepsSVG(risers,treadIn,totalRiseIn){var n=Math.max(1,Math.min(20,Math.round(risers)));var W=300,H=170,sx=30,sy=20,iw=W-2*sx,ih=H-2*sy;var sw=iw/n,sh=ih/n;var d='M '+sx+' '+(H-sy);for(var i=0;i<n;i++){d+=' L '+(sx+(i+1)*sw).toFixed(1)+' '+(H-sy-i*sh).toFixed(1)+' L '+(sx+(i+1)*sw).toFixed(1)+' '+(H-sy-(i+1)*sh).toFixed(1);}d+=' L '+sx+' '+(H-sy);var h='<svg class="sig-diagram" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Stair profile diagram"><path d="'+d+' Z"/><text class="sig-dimcap" x="'+(W/2)+'" y="'+(H-4)+'" text-anchor="middle">'+n+' risers · total rise '+totalRiseIn+' in</text></svg>';return h;}
+
+/*P3PARSE*/
+function nnParseDim(s){if(typeof s==='number'){return isFinite(s)?s:NaN;}if(s==null){return NaN;}s=(''+s).replace(/,/g,'').trim();if(!s){return NaN;}function frac(a,b){return parseFloat(a)/parseFloat(b);}var m=s.match(/^(-?\d+(?:\.\d+)?)\s*(?:'|ft|feet)\s*(.*)$/i);if(m){var ft=parseFloat(m[1]),rest=(m[2]||'').trim();if(!rest){return ft;}return ft+nnParseDimIn(rest)/12;}if(/(?:"|in|inch)/i.test(s)){var iv=nnParseDimIn(s);return isNaN(iv)?NaN:iv/12;}var f=s.match(/^(-?\d+(?:\.\d+)?)\s+(\d+)\s*\/\s*(\d+)$/);if(f){return parseFloat(f[1])+frac(f[2],f[3]);}f=s.match(/^(-?\d+)\s*\/\s*(\d+)$/);if(f){return frac(f[1],f[2]);}var n=parseFloat(s);return isNaN(n)?NaN:n;}
+function nnParseDimIn(s){s=(''+s).replace(/"/g,' ').replace(/\b(in|inch|inches)\b/gi,' ').trim();if(!s){return 0;}var parts=s.split(/\s+/),tot=0;for(var i=0;i<parts.length;i++){var p=parts[i];if(!p)continue;var f=p.match(/^(\d+)\/(\d+)$/);if(f){tot+=parseFloat(f[1])/parseFloat(f[2]);}else{var n=parseFloat(p);if(isNaN(n)){return NaN;}tot+=n;}}return tot;}
+function dv(id){var el=document.getElementById(id);if(!el){return 0;}var n=nnParseDim(el.value);return isNaN(n)?0:n;}
+
+function sigPourSVG(sh){if(sh==='slab'){return sigRectSVG(dv('sL'),dv('sW'),fmt1(dv('sL'))+' ft',fmt1(dv('sW'))+' ft','thickness '+dv('sT')+' in');}if(sh==='footing'){return sigRectSVG(dv('fL'),Math.max(1,dv('fW')/12),fmt1(dv('fL'))+' ft trench','width '+dv('fW')+' in','depth '+dv('fD')+' in');}if(sh==='tube'){return sigLineSVG(fmt0(Math.max(1,Math.round(dv('tCount'))))+' tubes \u00b7 '+dv('tDia')+' in dia \u00b7 '+fmt1(dv('tDepth'))+' ft deep');}if(sh==='steps'){return sigStepsSVG(Math.max(1,Math.round(dv('stN'))),dv('stTread'),dv('stN')*dv('stRise'));}return sigRectSVG(dv('cL'),Math.max(1,dv('cW')/12),fmt1(dv('cL'))+' ft curb','width '+dv('cW')+' in','height '+dv('cH')+' in');}
+
 function setShape(){
   var sh=s('shape');
-  document.querySelectorAll('.shape-panel').forEach(function(p){p.style.display='none';});
-  document.getElementById('panel-'+sh).style.display='';
+  document.querySelectorAll('.shape-panel').forEach(function(p){p.hidden=true;});
+  document.getElementById('panel-'+sh).hidden=false;
   calc();
 }
 function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
@@ -290,11 +317,12 @@ function fmt(n,d){return n.toLocaleString('en-US',{minimumFractionDigits:d,maxim
 function money(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
 function calc(){
   var sh=s('shape'),ft3=0,label='';
-  if(sh==='slab'){ft3=slabFt3(v('sL'),v('sW'),v('sT'));label='slab';}
-  else if(sh==='footing'){ft3=footingFt3(v('fL'),v('fW'),v('fD'));label='footing';}
-  else if(sh==='tube'){ft3=tubeFt3(v('tDia'),v('tDepth'),Math.max(1,Math.round(v('tCount'))));label='round footings';}
-  else if(sh==='steps'){ft3=stepsFt3(v('stW'),v('stTread'),v('stRise'),Math.max(1,Math.round(v('stN'))));label='steps';}
-  else {ft3=curbFt3(v('cL'),v('cW'),v('cH'));label='curb';}
+  if(sh==='slab'){ft3=slabFt3(dv('sL'),dv('sW'),v('sT'));label='slab';}
+  else if(sh==='footing'){ft3=footingFt3(dv('fL'),v('fW'),v('fD'));label='footing';}
+  else if(sh==='tube'){ft3=tubeFt3(v('tDia'),dv('tDepth'),Math.max(1,Math.round(v('tCount'))));label='round footings';}
+  else if(sh==='steps'){ft3=stepsFt3(dv('stW'),v('stTread'),v('stRise'),Math.max(1,Math.round(v('stN'))));label='steps';}
+  else {ft3=curbFt3(dv('cL'),v('cW'),v('cH'));label='curb';}
+  var pours=Math.max(1,Math.round(v('pours')));ft3=ft3*pours;
   var waste=v('waste'),wFt3=withWaste(ft3,waste);
   var size=+s('bagSize'),bags=bagsFor(wFt3,size),bagsAlt=bagsFor(wFt3,size===80?60:80);
   var price=v('bagPrice'),mix=v('mixPrice');
@@ -309,7 +337,10 @@ function calc(){
     +'<li>Or <strong>'+bagsAlt+' × '+(size===80?60:80)+'-lb bags</strong> if the other size is on sale</li>'
     +'<li>Or order <strong>'+fmt(yd3(wFt3),2)+' yd³ ready-mix</strong>'+(mix>0?' — about '+money(yd3(wFt3)*mix)+' before delivery fees':'')+'</li>'
     +'<li>Water: roughly 0.6–0.8 gal per 80-lb bag (follow the bag) — have a hose at the pour site</li>';
-  document.getElementById('results').classList.add('show');
+/*P3HOOK*/
+  var steps=[['Concrete needed',fmt(yd3(ft3),2)+' yd³','Exact volume before waste'+(pours>1?' · '+pours+' identical pours':'')],['With '+waste+'% waste',fmt(yd3(wFt3),2)+' yd³',fmt(wFt3,1)+' ft³ — mix and order to this number'],['Buy: '+size+'-lb bags',fmt0(bags)+' bags','Yields are printed on the bag: 0.60 ft³ per 80-lb bag, 0.45 ft³ per 60-lb'],['Or ready-mix',fmt(yd3(wFt3),2)+' yd³','A ready-mix truck carries about 10 yd³; short loads can add fees']];if(price>0){steps.push(['Estimated bag cost',money(bags*price),size+'-lb bags at '+money(price)+' each']);}sigSet('Your pour card', sigPourSVG(sh) + sigLadderHTML(steps,'The shopping list below the result is this card — print it and take it to the yard.'));
+  /*P3HOOK-END*/
+    document.getElementById('results').classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}

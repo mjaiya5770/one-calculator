@@ -125,14 +125,15 @@
     </div>
     <div class="row">
       <div class="field"><label for="loads">Laundry loads per week</label><input id="loads" type="number" value="5" min="0" step="any"></div>
-      <div class="field"><label for="out">Outdoor use (gal/day — watering, pool)</label><input id="out" type="number" value="0" min="0" step="any"></div>
+      
     </div>
-    <div class="row">
-      <div class="field"><label for="leak">Waste &amp; leaks allowance (%)</label><input id="leak" type="number" value="0" min="0" step="any"></div>
-      <div class="field"><label for="rate">Combined water + sewer rate ($ per 1,000 gal)</label><input id="rate" type="number" value="12" min="0" step="any"></div>
-    </div>
+    
     <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Find your combined rate on a recent bill: (water charge + sewer charge) ÷ usage in thousands of gallons. US utilities commonly land between $7 and $15 per 1,000 gal combined — sewer is often the bigger half.</p>
 
+    <details class="nn-disc"><summary>More options: outdoor use, leaks & your rate</summary><div class="field"><label for="out">Outdoor use (gal/day — watering, pool)</label><input id="out" type="number" value="0" min="0" step="any"></div><div class="field"><label for="leak">Waste &amp; leaks allowance (%)</label><input id="leak" type="number" value="0" min="0" step="any"></div><div class="row">
+      
+      <div class="field"><label for="rate">Combined water + sewer rate ($ per 1,000 gal)</label><input id="rate" type="number" value="12" min="0" step="any"></div>
+    </div></details>
     <button class="btn" onclick="calc()">Estimate the bill</button>
     <div class="nn-actions no-print" data-nn-actions>
   <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
@@ -147,7 +148,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -243,6 +244,21 @@ function waterCalc(people,showersDay,loadsWeek,flushGpf,showerMin,ratePer1000,ou
   return {shower:shower,flushes:flushes,laundry:laundry,dishes:dishes,faucets:faucets,indoor:indoor,total:total,month:month,bill:bill,yearBill:bill*12,galYear:month*12};
 }
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigHBarHTML(items){var mx=0,i;for(i=0;i<items.length;i++){if(items[i][1]>mx)mx=items[i][1];}if(!(mx>0))mx=1;var h='<div class="sig-hbars">';for(i=0;i<items.length;i++){var p=Math.max(2,items[i][1]/mx*100);h+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+items[i][0]+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'" style="width:'+p.toFixed(1)+'%"></span></span><strong>'+items[i][2]+'</strong></div>';}return h+'</div>';}
+
+function sigRailHTML(lo,mid,hi,fmtFn){var span=(hi*1.08)-(lo*0.92);if(!(span>0)){span=1;}var lp=((lo-lo*0.92)/span*100),mp=((mid-lo*0.92)/span*100),wp=((hi-lo)/span*100);var h='<div class="sig-rail" role="img" aria-label="Planning range '+fmtFn(lo)+' to '+fmtFn(hi)+', midpoint '+fmtFn(mid)+'"><span class="sig-rail-band" style="left:'+lp.toFixed(1)+'%;width:'+wp.toFixed(1)+'%"></span><span class="sig-rail-mid" style="left:'+mp.toFixed(1)+'%"></span><span class="sig-rail-lab sig-rail-lo" style="left:'+lp.toFixed(1)+'%">'+fmtFn(lo)+'</span><span class="sig-rail-lab sig-rail-midlab" style="left:'+mp.toFixed(1)+'%">mid '+fmtFn(mid)+'</span><span class="sig-rail-lab sig-rail-hi" style="left:'+(lp+wp).toFixed(1)+'%">'+fmtFn(hi)+'</span></div>';return h;}
+
+function sigBoardHTML(rail,bars,incl,excl,note){var h='';if(rail){h+='<p class="sig-marker">Planning range — not a quote</p>'+rail;}if(bars){h+=bars;}if(incl&&incl.length){h+='<div class="sig-checks"><div class="sig-check"><p class="sig-check-t">In this range</p><ul>';for(var i=0;i<incl.length;i++){h+='<li>'+incl[i]+'</li>';}h+='</ul></div>';if(excl&&excl.length){h+='<div class="sig-check"><p class="sig-check-t">Not included</p><ul>';for(var j=0;j<excl.length;j++){h+='<li>'+excl[j]+'</li>';}h+='</ul></div>';}h+='</div>';}if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
   var r=waterCalc(Math.max(0,v('people')),Math.max(0,v('showers')),Math.max(0,v('loads')),+sv('gpf'),Math.max(0,v('showerMin')),Math.max(0,v('rate')),Math.max(0,v('out')),Math.max(0,v('leak')));
   var res=document.getElementById('results');
@@ -252,7 +268,10 @@ function calc(){
   document.getElementById('rows').innerHTML=row('Showers',fmt1(r.shower)+' gal/day')+row('Toilets',fmt1(r.flushes)+' gal/day')
     +row('Laundry',fmt1(r.laundry)+' gal/day')+row('Kitchen & dishes',fmt1(r.dishes)+' gal/day')+row('Faucets',fmt1(r.faucets)+' gal/day')
     +row('Total usage',fmt0(r.month)+' gal / mo')+row('Monthly bill (usage portion)',money(r.bill))+row('Yearly bill',money0(r.yearBill))+row('Yearly usage',fmt0(r.galYear)+' gal');
-  res.classList.add('show');
+/*P3HOOK*/
+  sigSet('Where the water goes', sigBoardHTML('', sigHBarHTML([['Showers',r.shower,fmt1(r.shower)+' gal/day'],['Toilets',r.flushes,fmt1(r.flushes)+' gal/day'],['Laundry',r.laundry,fmt1(r.laundry)+' gal/day'],['Kitchen & dishes',r.dishes,fmt1(r.dishes)+' gal/day'],['Faucets',r.faucets,fmt1(r.faucets)+' gal/day']]), [], [], 'Total '+fmt0(r.month)+' gallons a month. Showers are almost always the biggest indoor line — minutes there are worth more than any fixture swap.'));
+  /*P3HOOK-END*/
+    res.classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}

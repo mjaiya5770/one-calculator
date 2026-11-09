@@ -1552,3 +1552,33 @@ html.nn-embed .inv-toolbar{position:static;box-shadow:none;border-top:none}
 .nn-disc{margin:10px 0;border:1px solid var(--border);border-radius:12px;padding:4px 12px}
 .nn-disc summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
 @media print{.nn-signature{break-inside:avoid}}
+
+
+.sig-ladder{margin-top:2px}
+.sig-lstep{display:flex;align-items:center;font-size:.95rem;color:var(--ink);margin-top:5px}
+.sig-lstep strong{margin-left:auto;white-space:nowrap}
+.sig-lstep-main{display:flex;align-items:center}
+.sig-lstep-sub{font-size:.84rem;color:var(--muted);margin:1px 0 0 17px}
+.sig-board{margin-top:2px}
+.sig-marker{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.02em;color:var(--teal-dark);background:var(--teal-light);border-radius:999px;padding:3px 10px;margin:0 0 4px}
+.sig-rail{position:relative;height:12px;background:var(--teal-light);border-radius:6px;margin:24px 0 26px}
+.sig-rail-band{position:absolute;top:0;bottom:0;background:var(--teal);border-radius:6px;opacity:.85}
+.sig-rail-mid{position:absolute;top:-4px;width:3px;height:20px;background:var(--ink);border-radius:2px;transform:translateX(-50%)}
+.sig-rail-lab{position:absolute;font-size:.72rem;color:var(--muted);white-space:nowrap;transform:translateX(-50%)}
+.sig-rail-lo,.sig-rail-hi{top:-17px}
+.sig-rail-midlab{top:16px;color:var(--ink);font-weight:600}
+.sig-checks{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.sig-check{flex:1 1 180px;border:1px solid var(--border);border-radius:10px;padding:8px 12px}
+.sig-check-t{font-weight:700;font-size:.85rem;margin:0 0 4px}
+.sig-check ul{margin:0;padding-left:17px;font-size:.86rem;color:var(--muted)}
+.sig-check li{margin:2px 0}
+.sig-diagram{width:100%;max-width:340px;height:auto;display:block;margin-top:8px;background:var(--teal-light);border-radius:10px}
+.sig-diagram rect,.sig-diagram polygon,.sig-diagram path{fill:var(--teal);fill-opacity:.16;stroke:var(--teal);stroke-width:2}
+.sig-diagram line{stroke:var(--teal);stroke-width:1;opacity:.55}
+.sig-diagram .sig-dim{fill:var(--ink);stroke:none;font-size:11px;font-weight:600}
+.sig-diagram .sig-dimcap{fill:var(--muted);stroke:none;font-size:10.5px}
+.sig-diagram text{font-family:inherit}
+.nn-tierchips{display:flex;gap:6px;flex-wrap:wrap}
+.nn-tierchips .seg-btn{min-height:44px}
+.nn-dim-help{font-size:.8rem;color:var(--muted);margin-top:2px}
+@media print{.sig-check{break-inside:avoid}.sig-diagram{max-width:300px}}

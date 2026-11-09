@@ -119,12 +119,13 @@
       <div class="field"><label for="area">Roof area (sq ft)</label><input id="area" type="number" value="1600" min="0" step="any"></div>
       <div class="field"><label for="mat">Material</label><select id="mat"><option value="asphalt" selected>Asphalt shingle — $4.50–$7.50 / sq ft</option><option value="architectural">Architectural shingle — $5.50–$9.00</option><option value="metal">Metal — $10.00–$16.00</option><option value="tile">Clay / concrete tile — $12.00–$20.00</option><option value="wood">Wood shake — $9.00–$14.00</option></select></div>
     </div>
-    <div class="row">
-      <div class="field"><label for="mult">Pitch &amp; complexity</label><select id="mult"><option value="1" selected>Standard pitch, simple roof — ×1.0</option><option value="1.2">Steep or some cut-up work — ×1.2</option><option value="1.4">Very steep / heavily cut-up — ×1.4</option></select></div>
-      <div class="field"><label for="tear">Tear-off of the old roof</label><select id="tear"><option value="yes" selected>Yes — full tear-off (+$1.25 / sq ft)</option><option value="no">No — overlay / no disposal</option></select></div>
-    </div>
+    
     <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Roof area is the sloped area, not the house footprint — the Roofing Estimator converts footprint and pitch into true roof area if you need it. Ranges are 2026 US installed planning figures; coastal and high-cost-metro pricing runs above them.</p>
 
+    <details class="nn-disc"><summary>More options: region & tear-off</summary><div class="field"><label for="mult">Pitch &amp; complexity</label><select id="mult"><option value="1" selected>Standard pitch, simple roof — ×1.0</option><option value="1.2">Steep or some cut-up work — ×1.2</option><option value="1.4">Very steep / heavily cut-up — ×1.4</option></select></div><div class="row">
+      
+      <div class="field"><label for="tear">Tear-off of the old roof</label><select id="tear"><option value="yes" selected>Yes — full tear-off (+$1.25 / sq ft)</option><option value="no">No — overlay / no disposal</option></select></div>
+    </div></details>
     <button class="btn" onclick="calc()">Estimate roof cost</button>
     <div class="nn-actions no-print" data-nn-actions>
   <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
@@ -139,7 +140,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -229,6 +230,21 @@ function roofCostCalc(area,mat,mult,tearoff){
   return {low:low,mid:(low+high)/2,high:high,tear:tear};
 }
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigHBarHTML(items){var mx=0,i;for(i=0;i<items.length;i++){if(items[i][1]>mx)mx=items[i][1];}if(!(mx>0))mx=1;var h='<div class="sig-hbars">';for(i=0;i<items.length;i++){var p=Math.max(2,items[i][1]/mx*100);h+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+items[i][0]+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'" style="width:'+p.toFixed(1)+'%"></span></span><strong>'+items[i][2]+'</strong></div>';}return h+'</div>';}
+
+function sigRailHTML(lo,mid,hi,fmtFn){var span=(hi*1.08)-(lo*0.92);if(!(span>0)){span=1;}var lp=((lo-lo*0.92)/span*100),mp=((mid-lo*0.92)/span*100),wp=((hi-lo)/span*100);var h='<div class="sig-rail" role="img" aria-label="Planning range '+fmtFn(lo)+' to '+fmtFn(hi)+', midpoint '+fmtFn(mid)+'"><span class="sig-rail-band" style="left:'+lp.toFixed(1)+'%;width:'+wp.toFixed(1)+'%"></span><span class="sig-rail-mid" style="left:'+mp.toFixed(1)+'%"></span><span class="sig-rail-lab sig-rail-lo" style="left:'+lp.toFixed(1)+'%">'+fmtFn(lo)+'</span><span class="sig-rail-lab sig-rail-midlab" style="left:'+mp.toFixed(1)+'%">mid '+fmtFn(mid)+'</span><span class="sig-rail-lab sig-rail-hi" style="left:'+(lp+wp).toFixed(1)+'%">'+fmtFn(hi)+'</span></div>';return h;}
+
+function sigBoardHTML(rail,bars,incl,excl,note){var h='';if(rail){h+='<p class="sig-marker">Planning range — not a quote</p>'+rail;}if(bars){h+=bars;}if(incl&&incl.length){h+='<div class="sig-checks"><div class="sig-check"><p class="sig-check-t">In this range</p><ul>';for(var i=0;i<incl.length;i++){h+='<li>'+incl[i]+'</li>';}h+='</ul></div>';if(excl&&excl.length){h+='<div class="sig-check"><p class="sig-check-t">Not included</p><ul>';for(var j=0;j<excl.length;j++){h+='<li>'+excl[j]+'</li>';}h+='</ul></div>';}h+='</div>';}if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
   var r=roofCostCalc(Math.max(0,v('area')),sv('mat'),+sv('mult'),sv('tear')==='yes');
   var res=document.getElementById('results');
@@ -237,7 +253,10 @@ function calc(){
   document.getElementById('verdict').textContent='Expect a full replacement to land between '+money0(r.low)+' and '+money0(r.high)+', with typical uncomplicated jobs settling near '+money0(r.mid)+'.';
   document.getElementById('rows').innerHTML=row('Low end',money0(r.low))+row('Typical midpoint',money0(r.mid))+row('High end',money0(r.high))
     +(r.tear>0?row('Of which tear-off & disposal',money0(r.tear)):'')+row('Per sq ft implied',money(r.low/v('area'))+' – '+money(r.high/v('area')));
-  res.classList.add('show');
+/*P3HOOK*/
+  var incl=['New roof in the selected material, materials + labor','Underlayment and standard flashing'];if(r.tear>0)incl.push('Tear-off & disposal of the old roof');var excl=['Decking or structural repairs'];if(!(r.tear>0))excl.push('Tear-off & disposal (not selected)');sigSet('Scope & price board', sigBoardHTML(sigRailHTML(r.low,r.mid,r.high,money0), sigHBarHTML([['Roof (materials + labor)',Math.max(0,(r.low+r.high)/2-r.tear),money0(Math.max(0,(r.low+r.high)/2-r.tear))]].concat(r.tear>0?[['Tear-off & disposal',r.tear,money0(r.tear)]]:[])), incl, excl, 'Planning rates for the selected material run '+money0(ROOF_MAT[sv('mat')][0])+'–'+money0(ROOF_MAT[sv('mat')][1])+' per sq ft installed, adjusted by your region multiplier. Pitch, access and decking condition are what move a real quote inside this range.'));
+  /*P3HOOK-END*/
+    res.classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}

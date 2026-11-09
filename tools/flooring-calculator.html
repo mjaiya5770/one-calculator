@@ -108,8 +108,8 @@
   <div class="card nn-calc-card">
 
     <div class="row">
-      <div class="field"><label for="rl">Room length (ft)</label><input id="rl" type="number" value="12" min="0" step="any"></div>
-      <div class="field"><label for="rw">Room width (ft)</label><input id="rw" type="number" value="10" min="0" step="any"></div>
+      <div class="field"><label for="rl">Room length (ft)</label><input id="rl" type="text" inputmode="decimal" value="12" min="0" step="any"></div>
+      <div class="field"><label for="rw">Room width (ft)</label><input id="rw" type="text" inputmode="decimal" value="10" min="0" step="any"></div>
     </div>
     <div class="row">
       <div class="field"><label for="area">…or total area directly (sq ft)</label><input id="area" type="number" value="" min="0" step="any" placeholder="optional — overrides room size"></div>
@@ -117,10 +117,12 @@
     </div>
     <div class="row">
       <div class="field"><label for="waste">Waste allowance (%)</label><input id="waste" type="number" value="10" min="0" step="any"></div>
-      <div class="field"><label for="price">Price per box ($)</label><input id="price" type="number" value="45" min="0" step="any"></div>
+      
     </div>
     <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Waste guide: 5% for a plain rectangle laid straight, 10% standard, 15% for diagonal layouts, small rooms or lots of cuts. Keep one spare box after the job — a discontinued line is unmatchable later.</p>
 
+    <details class="nn-disc"><summary>More options: second area & prices</summary><div class="field"><label for="price">Price per box ($)</label><input id="price" type="number" value="45" min="0" step="any"></div><div class="row"><div class="field"><label for="bl">Second area length (ft)</label><input id="bl" type="text" inputmode="decimal" placeholder="optional"></div><div class="field"><label for="bw">Second area width (ft)</label><input id="bw" type="text" inputmode="decimal" placeholder="optional"></div></div></details>
+    <p class="nn-dim-help">Tip: dimensions accept tape-measure entries — try 6' 8 5/16" or 6.5.</p>
     <button class="btn" onclick="calc()">Calculate</button>
     <div class="nn-actions no-print" data-nn-actions>
   <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
@@ -135,7 +137,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -211,10 +213,33 @@ function v(id){return +document.getElementById(id).value||0;}
 /*PURE-BEGIN*/
 function flooringBoxes(area,cover,wastePct){if(cover<=0||area<=0)return NaN;return Math.ceil(area*(1+wastePct/100)/cover);}
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
+function sigRectSVG(l,w,lLab,wLab,cap){var W=300,H=170,sx=54,sy=26,iw=W-2*sx,ih=H-2*sy;var sc=Math.min(iw/Math.max(l,0.01),ih/Math.max(w,0.01));var rw=Math.max(10,l*sc),rh=Math.max(10,w*sc),x=(W-rw)/2,y=(H-rh)/2;var h='<svg class="sig-diagram" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Dimension diagram"><rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+rw.toFixed(1)+'" height="'+rh.toFixed(1)+'" rx="3"/><text class="sig-dim" x="'+(W/2)+'" y="'+(y-8)+'" text-anchor="middle">'+lLab+'</text><text class="sig-dim" x="'+(x+rw+8)+'" y="'+(H/2)+'" text-anchor="middle" transform="rotate(90 '+(x+rw+8)+' '+(H/2)+')">'+wLab+'</text>';if(cap){h+='<text class="sig-dimcap" x="'+(W/2)+'" y="'+(H/2+4)+'" text-anchor="middle">'+cap+'</text>';}return h+'</svg>';}
+function sigWallSVG(l,ht,lLab,hLab,cap){return sigRectSVG(l,ht,lLab,hLab,cap);}
+function sigLineSVG(lab){var h='<svg class="sig-diagram sig-line-diagram" viewBox="0 0 300 54" role="img" aria-label="Run diagram"><line x1="24" y1="30" x2="276" y2="30"/><line x1="24" y1="20" x2="24" y2="40"/><line x1="276" y1="20" x2="276" y2="40"/><text class="sig-dim" x="150" y="16" text-anchor="middle">'+lab+'</text></svg>';return h;}
+function sigGridSVG(cols,rows,cap){cols=Math.max(1,Math.min(24,Math.round(cols)));rows=Math.max(1,Math.min(24,Math.round(rows)));var W=300,H=170,sx=30,sy=16,iw=W-2*sx,ih=H-2*sy,cw=iw/cols,ch=ih/rows;var h='<svg class="sig-diagram" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Layout grid"><rect x="'+sx+'" y="'+sy+'" width="'+iw+'" height="'+ih+'"/>';for(var i=1;i<cols;i++){h+='<line x1="'+(sx+i*cw).toFixed(1)+'" y1="'+sy+'" x2="'+(sx+i*cw).toFixed(1)+'" y2="'+(sy+ih)+'"/>';}for(var j=1;j<rows;j++){h+='<line x1="'+sx+'" y1="'+(sy+j*ch).toFixed(1)+'" x2="'+(sx+iw)+'" y2="'+(sy+j*ch).toFixed(1)+'"/>';}if(cap){h+='<text class="sig-dimcap" x="'+(W/2)+'" y="'+(H-3)+'" text-anchor="middle">'+cap+'</text>';}return h+'</svg>';}
+function sigTriSVG(run,rise,hypLab,riseLab,runLab){var W=300,H=170,sx=46,sy=24,iw=W-2*sx,ih=H-2*sy;var sc=Math.min(iw/Math.max(run,0.01),ih/Math.max(rise,0.01));var rw=run*sc,rh=rise*sc,x=sx,y=H-sy;var h='<svg class="sig-diagram" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Slope triangle diagram"><polygon points="'+x+','+y+' '+(x+rw).toFixed(1)+','+y+' '+(x+rw).toFixed(1)+','+(y-rh).toFixed(1)+'"/><text class="sig-dim" x="'+(x+rw/2)+'" y="'+(y+16)+'" text-anchor="middle">'+runLab+'</text><text class="sig-dim" x="'+(x+rw+8)+'" y="'+(y-rh/2)+'" text-anchor="middle" transform="rotate(90 '+(x+rw+8)+' '+(y-rh/2)+')">'+riseLab+'</text><text class="sig-dim" x="'+(x+rw/2-14)+'" y="'+(y-rh/2-8)+'" text-anchor="middle" transform="rotate('+(-Math.atan2(rh,rw)*180/Math.PI).toFixed(1)+' '+(x+rw/2-14)+' '+(y-rh/2-8)+')">'+hypLab+'</text></svg>';return h;}
+function sigStepsSVG(risers,treadIn,totalRiseIn){var n=Math.max(1,Math.min(20,Math.round(risers)));var W=300,H=170,sx=30,sy=20,iw=W-2*sx,ih=H-2*sy;var sw=iw/n,sh=ih/n;var d='M '+sx+' '+(H-sy);for(var i=0;i<n;i++){d+=' L '+(sx+(i+1)*sw).toFixed(1)+' '+(H-sy-i*sh).toFixed(1)+' L '+(sx+(i+1)*sw).toFixed(1)+' '+(H-sy-(i+1)*sh).toFixed(1);}d+=' L '+sx+' '+(H-sy);var h='<svg class="sig-diagram" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Stair profile diagram"><path d="'+d+' Z"/><text class="sig-dimcap" x="'+(W/2)+'" y="'+(H-4)+'" text-anchor="middle">'+n+' risers · total rise '+totalRiseIn+' in</text></svg>';return h;}
+
+/*P3PARSE*/
+function nnParseDim(s){if(typeof s==='number'){return isFinite(s)?s:NaN;}if(s==null){return NaN;}s=(''+s).replace(/,/g,'').trim();if(!s){return NaN;}function frac(a,b){return parseFloat(a)/parseFloat(b);}var m=s.match(/^(-?\d+(?:\.\d+)?)\s*(?:'|ft|feet)\s*(.*)$/i);if(m){var ft=parseFloat(m[1]),rest=(m[2]||'').trim();if(!rest){return ft;}return ft+nnParseDimIn(rest)/12;}if(/(?:"|in|inch)/i.test(s)){var iv=nnParseDimIn(s);return isNaN(iv)?NaN:iv/12;}var f=s.match(/^(-?\d+(?:\.\d+)?)\s+(\d+)\s*\/\s*(\d+)$/);if(f){return parseFloat(f[1])+frac(f[2],f[3]);}f=s.match(/^(-?\d+)\s*\/\s*(\d+)$/);if(f){return frac(f[1],f[2]);}var n=parseFloat(s);return isNaN(n)?NaN:n;}
+function nnParseDimIn(s){s=(''+s).replace(/"/g,' ').replace(/\b(in|inch|inches)\b/gi,' ').trim();if(!s){return 0;}var parts=s.split(/\s+/),tot=0;for(var i=0;i<parts.length;i++){var p=parts[i];if(!p)continue;var f=p.match(/^(\d+)\/(\d+)$/);if(f){tot+=parseFloat(f[1])/parseFloat(f[2]);}else{var n=parseFloat(p);if(isNaN(n)){return NaN;}tot+=n;}}return tot;}
+function dv(id){var el=document.getElementById(id);if(!el){return 0;}var n=nnParseDim(el.value);return isNaN(n)?0:n;}
+
 function fmt(n){return n.toLocaleString('en-US',{maximumFractionDigits:2});}
 function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
 function calc(){
-  var area=v('area')>0?v('area'):v('rl')*v('rw');
+  var area=(v('area')>0?v('area'):dv('rl')*dv('rw'))+dv('bl')*dv('bw');
   var boxes=flooringBoxes(area,v('cover'),v('waste'));
   if(isNaN(boxes)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter a room size (or an area) and the box coverage.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');return;}
   var cost=boxes*v('price');
@@ -222,7 +247,10 @@ function calc(){
   document.getElementById('verdict').textContent=fmt(area)+' sq ft plus '+v('waste')+'% waste = buy '+boxes+' boxes ('+fmt(boxes*v('cover'))+' sq ft of material), about $'+fmt(cost)+' — $'+fmt(cost/area)+' per sq ft of floor.';
   document.getElementById('rows').innerHTML=row('Floor area',fmt(area)+' sq ft')+row('Waste allowance',v('waste')+'% ('+fmt(area*v('waste')/100)+' sq ft)')
     +row('Material to buy',fmt(area*(1+v('waste')/100))+' sq ft')+row('Boxes',boxes)+row('Coverage bought',fmt(boxes*v('cover'))+' sq ft')+row('Material cost estimate','$'+fmt(cost));
-  document.getElementById('results').classList.add('show');
+/*P3HOOK*/
+  var steps=[['Floor area',fmt(area)+' sq ft','Waste allowance of '+v('waste')+'% already counted in the boxes'],['Boxes to buy',fmt0(boxes)+' boxes',fmt(v('cover'))+' sq ft of coverage per box'],['Material in hand',fmt(boxes*v('cover'))+' sq ft','The overage is your cutting waste and spare planks']];if(cost>0){steps.push(['Material cost','$'+fmt(cost),'About $'+fmt(cost/Math.max(area,1))+' per sq ft of floor']);}sigSet('Your flooring list', (v('rl')>0&&v('rw')>0?sigRectSVG(dv('rl'),dv('rw'),fmt1(dv('rl'))+' ft',fmt1(dv('rw'))+' ft','main area'):'' ) + sigLadderHTML(steps,'Keep one unopened box after the job — it is your repair stock for the life of the floor.'));
+  /*P3HOOK-END*/
+    document.getElementById('results').classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}

@@ -156,7 +156,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -249,6 +249,19 @@ function cabdoorCalc(doors,drawers,matKey,hinges){
   return {lo:lo,hi:hi,hingeLo:hLo,hingeHi:hHi,totalLo:lo+hLo,totalHi:hi+hHi};
 }
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
+function sigRailHTML(lo,mid,hi,fmtFn){var span=(hi*1.08)-(lo*0.92);if(!(span>0)){span=1;}var lp=((lo-lo*0.92)/span*100),mp=((mid-lo*0.92)/span*100),wp=((hi-lo)/span*100);var h='<div class="sig-rail" role="img" aria-label="Planning range '+fmtFn(lo)+' to '+fmtFn(hi)+', midpoint '+fmtFn(mid)+'"><span class="sig-rail-band" style="left:'+lp.toFixed(1)+'%;width:'+wp.toFixed(1)+'%"></span><span class="sig-rail-mid" style="left:'+mp.toFixed(1)+'%"></span><span class="sig-rail-lab sig-rail-lo" style="left:'+lp.toFixed(1)+'%">'+fmtFn(lo)+'</span><span class="sig-rail-lab sig-rail-midlab" style="left:'+mp.toFixed(1)+'%">mid '+fmtFn(mid)+'</span><span class="sig-rail-lab sig-rail-hi" style="left:'+(lp+wp).toFixed(1)+'%">'+fmtFn(hi)+'</span></div>';return h;}
+
 function calc(){
   var r=cabdoorCalc(Math.max(0,v('doors')),Math.max(0,v('drawers')),sv('mat'),sv('hinges')==='1');
   var res=document.getElementById('results');
@@ -256,7 +269,10 @@ function calc(){
   document.getElementById('rMain').textContent=money0(r.totalLo)+' – '+money0(r.totalHi);
   document.getElementById('verdict').textContent='Doors and drawer fronts '+money0(r.lo)+'–'+money0(r.hi)+(r.hingeHi>0?', plus hinges '+money0(r.hingeLo)+'–'+money0(r.hingeHi):'')+'.';
   document.getElementById('rows').innerHTML=row('Doors + drawer fronts',money0(r.lo)+' – '+money0(r.hi))+row('Hinges',money0(r.hingeLo)+' – '+money0(r.hingeHi))+row('Set total',money0(r.totalLo)+' – '+money0(r.totalHi));
-  res.classList.add('show');
+/*P3HOOK*/
+  sigSet('Your door board', sigLadderHTML([['Doors & drawer fronts',fmt0(v('doors')+v('drawers')),fmt0(v('doors'))+' doors · '+fmt0(v('drawers'))+' drawer fronts'],['Door cost range',money0(r.totalLo)+' – '+money0(r.totalHi),'At the selected material'],['Hinges',money0(r.hingeLo)+' – '+money0(r.hingeHi),'Total for the run']],'Replacement doors are priced per piece, so the count is the budget — measure every opening; “standard” cabinets vary more than the name suggests.') + sigRailHTML(r.totalLo,(r.totalLo+r.totalHi)/2,r.totalHi,money0));
+  /*P3HOOK-END*/
+    res.classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}

@@ -133,23 +133,25 @@
   <div class="card nn-calc-card">
 
     <div class="row">
-      <div class="field"><label for="len">Room length (ft)</label><input id="len" type="number" value="12" min="0" step="any"></div>
-      <div class="field"><label for="wid">Room width (ft)</label><input id="wid" type="number" value="10" min="0" step="any"></div>
+      <div class="field"><label for="len">Room length (ft)</label><input id="len" type="text" inputmode="decimal" value="12" min="0" step="any"></div>
+      <div class="field"><label for="wid">Room width (ft)</label><input id="wid" type="text" inputmode="decimal" value="10" min="0" step="any"></div>
     </div>
     <div class="row">
-      <div class="field"><label for="hei">Ceiling height (ft)</label><input id="hei" type="number" value="8" min="0" step="any"></div>
-      <div class="field"><label for="ceil">Include the ceiling?</label><select id="ceil"><option value="1" selected>Yes — walls + ceiling</option><option value="0">No — walls only</option></select></div>
+      <div class="field"><label for="hei">Ceiling height (ft)</label><input id="hei" type="text" inputmode="decimal" value="8" min="0" step="any"></div>
+      
     </div>
     <div class="row">
-      <div class="field"><label for="sheet">Sheet size</label><select id="sheet"><option value="32" selected>4×8 ft (32 sq ft)</option><option value="48">4×12 ft (48 sq ft)</option></select></div>
-      <div class="field"><label for="finish">Finish level (sets labor)</label><select id="finish"><option value="level0">Level 0 — hang only, unfinished</option><option value="level3">Level 3 — textured / utility</option><option value="level4" selected>Level 4 — standard painted walls</option><option value="level5">Level 5 — skim coat, gloss / critical light</option></select></div>
+      
+      <div class="field nn-tierfield"><label>Finish level (sets labor)</label><div class="nn-tierchips" data-nn-chips="finish" role="group" aria-label="Finish level (sets labor)"><button type="button" class="seg-btn" data-v="level0">Level 0 — hang only, unfinished</button><button type="button" class="seg-btn" data-v="level3">Level 3 — textured / utility</button><button type="button" class="seg-btn" data-v="level5">Level 5 — skim coat, gloss / critical light</button></div></div><div class="field" hidden><label for="finish">Finish level (sets labor)</label><select id="finish"><option value="level0">Level 0 — hang only, unfinished</option><option value="level3">Level 3 — textured / utility</option><option value="level4" selected>Level 4 — standard painted walls</option><option value="level5">Level 5 — skim coat, gloss / critical light</option></select></div>
     </div>
-    <div class="row">
-      <div class="field"><label for="waste">Waste / cuts (%)</label><input id="waste" type="number" value="10" min="0" step="any"></div>
-      <div class="field"><label for="tear">Remove existing drywall first?</label><select id="tear"><option value="0" selected>No</option><option value="1">Yes — add tear-out at $0.50/sq ft</option></select></div>
-    </div>
+    
     <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Rates are labeled planning ranges, not quotes: sheets at $13.00–$15.50 per 4×8 (Fixr drywall guide, Jan 2025), joint compound and supplies at $0.16/sq ft combined, labor by finish level from the same guide, tear-out at a $0.50/sq ft planning figure. Pros in high-cost metros land above the top of the range; small jobs carry minimums no per-foot math captures.</p>
 
+    <details class="nn-disc"><summary>More options: ceiling, sheet size, tear-out & waste</summary><div class="field"><label for="ceil">Include the ceiling?</label><select id="ceil"><option value="1" selected>Yes — walls + ceiling</option><option value="0">No — walls only</option></select></div><div class="field"><label for="sheet">Sheet size</label><select id="sheet"><option value="32" selected>4×8 ft (32 sq ft)</option><option value="48">4×12 ft (48 sq ft)</option></select></div><div class="field"><label for="tear">Remove existing drywall first?</label><select id="tear"><option value="0" selected>No</option><option value="1">Yes — add tear-out at $0.50/sq ft</option></select></div><div class="row">
+      <div class="field"><label for="waste">Waste / cuts (%)</label><input id="waste" type="number" value="10" min="0" step="any"></div>
+      
+    </div></details>
+    <p class="nn-dim-help">Tip: dimensions accept tape-measure entries — try 6' 8 5/16" or 6.5.</p>
     <button class="btn" onclick="calc()">Estimate drywall cost</button>
 <div class="nn-actions no-print" data-nn-actions>
   <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
@@ -164,7 +166,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -258,8 +260,31 @@ function drywallCalc(L,W,H,ceiling,sheetArea,finishKey,waste,tearout){
   return {area:area,sheets:sheets,matLo:matLo,matHi:matHi,labLo:area*lab[0],labHi:area*lab[1],tear:tear,totalLo:matLo+area*lab[0]+tear,totalHi:matHi+area*lab[1]+tear};
 }
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigHBarHTML(items){var mx=0,i;for(i=0;i<items.length;i++){if(items[i][1]>mx)mx=items[i][1];}if(!(mx>0))mx=1;var h='<div class="sig-hbars">';for(i=0;i<items.length;i++){var p=Math.max(2,items[i][1]/mx*100);h+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+items[i][0]+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'" style="width:'+p.toFixed(1)+'%"></span></span><strong>'+items[i][2]+'</strong></div>';}return h+'</div>';}
+
+function sigRailHTML(lo,mid,hi,fmtFn){var span=(hi*1.08)-(lo*0.92);if(!(span>0)){span=1;}var lp=((lo-lo*0.92)/span*100),mp=((mid-lo*0.92)/span*100),wp=((hi-lo)/span*100);var h='<div class="sig-rail" role="img" aria-label="Planning range '+fmtFn(lo)+' to '+fmtFn(hi)+', midpoint '+fmtFn(mid)+'"><span class="sig-rail-band" style="left:'+lp.toFixed(1)+'%;width:'+wp.toFixed(1)+'%"></span><span class="sig-rail-mid" style="left:'+mp.toFixed(1)+'%"></span><span class="sig-rail-lab sig-rail-lo" style="left:'+lp.toFixed(1)+'%">'+fmtFn(lo)+'</span><span class="sig-rail-lab sig-rail-midlab" style="left:'+mp.toFixed(1)+'%">mid '+fmtFn(mid)+'</span><span class="sig-rail-lab sig-rail-hi" style="left:'+(lp+wp).toFixed(1)+'%">'+fmtFn(hi)+'</span></div>';return h;}
+
+function sigBoardHTML(rail,bars,incl,excl,note){var h='';if(rail){h+='<p class="sig-marker">Planning range — not a quote</p>'+rail;}if(bars){h+=bars;}if(incl&&incl.length){h+='<div class="sig-checks"><div class="sig-check"><p class="sig-check-t">In this range</p><ul>';for(var i=0;i<incl.length;i++){h+='<li>'+incl[i]+'</li>';}h+='</ul></div>';if(excl&&excl.length){h+='<div class="sig-check"><p class="sig-check-t">Not included</p><ul>';for(var j=0;j<excl.length;j++){h+='<li>'+excl[j]+'</li>';}h+='</ul></div>';}h+='</div>';}if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
+/*P3CHIPS*/
+function nnTierChips(selId){var sel=document.getElementById(selId);if(!sel){return;}var grp=document.querySelector('[data-nn-chips="'+selId+'"]');if(!grp){return;}var btns=grp.querySelectorAll('button[data-v]');function sync(){for(var i=0;i<btns.length;i++){var on=btns[i].getAttribute('data-v')===sel.value;btns[i].classList.toggle('is-on',on);btns[i].setAttribute('aria-pressed',on?'true':'false');}}for(var j=0;j<btns.length;j++){(function(b){b.addEventListener('click',function(){if(sel.value!==b.getAttribute('data-v')){sel.value=b.getAttribute('data-v');sel.dispatchEvent(new Event('change',{bubbles:true}));}sync();});})(btns[j]);}sel.addEventListener('change',sync);sync();}
+
+/*P3PARSE*/
+function nnParseDim(s){if(typeof s==='number'){return isFinite(s)?s:NaN;}if(s==null){return NaN;}s=(''+s).replace(/,/g,'').trim();if(!s){return NaN;}function frac(a,b){return parseFloat(a)/parseFloat(b);}var m=s.match(/^(-?\d+(?:\.\d+)?)\s*(?:'|ft|feet)\s*(.*)$/i);if(m){var ft=parseFloat(m[1]),rest=(m[2]||'').trim();if(!rest){return ft;}return ft+nnParseDimIn(rest)/12;}if(/(?:"|in|inch)/i.test(s)){var iv=nnParseDimIn(s);return isNaN(iv)?NaN:iv/12;}var f=s.match(/^(-?\d+(?:\.\d+)?)\s+(\d+)\s*\/\s*(\d+)$/);if(f){return parseFloat(f[1])+frac(f[2],f[3]);}f=s.match(/^(-?\d+)\s*\/\s*(\d+)$/);if(f){return frac(f[1],f[2]);}var n=parseFloat(s);return isNaN(n)?NaN:n;}
+function nnParseDimIn(s){s=(''+s).replace(/"/g,' ').replace(/\b(in|inch|inches)\b/gi,' ').trim();if(!s){return 0;}var parts=s.split(/\s+/),tot=0;for(var i=0;i<parts.length;i++){var p=parts[i];if(!p)continue;var f=p.match(/^(\d+)\/(\d+)$/);if(f){tot+=parseFloat(f[1])/parseFloat(f[2]);}else{var n=parseFloat(p);if(isNaN(n)){return NaN;}tot+=n;}}return tot;}
+function dv(id){var el=document.getElementById(id);if(!el){return 0;}var n=nnParseDim(el.value);return isNaN(n)?0:n;}
+
 function calc(){
-  var r=drywallCalc(Math.max(0,v('len')),Math.max(0,v('wid')),Math.max(0,v('hei')),sv('ceil')==='1',+sv('sheet'),sv('finish'),Math.max(0,v('waste')),sv('tear')==='1');
+  var r=drywallCalc(Math.max(0,dv('len')),Math.max(0,dv('wid')),Math.max(0,dv('hei')),sv('ceil')==='1',+sv('sheet'),sv('finish'),Math.max(0,v('waste')),sv('tear')==='1');
   var res=document.getElementById('results');
   if(!(r.area>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter room dimensions to price the job.';document.getElementById('rows').innerHTML='';res.classList.add('show');return;}
   document.getElementById('rMain').textContent=money0(r.totalLo)+' – '+money0(r.totalHi);
@@ -269,14 +294,18 @@ function calc(){
   if(r.tear>0){h+=row('Tear-out',money0(r.tear));}
   h+=row('Per sq ft (all-in)',money(r.totalLo/r.area)+' – '+money(r.totalHi/r.area));
   document.getElementById('rows').innerHTML=h;
-  res.classList.add('show');
+/*P3HOOK*/
+  var incl=['Drywall materials for the room','Hang, tape and finish labor at the selected level'];if(sv('tear')==='1')incl.push('Tear-out of the old drywall');var excl=['Paint and primer'];if(sv('tear')!=='1')excl.push('Tear-out (not selected)');sigSet('Scope & price board', sigBoardHTML(sigRailHTML(r.totalLo,(r.totalLo+r.totalHi)/2,r.totalHi,money0), sigHBarHTML([['Materials',(r.matLo+r.matHi)/2,money0((r.matLo+r.matHi)/2)],['Hang + finish labor',(r.labLo+r.labHi)/2,money0((r.labLo+r.labHi)/2)]].concat(r.tear>0?[['Tear-out',r.tear,money0(r.tear)]]:[])), incl, excl, 'That is '+fmt0(r.sheets)+' sheets over '+fmt0(r.area)+' sq ft of finished surface. Finish level is the labor lever — a level-5 wall takes roughly twice the finishing time of a level-3.'));
+  /*P3HOOK-END*/
+    res.classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
 
 live(); calc();
 
-</script>
+
+nnTierChips('finish');</script>
 
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

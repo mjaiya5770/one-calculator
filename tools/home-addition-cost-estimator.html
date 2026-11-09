@@ -135,7 +135,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -227,6 +227,21 @@ function addCalc(sqft,typ){
   return {lo:lo,hi:hi,mid:(lo+hi)/2,perLo:b[0],perHi:b[1]};
 }
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigHBarHTML(items){var mx=0,i;for(i=0;i<items.length;i++){if(items[i][1]>mx)mx=items[i][1];}if(!(mx>0))mx=1;var h='<div class="sig-hbars">';for(i=0;i<items.length;i++){var p=Math.max(2,items[i][1]/mx*100);h+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+items[i][0]+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'" style="width:'+p.toFixed(1)+'%"></span></span><strong>'+items[i][2]+'</strong></div>';}return h+'</div>';}
+
+function sigRailHTML(lo,mid,hi,fmtFn){var span=(hi*1.08)-(lo*0.92);if(!(span>0)){span=1;}var lp=((lo-lo*0.92)/span*100),mp=((mid-lo*0.92)/span*100),wp=((hi-lo)/span*100);var h='<div class="sig-rail" role="img" aria-label="Planning range '+fmtFn(lo)+' to '+fmtFn(hi)+', midpoint '+fmtFn(mid)+'"><span class="sig-rail-band" style="left:'+lp.toFixed(1)+'%;width:'+wp.toFixed(1)+'%"></span><span class="sig-rail-mid" style="left:'+mp.toFixed(1)+'%"></span><span class="sig-rail-lab sig-rail-lo" style="left:'+lp.toFixed(1)+'%">'+fmtFn(lo)+'</span><span class="sig-rail-lab sig-rail-midlab" style="left:'+mp.toFixed(1)+'%">mid '+fmtFn(mid)+'</span><span class="sig-rail-lab sig-rail-hi" style="left:'+(lp+wp).toFixed(1)+'%">'+fmtFn(hi)+'</span></div>';return h;}
+
+function sigBoardHTML(rail,bars,incl,excl,note){var h='';if(rail){h+='<p class="sig-marker">Planning range — not a quote</p>'+rail;}if(bars){h+=bars;}if(incl&&incl.length){h+='<div class="sig-checks"><div class="sig-check"><p class="sig-check-t">In this range</p><ul>';for(var i=0;i<incl.length;i++){h+='<li>'+incl[i]+'</li>';}h+='</ul></div>';if(excl&&excl.length){h+='<div class="sig-check"><p class="sig-check-t">Not included</p><ul>';for(var j=0;j<excl.length;j++){h+='<li>'+excl[j]+'</li>';}h+='</ul></div>';}h+='</div>';}if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
   var r=addCalc(Math.max(0,v('sqft')),sv('typ'));
   var res=document.getElementById('results');
@@ -234,7 +249,10 @@ function calc(){
   document.getElementById('rMain').textContent=money0(r.lo)+'–'+money0(r.hi);
   document.getElementById('verdict').textContent='A '+fmt0(v('sqft'))+' sq ft '+ADD_TYPE[sv('typ')][2].toLowerCase()+' runs '+money0(r.lo)+'–'+money0(r.hi)+' finished — mid-band '+money0(r.mid)+' at '+money0(r.perLo)+'–'+money0(r.perHi)+' per sq ft.';
   document.getElementById('rows').innerHTML=row('Rate',money0(r.perLo)+' – '+money0(r.perHi)+' per sq ft')+row('Total range',money0(r.lo)+' – '+money0(r.hi))+row('Mid-band estimate',money0(r.mid));
-  res.classList.add('show');
+/*P3HOOK*/
+  var incl=['Finished addition at the selected type','Foundation, framing, roof and interior finish'];var excl=['Landscaping and driveway tie-ins','Furniture and appliances'];sigSet('Scope & price board', sigBoardHTML(sigRailHTML(r.lo,r.mid,r.hi,money0), sigHBarHTML([['Addition ('+fmt0(v('sqft'))+' sq ft)',r.mid,money0(r.mid)]]), incl, excl, 'The rate behind this is '+money0(r.perLo)+'–'+money0(r.perHi)+' per sq ft for this addition type. Bump-outs price high per foot because the fixed costs — foundation, roof tie-in, permits — spread over fewer feet.'));
+  /*P3HOOK-END*/
+    res.classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}

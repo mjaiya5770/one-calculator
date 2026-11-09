@@ -116,18 +116,20 @@
   <div class="card nn-calc-card">
 
     <div class="row">
-      <div class="field"><label for="len">Deck length (ft)</label><input id="len" type="number" value="16" min="0" step="any"></div>
-      <div class="field"><label for="wid">Deck width (ft)</label><input id="wid" type="number" value="12" min="0" step="any"></div>
+      <div class="field"><label for="len">Deck length (ft)</label><input id="len" type="text" inputmode="decimal" value="16" min="0" step="any"></div>
+      <div class="field"><label for="wid">Deck width (ft)</label><input id="wid" type="text" inputmode="decimal" value="12" min="0" step="any"></div>
     </div>
     <div class="row">
       <div class="field"><label for="mat">Decking material</label><select id="mat"><option value="pt">Pressure-treated lumber</option><option value="cedar">Cedar</option><option value="comp" selected>Composite</option><option value="pvc">PVC decking</option><option value="ipe">Ipe / premium hardwood</option></select></div>
-      <div class="field"><label for="rail">Railing</label><select id="rail"><option value="yes" selected>Yes — three open sides</option><option value="no">No — ground-level platform</option></select></div>
+      
     </div>
-    <div class="row">
-      <div class="field"><label for="stairs">Stairs to grade</label><select id="stairs"><option value="yes" selected>Yes — one standard flight</option><option value="no">No</option></select></div>
-    </div>
+    
     <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Railing is priced on three open sides (length + both widths — the house side needs none) at $45–$75 per lineal foot installed; a standard stair flight at $1,200–$2,400. Ranges are typical 2026 US installed rates; the regional note below applies.</p>
 
+    <details class="nn-disc"><summary>More options: railing & stairs</summary><div class="field"><label for="rail">Railing</label><select id="rail"><option value="yes" selected>Yes — three open sides</option><option value="no">No — ground-level platform</option></select></div><div class="row">
+      <div class="field"><label for="stairs">Stairs to grade</label><select id="stairs"><option value="yes" selected>Yes — one standard flight</option><option value="no">No</option></select></div>
+    </div></details>
+    <p class="nn-dim-help">Tip: dimensions accept tape-measure entries — try 6' 8 5/16" or 6.5.</p>
     <button class="btn" onclick="calc()">Estimate deck cost</button>
     <div class="nn-actions no-print" data-nn-actions>
   <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
@@ -142,7 +144,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -237,8 +239,28 @@ function deckCostCalc(L,W,mat,railing,stairs){
   return {area:area,lo:lo,hi:hi,mid:(lo+hi)/2,railLf:railLf,baseLo:area*b[0],baseHi:area*b[1],railLo:railLo,railHi:railHi,stLo:stLo,stHi:stHi};
 }
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigHBarHTML(items){var mx=0,i;for(i=0;i<items.length;i++){if(items[i][1]>mx)mx=items[i][1];}if(!(mx>0))mx=1;var h='<div class="sig-hbars">';for(i=0;i<items.length;i++){var p=Math.max(2,items[i][1]/mx*100);h+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+items[i][0]+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'" style="width:'+p.toFixed(1)+'%"></span></span><strong>'+items[i][2]+'</strong></div>';}return h+'</div>';}
+
+function sigRailHTML(lo,mid,hi,fmtFn){var span=(hi*1.08)-(lo*0.92);if(!(span>0)){span=1;}var lp=((lo-lo*0.92)/span*100),mp=((mid-lo*0.92)/span*100),wp=((hi-lo)/span*100);var h='<div class="sig-rail" role="img" aria-label="Planning range '+fmtFn(lo)+' to '+fmtFn(hi)+', midpoint '+fmtFn(mid)+'"><span class="sig-rail-band" style="left:'+lp.toFixed(1)+'%;width:'+wp.toFixed(1)+'%"></span><span class="sig-rail-mid" style="left:'+mp.toFixed(1)+'%"></span><span class="sig-rail-lab sig-rail-lo" style="left:'+lp.toFixed(1)+'%">'+fmtFn(lo)+'</span><span class="sig-rail-lab sig-rail-midlab" style="left:'+mp.toFixed(1)+'%">mid '+fmtFn(mid)+'</span><span class="sig-rail-lab sig-rail-hi" style="left:'+(lp+wp).toFixed(1)+'%">'+fmtFn(hi)+'</span></div>';return h;}
+
+function sigBoardHTML(rail,bars,incl,excl,note){var h='';if(rail){h+='<p class="sig-marker">Planning range — not a quote</p>'+rail;}if(bars){h+=bars;}if(incl&&incl.length){h+='<div class="sig-checks"><div class="sig-check"><p class="sig-check-t">In this range</p><ul>';for(var i=0;i<incl.length;i++){h+='<li>'+incl[i]+'</li>';}h+='</ul></div>';if(excl&&excl.length){h+='<div class="sig-check"><p class="sig-check-t">Not included</p><ul>';for(var j=0;j<excl.length;j++){h+='<li>'+excl[j]+'</li>';}h+='</ul></div>';}h+='</div>';}if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
+/*P3PARSE*/
+function nnParseDim(s){if(typeof s==='number'){return isFinite(s)?s:NaN;}if(s==null){return NaN;}s=(''+s).replace(/,/g,'').trim();if(!s){return NaN;}function frac(a,b){return parseFloat(a)/parseFloat(b);}var m=s.match(/^(-?\d+(?:\.\d+)?)\s*(?:'|ft|feet)\s*(.*)$/i);if(m){var ft=parseFloat(m[1]),rest=(m[2]||'').trim();if(!rest){return ft;}return ft+nnParseDimIn(rest)/12;}if(/(?:"|in|inch)/i.test(s)){var iv=nnParseDimIn(s);return isNaN(iv)?NaN:iv/12;}var f=s.match(/^(-?\d+(?:\.\d+)?)\s+(\d+)\s*\/\s*(\d+)$/);if(f){return parseFloat(f[1])+frac(f[2],f[3]);}f=s.match(/^(-?\d+)\s*\/\s*(\d+)$/);if(f){return frac(f[1],f[2]);}var n=parseFloat(s);return isNaN(n)?NaN:n;}
+function nnParseDimIn(s){s=(''+s).replace(/"/g,' ').replace(/\b(in|inch|inches)\b/gi,' ').trim();if(!s){return 0;}var parts=s.split(/\s+/),tot=0;for(var i=0;i<parts.length;i++){var p=parts[i];if(!p)continue;var f=p.match(/^(\d+)\/(\d+)$/);if(f){tot+=parseFloat(f[1])/parseFloat(f[2]);}else{var n=parseFloat(p);if(isNaN(n)){return NaN;}tot+=n;}}return tot;}
+function dv(id){var el=document.getElementById(id);if(!el){return 0;}var n=nnParseDim(el.value);return isNaN(n)?0:n;}
+
 function calc(){
-  var r=deckCostCalc(Math.max(0,v('len')),Math.max(0,v('wid')),sv('mat'),sv('rail')==='yes',sv('stairs')==='yes');
+  var r=deckCostCalc(Math.max(0,dv('len')),Math.max(0,dv('wid')),sv('mat'),sv('rail')==='yes',sv('stairs')==='yes');
   var res=document.getElementById('results');
   if(!(r.mid>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter deck dimensions to price the build.';document.getElementById('rows').innerHTML='';res.classList.add('show');return;}
   document.getElementById('rMain').textContent=money0(r.lo)+'–'+money0(r.hi);
@@ -246,7 +268,10 @@ function calc(){
   document.getElementById('rows').innerHTML=row('Deck platform ('+fmt0(r.area)+' sq ft)',money0(r.baseLo)+' – '+money0(r.baseHi))
     +row('Railing ('+fmt0(r.railLf)+' lineal ft)',money0(r.railLo)+' – '+money0(r.railHi))+row('Stairs',money0(r.stLo)+' – '+money0(r.stHi))
     +row('Total installed range',money0(r.lo)+' – '+money0(r.hi))+row('Mid-band estimate',money0(r.mid));
-  res.classList.add('show');
+/*P3HOOK*/
+  var incl=['Deck platform in the selected material','Standard footings and framing'];if(sv('rail')==='yes')incl.push('Railing around the open edges');if(sv('stairs')==='yes')incl.push('One set of stairs to grade');var excl=[];if(sv('rail')!=='yes')excl.push('Railing (not selected)');if(sv('stairs')!=='yes')excl.push('Stairs (not selected)');excl.push('Permits and engineering');sigSet('Scope & price board', sigBoardHTML(sigRailHTML(r.lo,r.mid,r.hi,money0), sigHBarHTML([['Platform',(r.baseLo+r.baseHi)/2,money0((r.baseLo+r.baseHi)/2)]].concat(sv('rail')==='yes'?[['Railing ('+fmt0(r.railLf)+' lf)',(r.railLo+r.railHi)/2,money0((r.railLo+r.railHi)/2)]]:[]).concat(sv('stairs')==='yes'?[['Stairs',(r.stLo+r.stHi)/2,money0((r.stLo+r.stHi)/2)]]:[])), incl, excl, 'Material is the big lever on a deck: the platform rate already reflects the '+sv('mat')+' you picked. Height off the ground is the other — tall decks need taller posts, more bracing and more labor.'));
+  /*P3HOOK-END*/
+    res.classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}

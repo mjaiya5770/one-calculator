@@ -125,6 +125,7 @@
     </div>
     <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Measure the lawn, not the lot: subtract the house, driveway, beds and patio. On a sloped or irregular lawn, break it into rectangles and add the areas.</p>
 
+    <details class="nn-disc"><summary>More options: seed price per lb</summary><div class="row"><div class="field"><label for="price">Seed price ($ per lb)</label><input id="price" type="number" value="3.50" min="0" step="any"></div></div></details>
     <button class="btn" onclick="calc()">Estimate seed</button>
     <div class="nn-actions no-print" data-nn-actions>
   <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
@@ -139,7 +140,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -231,15 +232,29 @@ function seedCalc(area,grass,mode,bagLb){
   return {rate:rate,lbs:lbs,bags:Math.ceil(lbs/Math.max(1,bagLb)-1e-9),cost:lbs*3.5};
 }
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
-  var r=seedCalc(Math.max(0,v('area')),sv('grass'),sv('mode'),Math.max(1,v('bag')));
+  var r=seedCalc(Math.max(0,v('area')),sv('grass'),sv('mode'),Math.max(1,v('bag')));r.cost=r.lbs*(v('price')||3.5);
   var res=document.getElementById('results');
   if(!(r.lbs>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter your lawn area to size the seed.';document.getElementById('rows').innerHTML='';res.classList.add('show');return;}
   document.getElementById('rMain').textContent=fmt0(r.lbs)+' lb';
   document.getElementById('verdict').textContent='At '+fmt1(r.rate)+' lb per 1,000 sq ft, your '+fmt0(v('area'))+' sq ft needs '+fmt0(r.lbs)+' lb of seed — '+fmt0(r.bags)+' bag(s) at your bag size.';
   document.getElementById('rows').innerHTML=row('Rate',fmt1(r.rate)+' lb per 1,000 sq ft')+row('Seed needed',fmt(r.lbs)+' lb')
     +row('Bags to buy',fmt0(r.bags))+row('Rough seed cost (@ $3.50/lb)',money0(r.cost));
-  res.classList.add('show');
+/*P3HOOK*/
+  sigSet('Your seed list', sigLadderHTML([['Seed to buy',fmt(r.lbs)+' lb','At '+fmt(r.rate)+' lb per 1,000 sq ft for the selected grass'],['Bags',fmt0(r.bags),'At '+v('bag')+' lb per bag'],['Estimated cost','$'+fmt(r.cost),'At $'+fmt(v('price')||3.5)+' per lb — editable under More options']],'Overseeding uses about half the new-lawn rate — the mode you picked is already reflected in the rate.'));
+  /*P3HOOK-END*/
+    res.classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}

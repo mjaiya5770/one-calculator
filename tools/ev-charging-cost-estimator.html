@@ -121,14 +121,15 @@
     </div>
     <div class="row">
       <div class="field"><label for="rate">Home electricity rate ($ per kWh)</label><input id="rate" type="number" value="0.16" min="0" step="any"></div>
-      <div class="field"><label for="loss">Charging losses (%)</label><input id="loss" type="number" value="12" min="0" step="any"></div>
+      
     </div>
-    <div class="row">
-      <div class="field"><label for="gas">Gas price ($ per gal)</label><input id="gas" type="number" value="3.45" min="0" step="any"></div>
-      <div class="field"><label for="mpg">Gas car comparison (mpg)</label><input id="mpg" type="number" value="30" min="0" step="any"></div>
-    </div>
+    
     <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Consumption: most EVs use 25–35 kWh per 100 miles (30 kWh/100mi ≈ 3.33 mi/kWh). Charging losses are real — the wall delivers more than the battery keeps; 10–15% is the honest band for Level 2.</p>
 
+    <details class="nn-disc"><summary>More options: gas comparison & charging losses</summary><div class="field"><label for="gas">Gas price ($ per gal)</label><input id="gas" type="number" value="3.45" min="0" step="any"></div><div class="row">
+      
+      <div class="field"><label for="mpg">Gas car comparison (mpg)</label><input id="mpg" type="number" value="30" min="0" step="any"></div>
+    </div><div class="field"><label for="loss">Charging losses (%)</label><input id="loss" type="number" value="12" min="0" step="any"></div></details>
     <button class="btn" onclick="calc()">Estimate charging cost</button>
     <div class="nn-actions no-print" data-nn-actions>
   <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
@@ -143,7 +144,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -236,6 +237,23 @@ function evCalc(milesMonth,effKwhPer100,rate,lossPct,gasPrice,gasMpg){
   return {kwhWheels:kwhWheels,kwhWall:kwhWall,costMonth:costMonth,costYear:costMonth*12,costMile:milesMonth>0?costMonth/milesMonth*100:0,gasMonth:gasMonth,gasYear:gasMonth*12,saveYear:(gasMonth-costMonth)*12,gasPerMile:milesMonth>0?gasMonth/milesMonth*100:0};
 }
 /*PURE-END*/
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigHBarHTML(items){var mx=0,i;for(i=0;i<items.length;i++){if(items[i][1]>mx)mx=items[i][1];}if(!(mx>0))mx=1;var h='<div class="sig-hbars">';for(i=0;i<items.length;i++){var p=Math.max(2,items[i][1]/mx*100);h+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+items[i][0]+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'" style="width:'+p.toFixed(1)+'%"></span></span><strong>'+items[i][2]+'</strong></div>';}return h+'</div>';}
+
+function sigRailHTML(lo,mid,hi,fmtFn){var span=(hi*1.08)-(lo*0.92);if(!(span>0)){span=1;}var lp=((lo-lo*0.92)/span*100),mp=((mid-lo*0.92)/span*100),wp=((hi-lo)/span*100);var h='<div class="sig-rail" role="img" aria-label="Planning range '+fmtFn(lo)+' to '+fmtFn(hi)+', midpoint '+fmtFn(mid)+'"><span class="sig-rail-band" style="left:'+lp.toFixed(1)+'%;width:'+wp.toFixed(1)+'%"></span><span class="sig-rail-mid" style="left:'+mp.toFixed(1)+'%"></span><span class="sig-rail-lab sig-rail-lo" style="left:'+lp.toFixed(1)+'%">'+fmtFn(lo)+'</span><span class="sig-rail-lab sig-rail-midlab" style="left:'+mp.toFixed(1)+'%">mid '+fmtFn(mid)+'</span><span class="sig-rail-lab sig-rail-hi" style="left:'+(lp+wp).toFixed(1)+'%">'+fmtFn(hi)+'</span></div>';return h;}
+
+function sigBoardHTML(rail,bars,incl,excl,note){var h='';if(rail){h+='<p class="sig-marker">Planning range — not a quote</p>'+rail;}if(bars){h+=bars;}if(incl&&incl.length){h+='<div class="sig-checks"><div class="sig-check"><p class="sig-check-t">In this range</p><ul>';for(var i=0;i<incl.length;i++){h+='<li>'+incl[i]+'</li>';}h+='</ul></div>';if(excl&&excl.length){h+='<div class="sig-check"><p class="sig-check-t">Not included</p><ul>';for(var j=0;j<excl.length;j++){h+='<li>'+excl[j]+'</li>';}h+='</ul></div>';}h+='</div>';}if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
   var r=evCalc(Math.max(0,v('miles')),Math.max(1,v('eff')),Math.max(0,v('rate')),Math.max(0,v('loss')),Math.max(0,v('gas')),Math.max(1,v('mpg')));
   var res=document.getElementById('results');
@@ -245,7 +263,10 @@ function calc(){
   document.getElementById('rows').innerHTML=row('Energy at the wheels',fmt0(r.kwhWheels)+' kWh / mo')+row('Energy at the wall (losses in)',fmt0(r.kwhWall)+' kWh / mo')
     +row('Home charging cost',money(r.costMonth)+' / mo ('+money0(r.costYear)+' / yr)')+row('Same miles in gas',money(r.gasMonth)+' / mo ('+money0(r.gasYear)+' / yr)')
     +row('Cost per mile (EV / gas)',fmt(r.costMile)+'¢ / '+fmt(r.gasPerMile)+'¢')+row('Yearly saving',money0(r.saveYear));
-  res.classList.add('show');
+/*P3HOOK*/
+  sigSet('Your charging board', sigLadderHTML([['Energy at the wall',fmt0(r.kwhWall)+' kWh / mo','Includes the '+fmt0(v('loss'))+'% charging loss set under More options'],['Home charging cost',money(r.costMonth)+' / mo',money0(r.costYear)+' across a year'],['Same miles in gas',money(r.gasMonth)+' / mo',money0(r.gasYear)+' across a year'],['Yearly saving',money0(r.saveYear),'At '+fmt(r.costMile)+'¢ vs '+fmt(r.gasPerMile)+'¢ per mile']],'The wall number is the honest one — what the battery receives is always less than what the meter spins.'));
+  /*P3HOOK-END*/
+    res.classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}

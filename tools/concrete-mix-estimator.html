@@ -135,7 +135,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -228,6 +228,17 @@ function mixCalc(yd,mix){
   return {dryFt3:dryFt3,bags:bags,sandYd:sandFt3/27,aggYd:aggFt3/27,sandTons:sandFt3/27*1.4,aggTons:aggFt3/27*1.5,waterGal:bags*5.5};
 }
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
   var r=mixCalc(Math.max(0,v('yd')),sv('mix'));
   var res=document.getElementById('results');
@@ -236,7 +247,10 @@ function calc(){
   document.getElementById('verdict').textContent='For '+fmt(v('yd'))+' cu yd at '+sv('mix')+': '+fmt0(r.bags)+' bags of cement, '+fmt(r.sandYd)+' yd of sand, '+fmt(r.aggYd)+' yd of aggregate and about '+fmt0(r.waterGal)+' gallons of water.';
   document.getElementById('rows').innerHTML=row('Dry material volume',fmt(r.dryFt3)+' cu ft (×1.54)')+row('Cement (94-lb bags)',fmt0(r.bags))
     +row('Sand',fmt(r.sandYd)+' cu yd ('+fmt(r.sandTons)+' tons)')+row('Aggregate',fmt(r.aggYd)+' cu yd ('+fmt(r.aggTons)+' tons)')+row('Mixing water',fmt0(r.waterGal)+' gal');
-  res.classList.add('show');
+/*P3HOOK*/
+  sigSet('Your mix list', sigLadderHTML([['Cement (94-lb bags)',fmt0(r.bags),'The binder — one bag per batch is the usual rhythm'],['Sand',fmt(r.sandTons)+' tons',fmt(r.sandYd)+' yd³ loose'],['Gravel / coarse aggregate',fmt(r.aggTons)+' tons',fmt(r.aggYd)+' yd³ loose'],['Water',fmt0(r.waterGal)+' gal','Start low and add as you mix — soupy concrete is weak concrete']],'Order sand and gravel on the ton figures; the yard numbers are loose volumes, and the dry total runs larger than the wet yield because sand fills the voids in the gravel.'));
+  /*P3HOOK-END*/
+    res.classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}

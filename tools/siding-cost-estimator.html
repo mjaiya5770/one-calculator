@@ -119,11 +119,12 @@
       <div class="field"><label for="area">Wall area to side (sq ft)</label><input id="area" type="number" value="1200" min="0" step="any"></div>
       <div class="field"><label for="mat">Siding material</label><select id="mat"><option value="vinyl" selected>Vinyl</option><option value="fc">Fiber-cement (Hardie board)</option><option value="wood">Wood (cedar / pine)</option><option value="eng">Engineered wood (LP SmartSide)</option><option value="stucco">Stucco</option></select></div>
     </div>
-    <div class="row">
-      <div class="field"><label for="tear">Remove old siding first?</label><select id="tear"><option value="yes" selected>Yes — add tear-off &amp; disposal</option><option value="no">No — bare / new walls</option></select></div>
-    </div>
+    
     <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Wall area ≈ house perimeter × wall height, minus big openings. A typical 1-story 1,500 sq ft home has about 1,100–1,300 sq ft of wall; a 2-story, about 1,600–2,000. Gables add triangular area — measure them as half the rectangle.</p>
 
+    <details class="nn-disc"><summary>More options: tear-off of old siding</summary><div class="row">
+      <div class="field"><label for="tear">Remove old siding first?</label><select id="tear"><option value="yes" selected>Yes — add tear-off &amp; disposal</option><option value="no">No — bare / new walls</option></select></div>
+    </div></details>
     <button class="btn" onclick="calc()">Estimate siding cost</button>
     <div class="nn-actions no-print" data-nn-actions>
   <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
@@ -138,7 +139,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    <div class="nn-signature" data-nn-signature><p class="nn-sig-title">Signature view</p><div class="nn-sig-body"></div></div></div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -230,6 +231,21 @@ function sideCostCalc(area,mat,tearOff){
   return {lo:lo,hi:hi,mid:(lo+hi)/2,tear:tear,baseLo:area*b[0],baseHi:area*b[1]};
 }
 /*PURE-END*/
+/*P3SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigHBarHTML(items){var mx=0,i;for(i=0;i<items.length;i++){if(items[i][1]>mx)mx=items[i][1];}if(!(mx>0))mx=1;var h='<div class="sig-hbars">';for(i=0;i<items.length;i++){var p=Math.max(2,items[i][1]/mx*100);h+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+items[i][0]+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'" style="width:'+p.toFixed(1)+'%"></span></span><strong>'+items[i][2]+'</strong></div>';}return h+'</div>';}
+
+function sigRailHTML(lo,mid,hi,fmtFn){var span=(hi*1.08)-(lo*0.92);if(!(span>0)){span=1;}var lp=((lo-lo*0.92)/span*100),mp=((mid-lo*0.92)/span*100),wp=((hi-lo)/span*100);var h='<div class="sig-rail" role="img" aria-label="Planning range '+fmtFn(lo)+' to '+fmtFn(hi)+', midpoint '+fmtFn(mid)+'"><span class="sig-rail-band" style="left:'+lp.toFixed(1)+'%;width:'+wp.toFixed(1)+'%"></span><span class="sig-rail-mid" style="left:'+mp.toFixed(1)+'%"></span><span class="sig-rail-lab sig-rail-lo" style="left:'+lp.toFixed(1)+'%">'+fmtFn(lo)+'</span><span class="sig-rail-lab sig-rail-midlab" style="left:'+mp.toFixed(1)+'%">mid '+fmtFn(mid)+'</span><span class="sig-rail-lab sig-rail-hi" style="left:'+(lp+wp).toFixed(1)+'%">'+fmtFn(hi)+'</span></div>';return h;}
+
+function sigBoardHTML(rail,bars,incl,excl,note){var h='';if(rail){h+='<p class="sig-marker">Planning range — not a quote</p>'+rail;}if(bars){h+=bars;}if(incl&&incl.length){h+='<div class="sig-checks"><div class="sig-check"><p class="sig-check-t">In this range</p><ul>';for(var i=0;i<incl.length;i++){h+='<li>'+incl[i]+'</li>';}h+='</ul></div>';if(excl&&excl.length){h+='<div class="sig-check"><p class="sig-check-t">Not included</p><ul>';for(var j=0;j<excl.length;j++){h+='<li>'+excl[j]+'</li>';}h+='</ul></div>';}h+='</div>';}if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
   var r=sideCostCalc(Math.max(0,v('area')),sv('mat'),sv('tear')==='yes');
   var res=document.getElementById('results');
@@ -238,7 +254,10 @@ function calc(){
   document.getElementById('verdict').textContent=fmt0(v('area'))+' sq ft of '+SIDE_MAT[sv('mat')][2].toLowerCase()+' siding installs for '+money0(r.lo)+'–'+money0(r.hi)+' — mid-band '+money0(r.mid)+(r.tear>0?', tear-off itemised below.':'.');
   document.getElementById('rows').innerHTML=row('Siding installed',money0(r.baseLo)+' – '+money0(r.baseHi))+row('Tear-off & disposal',money0(r.tear))
     +row('Total range',money0(r.lo)+' – '+money0(r.hi))+row('Mid-band estimate',money0(r.mid));
-  res.classList.add('show');
+/*P3HOOK*/
+  var incl=['New siding in the selected material, installed','Standard trim and flashing'];if(r.tear>0)incl.push('Tear-off & disposal of the old siding');var excl=['Sheathing repairs found underneath'];if(!(r.tear>0))excl.push('Tear-off of the old siding (not selected)');sigSet('Scope & price board', sigBoardHTML(sigRailHTML(r.lo,r.mid,r.hi,money0), sigHBarHTML([['Siding (materials + labor)',Math.max(0,(r.baseLo+r.baseHi)/2),money0((r.baseLo+r.baseHi)/2)]].concat(r.tear>0?[['Tear-off & disposal',r.tear,money0(r.tear)]]:[])), incl, excl, 'Corners, window density and story height move siding quotes — a two-story wall costs more per sq ft than the same wall at one story.'));
+  /*P3HOOK-END*/
+    res.classList.add('show');
 }
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
