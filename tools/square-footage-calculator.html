@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Square Footage Calculator — 4 Shapes, Rooms List & Cost | One Calculator</title>
+<meta name="description" content="Free square footage calculator for rectangles, triangles, circles and trapezoids. Add areas into a rooms list, see sq ft and sq m together, and total a project with cost per square foot.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/square-footage-calculator.html">
+<meta property="og:title" content="Free Square Footage Calculator — 4 Shapes, Rooms List & Cost | One Calculator">
+<meta property="og:description" content="Free square footage calculator for rectangles, triangles, circles and trapezoids. Add areas into a rooms list, see sq ft and sq m together, and total a project with cost per square foot.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/square-footage-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Square Footage Calculator — 4 Shapes, Rooms List & Cost | One Calculator">
+<meta name="twitter:description" content="Free square footage calculator for rectangles, triangles, circles and trapezoids. Add areas into a rooms list, see sq ft and sq m together, and total a project with cost per square foot.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Square Footage Calculator",
+  "description": "Free square footage calculator for rectangles, triangles, circles and trapezoids. Add areas into a rooms list, see sq ft and sq m together, and total a project with cost per square foot.",
+  "url": "https://onecalculator.site/tools/square-footage-calculator.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I measure an L-shaped or odd-shaped room?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Break it into rectangles (and triangles or trapezoids where needed), measure each piece, and use the \"Add this area to the list\" button for each \u2014 the list keeps the running project total for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert square feet to square meters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply square feet by 0.0929 (or divide by 10.764). This calculator always shows both, and you can enter measurements in meters and still get a square-foot total for US materials pricing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the square footage of a 12\u00d712 room?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "144 square feet \u2014 length times width. A 12 ft \u00d7 10 ft room is 120 sq ft, and a circle with a 5 ft radius is about 78.5 sq ft. Try them above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does square footage include walls or closets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For flooring and paint, measure the floor area of each space you will actually cover, closets included if they get the same material. Real-estate listings use different (often exterior-wall) conventions \u2014 this tool measures the area you give it."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/square-footage-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-home-diy-tools">Home & DIY tools</a> › Square Footage Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Square Footage Calculator</h1>
+  <p class="lede">Four shapes, not just rectangles — and a rooms list that keeps a running total for the whole project, in square feet and square meters, with a cost-per-foot figure when you need a budget.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="shape">Shape</label><select id="shape" onchange="setShape()">
+        <option value="rect">Rectangle / square</option>
+        <option value="tri">Triangle</option>
+        <option value="circle">Circle</option>
+        <option value="trap">Trapezoid</option>
+      </select></div>
+      <div class="field"><label for="unit">I am measuring in</label><select id="unit"><option value="ft">Feet</option><option value="m">Meters</option></select></div>
+    </div>
+    <div class="shape-panel" id="panel-rect">
+      <div class="row">
+        <div class="field"><label for="rL">Length</label><input id="rL" type="number" value="12" min="0" step="any"></div>
+        <div class="field"><label for="rW">Width</label><input id="rW" type="number" value="10" min="0" step="any"></div>
+      </div>
+    </div>
+    <div class="shape-panel" id="panel-tri" style="display:none">
+      <div class="row">
+        <div class="field"><label for="tB">Base</label><input id="tB" type="number" value="10" min="0" step="any"></div>
+        <div class="field"><label for="tH">Height (perpendicular to base)</label><input id="tH" type="number" value="8" min="0" step="any"></div>
+      </div>
+    </div>
+    <div class="shape-panel" id="panel-circle" style="display:none">
+      <div class="row">
+        <div class="field"><label for="cR">Radius (center to edge)</label><input id="cR" type="number" value="5" min="0" step="any"></div>
+        <div class="field"><label>&nbsp;</label><span class="hint">Have the diameter instead? Halve it — that is the radius.</span></div>
+      </div>
+    </div>
+    <div class="shape-panel" id="panel-trap" style="display:none">
+      <div class="row">
+        <div class="field"><label for="zA">Parallel side A</label><input id="zA" type="number" value="10" min="0" step="any"></div>
+        <div class="field"><label for="zB">Parallel side B</label><input id="zB" type="number" value="6" min="0" step="any"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="zH">Distance between them (height)</label><input id="zH" type="number" value="4" min="0" step="any"></div>
+        <div class="field"><label>&nbsp;</label><span class="hint">For yards and lots that are wider at one end than the other.</span></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="label">Name for the list (optional)</label><input id="label" type="text" placeholder="e.g. Kitchen"></div>
+      <div class="field"><label>&nbsp;</label><button type="button" class="btn" onclick="addArea()" style="width:100%">＋ Add this area to the list</button></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="costSqft">Material cost ($ per sq ft, optional)</label><input id="costSqft" type="number" value="0" min="0" step="any"></div>
+      <div class="field"><label>&nbsp;</label><span class="hint">Tile, flooring, sod, paint-grade coverage — any per-foot price, applied to the list total (or this shape if the list is empty).</span></div>
+    </div>
+
+    <button class="btn" onclick="calc()">Calculate</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#square-footage-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Area of this shape</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>Rooms / areas list</h2>
+    <div style="overflow:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:.95rem">
+        <thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Area</th><th style="padding:8px">Sq ft</th><th style="padding:8px">Sq m</th><th style="padding:8px"></th></tr></thead>
+        <tbody id="areaBody"><tr><td colspan="4" style="padding:8px;color:var(--muted)">Nothing added yet — measure a shape above and tap "Add this area".</td></tr></tbody>
+      </table>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem" id="listTotal">List total: 0 sq ft.</p>
+  </div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Rectangle: length × width. Triangle: base × height ÷ 2 (the height is the perpendicular distance, not the slanted side). Circle: π × radius². Trapezoid: (A + B) ÷ 2 × height — average the two parallel sides, then multiply by the distance between them. Square meters convert at <strong>1 sq ft = 0.0929 m²</strong>. The list adds every shape in square feet regardless of the unit you measured in, so a mixed metric/imperial project still totals correctly.</p>
+    <div class="note">Measure each space as the simple shapes it is made of and add the pieces — an L-shaped room is just two rectangles. For flooring and tile, add 5–10% for cuts and breakage when you order.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Rectangle: length × width. Triangle: base × height ÷ 2. Circle: π × radius². Trapezoid: (top + bottom) ÷ 2 × height. Metric inputs are converted at 1 m² = 10.7639104 sq ft, and results are also shown in square metres (1 sq ft = 0.09290304 m²).</p>
+    <p><strong>Worked example:</strong> A 12 ft × 10 ft room is 120 sq ft — 11.15 sq m. A circular pad with a 5 ft radius covers π × 25 = 78.54 sq ft.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>Flooring, paint or tile shopping where everything is priced per square foot.</li><li>An L-shaped or multi-room space a single length × width gets wrong.</li><li>A landlord, listing or contractor's square-foot claim you want to verify.</li><li>Comparing material quotes that use different per-sq-ft prices.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Pick the shape — rectangle for most rooms; add shapes for L-shaped spaces.</li><li>Enter dimensions in feet/inches, metres or centimetres.</li><li>Give the piece a name if you are building a list (e.g. 'Kitchen').</li><li>Add a per-sq-ft material cost to turn area into budget.</li><li>Repeat per room and read the running total.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Length / width</strong></td><td style="padding:6px 8px">The two sides of the space</td><td style="padding:6px 8px">Rooms commonly 8–20 ft</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Radius</strong></td><td style="padding:6px 8px">For circles: centre to edge</td><td style="padding:6px 8px">Round patios, rugs, pools</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Cost per sq ft</strong></td><td style="padding:6px 8px">Material price for the budget line</td><td style="padding:6px 8px">Flooring $2–$10; tile $5–$15 installed varies</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>An L-shaped living space made of a 14 × 11 ft main area plus an 8 × 6 ft nook totals 154 + 48 = 202 sq ft. At $3.50 per sq ft for flooring material, that is $707.00 before waste — and the nook's 48 sq ft is exactly the part a single-rectangle estimate would have silently dropped.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How do I measure an L-shaped or odd-shaped room?</h3>
+    <p>Break it into rectangles (and triangles or trapezoids where needed), measure each piece, and use the "Add this area to the list" button for each — the list keeps the running project total for you.</p>
+    <h3>How do I convert square feet to square meters?</h3>
+    <p>Multiply square feet by 0.0929 (or divide by 10.764). This calculator always shows both, and you can enter measurements in meters and still get a square-foot total for US materials pricing.</p>
+    <h3>What is the square footage of a 12×12 room?</h3>
+    <p>144 square feet — length times width. A 12 ft × 10 ft room is 120 sq ft, and a circle with a 5 ft radius is about 78.5 sq ft. Try them above.</p>
+    <h3>Does square footage include walls or closets?</h3>
+    <p>For flooring and paint, measure the floor area of each space you will actually cover, closets included if they get the same material. Real-estate listings use different (often exterior-wall) conventions — this tool measures the area you give it.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>🏗️ Pouring something on that area?</h3>
+    <p>The Concrete Calculator turns dimensions into cubic yards, bag counts and a costed shopping list.</p>
+    <p><a class="btn" href="concrete-calculator.html">Calculate concrete</a></p>
+    <h3>Should I subtract closets, islands and fixed cabinets?</h3>
+    <p>For flooring, subtract only areas that truly will not be covered — and add waste back on top. For paint, subtract large openings. When in doubt, measure the full rectangle: over-buying one box beats reordering a discontinued line.</p>
+    <h3>How do I measure an irregular room?</h3>
+    <p>Split it into rectangles (and a triangle or two) on paper, measure each, and add them here one at a time with names. The list total is your room — surveyors do exactly this, just with lasers.</p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="concrete-calculator.html">Concrete Calculator</a></li>
+    <li><a href="paint-coverage-calculator.html">Paint Coverage Calculator</a></li>
+    <li><a href="deck-material-estimator.html">Deck Material Estimator</a></li>
+    <li><a href="moving-cost-estimator.html">Moving Cost Estimator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function s(id){return document.getElementById(id).value;}
+/*PURE-BEGIN*/
+function areaRect(l,w){return l*w;}
+function areaTri(b,h){return b*h/2;}
+function areaCircle(r){return Math.PI*r*r;}
+function areaTrap(a,b,h){return (a+b)/2*h;}
+function toSqft(val,unit){return unit==='m'?val*10.7639104:val;}
+function sqftToSqm(sqft){return sqft*0.09290304;}
+function sumAreas(list){return list.reduce(function(a,x){return a+x;},0);}
+/*PURE-END*/
+var areas=[];
+function setShape(){
+  var sh=s('shape');
+  document.querySelectorAll('.shape-panel').forEach(function(p){p.style.display='none';});
+  document.getElementById('panel-'+sh).style.display='';
+  calc();
+}
+function currentArea(){
+  var sh=s('shape'),unit=s('unit'),raw=0,label='';
+  if(sh==='rect'){raw=areaRect(v('rL'),v('rW'));label='Rectangle';}
+  else if(sh==='tri'){raw=areaTri(v('tB'),v('tH'));label='Triangle';}
+  else if(sh==='circle'){raw=areaCircle(v('cR'));label='Circle';}
+  else {raw=areaTrap(v('zA'),v('zB'),v('zH'));label='Trapezoid';}
+  return {sqft:toSqft(raw,unit),label:label};
+}
+function fmt(n,d){return n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function money(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function renderList(){
+  var body=document.getElementById('areaBody');
+  if(!areas.length){body.innerHTML='<tr><td colspan="4" style="padding:8px;color:var(--muted)">Nothing added yet — measure a shape above and tap "Add this area".</td></tr>';}
+  else {
+    body.innerHTML=areas.map(function(a,i){return '<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">'+a.name+'</td><td style="padding:6px 8px">'+fmt(a.sqft,2)+'</td><td style="padding:6px 8px">'+fmt(sqftToSqm(a.sqft),2)+'</td><td style="padding:6px 8px"><button type="button" class="btn" style="padding:4px 10px" onclick="removeArea('+i+')">Remove</button></td></tr>';}).join('');
+  }
+  var tot=sumAreas(areas.map(function(a){return a.sqft;}));
+  document.getElementById('listTotal').textContent='List total: '+fmt(tot,2)+' sq ft ('+fmt(sqftToSqm(tot),2)+' sq m) across '+areas.length+(areas.length===1?' area.':' areas.');
+}
+function addArea(){
+  var cur=currentArea();
+  var name=(document.getElementById('label').value||'').trim()||cur.label+' '+(areas.length+1);
+  areas.push({name:name,sqft:cur.sqft});
+  renderList();calc();
+}
+function removeArea(i){areas.splice(i,1);renderList();calc();}
+function calc(){
+  var cur=currentArea();
+  var totList=sumAreas(areas.map(function(a){return a.sqft;}));
+  var basis=areas.length?totList:cur.sqft,basisLabel=areas.length?'your list total':'this shape',cost=v('costSqft');
+  document.getElementById('rMain').textContent=fmt(cur.sqft,2)+' sq ft';
+  document.getElementById('verdict').textContent='This '+cur.label.toLowerCase()+' is '+fmt(cur.sqft,2)+' sq ft ('+fmt(sqftToSqm(cur.sqft),2)+' sq m).'+(areas.length?' Your list total is '+fmt(totList,2)+' sq ft.':'');
+  var rows=row('This shape',fmt(cur.sqft,2)+' sq ft = '+fmt(sqftToSqm(cur.sqft),2)+' sq m');
+  if(areas.length)rows+=row('List total ('+areas.length+' areas)',fmt(totList,2)+' sq ft = '+fmt(sqftToSqm(totList),2)+' sq m');
+  if(cost>0)rows+=row('Material cost @ $'+fmt(cost,2)+'/sq ft on '+basisLabel,money(basis*cost))+row('With 10% cutting/waste allowance',money(basis*1.1*cost));
+  document.getElementById('rows').innerHTML=rows;
+  document.getElementById('results').classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); renderList(); calc();
+
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

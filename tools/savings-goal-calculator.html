@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Savings Goal Calculator — Monthly Deposit Needed to Hit Your Target | One Calculator</title>
+<meta name="description" content="Free savings goal calculator: find the monthly deposit needed to reach any savings target on time, with compound interest. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/savings-goal-calculator.html">
+<meta property="og:title" content="Free Savings Goal Calculator — Monthly Deposit Needed to Hit Your Target | One Calculator">
+<meta property="og:description" content="Free savings goal calculator: find the monthly deposit needed to reach any savings target on time, with compound interest. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/savings-goal-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Savings Goal Calculator — Monthly Deposit Needed to Hit Your Target | One Calculator">
+<meta name="twitter:description" content="Free savings goal calculator: find the monthly deposit needed to reach any savings target on time, with compound interest. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Savings Goal Calculator",
+  "description": "Free savings goal calculator: find the monthly deposit needed to reach any savings target on time, with compound interest. No signup.",
+  "url": "https://onecalculator.site/tools/savings-goal-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/savings-goal-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-debt-money-tools">Debt & money tools</a> › Savings Goal Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Savings Goal Calculator</h1>
+  <p class="lede">Have a number and a deadline? This tells you exactly how much to save each month to hit your target — with interest doing part of the work.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="goal">Savings goal ($)</label><input id="goal" type="number" value="10000" min="0"></div>
+      <div class="field"><label for="start">Starting amount ($)</label><input id="start" type="number" value="1000" min="0"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="months">Months to reach goal</label><input id="months" type="number" value="12" min="1"></div>
+      <div class="field"><label for="rate">Annual interest rate (%)</label><input id="rate" type="number" value="4" step="0.01" min="0"></div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate deposit</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#savings-goal-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Monthly deposit needed</div>
+      <div class="big" id="rPmt">$0</div>
+      <table>
+        <tr><td>Total you'll deposit</td><td id="rDep">$0</td></tr>
+        <tr><td>Interest earned</td><td id="rInt">$0</td></tr>
+        <tr><td>Final balance</td><td id="rTot">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">With monthly rate r over n months, the required deposit is <strong>PMT = (FV − PV×(1+r)<sup>n</sup>) × r / ((1+r)<sup>n</sup> − 1)</strong>. Your starting balance grows with compound interest, and each deposit compounds from the month it's made — so earlier months work harder than later ones.</p>
+    <div class="note">Assumes deposits at the end of each month and a constant rate. Real account rates fluctuate.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Required monthly deposit PMT = (FV − PV × (1+r)<sup>n</sup>) × r ÷ ((1+r)<sup>n</sup> − 1), where FV is the goal, PV what you already have, r the monthly rate and n the months.</p>
+    <p><strong>Worked example:</strong> To reach $20,000 in 3 years with $2,000 already saved and a 5% return, you need to deposit $456.14/month.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>A named goal — deposit, car, trip, emergency fund — needs a monthly number and a date.</li><li>You have a deadline and a starting amount and want the required monthly saving.</li><li>You are choosing between two goals and can only fund one properly this year.</li><li>You want to see what your savings account's interest quietly contributes.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the goal amount.</li><li>Add what you have already saved toward it.</li><li>Set the months until the deadline.</li><li>Add the account's interest rate if it earns one.</li><li>Read the monthly amount — then set the transfer for the day after payday.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Goal</strong></td><td style="padding:6px 8px">Total target amount</td><td style="padding:6px 8px">House deposits, cars, trips, buffers</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Starting amount</strong></td><td style="padding:6px 8px">Already saved toward this goal</td><td style="padding:6px 8px">Count only money earmarked for it</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Months</strong></td><td style="padding:6px 8px">Time until the deadline</td><td style="padding:6px 8px">3–60 typical</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Interest rate</strong></td><td style="padding:6px 8px">What the savings account pays</td><td style="padding:6px 8px">High-yield savings roughly 3.5–5% recently</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>Goal $12,000 in 18 months, starting from $2,000 in a 4% account: the starting money grows to $2,123.46 on its own, and you need to add $533.31 a month to land exactly on target. Without interest the figure would be $555.56 — the account quietly covers about $400 of the goal.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>Why does starting early matter so much?</h3>
+    <p>Compound interest rewards time: at 4%, starting with $1,000 and saving for 12 months earns you free money from interest — the longer the timeline, the more the account pays you to save.</p>
+    <h3>Where should I keep goal savings?</h3>
+    <p>A high-yield savings account (typically 4–5% APY as of 2026) beats a checking account and keeps the money liquid and FDIC-insured. Try 0.5% vs 4.5% above to see the difference.</p>
+    <h3>What if I fall behind?</h3>
+    <p>Recalculate with your new starting balance and remaining months — the monthly number will rise, but catching up now beats starting over later.</p>
+    <h3>Should I count investment returns for a short goal?</h3>
+    <p>For goals under about two years, use a savings-account rate, not stock-market returns — a dip at the wrong month breaks deadlines. This tool's rate field is built for deposit interest; long goals belong in the Retirement or Compound Interest tools.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>💰 Want your money to grow faster?</h3>
+    <p>See long-term compounding with our compound interest calculator.</p>
+    <p><a class="btn" href="compound-interest-calculator.html">Try compound interest</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+    <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+    <li><a href="credit-card-payoff-calculator.html">Credit Card Payoff Calculator</a></li>
+    <li><a href="salary-raise-calculator.html">Salary Raise Calculator</a></li>
+  
+    <li><a href="../guides/compound-interest-explained.html">📖 Guide: Compound interest, explained with real numbers</a></li>
+  
+    <li><a href="../guides/cd-vs-savings-account.html">📖 Blog: CD vs savings account — the APY math</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function fmt2(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});}
+function calc(){
+  const fv=+document.getElementById('goal').value||0,
+        pv=+document.getElementById('start').value||0,
+        n=Math.max(+document.getElementById('months').value||1,1),
+        r=(+document.getElementById('rate').value||0)/100/12;
+  const grow=Math.pow(1+r,n);
+  let pmt;
+  if(r>0){ pmt=Math.max((fv-pv*grow)*r/(grow-1),0); }
+  else { pmt=Math.max((fv-pv)/n,0); }
+  const dep=pmt*n, intEarned=Math.max(fv-pv-dep,0);
+  document.getElementById('rPmt').textContent=fmt2(pmt);
+  document.getElementById('rDep').textContent=fmt(dep);
+  document.getElementById('rInt').textContent=fmt(intEarned);
+  document.getElementById('rTot').textContent=fmt(fv);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

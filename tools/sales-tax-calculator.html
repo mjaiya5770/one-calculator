@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Sales Tax Calculator — Tax Amount & Total Price | One Calculator</title>
+<meta name="description" content="Free sales tax calculator: enter the pre-tax price and your local tax rate to see the tax amount and total cost instantly. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/sales-tax-calculator.html">
+<meta property="og:title" content="Free Sales Tax Calculator — Tax Amount &amp; Total Price | One Calculator">
+<meta property="og:description" content="Free sales tax calculator: enter the pre-tax price and your local tax rate to see the tax amount and total cost instantly. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/sales-tax-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Sales Tax Calculator — Tax Amount &amp; Total Price | One Calculator">
+<meta name="twitter:description" content="Free sales tax calculator: enter the pre-tax price and your local tax rate to see the tax amount and total cost instantly. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Sales Tax Calculator",
+  "description": "Free sales tax calculator: enter the pre-tax price and your local tax rate to see the tax amount and total cost instantly. No signup.",
+  "url": "https://onecalculator.site/tools/sales-tax-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/sales-tax-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-debt-money-tools">Debt & money tools</a> › Sales Tax Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Sales Tax Calculator</h1>
+  <p class="lede">Know the real out-the-door price before you buy — tax included.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="price">Pre-tax price ($)</label><input id="price" type="number" value="100" min="0" step="0.01"></div>
+      <div class="field"><label for="rate">Sales tax rate (%)</label><input id="rate" type="number" value="8.75" min="0" step="0.01"><div class="hint">Common state base rates: CA 7.25 · TX 6.25 · NY ~8.52 avg · WA 6.5 (local taxes may add more).</div></div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate tax</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#sales-tax-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Sales tax</div>
+      <div class="big" id="rTax">$0</div>
+      <table>
+        <tr><td>Pre-tax price</td><td id="rPrice">$0</td></tr>
+        <tr><td>Tax rate</td><td id="rRate">0%</td></tr>
+        <tr><td>Total with tax</td><td id="rTotal">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Sales tax is <strong>price × tax rate</strong>, added to the sticker price. The rate you pay is set by your state plus any county and city add-ons — which is why two towns in the same state can charge different totals.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Tax = price × tax rate. Total = price × (1 + tax rate). The reverse mode divides a tax-inclusive total by (1 + rate) to recover the pre-tax price.</p>
+    <p><strong>Worked example:</strong> A $120 purchase at a 7.25% rate adds $8.70 of tax, for a total of $128.70.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are budgeting a larger purchase — a laptop, appliance or car part — and the sticker price is not what will leave your account.</li><li>You are a seller setting a tax-inclusive shelf price and need to know how much of a given sticker figure is tax at your local rate.</li><li>You moved or are shopping across a county line and want to see what a different combined rate does to the same basket.</li><li>A receipt total looks off and you want to check the tax line against the price and rate yourself.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the pre-tax price of the item or basket.</li><li>Enter your combined sales tax rate — state base plus county and city add-ons where you are buying.</li><li>Click Calculate tax and read the tax amount and the total with tax together.</li><li>If you shop in more than one town, re-run at the other town's rate; the difference on a big purchase can be worth the drive, or not.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Pre-tax price</strong></td><td style="padding:6px 8px">The sticker or subtotal amount before tax is added</td><td style="padding:6px 8px">Any amount — a $12 part to a five-figure purchase</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Sales tax rate</strong></td><td style="padding:6px 8px">The combined rate charged at the place of sale, in percent</td><td style="padding:6px 8px">State bases run about 4–7.25%; combined local rates commonly 6–10%</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>In add mode (price first, tax on top): a $249.50 purchase at an 8.25% combined rate adds $20.58 of sales tax, for a total of $270.08 out the door. The tax alone is more than many people guess on a mid-size purchase, which is why checking it before the till beats being surprised at it.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What does sales tax apply to?</h3>
+    <p>Usually tangible goods and some services, but rules vary by state. Groceries, clothing, and digital goods are taxed in some states and exempt in others — check your state's revenue site for specifics.</p>
+    <h3>Why do tax rates differ so much?</h3>
+    <p>States set a base rate, then counties and cities can add their own. That's why the hint above shows state bases — your actual checkout rate may be higher once local taxes are included.</p>
+    <h3>Is sales tax deductible?</h3>
+    <p>Sometimes. Itemizers can deduct state and local sales tax <em>instead of</em> state income tax on federal returns (the SALT deduction, subject to caps). Keep receipts if you make big purchases — this is general info, not tax advice.</p>
+    <h3>How do I get the pre-tax price back from a tax-inclusive total?</h3>
+    <p>Divide the total by 1 plus the rate as a decimal. A $270.08 total at 8.25% divides by 1.0825 to give the $249.50 pre-tax price, and the remainder, $20.58, was the tax. This calculator itself works in the forward direction — price and rate in, tax and total out — so use that division by hand when a receipt only shows the combined figure.</p>
+    <h3>Is sales tax charged on shipping and delivery fees?</h3>
+    <p>It depends on the state and on how the charge is presented. Many states tax delivery when it is part of a taxable sale and the fee is not separately stated, and exempt it when it is separately stated or the goods themselves are exempt. There is no single national rule, so check your state revenue site for a large shipped purchase.</p>
+    <h3>Which rate applies when I buy online from another state?</h3>
+    <p>Usually the rate where the goods are delivered, not where the seller sits — most states use destination sourcing, and large online sellers collect that destination tax at checkout. That is why the same cart can be taxed differently after you change the delivery address.</p>
+  </div>
+
+  
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="discount-calculator.html">Discount Calculator</a></li>
+    <li><a href="unit-price-calculator.html">Unit Price Calculator</a></li>
+    <li><a href="tip-calculator.html">Tip Calculator</a></li>
+    <li><a href="invoice-generator.html">Invoice Generator (Printable)</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});}
+function calc(){
+  const price=+document.getElementById('price').value||0,
+        rate=+document.getElementById('rate').value||0;
+  const tax=price*rate/100, total=price+tax;
+  document.getElementById('rTax').textContent=fmt(tax);
+  document.getElementById('rPrice').textContent=fmt(price);
+  document.getElementById('rRate').textContent=rate+'%';
+  document.getElementById('rTotal').textContent=fmt(total);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

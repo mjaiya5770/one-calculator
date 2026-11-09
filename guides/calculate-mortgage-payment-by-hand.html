@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Calculate a Mortgage Payment by Hand (and Check Your Lender) | One Calculator</title>
+<meta name="description" content="The mortgage formula, worked end to end with real numbers: calculate any monthly payment by hand, see why early payments are almost all interest, and check your lender’s quote in minutes.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#1f2937">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/guides/calculate-mortgage-payment-by-hand.html">
+<meta property="og:title" content="How to Calculate a Mortgage Payment by Hand (and Check Your Lender) | One Calculator">
+<meta property="og:description" content="The mortgage formula, worked end to end with real numbers: calculate any monthly payment by hand, see why early payments are almost all interest, and check your lender’s quote in minutes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://onecalculator.site/guides/calculate-mortgage-payment-by-hand.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Calculate a Mortgage Payment by Hand (and Check Your Lender) | One Calculator">
+<meta name="twitter:description" content="The mortgage formula, worked end to end with real numbers: calculate any monthly payment by hand, see why early payments are almost all interest, and check your lender’s quote in minutes.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Calculate a Mortgage Payment by Hand (and Check Your Lender)",
+  "description": "The mortgage formula, worked end to end with real numbers: calculate any monthly payment by hand, see why early payments are almost all interest, and check your lender\u2019s quote in minutes.",
+  "datePublished": "2026-11-08",
+  "dateModified": "2026-11-08",
+  "mainEntityOfPage": "https://onecalculator.site/guides/calculate-mortgage-payment-by-hand.html",
+  "author": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://onecalculator.site/assets/icon-512.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why is my lender's payment different from the formula?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The raw formula covers only principal and interest. Lenders often add property taxes, homeowners insurance, PMI, and escrow rounding to the total. Ask for a line-item breakdown to see exactly what was added."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the formula work for 15-year loans?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use the same formula with n = 180 instead of 360. The monthly payment is higher because the balance is repaid over fewer months, but the total interest paid is much lower."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if the rate is adjustable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The formula only applies while the rate is fixed. After the adjustment period ends, you have to recalculate using the new rate and the remaining balance and term."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="breadcrumb"><a href="../index.html">All tools</a> › Guides › How to Calculate a Mortgage Payment by Hand (and Check Your Lender)</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">How to Calculate a Mortgage Payment by Hand (and Check Your Lender)</h1>
+  <p class="lede">The mortgage formula, worked end to end with real numbers: calculate any monthly payment by hand, see why early payments are almost all interest, and check your lender’s quote in minutes.</p>
+  <p style="color:var(--muted);font-size:.9rem">How-to · Published November 8, 2026 · One Calculator</p>
+  <div class="card">
+<h2>The mortgage payment formula</h2>
+<p>Every fixed-rate mortgage payment is derived from the same mathematical formula. Once you understand it, you can reproduce a lender's number instead of accepting it on faith.</p>
+<p><strong>M</strong> = P × [ r(1+r)<sup>n</sup> ] / [ (1+r)<sup>n</sup> − 1 ]</p>
+<p>Here's what each letter represents:</p>
+<ul>
+<li><strong>M</strong> = monthly principal and interest payment</li>
+<li><strong>P</strong> = loan amount — the home price minus your down payment</li>
+<li><strong>r</strong> = monthly interest rate, which is the annual rate divided by 12</li>
+<li><strong>n</strong> = number of monthly payments over the full term</li>
+</ul>
+<p>Always use the decimal form of the rate. For example, a 6.5% annual rate becomes <strong>r = 0.065 ÷ 12 = 0.005417</strong>. A 30-year loan has <strong>n = 360</strong>.</p>
+<div class="note">This formula gives principal and interest only. It does not include property taxes, homeowners insurance, mortgage insurance, or HOA dues — the extras lenders roll into a full PITI payment.</div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+  <div class="card">
+<h2>A full worked example</h2>
+<p>Say you're buying a $450,000 home and putting 20% down. Here are the inputs:</p>
+<ul>
+<li>Down payment: <strong>$90,000</strong></li>
+<li>Loan amount, P: <strong>$360,000</strong></li>
+<li>Rate: <strong>6.5%</strong> annually, so monthly r = <strong>0.065 ÷ 12 = 0.005417</strong></li>
+<li>Term: <strong>30 years</strong>, so n = <strong>360</strong></li>
+</ul>
+<p>Plug those into the formula:</p>
+<p>M = 360,000 × [0.005417 × (1.005417)<sup>360</sup>] / [(1.005417)<sup>360</sup> − 1] = <strong>$2,275.44</strong></p>
+<p>That's the monthly principal and interest payment before taxes, insurance, or anything else.</p>
+<p>Now look at the first month:</p>
+<ul>
+<li>Interest = $360,000 × 0.005417 = <strong>$1,950.00</strong></li>
+<li>Principal = $2,275.44 − $1,950.00 = <strong>$325.44</strong></li>
+</ul>
+<p>Yes — 86% of that first payment is interest.</p>
+<p>Over the whole first year, the numbers are even clearer:</p>
+<ul>
+<li>Interest paid: <strong>$23,281.53</strong></li>
+<li>Principal paid: <strong>$4,023.81</strong></li>
+<li>Remaining balance after 12 payments: <strong>$355,976.19</strong></li>
+</ul>
+<p>Over the entire 30-year term, total interest comes to <strong>$459,160.16</strong> — more than the $360,000 loan itself. The principal portion of your payment only exceeds the interest portion in <strong>month 233</strong>, roughly year 19.4.</p>
+
+<h2>The zero-rate shortcut</h2>
+<p>Before trusting any payment, it helps to know the absolute minimum. If the interest rate were 0%, the payment would simply be the loan divided by the number of months:</p>
+<p>P ÷ n = $360,000 ÷ 360 = <strong>$1,000</strong></p>
+<p>At 6.5%, the actual payment is $2,275.44, so the extra <strong>$1,275.44</strong> is the cost of borrowing. Any fixed-rate quote you see should always be above this flat paydown number.</p>
+
+<h2>What the formula leaves out</h2>
+<p>Lenders rarely quote just principal and interest. They typically quote <strong>PITI</strong>:</p>
+<ul>
+<li><strong>P</strong>rincipal</li>
+<li><strong>I</strong>nterest</li>
+<li><strong>T</strong>axes — annual property tax divided by 12</li>
+<li><strong>I</strong>nsurance — annual homeowners insurance divided by 12</li>
+</ul>
+<p>If your down payment is less than 20%, the lender may also add <strong>PMI</strong>, or private mortgage insurance. If the home is in an association, <strong>HOA dues</strong> can be another separate monthly cost.</p>
+<p>Using the same example, say annual property tax is <strong>$4,500</strong> and homeowners insurance is <strong>$1,500</strong>.</p>
+<ul>
+<li>Property tax: $4,500 ÷ 12 = <strong>$375/month</strong></li>
+<li>Insurance: $1,500 ÷ 12 = <strong>$125/month</strong></li>
+</ul>
+<p>Add those to the principal and interest payment:</p>
+<p>$2,275.44 + $375 + $125 = <strong>$2,775.44</strong> full PITI payment</p>
+<p>That's still before any PMI or HOA dues, which would raise the total further.</p>
+
+<h2>Why the first year has so little principal</h2>
+<p>At the start of the loan, interest is charged on the entire $360,000 balance every month. Your $2,275.44 payment first covers that interest charge, and only the remainder reduces the balance.</p>
+<p>Because the early principal payments are so small, the balance falls slowly, keeping the next month's interest charge nearly as high. That's why amortization is front-loaded: the first year pays $23,281.53 in interest and only $4,023.81 toward principal. You don't reach the point where more of your payment goes to principal until month 233.</p>
+<p>This isn't a mistake by the lender — it's how compound interest works over a long amortization schedule. If you want to see the exact payoff schedule, the <a href="../tools/amortization-calculator.html">Amortization Calculator</a> lists every payment so you can check month 1, month 12, or month 233 yourself.</p>
+
+<h2>How to check a lender's quote</h2>
+<p>A lender's quote should be easy to verify if you use the exact same inputs. Here's the process:</p>
+<ol>
+<li>Use the <strong>same loan amount</strong>, <strong>same annual rate</strong>, and <strong>same term</strong> the lender used.</li>
+<li>Run the formula above, or enter the numbers into the <a href="../tools/mortgage-calculator.html">Mortgage Payment Calculator</a>.</li>
+<li>Compare the principal-and-interest number first.</li>
+<li>Then add taxes, insurance, PMI, and HOA separately from the loan estimate.</li>
+<li>If there's still a discrepancy, ask the lender what extra line items are included and whether the rate or loan amount matches your inputs.</li>
+</ol>
+<p>Small differences can also come from rounding or from the lender calculating interest daily during the first partial month. But a large unexplained gap usually indicates an added fee or a different rate.</p>
+
+<h2>When to just use the calculator</h2>
+<p>Doing the math by hand is worthwhile once, so the payment stops feeling like a black box. After that, testing different down payments, rates, and terms is much faster with a tool. The <a href="../tools/mortgage-calculator.html">Mortgage Payment Calculator</a> runs this exact math with taxes and insurance included. Before you commit to a sale price, the <a href="../tools/home-affordability-calculator.html">Home Affordability Calculator</a> can help you choose a number that fits your budget.</p>
+  </div>
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>Why is my lender&#x27;s payment different from the formula?</h3>
+    <p>The raw formula covers only principal and interest. Lenders often add property taxes, homeowners insurance, PMI, and escrow rounding to the total. Ask for a line-item breakdown to see exactly what was added.</p>
+    <h3>Does the formula work for 15-year loans?</h3>
+    <p>Yes. Use the same formula with n = 180 instead of 360. The monthly payment is higher because the balance is repaid over fewer months, but the total interest paid is much lower.</p>
+    <h3>What if the rate is adjustable?</h3>
+    <p>The formula only applies while the rate is fixed. After the adjustment period ends, you have to recalculate using the new rate and the remaining balance and term.</p>
+  </div>
+</main>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="../tools/mortgage-calculator.html">Mortgage Payment Calculator</a></li>
+    <li><a href="../tools/amortization-calculator.html">Amortization Calculator</a></li>
+    <li><a href="../tools/home-affordability-calculator.html">Home Affordability Calculator</a></li>
+  </ul>
+  <h2>More guides</h2>
+  <ul>
+    <li><a href="get-out-of-debt-avalanche-vs-snowball.html">How to Get Out of Debt: The Avalanche vs Snowball Playbook</a></li>
+    <li><a href="compound-interest-explained.html">Compound Interest, Explained With Real Numbers</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a> · <a class="nn-crumb-mail" href="mailto:autoboostteam@gmail.com?subject=%5BOne%20Calculator%5D">autoboostteam@gmail.com</a></div></div></footer>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+</body>
+</html>

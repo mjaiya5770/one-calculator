@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Read an Amortization Schedule (and Spot Where the Interest Hides) | One Calculator</title>
+<meta name="description" content="Five columns, one story: what each column of an amortization schedule means, why month 1 is 86% interest on a typical mortgage, the month principal finally wins, and what one extra payment does to the whole table.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#1f2937">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/guides/how-to-read-an-amortization-schedule.html">
+<meta property="og:title" content="How to Read an Amortization Schedule (and Spot Where the Interest Hides) | One Calculator">
+<meta property="og:description" content="Five columns, one story: what each column of an amortization schedule means, why month 1 is 86% interest on a typical mortgage, the month principal finally wins, and what one extra payment does to the whole table.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://onecalculator.site/guides/how-to-read-an-amortization-schedule.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Read an Amortization Schedule (and Spot Where the Interest Hides) | One Calculator">
+<meta name="twitter:description" content="Five columns, one story: what each column of an amortization schedule means, why month 1 is 86% interest on a typical mortgage, the month principal finally wins, and what one extra payment does to the whole table.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Read an Amortization Schedule (and Spot Where the Interest Hides)",
+  "description": "Five columns, one story: what each column of an amortization schedule means, why month 1 is 86% interest on a typical mortgage, the month principal finally wins, and what one extra payment does to the whole table.",
+  "datePublished": "2026-11-08",
+  "dateModified": "2026-11-08",
+  "mainEntityOfPage": "https://onecalculator.site/guides/how-to-read-an-amortization-schedule.html",
+  "author": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://onecalculator.site/assets/icon-512.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why is my balance barely lower after a year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Front-loaded interest. On the worked loan, month 1 sends $1,950.00 to interest and $325.44 to principal; after twelve payments totalling $27,305.28, the balance has fallen by only $4,023.81. The early rows of any long loan look like this \u2014 it is the balance's size, not a penalty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the schedule change if I pay extra?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 every extra dollar is principal, so every later row's interest shrinks and the schedule shortens. On the worked loan, $200 a month extra moves the final row from month 360 to month 287 and saves $108,916.85 of interest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do taxes and insurance appear on the schedule?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They don't. A schedule covers principal and interest only. Property tax and insurance, when your lender collects them, ride along as escrow \u2014 a separate line on your statement, not a column in the schedule."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="breadcrumb"><a href="../index.html">All tools</a> › Guides › How to Read an Amortization Schedule (and Spot Where the Interest Hides)</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">How to Read an Amortization Schedule (and Spot Where the Interest Hides)</h1>
+  <p class="lede">Five columns, one story: what each column of an amortization schedule means, why month 1 is 86% interest on a typical mortgage, the month principal finally wins, and what one extra payment does to the whole table.</p>
+  <p style="color:var(--muted);font-size:.9rem">How-to · Published November 8, 2026 · One Calculator</p>
+  <div class="card">
+<p>An amortization schedule is the loan with its skin off: one row per payment, showing exactly where each payment went. Lenders generate one for every loan they make. Learning to read it takes about ten minutes, and afterwards you will never look at a monthly payment the same way — because the schedule shows you the thing the payment hides, which is how little of it is yours.</p>
+
+<h2>The columns, one by one</h2>
+<h3>Payment number or date</h3>
+<p>Where you are in the loan. Month 1 is the first payment; month 360 is the last on a 30-year loan. Every other column is read against this one — a row only makes sense once you know how far through the loan it sits.</p>
+<h3>Payment amount</h3>
+<p>The total leaving your account that month. On a fixed-rate loan it does not change from the first row to the last — which is precisely why the schedule matters, because everything interesting happens <em>inside</em> that fixed number. The <a href="../tools/mortgage-calculator.html">Mortgage Calculator</a> is where this figure comes from on a home loan, taxes and insurance included.</p>
+<h3>Interest portion</h3>
+<p>This month's balance multiplied by the monthly rate. It is recalculated fresh on every row, on whatever you still owe — never on the amount you originally borrowed. This single fact explains the entire shape of the schedule.</p>
+<h3>Principal portion</h3>
+<p>Payment minus interest. What is left over after the month's interest is paid is the only part of your payment that reduces what you owe. Early on, it is startlingly small.</p>
+<h3>Remaining balance</h3>
+<p>Previous balance minus the principal portion. This is the number that feeds next month's interest calculation, which is why every extra dollar of principal echoes through every later row.</p>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+  <div class="card">
+<h2>The worked schedule, read row by row</h2>
+<p>Here is a $360,000 loan at 6.5% APR over 30 years, payment $2,275.44 — every row below is printed by our <a href="../tools/amortization-calculator.html">Amortization Calculator</a>, which generates the full month-by-month schedule for any loan.</p>
+<table>
+<tr><td>Month</td><td>Interest</td><td>Principal</td><td>Balance after</td></tr>
+<tr><td>1</td><td>$1,950.00</td><td>$325.44</td><td>$359,674.56</td></tr>
+<tr><td>12</td><td>$1,930.08</td><td>$345.37</td><td>$355,976.19</td></tr>
+<tr><td>60</td><td>$1,827.84</td><td>$447.61</td><td>$336,999.52</td></tr>
+<tr><td>120</td><td>$1,656.49</td><td>$618.96</td><td>$305,194.05</td></tr>
+<tr><td>233</td><td>$1,135.80</td><td>$1,139.64</td><td>$208,547.23</td></tr>
+<tr><td>360</td><td>$12.26</td><td>$2,263.19</td><td>$0 — done</td></tr>
+</table>
+<p>Start at month 1: of your $2,275.44 payment, <strong>$1,950.00 is interest and $325.44 is principal — 86% of the first payment is interest</strong>. By month 12 the split has barely moved: $1,930.08 against $345.37. After a full year of payments — $27,305.28 out of your account — the balance has fallen by just $4,023.81. The rest was the cost of renting the money. By month 60 the principal share has climbed to $447.61 a month, and by month 120 to $618.96: the balance falls slowly at first, then faster and faster, because each month's slightly larger principal cut makes next month's interest slightly smaller.</p>
+
+<h2>Where the interest hides</h2>
+<p>It hides in plain sight, and it is front-loaded <strong>by design, not by trickery</strong>. Interest is charged on the balance you owe, and the biggest balance you will ever have is the one in month 1. Of course the first payments are mostly interest — there is more money being rented. No lender sleight of hand is required; the arithmetic of a large, slowly shrinking balance produces the shape on its own. Total interest over this loan's life comes to $459,160.16 — more than the $360,000 borrowed — and the schedule is where that number stops being abstract.</p>
+
+<h2>The crossover month</h2>
+<p>Somewhere in every schedule is the month where the principal portion first beats the interest portion. On this loan it is <strong>month 233</strong> — year 19.4 — where $1,139.64 of principal finally outweighs $1,135.80 of interest, with $208,547.23 still owing. Everything before the crossover, you are mostly paying rent. Everything after it, you are mostly buying the asset. Knowing where your own crossover sits changes how a long loan feels, and how urgently the next section matters.</p>
+
+<h2>The extra-payment test: $200 a month</h2>
+<p>Because every extra dollar lands entirely on principal, small additions rewrite the back half of the schedule. Add $200 a month to this exact loan and it ends in <strong>month 287 instead of 360</strong> — six years early — with total interest cut to $350,243.31. That is <strong>$108,916.85 saved</strong>, from a monthly amount most households would describe as noticeable but not dramatic. The <a href="../tools/amortization-calculator.html">Amortization Calculator</a> models extra monthly payments and a one-time lump sum in a chosen month, so you can test your own figure rather than ours; if you already have a mortgage, the <a href="../tools/mortgage-payoff-calculator.html">Mortgage Payoff Calculator</a> is built around exactly this question.</p>
+
+<h2>Use a schedule as a lie detector</h2>
+<p>Two practical checks. First, find your current row on your own loan's schedule: the interest portion on the <em>next</em> row is next month's true carrying cost — what the debt is charging you to stand still — and it is a more honest number than the payment when you are deciding what to pay off first. Second, any lender quote can be verified in minutes: generate the schedule for the quoted amount, rate and term, and compare the payment and the early rows against the paperwork. If the quote's numbers do not match the schedule's arithmetic, one of the inputs is not what you were told — and the schedule tells you before you sign, not after.</p>
+  </div>
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>Why is my balance barely lower after a year?</h3>
+    <p>Front-loaded interest. On the worked loan, month 1 sends $1,950.00 to interest and $325.44 to principal; after twelve payments totalling $27,305.28, the balance has fallen by only $4,023.81. The early rows of any long loan look like this — it is the balance&#x27;s size, not a penalty.</p>
+    <h3>Does the schedule change if I pay extra?</h3>
+    <p>Yes — every extra dollar is principal, so every later row&#x27;s interest shrinks and the schedule shortens. On the worked loan, $200 a month extra moves the final row from month 360 to month 287 and saves $108,916.85 of interest.</p>
+    <h3>Where do taxes and insurance appear on the schedule?</h3>
+    <p>They don&#x27;t. A schedule covers principal and interest only. Property tax and insurance, when your lender collects them, ride along as escrow — a separate line on your statement, not a column in the schedule.</p>
+  </div>
+</main>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="../tools/amortization-calculator.html">Amortization Calculator</a></li>
+    <li><a href="../tools/mortgage-calculator.html">Mortgage Payment Calculator</a></li>
+    <li><a href="../tools/mortgage-payoff-calculator.html">Mortgage Payoff Calculator</a></li>
+  </ul>
+  <h2>More guides</h2>
+  <ul>
+    <li><a href="get-out-of-debt-avalanche-vs-snowball.html">How to Get Out of Debt: The Avalanche vs Snowball Playbook</a></li>
+    <li><a href="calculate-mortgage-payment-by-hand.html">How to Calculate a Mortgage Payment by Hand (and Check Your Lender)</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a> · <a class="nn-crumb-mail" href="mailto:autoboostteam@gmail.com?subject=%5BOne%20Calculator%5D">autoboostteam@gmail.com</a></div></div></footer>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+</body>
+</html>

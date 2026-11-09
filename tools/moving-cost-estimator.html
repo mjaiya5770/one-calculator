@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Moving Cost Estimator — Movers vs DIY Price Estimate | One Calculator</title>
+<meta name="description" content="Free moving cost estimator: enter your home size and distance to compare professional movers vs DIY truck rental costs. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/moving-cost-estimator.html">
+<meta property="og:title" content="Free Moving Cost Estimator — Movers vs DIY Price Estimate | One Calculator">
+<meta property="og:description" content="Free moving cost estimator: enter your home size and distance to compare professional movers vs DIY truck rental costs. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/moving-cost-estimator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Moving Cost Estimator — Movers vs DIY Price Estimate | One Calculator">
+<meta name="twitter:description" content="Free moving cost estimator: enter your home size and distance to compare professional movers vs DIY truck rental costs. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Moving Cost Estimator",
+  "description": "Free moving cost estimator: enter your home size and distance to compare professional movers vs DIY truck rental costs. No signup.",
+  "url": "https://onecalculator.site/tools/moving-cost-estimator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/moving-cost-estimator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-home-diy-tools">Home & DIY tools</a> › Moving Cost Estimator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Moving Cost Estimator</h1>
+  <p class="lede">Compare hiring professional movers versus renting a truck yourself. Pick your home size and distance for an instant cost range.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="size">Home size</label><select id="size"><option value="0">Studio</option><option value="1" selected>2-bedroom</option><option value="2">3-bedroom</option><option value="3">4-bedroom</option><option value="4">5-bedroom</option></select></div>
+      <div class="field"><label for="dist">Distance (miles)</label><input id="dist" type="number" value="500" min="0"></div>
+    </div>
+    <button class="btn" onclick="calc()">Estimate cost</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#moving-cost-estimator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Professional movers</div>
+      <div class="big" id="rMovers">$0</div>
+      <table>
+        <tr><td>DIY truck rental</td><td id="rDiy">$0</td></tr>
+        <tr><td>You save going DIY</td><td id="rSave">$0</td></tr>
+        <tr><td>Move type</td><td id="rType">—</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Estimates use national averages: professional movers charge a base by home size plus per-mile for long hauls (local moves under 100 miles use an hourly-style flat rate). DIY combines a truck rental base, per-mile rate, and fuel. Results show realistic low–high ranges.</p>
+    <div class="note">Actual quotes vary by season, stairs, packing services, and demand. Summer and month-end moves cost more.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Movers are modelled as a base range by home size (a 2-bedroom base is $1,400–$2,200): a local move under 100 miles costs 55% of the base, while a long-distance move adds $2.20–$3.40 per mile. The DIY figure is a truck base plus a per-mile rate plus fuel at about 10 mpg.</p>
+    <p><strong>Worked example:</strong> A 2-bedroom move of 500 miles: movers come to $2,500–$3,900 against a DIY truck estimate of $704–$893. Done locally instead, the same movers would run about $770–$1,210.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are planning a move and need a first budget range before asking any company for a quote.</li><li>You are torn between hiring movers and renting a truck, and want the honest price gap for your size of home and distance.</li><li>A job in another state is on the table and the relocation cost is part of judging the offer.</li><li>You are moving locally and want to know why the estimate changes so much under a certain distance.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Select your home size, from studio to five-bedroom — in this estimator it sets the base price ranges for both movers and truck rental.</li><li>Enter the distance in miles, door to door.</li><li>Read the professional movers range, the DIY truck range, and the saving the tool shows for going DIY, which brackets the gap from both ends.</li><li>Check the move type line: under 100 miles the estimator treats the move as local; at 100 or more it prices a long-distance move, so a distance near that line is worth running both ways.</li><li>Use the range to budget, then get binding quotes — season, stairs, packing and heavy items all move a real quote inside or outside it.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Home size</strong></td><td style="padding:6px 8px">Studio through five-bedroom; sets the base ranges the estimate builds on</td><td style="padding:6px 8px">A 2-bedroom base for movers is $1,400–$2,200 before distance in this model</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Distance</strong></td><td style="padding:6px 8px">Miles between the old and new home</td><td style="padding:6px 8px">Under 100 miles is modelled as a local move; 100 and over as long-distance</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A 3-bedroom home moving 1,200 miles: professional movers estimate at $4,840 – $7,480, while the DIY truck route comes to $1,891 – $2,306, so the tool puts the saving from doing it yourself at $2,534 – $5,589. At this distance the per-mile charges dominate both figures — the movers' range adds $2.20–$3.40 a mile on top of the 3-bedroom base, and the truck's mileage and fuel do the same on a smaller scale.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>Is it cheaper to hire movers or do it yourself?</h3>
+    <p>DIY is almost always cheaper in dollars — but factor in your time, risk of injury or damage, and whether friends will actually show up.</p>
+    <h3>What counts as a long-distance move?</h3>
+    <p>Generally over 100 miles (or crossing state lines). Long-distance moves are priced by weight and distance; local moves are usually hourly.</p>
+    <h3>When is the cheapest time to move?</h3>
+    <p>Mid-month, mid-week, and fall through winter. Avoid June–August and the last weekend of any month.</p>
+    <h3>What is not included in these estimates?</h3>
+    <p>Packing services and materials, stairs and long-carry fees, piano or safe handling, storage between homes, and full-value insurance beyond basic carrier liability. On the DIY side, your own time, hired loading help and a second vehicle for the car are also outside the figure. Any of these can add hundreds to either route, so ask for them as named lines in a real quote.</p>
+    <h3>Is the number a mover quotes me binding?</h3>
+    <p>Not always. A non-binding estimate can change with the actual weight or time on the day; a binding or not-to-exceed estimate fixes the ceiling in writing. Compare the type of quote, not just the number, and be wary of a long-distance quote far below every other — the difference tends to reappear at delivery. This estimator's ranges are planning figures, not quotes.</p>
+    <h3>How far ahead should I book, and does timing change the price?</h3>
+    <p>Four to eight weeks ahead is typical, and timing changes price a lot: summer, month-end and weekends are peak, and both movers and truck rentals price to that demand. The same home and distance moved mid-week in a quiet month can land near the bottom of the ranges shown here, while a late-June Saturday pushes toward the top.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>📦 Moving for a new job?</h3>
+    <p>Convert your salary offer with the hourly-to-salary converter, or check how much house you can afford at the new address.</p>
+    <p><a class="btn" href="home-affordability-calculator.html">Try affordability</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="paint-coverage-calculator.html">Paint Coverage Calculator</a></li>
+    <li><a href="deck-material-estimator.html">Deck Material Estimator</a></li>
+    <li><a href="home-affordability-calculator.html">Home Affordability Calculator</a></li>
+    <li><a href="mileage-deduction-calculator.html">Mileage Deduction Calculator (2026)</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function rng(lo,hi){return fmt(lo)+' – '+fmt(hi);}
+function calc(){
+  const size=+document.getElementById('size').value||0,
+        dist=+document.getElementById('dist').value||0;
+  const local=dist<100;
+  // mover base by size (low,high), plus per-mile for long distance
+  const base=[[900,1400],[1400,2200],[2200,3400],[3200,4800],[4200,6500]][size];
+  let mLo,mHi;
+  if(local){mLo=base[0]*0.55;mHi=base[1]*0.55;}
+  else{mLo=base[0]+dist*2.2;mHi=base[1]+dist*3.4;}
+  // DIY: truck base + per-mile + fuel (assume ~10 mpg, $3.60/gal)
+  const tBase=[29,49,79,99,129][size], tMile=[0.79,0.99,1.19,1.29,1.49][size];
+  const dLo=tBase+dist*tMile+dist/10*3.2, dHi=tBase*2+dist*(tMile+0.2)+dist/10*4.0;
+  document.getElementById('rMovers').textContent=rng(Math.round(mLo),Math.round(mHi));
+  document.getElementById('rDiy').textContent=rng(Math.round(dLo),Math.round(dHi));
+  document.getElementById('rSave').textContent=rng(Math.round(mLo-dHi),Math.round(mHi-dLo));
+  document.getElementById('rType').textContent=local?'Local move (< 100 miles)':'Long-distance move';
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

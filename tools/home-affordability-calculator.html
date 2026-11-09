@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Home Affordability Calculator — How Much House Can I Afford? | One Calculator</title>
+<meta name="description" content="Free home affordability calculator: enter income, debts, down payment and rate to get your max home price using the 28/36 rule. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/home-affordability-calculator.html">
+<meta property="og:title" content="Free Home Affordability Calculator — How Much House Can I Afford? | One Calculator">
+<meta property="og:description" content="Free home affordability calculator: enter income, debts, down payment and rate to get your max home price using the 28/36 rule. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/home-affordability-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Home Affordability Calculator — How Much House Can I Afford? | One Calculator">
+<meta name="twitter:description" content="Free home affordability calculator: enter income, debts, down payment and rate to get your max home price using the 28/36 rule. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Home Affordability Calculator",
+  "description": "Free home affordability calculator: enter income, debts, down payment and rate to get your max home price using the 28/36 rule. No signup.",
+  "url": "https://onecalculator.site/tools/home-affordability-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/home-affordability-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-real-estate-investor-tools">Real estate investor tools</a> › Home Affordability Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Home Affordability Calculator</h1>
+  <p class="lede">Enter your income, debts, down payment and rate — we'll apply the classic 28/36 rule to find the maximum home price you can comfortably afford.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="inc">Gross annual income ($)</label><input id="inc" type="number" value="100000" min="0"></div>
+      <div class="field"><label for="debt">Monthly debts ($)</label><input id="debt" type="number" value="500" min="0"><div class="hint">Car, student, credit card minimums.</div></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="down">Down payment ($)</label><input id="down" type="number" value="60000" min="0"></div>
+      <div class="field"><label for="rate">Interest rate (% / yr)</label><input id="rate" type="number" value="6.5" step="0.01" min="0"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="term">Loan term (years)</label><select id="term"><option>30</option><option>20</option><option>15</option></select></div>
+      <div class="field"><label for="ti">Tax + insurance ($ / yr)</label><input id="ti" type="number" value="6000" min="0"><div class="hint">Annual property tax + insurance.</div></div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate affordability</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#home-affordability-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Maximum home price</div>
+      <div class="big" id="rPrice">$0</div>
+      <table>
+        <tr><td>Max monthly housing payment</td><td id="rPay">$0</td></tr>
+        <tr><td>Limiting rule</td><td id="rRule">—</td></tr>
+        <tr><td>Loan amount</td><td id="rLoan">$0</td></tr>
+        <tr><td>Down payment</td><td id="rDown">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">The 28/36 rule caps your housing payment (principal, interest, tax, insurance) at <strong>28% of gross monthly income</strong>, and at <strong>36% of income minus existing debts</strong>. The lower of the two wins. That payment is converted to a max loan via the present-value annuity formula, then your down payment is added for the max price.</p>
+    <div class="note">Estimates only — lenders also weigh credit score, reserves, and loan program limits. Not a pre-approval.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> The 28/36 rule: housing payment (principal, interest, tax, insurance) capped at 28% of gross monthly income, and at 36% of income minus existing monthly debts. The lower cap wins and is converted to a maximum loan.</p>
+    <p><strong>Worked example:</strong> On $90,000/year ($7,500/month): the 28% cap allows $2,100/month; the 36% cap minus $400 of debts allows $2,300 — so $2,100 is the maximum housing payment.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are about to house-hunt and want a price ceiling from your own numbers before an agent or lender sets one for you.</li><li>You are deciding between paying off a car loan and saving longer, and want to see what the debt is costing you in house price.</li><li>A rate move has changed what the same income buys and you need the new ceiling, not last spring's.</li><li>Two incomes will be combined on the application and you want the joint figure with both sets of debts counted.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter gross annual income — combined, if you will apply together.</li><li>Enter total monthly debts: car payments, student loans, card minimums and any other loan payment on your credit report.</li><li>Enter the down payment you have saved, separate from your emergency reserve.</li><li>Set the interest rate and term from a current quote.</li><li>Enter yearly property tax and insurance for the area you are buying in — this line shrinks the loan more than most buyers expect.</li><li>Read the maximum price, and note which of the two rules set it; that is the lever to work on.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Gross annual income</strong></td><td style="padding:6px 8px">Pre-tax income the lender counts</td><td style="padding:6px 8px">Salary plus reliable bonus or second income</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Monthly debts</strong></td><td style="padding:6px 8px">Minimum payments on existing loans and cards</td><td style="padding:6px 8px">Auto, student, personal loans, card minimums</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Down payment</strong></td><td style="padding:6px 8px">Cash available for the purchase itself</td><td style="padding:6px 8px">Keep closing costs and reserves separate</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Interest rate and term</strong></td><td style="padding:6px 8px">Terms of the loan you would take</td><td style="padding:6px 8px">30 years is the default comparison</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Tax and insurance per year</strong></td><td style="padding:6px 8px">Annual property tax plus homeowners insurance</td><td style="padding:6px 8px">Varies hugely by state — check the target area</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>On $120,000 a year — $10,000 a month — with $650 of monthly debts, an $80,000 down payment, a 6% rate over 30 years and $7,200 a year of tax and insurance: the 28% housing rule caps the total housing payment at $2,800 a month, while the 36% total-debt rule allows $2,950 after debts, so the 28% rule is the one that limits. After $600 a month for tax and insurance, the remaining $2,200 a month supports a loan of $366,942, giving a maximum home price of $446,942.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What is the 28/36 rule?</h3>
+    <p>A long-standing lender guideline: no more than 28% of gross income on housing, and no more than 36% on all debt including housing. Some loan programs allow higher ratios.</p>
+    <h3>Do debts really lower how much house I can afford?</h3>
+    <p>Yes — the 36% cap counts every monthly debt payment, so $500/month in car and student loans can cut your max price by tens of thousands.</p>
+    <h3>Does a bigger down payment help?</h3>
+    <p>It raises your max price dollar-for-dollar and can eliminate PMI at 20% down, which further improves affordability.</p>
+    <h3>Why are tax and insurance subtracted before the loan size is worked out?</h3>
+    <p>Because the 28% and 36% caps apply to the whole housing payment — principal, interest, tax and insurance together — not just the mortgage. In a high-tax area that can consume several hundred dollars of the monthly cap, leaving noticeably less for the loan itself. Two buyers with identical incomes can afford very different prices purely because one is shopping where property tax runs high.</p>
+    <h3>Why is this based on gross income when my budget runs on take-home pay?</h3>
+    <p>Because lender debt-to-income ratios are defined on gross income, and this tool mirrors the test a lender will run. It answers 'what will a lender count me able to afford', not 'what payment will feel comfortable'. Run your own second check on take-home pay before treating the maximum as a target — the comfortable figure is usually below the lendable one.</p>
+    <h3>Which debts belong in the monthly debts field?</h3>
+    <p>Payments a lender can see: auto loans, student loans, personal loans, and the minimum payments on credit cards, plus things like child support where they apply. Rent, utilities, groceries and subscriptions do not count toward the lender ratios, however real they feel in your budget — which is another reason the lendable maximum and the comfortable maximum are two different numbers.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>🏠 Found your price range?</h3>
+    <p>Plug candidate prices into our mortgage calculator, or run the full investor analysis on a rental.</p>
+    <p><a class="btn" href="mortgage-calculator.html">Try mortgage calculator</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="mortgage-calculator.html">Mortgage Payment Calculator</a></li>
+    <li><a href="refinance-calculator.html">Mortgage Refinance Calculator</a></li>
+    <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+    <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+  
+    <li><a href="../guides/how-much-house-can-i-afford.html">📖 Guide: How much house can I afford? The 28/36 rule</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function calc(){
+  const inc=(+document.getElementById('inc').value||0)/12,
+        debt=+document.getElementById('debt').value||0,
+        down=+document.getElementById('down').value||0,
+        r=(+document.getElementById('rate').value||0)/100/12,
+        n=(+document.getElementById('term').value||30)*12,
+        ti=(+document.getElementById('ti').value||0)/12;
+  const cap28=inc*0.28, cap36=inc*0.36-debt;
+  const maxPay=Math.max(Math.min(cap28,cap36)-ti,0);
+  const pv=r>0?(1-Math.pow(1+r,-n))/r:n;
+  const loan=maxPay*pv, price=loan+down;
+  document.getElementById('rPrice').textContent=fmt(price);
+  document.getElementById('rPay').textContent=fmt(maxPay+ti);
+  document.getElementById('rRule').textContent=cap28<cap36?'28% housing rule':'36% total-debt rule';
+  document.getElementById('rLoan').textContent=fmt(loan);
+  document.getElementById('rDown').textContent=fmt(down);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

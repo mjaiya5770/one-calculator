@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Retirement Calculator — Savings Projection, Employer Match & Goal Check | One Calculator</title>
+<meta name="description" content="Free retirement calculator: project your savings year by year with contributions, employer match and investment growth, check against your goal and see the value in today’s dollars. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/retirement-calculator.html">
+<meta property="og:title" content="Free Retirement Calculator — Savings Projection, Employer Match & Goal Check | One Calculator">
+<meta property="og:description" content="Free retirement calculator: project your savings year by year with contributions, employer match and investment growth, check against your goal and see the value in today’s dollars. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/retirement-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Retirement Calculator — Savings Projection, Employer Match & Goal Check | One Calculator">
+<meta name="twitter:description" content="Free retirement calculator: project your savings year by year with contributions, employer match and investment growth, check against your goal and see the value in today’s dollars. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Retirement Calculator",
+  "description": "Free retirement calculator: project your savings year by year with contributions, employer match and investment growth, check against your goal and see the value in today\u2019s dollars. No signup.",
+  "url": "https://onecalculator.site/tools/retirement-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much should I have saved by retirement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A common yardstick is 25\u00d7 your expected annual spending in retirement (the \"4% rule\"), but the right number depends on your lifestyle, other income like Social Security, and when you retire. Enter your own target as the goal above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does starting early matter so much?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because growth compounds on growth. $500 a month from age 35 at 7% becomes roughly $610,000 by 65; starting at 45 it becomes roughly $260,000 \u2014 the contributions halve, but the outcome falls by far more."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I count the employer match as my money?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 it is part of your compensation, though it may vest over time. Never leave a match unclaimed by contributing less than the matched amount if you can avoid it; it is an instant 50\u2013100% return."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What return should I assume?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Long-run US stock market returns have averaged around 10% a year before inflation, and balanced portfolios less. Many planners project 6\u20138% for a diversified portfolio. Try a low and a high assumption to see your range."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/retirement-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-debt-money-tools">Debt & money tools</a> › Retirement Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Retirement Calculator</h1>
+  <p class="lede">Project your retirement savings year by year — current savings, monthly contributions, employer match and growth — then check the total against your goal.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="curAge">Current age</label><input id="curAge" type="number" value="35" min="0" step="1"></div>
+      <div class="field"><label for="retAge">Retirement age</label><input id="retAge" type="number" value="65" min="0" step="1"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="saved">Savings already set aside ($)</label><input id="saved" type="number" value="50000" min="0" step="any"></div>
+      <div class="field"><label for="monthly">Your monthly contribution ($)</label><input id="monthly" type="number" value="500" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="match">Employer match (% of your contribution)</label><input id="match" type="number" value="50" min="0" step="any"><span class="hint">Many employers match 50% or 100% up to a cap — use your plan's rate.</span></div>
+      <div class="field"><label for="ret">Expected annual return (%)</label><input id="ret" type="number" value="7" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="goal">Retirement goal ($, optional)</label><input id="goal" type="number" value="1000000" min="0" step="any"></div>
+      <div class="field"><label for="infl">Inflation (% / yr)</label><input id="infl" type="number" value="2.5" min="0" step="any"></div>
+    </div>
+    <div class="field" style="margin-top:6px"><label for="inflOn"><input id="inflOn" type="checkbox" checked style="width:auto;margin-right:8px">Also show the projection in today's dollars (inflation-adjusted)</label></div>
+
+    <button class="btn" onclick="calc()">Run projection</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#retirement-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Projected savings at retirement</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>Year-by-year projection</h2>
+    <div style="overflow:auto;max-height:520px">
+      <table style="width:100%;border-collapse:collapse;font-size:.92rem">
+        <thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Age</th><th style="padding:8px">Balance</th><th style="padding:8px">You contributed</th><th style="padding:8px">Employer match</th><th style="padding:8px">Growth</th></tr></thead>
+        <tbody id="proj"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">The projection compounds monthly: each month your balance grows by the annual return ÷ 12, then your contribution plus the employer match (your contribution × the match rate) is added. The year table snapshots the balance at each birthday. <strong>Today’s dollars</strong> divides the final balance by (1 + inflation)<sup>years</sup> to show its buying power in money you can picture now. If you set a goal, the verdict compares the projection with it and estimates the extra monthly saving that would close any gap at the same return.</p>
+    <div class="note">Estimates only — not financial advice. Real returns vary year to year, and this model ignores taxes, fees and contribution caps. Consider it a planning sketch, not a promise.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Each month: balance × (1 + annual return ÷ 12), then your contribution plus the employer match (contribution × match %) is added. The result is also shown in today's dollars by dividing out inflation.</p>
+    <p><strong>Worked example:</strong> Start with $5,000, save $300/month with a 50% employer match ($150 more) at 8% for 30 years, and the projection reaches about $725,340 — from $167,000 of total contributions.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You want to know whether your current contribution rate reaches a real number by your target age.</li><li>A raise or new job makes this the moment to set (or fix) the contribution percentage.</li><li>You are comparing retiring at 60 vs 65 with arithmetic instead of anxiety.</li><li>An employer match exists and you want to see what leaving it unclaimed costs.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter current age and target retirement age.</li><li>Add savings so far and the monthly contribution.</li><li>Enter the employer match as a percent of your contribution.</li><li>Set a return assumption — 7% is the common long-run planning figure.</li><li>Read the projection in today's dollars too; the inflation-adjusted line is the honest one.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Current savings</strong></td><td style="padding:6px 8px">Balance already invested</td><td style="padding:6px 8px">All retirement accounts combined</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Monthly contribution</strong></td><td style="padding:6px 8px">Your deposit each month</td><td style="padding:6px 8px">Plus match on top</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Employer match</strong></td><td style="padding:6px 8px">Employer adds this % of your contribution</td><td style="padding:6px 8px">50% of the first 6% is a common design</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Expected return</strong></td><td style="padding:6px 8px">Average annual growth assumption</td><td style="padding:6px 8px">6–8% typical planning range</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Inflation</strong></td><td style="padding:6px 8px">For the today's-dollars view</td><td style="padding:6px 8px">2.5–3.5% long-run</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>Start at 25 with $10,000 saved, contribute $250 a month with a 50% employer match ($125 more), at 7% until 60: the projection reaches about $790,457. Total cash in is $167,500 — the other $622,957 is growth and match, which is why the match line matters more than most people's fund choices.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How much should I have saved by retirement?</h3>
+    <p>A common yardstick is 25× your expected annual spending in retirement (the "4% rule"), but the right number depends on your lifestyle, other income like Social Security, and when you retire. Enter your own target as the goal above.</p>
+    <h3>Why does starting early matter so much?</h3>
+    <p>Because growth compounds on growth. $500 a month from age 35 at 7% becomes roughly $610,000 by 65; starting at 45 it becomes roughly $260,000 — the contributions halve, but the outcome falls by far more.</p>
+    <h3>Should I count the employer match as my money?</h3>
+    <p>Yes — it is part of your compensation, though it may vest over time. Never leave a match unclaimed by contributing less than the matched amount if you can avoid it; it is an instant 50–100% return.</p>
+    <h3>What return should I assume?</h3>
+    <p>Long-run US stock market returns have averaged around 10% a year before inflation, and balanced portfolios less. Many planners project 6–8% for a diversified portfolio. Try a low and a high assumption to see your range.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>💰 What does your paycheck really net?</h3>
+    <p>The Paycheck Calculator turns salary or hourly pay into gross-to-net estimates for every pay frequency.</p>
+    <p><a class="btn" href="paycheck-calculator.html">Check my paycheck</a></p>
+    <h3>What return should I assume?</h3>
+    <p>For a diversified portfolio, 6–8% nominal is the standard planning band; use the low end if the date cannot move. Anyone projecting 12%+ is selling something. The inflation-adjusted figure is the one to compare against your spending plans.</p>
+    <h3>Does this include Social Security or pensions?</h3>
+    <p>No — it projects only your invested savings. Treat public/pension income as a separate layer that reduces how much your portfolio must provide, which usually makes the required goal smaller than the scary headline figures.</p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+    <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+    <li><a href="roi-calculator.html">ROI Calculator</a></li>
+    <li><a href="paycheck-calculator.html">Paycheck Calculator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function v(id){return +document.getElementById(id).value||0;}
+/*PURE-BEGIN*/
+function projectRetirement(start,monthly,matchPct,annualPct,months){
+  var r=annualPct/100/12,bal=start,totalContrib=0,totalMatch=0,byYear=[];
+  for(var m=1;m<=months;m++){
+    bal*=1+r;
+    var match=monthly*matchPct/100;
+    bal+=monthly+match;totalContrib+=monthly;totalMatch+=match;
+    if(m%12===0)byYear.push({year:m/12,balance:bal,contrib:totalContrib,match:totalMatch});
+  }
+  return {final:bal,totalContrib:totalContrib,totalMatch:totalMatch,growth:bal-start-totalContrib-totalMatch,byYear:byYear};
+}
+/*PURE-END*/
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function calc(){
+  var curAge=v('curAge'),retAge=v('retAge'),years=Math.max(retAge-curAge,0),months=Math.round(years*12);
+  var start=v('saved'),monthly=v('monthly'),match=v('match'),ret=v('ret'),goal=v('goal'),infl=v('infl');
+  var inflOn=document.getElementById('inflOn').checked;
+  if(months<=0){document.getElementById('verdict').textContent='Retirement age must be after your current age.';document.getElementById('rMain').textContent='—';document.getElementById('rows').innerHTML='';document.getElementById('proj').innerHTML='';document.getElementById('results').classList.add('show');return;}
+  var p=projectRetirement(start,monthly,match,ret,months);
+  var rows=row('Projected at age '+retAge,fmt(p.final))+row('You contribute over '+years+' years',fmt(p.totalContrib))
+    +row('Employer match adds',fmt(p.totalMatch))+row('Investment growth adds',fmt(p.growth))+row('Starting savings',fmt(start));
+  var real=null;
+  if(inflOn){real=p.final/Math.pow(1+infl/100,years);rows+=row('In today’s dollars (inflation-adjusted)',fmt(real));}
+  var verd;
+  if(goal>0){
+    if(p.final>=goal){verd='On track: you are projected to reach '+fmt(p.final)+' by age '+retAge+' — '+fmt(p.final-goal)+' above your '+fmt(goal)+' goal.';}
+    else{var gap=goal-p.final;var r=ret/100/12;var extra=r>0?gap*r/(Math.pow(1+r,months)-1):gap/months;
+      verd='Shortfall warning: the projection lands at '+fmt(p.final)+', which is '+fmt(gap)+' below your '+fmt(goal)+' goal. Saving about '+fmt(extra)+' more per month at the same return would close the gap.';}
+  } else {
+    verd='By age '+retAge+' your savings are projected to reach '+fmt(p.final)+' — of which '+fmt(p.growth)+' is investment growth, not money out of your pocket.';
+  }
+  document.getElementById('rMain').textContent=fmt(p.final);
+  document.getElementById('verdict').textContent=verd;
+  document.getElementById('rows').innerHTML=rows;
+  document.getElementById('proj').innerHTML=p.byYear.map(function(y){
+    return '<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">'+(curAge+y.year)+'</td><td style="padding:6px 8px">'+fmt(y.balance)+'</td><td style="padding:6px 8px">'+fmt(y.contrib)+'</td><td style="padding:6px 8px">'+fmt(y.match)+'</td><td style="padding:6px 8px">'+fmt(y.balance-start-y.contrib-y.match)+'</td></tr>';
+  }).join('');
+  document.getElementById('results').classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Rent vs Buy Calculator — Total Cost Comparison & Break-Even Year | One Calculator</title>
+<meta name="description" content="Free rent vs buy calculator: compare the true total cost of renting and buying over your time horizon — appreciation, rent growth, taxes, opportunity cost — and find the break-even year. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/rent-vs-buy-calculator.html">
+<meta property="og:title" content="Free Rent vs Buy Calculator — Total Cost Comparison & Break-Even Year | One Calculator">
+<meta property="og:description" content="Free rent vs buy calculator: compare the true total cost of renting and buying over your time horizon — appreciation, rent growth, taxes, opportunity cost — and find the break-even year. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/rent-vs-buy-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Rent vs Buy Calculator — Total Cost Comparison & Break-Even Year | One Calculator">
+<meta name="twitter:description" content="Free rent vs buy calculator: compare the true total cost of renting and buying over your time horizon — appreciation, rent growth, taxes, opportunity cost — and find the break-even year. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Rent vs Buy Calculator",
+  "description": "Free rent vs buy calculator: compare the true total cost of renting and buying over your time horizon \u2014 appreciation, rent growth, taxes, opportunity cost \u2014 and find the break-even year. No signup.",
+  "url": "https://onecalculator.site/tools/rent-vs-buy-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the break-even year in rent vs buy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The point where buying stops being the more expensive choice. Because buying has heavy upfront costs (down payment, closing) and selling costs at the end, renting usually wins for short stays; buying pulls ahead over time as equity builds and rent keeps rising."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the time I plan to stay matter so much?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Round-trip transaction costs on a home are roughly 8\u201310% of its price. Spread over 3 years that dwarfs any equity you build; spread over 15 years it is minor. The stay length is the single biggest input in this comparison."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What appreciation rate should I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "US home prices have averaged roughly 4\u20135% a year over long periods, but local markets vary enormously and past performance is no guarantee. Use 3% as a neutral default and test 0% to see if buying still wins without price growth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this include the mortgage interest deduction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Since the standard deduction rose in 2018, most households do not itemize, so the model leaves tax deductions out for both sides. If you would itemize, buying looks somewhat better than shown."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/rent-vs-buy-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-real-estate-investor-tools">Real estate investor tools</a> › Rent vs Buy Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Rent vs Buy Calculator</h1>
+  <p class="lede">Not "can I afford the payment?" but "which choice costs less over the years I will actually stay?" — with appreciation, rent growth and opportunity cost all in the model.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="price">Home price ($)</label><input id="price" type="number" value="450000" min="0" step="any"></div>
+      <div class="field"><label for="down">Down payment ($)</label><input id="down" type="number" value="90000" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="rate">Mortgage rate (% / yr)</label><input id="rate" type="number" value="6.5" min="0" step="any"></div>
+      <div class="field"><label for="term">Mortgage term (years)</label><input id="term" type="number" value="30" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="stay">Years you plan to stay</label><input id="stay" type="number" value="10" min="1" step="1"></div>
+      <div class="field"><label for="rent">Monthly rent for a similar home ($)</label><input id="rent" type="number" value="2200" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="rentG">Rent increase (% / yr)</label><input id="rentG" type="number" value="3" step="any"></div>
+      <div class="field"><label for="appr">Home appreciation (% / yr)</label><input id="appr" type="number" value="3" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="taxPct">Property tax (% of price / yr)</label><input id="taxPct" type="number" value="1.1" min="0" step="any"></div>
+      <div class="field"><label for="ins">Insurance ($ / yr)</label><input id="ins" type="number" value="1800" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="maint">Maintenance (% of price / yr)</label><input id="maint" type="number" value="1" min="0" step="any"></div>
+      <div class="field"><label for="opp">Investment return on savings (% / yr)</label><input id="opp" type="number" value="5" step="any"><span class="hint">What your down payment would earn if you rented and invested it instead.</span></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="closing">Buying closing costs (% of price)</label><input id="closing" type="number" value="2" min="0" step="any"></div>
+      <div class="field"><label for="selling">Selling costs (% of sale price)</label><input id="selling" type="number" value="6" min="0" step="any"></div>
+    </div>
+
+    <button class="btn" onclick="calc()">Compare renting vs buying</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#rent-vs-buy-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Cost difference over your horizon</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>Year-by-year: cumulative net cost</h2>
+    <div style="overflow:auto;max-height:520px">
+      <table style="width:100%;border-collapse:collapse;font-size:.92rem">
+        <thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">End of year</th><th style="padding:8px">Buying (net cost)</th><th style="padding:8px">Renting (total rent)</th><th style="padding:8px">Ahead</th></tr></thead>
+        <tbody id="rbRows"></tbody>
+      </table>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem">Buying's net cost credits back your equity (sale price minus remaining mortgage minus selling costs) and charges the opportunity cost of the cash tied up in the home.</p>
+  </div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">For each year, the model totals what renting costs (rent, rising at your growth rate) against the <strong>net</strong> cost of buying: down payment + closing costs + mortgage payments + tax, insurance and maintenance + the investment return that cash could have earned (opportunity cost) + selling costs — minus the equity you get back when you sell (appreciated price less the remaining loan balance). The <strong>break-even year</strong> is the first year buying’s cumulative net cost drops to or below renting’s. It is a simplified model — no tax deductions, no renters’ insurance, no HOA — but it captures the big forces honestly.</p>
+    <div class="note">Estimates only — not financial advice. Appreciation and investment returns are assumptions, not forecasts; try pessimistic and optimistic values to see how much the answer moves.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> For each year, renting's cumulative cost (rent, rising at your growth rate) is compared with buying's net cost: down payment + closing costs + mortgage payments + tax, insurance and maintenance + the investment return that cash could have earned − the equity you get back when you sell.</p>
+    <p><strong>Worked example:</strong> Renting at $1,800/month rising 3% a year costs about $114,677 over 5 years with no equity to show for it — buying only wins if its net cost drops below that line before you move.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are renewing a lease while wondering if the money should be a down payment instead.</li><li>A relocation has an uncertain length and the stay-duration is the whole question.</li><li>You want buying's costs beyond the mortgage — tax, maintenance, opportunity cost — in the comparison.</li><li>Family advice says 'renting is throwing money away' and you want that claim audited.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the home price, down payment, rate and term.</li><li>Set how many years you realistically expect to stay.</li><li>Enter the rent of a genuinely comparable home and its yearly increase.</li><li>Set appreciation, tax, insurance and maintenance honestly.</li><li>Read the year-by-year verdict — the crossover year, if any, is the answer.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Home price / down</strong></td><td style="padding:6px 8px">The purchase being considered</td><td style="padding:6px 8px">Down payment also has an opportunity cost</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Stay duration</strong></td><td style="padding:6px 8px">Years before you'd sell</td><td style="padding:6px 8px">Under ~5 years renting usually wins</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Rent + growth</strong></td><td style="padding:6px 8px">Comparable rent today and its rise</td><td style="padding:6px 8px">3–4%/yr is a common assumption</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Appreciation</strong></td><td style="padding:6px 8px">Expected home value growth</td><td style="padding:6px 8px">Long-run ~3–4%/yr nationally, locally wild</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Costs</strong></td><td style="padding:6px 8px">Tax, insurance, maintenance, closing, selling</td><td style="padding:6px 8px">Maintenance ~1% of price per year</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>Renting a comparable home at $2,200 a month, rising 3.5% a year, costs $205,376 over seven years with zero equity at the end. Whether buying beats that depends entirely on the other side of this tool — the equity built, minus buying's considerable friction — which is why the answer flips so often around years 4–6 of staying.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What is the break-even year in rent vs buy?</h3>
+    <p>The point where buying stops being the more expensive choice. Because buying has heavy upfront costs (down payment, closing) and selling costs at the end, renting usually wins for short stays; buying pulls ahead over time as equity builds and rent keeps rising.</p>
+    <h3>Why does the time I plan to stay matter so much?</h3>
+    <p>Round-trip transaction costs on a home are roughly 8–10% of its price. Spread over 3 years that dwarfs any equity you build; spread over 15 years it is minor. The stay length is the single biggest input in this comparison.</p>
+    <h3>What appreciation rate should I use?</h3>
+    <p>US home prices have averaged roughly 4–5% a year over long periods, but local markets vary enormously and past performance is no guarantee. Use 3% as a neutral default and test 0% to see if buying still wins without price growth.</p>
+    <h3>Does this include the mortgage interest deduction?</h3>
+    <p>No. Since the standard deduction rose in 2018, most households do not itemize, so the model leaves tax deductions out for both sides. If you would itemize, buying looks somewhat better than shown.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>🏡 Found that buying wins?</h3>
+    <p>Check the most house your income can honestly carry with the Home Affordability Calculator.</p>
+    <p><a class="btn" href="home-affordability-calculator.html">Check affordability</a></p>
+    <h3>What is the 5-year rule about?</h3>
+    <p>Buying's upfront and selling frictions (roughly 8–10% of the price across both ends) need years of equity and appreciation to earn back. Under about five years they usually swamp the benefit — not a law, but this tool will show you your own crossover instead of a rule of thumb.</p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="home-affordability-calculator.html">Home Affordability Calculator</a></li>
+    <li><a href="mortgage-calculator.html">Mortgage Payment Calculator</a></li>
+    <li><a href="mortgage-payoff-calculator.html">Mortgage Payoff Calculator</a></li>
+    <li><a href="refinance-calculator.html">Refinance Calculator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function v(id){return +document.getElementById(id).value||0;}
+/*PURE-BEGIN*/
+function rentVsBuy(o){
+  var loan=Math.max(o.price-o.down,0);
+  var r=o.rate/100/12,termMonths=Math.round(o.termYears*12);
+  var pay=termMonths>0?(r===0?loan/termMonths:loan*r*Math.pow(1+r,termMonths)/(Math.pow(1+r,termMonths)-1)):0;
+  var closingAmt=o.price*o.closingPct/100;
+  var annualOwn=o.price*o.taxPct/100+o.ins+o.price*o.maintPct/100;
+  function balanceAt(months){if(r===0)return Math.max(loan-pay*months,0);var f=Math.pow(1+r,termMonths),fm=Math.pow(1+r,months);return Math.max(loan*(f-fm)/(f-1),0);}
+  var rows=[],breakEven=null,cumRent=0;
+  for(var y=1;y<=o.stayYears;y++){
+    cumRent+=o.rent*12*Math.pow(1+o.rentGrowth/100,y-1);
+    var monthsY=Math.min(y*12,termMonths);
+    var payments=pay*monthsY;
+    var homeVal=o.price*Math.pow(1+o.appr/100,y);
+    var equity=homeVal-balanceAt(monthsY);
+    var sellCost=homeVal*o.sellingPct/100;
+    var oppCost=(o.down+closingAmt)*(Math.pow(1+o.opp/100,y)-1);
+    var buyCost=o.down+closingAmt+payments+annualOwn*y+oppCost+sellCost-equity;
+    rows.push({year:y,buyCost:buyCost,rentCost:cumRent});
+    if(breakEven===null&&buyCost<=cumRent)breakEven=y;
+  }
+  var last=rows[rows.length-1]||{buyCost:0,rentCost:0};
+  return {rows:rows,breakEven:breakEven,buyTotal:last.buyCost,rentTotal:last.rentCost,payment:pay};
+}
+/*PURE-END*/
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function calc(){
+  var o={price:v('price'),down:v('down'),rate:v('rate'),termYears:v('term'),stayYears:Math.max(1,Math.round(v('stay'))),rent:v('rent'),rentGrowth:v('rentG'),appr:v('appr'),taxPct:v('taxPct'),ins:v('ins'),maintPct:v('maint'),opp:v('opp'),closingPct:v('closing'),sellingPct:v('selling')};
+  var res=rentVsBuy(o);
+  var diff=Math.abs(res.buyTotal-res.rentTotal),buyWins=res.buyTotal<=res.rentTotal;
+  document.getElementById('rMain').textContent=fmt(diff)+(buyWins?' in favor of buying':' in favor of renting');
+  var verd;
+  if(res.breakEven){verd='Buying pulls ahead in year '+res.breakEven+'. Over '+o.stayYears+' years, buying’s net cost is '+fmt(res.buyTotal)+' vs '+fmt(res.rentTotal)+' in rent — a '+fmt(diff)+' advantage to '+(buyWins?'buying':'renting')+'.';}
+  else{verd='Renting stays cheaper for the whole '+o.stayYears+'-year window: '+fmt(res.rentTotal)+' in rent vs a '+fmt(res.buyTotal)+' net cost of buying. Buying would need a longer stay, faster appreciation or lower rent growth to win.';}
+  document.getElementById('verdict').textContent=verd;
+  document.getElementById('rows').innerHTML=row('Monthly mortgage payment (P&I)',fmt(res.payment))
+    +row('Break-even year',res.breakEven?('Year '+res.breakEven):'Not within '+o.stayYears+' years')
+    +row('Buying: net cost over '+o.stayYears+' years',fmt(res.buyTotal))+row('Renting: total rent over '+o.stayYears+' years',fmt(res.rentTotal))
+    +row('Difference',fmt(diff)+' ('+(buyWins?'buying':'renting')+' ahead)');
+  document.getElementById('rbRows').innerHTML=res.rows.map(function(rw){
+    return '<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">'+rw.year+'</td><td style="padding:6px 8px">'+fmt(rw.buyCost)+'</td><td style="padding:6px 8px">'+fmt(rw.rentCost)+'</td><td style="padding:6px 8px">'+(rw.buyCost<=rw.rentCost?'Buying':'Renting')+'</td></tr>';
+  }).join('');
+  document.getElementById('results').classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

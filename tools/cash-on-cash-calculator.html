@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Cash-on-Cash Return Calculator — Rental ROI on Cash Invested | One Calculator</title>
+<meta name="description" content="Free cash-on-cash return calculator: measure a rental property's annual cash flow against the actual cash you invest, including down payment and closing costs. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/cash-on-cash-calculator.html">
+<meta property="og:title" content="Free Cash-on-Cash Return Calculator — Rental ROI on Cash Invested | One Calculator">
+<meta property="og:description" content="Free cash-on-cash return calculator: measure a rental property&#x27;s annual cash flow against the actual cash you invest, including down payment and closing costs. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/cash-on-cash-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Cash-on-Cash Return Calculator — Rental ROI on Cash Invested | One Calculator">
+<meta name="twitter:description" content="Free cash-on-cash return calculator: measure a rental property&#x27;s annual cash flow against the actual cash you invest, including down payment and closing costs. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Cash-on-Cash Return Calculator",
+  "description": "Free cash-on-cash return calculator: measure a rental property's annual cash flow against the actual cash you invest, including down payment and closing costs. No signup.",
+  "url": "https://onecalculator.site/tools/cash-on-cash-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/cash-on-cash-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-real-estate-investor-tools">Real estate investor tools</a> › Cash-on-Cash Return Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Cash-on-Cash Return Calculator</h1>
+  <p class="lede">Measure a rental property's return on the cash you actually put in. Unlike cap rate, cash-on-cash accounts for your down payment, closing costs, and mortgage — so it tells you what your money is really earning.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="price">Purchase price ($)</label><input id="price" type="number" value="350000" min="0"></div>
+      <div class="field"><label for="downpct">Down payment (%)</label><input id="downpct" type="number" value="20" step="0.5" min="0" max="100"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="closing">Estimated closing costs ($)</label><input id="closing" type="number" value="7000" min="0"></div>
+      <div class="field"><label for="cashflow">Annual pre-tax cash flow ($)</label><input id="cashflow" type="number" value="6000" min="0">
+        <div class="hint">Rent minus ALL expenses, including mortgage principal &amp; interest, tax, insurance, maintenance, and vacancy.</div>
+      </div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate return</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#cash-on-cash-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Cash-on-cash return</div>
+      <div class="big" id="rCoc">0%</div>
+      <table>
+        <tr><td>Down payment</td><td id="rDown">$0</td></tr>
+        <tr><td>Total cash invested</td><td id="rInvested">$0</td></tr>
+        <tr><td>Annual pre-tax cash flow</td><td id="rFlow">$0</td></tr>
+        <tr><td>Monthly cash flow</td><td id="rMonthly">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)"><strong>Cash-on-cash return = Annual pre-tax cash flow ÷ Total cash invested.</strong> Total cash invested is your down payment plus closing costs (and any initial rehab). Cash flow is what's left after every expense, including the mortgage payment.</p>
+    <div class="note">Estimates only — not investment advice. Cash flow and returns change with rents, vacancies, repairs, and interest rates.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Cash invested = down payment (price × down-payment %) + closing costs. Cash-on-cash return = annual before-tax cash flow ÷ cash invested × 100.</p>
+    <p><strong>Worked example:</strong> Buy at $300,000 with 25% down ($75,000) plus $6,000 of closing costs and you have $81,000 invested. Cash flow of $7,290 a year before tax gives 7,290 ÷ 81,000 = 9.00%.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are buying with a mortgage and want the return on your actual cash, not on the property's full price.</li><li>The same property is on the table at two different down payments and you want to see what the smaller deposit does to the return.</li><li>Closing costs are larger than you expected and you want their effect on the deal's yield, in percent.</li><li>You screen rentals against a personal cash-on-cash target before touring any of them.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the purchase price.</li><li>Set the down payment percent you actually plan to make.</li><li>Enter realistic closing costs — lender fees, title and prepaids, not a hopeful round zero.</li><li>Enter the annual pre-tax cash flow after every expense including the mortgage, ideally from a full rental analysis.</li><li>Read the return, then re-run at a different down payment to watch leverage help and hurt.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Purchase price</strong></td><td style="padding:6px 8px">The price the property is bought at</td><td style="padding:6px 8px">Contract price, before closing costs</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Down payment %</strong></td><td style="padding:6px 8px">Share of the price paid in cash at closing</td><td style="padding:6px 8px">Investor loans commonly 15–25%</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Closing costs</strong></td><td style="padding:6px 8px">Cash needed at closing beyond the down payment</td><td style="padding:6px 8px">Often roughly 2–5% of the price</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Annual pre-tax cash flow</strong></td><td style="padding:6px 8px">What is left each year after all expenses and the mortgage</td><td style="padding:6px 8px">Rent minus everything, vacancy included</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>On a $320,000 purchase with 20% down, the down payment is $64,000 and $6,400 of closing costs bring total cash invested to $70,400. If the property produces $5,280 a year of pre-tax cash flow — $440 a month — the cash-on-cash return is 7.50%. That figure, not the rent headline, is what your $70,400 is actually earning.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What is a good cash-on-cash return?</h3>
+    <p>Many investors target 8–12% as a solid baseline for residential rentals, and want it to beat what that cash could earn elsewhere. Your personal target depends on risk tolerance and market — set it before you shop.</p>
+    <h3>Cash-on-cash vs. cap rate — which matters more?</h3>
+    <p>They answer different questions. Cap rate (financing-neutral) compares properties; cash-on-cash (financing-aware) judges your specific deal. Run both on every property you seriously consider.</p>
+    <h3>Why does leverage change the return so much?</h3>
+    <p>A smaller down payment means less cash invested, so the same cash flow produces a higher percentage return — but also higher risk, higher payments, and thinner margins if anything goes wrong. Try 10% vs 25% down above.</p>
+    <h3>How do I include upfront repair costs in the cash invested?</h3>
+    <p>Add them to the closing costs field. This tool builds cash invested as down payment plus whatever you enter there, so purchase-day spending — a new roof, a rehab budget, lender fees — all belongs in that one box. Money you plan to spend in month six is different: leave it out of the entry price, but hold it as a reserve when you judge whether the deal is safe.</p>
+    <h3>Is cash-on-cash my total return on the property?</h3>
+    <p>No — it counts only the cash flow against the cash in. It ignores the principal your tenants pay down each year, any appreciation, and tax effects, all of which are real parts of a rental's return. Cash-on-cash is a first-year cash yield and a screening tool; a deal can show a modest cash-on-cash and still build wealth through paydown, or a fat one and go nowhere else.</p>
+    <h3>Which cash flow should I use — the seller's first-year figure or a longer view?</h3>
+    <p>Use a conservative, stabilised first year: market rent, a vacancy allowance, and maintenance at a level an older property will actually demand, not the seller's best-ever twelve months. Cash-on-cash is unusually sensitive to this input because one rosy rent assumption inflates the return every year you quote it. If the deal only clears your target on the seller's numbers, it does not clear it.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>🏠 Compare properties properly</h3>
+    <p>Pair this with the cap rate calculator to screen deals on both metrics.</p>
+    <p><a class="btn" href="cap-rate-calculator.html">Cap Rate Calculator</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="cap-rate-calculator.html">Cap Rate Calculator</a></li>
+    <li><a href="rental-property-analyzer.html">Rental Property Analyzer</a></li>
+    <li><a href="roi-calculator.html">ROI Calculator</a></li>
+    <li><a href="mortgage-calculator.html">Mortgage Payment Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function calc(){
+  const price=+document.getElementById('price').value||0,
+        downPct=Math.min(Math.max(+document.getElementById('downpct').value||0,0),100),
+        closing=+document.getElementById('closing').value||0,
+        cashflow=+document.getElementById('cashflow').value||0;
+  const down=price*downPct/100;
+  const invested=down+closing;
+  const coc=invested>0?(cashflow/invested)*100:0;
+  document.getElementById('rCoc').textContent=coc.toFixed(2)+'%';
+  document.getElementById('rDown').textContent=fmt(down);
+  document.getElementById('rInvested').textContent=fmt(invested);
+  document.getElementById('rFlow').textContent=fmt(cashflow);
+  document.getElementById('rMonthly').textContent=fmt(cashflow/12);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

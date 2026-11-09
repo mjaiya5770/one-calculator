@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# AI crawlers are explicitly welcome. A structured guide to this site for AI systems lives at /llms.txt
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: Applebot-Extended
+User-agent: Meta-ExternalAgent
+User-agent: cohere-ai
+User-agent: DuckAssistBot
+User-agent: YouBot
+Allow: /
+
+Sitemap: https://onecalculator.site/sitemap.xml

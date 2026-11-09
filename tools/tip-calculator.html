@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Tip Calculator — Split the Bill & Tip in Seconds | One Calculator</title>
+<meta name="description" content="Free tip calculator: enter your bill, pick a tip percentage, and split the total evenly between everyone at the table. Fast, no signup, works on any device.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<style>
+.tip-btns{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.tip-btns button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px 16px;font-size:1rem;font-weight:700;cursor:pointer;color:var(--ink)}
+.tip-btns button.active{background:var(--accent);border-color:var(--accent);color:#fff}
+</style>
+<link rel="canonical" href="https://onecalculator.site/tools/tip-calculator.html">
+<meta property="og:title" content="Free Tip Calculator — Split the Bill &amp; Tip in Seconds | One Calculator">
+<meta property="og:description" content="Free tip calculator: enter your bill, pick a tip percentage, and split the total evenly between everyone at the table. Fast, no signup, works on any device.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/tip-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Tip Calculator — Split the Bill &amp; Tip in Seconds | One Calculator">
+<meta name="twitter:description" content="Free tip calculator: enter your bill, pick a tip percentage, and split the total evenly between everyone at the table. Fast, no signup, works on any device.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Tip Calculator",
+  "description": "Free tip calculator: enter your bill, pick a tip percentage, and split the total evenly between everyone at the table. Fast, no signup, works on any device.",
+  "url": "https://onecalculator.site/tools/tip-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/tip-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › Free Tip Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Free Tip Calculator</h1>
+  <p class="lede">Enter the bill, pick a tip percentage, and split the total evenly between everyone at the table — in seconds.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="bill">Bill amount ($)</label><input id="bill" type="number" value="100" min="0" step="0.01" oninput="calc()"></div>
+      <div class="field"><label for="people">Number of people</label><input id="people" type="number" value="1" min="1" step="1" oninput="calc()"></div>
+    </div>
+    <div class="field">
+      <label>Tip percentage</label>
+      <div class="tip-btns" id="tipBtns">
+        <button type="button" data-pct="15">15%</button>
+        <button type="button" data-pct="18">18%</button>
+        <button type="button" data-pct="20" class="active">20%</button>
+        <button type="button" data-pct="25">25%</button>
+      </div>
+      <label for="customPct" style="font-weight:600;font-size:.95rem">Or enter a custom %</label>
+      <input id="customPct" type="number" value="20" min="0" step="1" oninput="setCustom(this.value)">
+    </div>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#tip-calculator">Embed this calculator on your site — free</a></p>
+<div class="results show" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Each person pays</div>
+      <div class="big" id="rPer">$0.00</div>
+      <table>
+        <tr><td>Tip amount (<span id="rPctLbl">20</span>%)</td><td id="rTip">$0.00</td></tr>
+        <tr><td>Total bill with tip</td><td id="rTotal">$0.00</td></tr>
+        <tr><td>Split between</td><td id="rPeople">1 person</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Tip = bill × tip %. Total = bill + tip. Per-person = total ÷ number of people. Everything updates live as you type — no calculate button needed.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Tip = bill × tip %. Total = bill + tip. Per-person share = total ÷ number of people.</p>
+    <p><strong>Worked example:</strong> An $86 bill with a 20% tip: tip $17.20, total $103.20, and split 4 ways that is $25.80 per person.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>The bill lands and the table needs tip, total and per-person amounts without a phone-argument.</li><li>You are splitting unevenly — one person had the lobster — and need a fair framework fast.</li><li>Takeout, bar or delivery norms differ from sit-down and you want the math for a chosen percent.</li><li>You are checking what 'just add tax' mental shortcuts get wrong.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the bill amount.</li><li>Choose the tip percent (the presets cover the standard 15/18/20/25%).</li><li>Set the number of people splitting.</li><li>Read tip, total and each person's share.</li><li>Round your own share up if you ordered the extra appetizer — the table will notice.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Bill amount</strong></td><td style="padding:6px 8px">The check total (pre-tip)</td><td style="padding:6px 8px">Use the pre-tax subtotal for the classic method</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Tip %</strong></td><td style="padding:6px 8px">The rate you choose</td><td style="padding:6px 8px">15% standard, 18–20% good service, 25%+ generous</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>People</strong></td><td style="padding:6px 8px">Ways the total splits</td><td style="padding:6px 8px">Even split assumed</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>An $86.40 bill at 20% split three ways: the tip is $17.28, the total $103.68, and each person owes $34.56. The classic shortcut — double the tax on a ~10% tax bill — lands within a dollar of the 20% figure, which is why it survives as a rule of thumb.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What is the standard tip at a restaurant?</h3>
+    <p>In the US, 18–20% is the standard for good sit-down service, 15% for adequate service, and 20–25% for exceptional service. For bars, $1–2 per drink is typical.</p>
+    <h3>Should we split the bill evenly or itemize?</h3>
+    <p>Even splits are fastest and fairest when everyone ordered similarly. If one person ordered far more, itemize their share first, then split the rest evenly.</p>
+    <h3>Do I tip on the pre-tax or post-tax amount?</h3>
+    <p>Traditionally you tip on the pre-tax subtotal, though many people tip on the total for simplicity. The difference is small — pick one and stay consistent.</p>
+    <h3>Do I tip on the pre-tax or post-tax amount?</h3>
+    <p>Tradition says pre-tax subtotal; many people tip on the total for simplicity. On an $86.40 bill with 8% tax the difference at 20% is about $1.28 — consistency and generosity matter more than the convention.</p>
+    <h3>What about tipping on takeout or coffee?</h3>
+    <p>Customs have shifted toward small tips (10% or a dollar or two) for counter service, but they remain optional in a way table service is not — no server is working your table for a sub-minimum tipped wage. Set the percent here to whatever you decide; the math is neutral.</p>
+  </div>
+
+  
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="sales-tax-calculator.html">Sales Tax Calculator</a></li>
+    <li><a href="discount-calculator.html">Discount Calculator</a></li>
+    <li><a href="unit-price-calculator.html">Unit Price Calculator</a></li>
+    <li><a href="freelance-rate-calculator.html">Freelance Hourly Rate Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});}
+let pct=20;
+function pick(p,btn){
+  pct=p;
+  document.getElementById('customPct').value=p;
+  document.querySelectorAll('#tipBtns button').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  calc();
+}
+function setCustom(v){
+  pct=Math.max(+v||0,0);
+  document.querySelectorAll('#tipBtns button').forEach(b=>b.classList.toggle('active',+b.dataset.pct===pct));
+  calc();
+}
+document.querySelectorAll('#tipBtns button').forEach(b=>b.addEventListener('click',()=>pick(+b.dataset.pct,b)));
+function calc(){
+  const bill=Math.max(+document.getElementById('bill').value||0,0);
+  const people=Math.max(Math.round(+document.getElementById('people').value||1),1);
+  const tip=bill*pct/100, total=bill+tip, per=total/people;
+  document.getElementById('rTip').textContent=fmt(tip);
+  document.getElementById('rTotal').textContent=fmt(total);
+  document.getElementById('rPer').textContent=fmt(per);
+  document.getElementById('rPctLbl').textContent=pct;
+  document.getElementById('rPeople').textContent=people+(people===1?' person':' people');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

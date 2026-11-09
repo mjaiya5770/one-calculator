@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Salary Raise Calculator — New Salary & Per-Paycheck Amount | One Calculator</title>
+<meta name="description" content="Free salary raise calculator: enter your current salary and raise percent to see your new salary, raise amount, and what it means per paycheck. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/salary-raise-calculator.html">
+<meta property="og:title" content="Free Salary Raise Calculator — New Salary &amp; Per-Paycheck Amount | One Calculator">
+<meta property="og:description" content="Free salary raise calculator: enter your current salary and raise percent to see your new salary, raise amount, and what it means per paycheck. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/salary-raise-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Salary Raise Calculator — New Salary &amp; Per-Paycheck Amount | One Calculator">
+<meta name="twitter:description" content="Free salary raise calculator: enter your current salary and raise percent to see your new salary, raise amount, and what it means per paycheck. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Salary Raise Calculator",
+  "description": "Free salary raise calculator: enter your current salary and raise percent to see your new salary, raise amount, and what it means per paycheck. No signup.",
+  "url": "https://onecalculator.site/tools/salary-raise-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/salary-raise-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-debt-money-tools">Debt & money tools</a> › Salary Raise Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Salary Raise Calculator</h1>
+  <p class="lede">Got a raise offer? Enter your current salary and the raise percentage to see your new salary, the dollar increase, and what lands in each paycheck.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="sal">Current annual salary ($)</label><input id="sal" type="number" value="75000" min="0"></div>
+      <div class="field"><label for="pct">Raise (%)</label><input id="pct" type="number" value="4" step="0.1" min="0"></div>
+      <div class="field"><label for="freq">Pay frequency</label><select id="freq"><option value="52">Weekly</option><option value="26" selected>Biweekly</option><option value="24">Twice monthly</option><option value="12">Monthly</option></select></div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate raise</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#salary-raise-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">New annual salary</div>
+      <div class="big" id="rNew">$0</div>
+      <table>
+        <tr><td>Annual raise amount</td><td id="rAmt">$0</td></tr>
+        <tr><td>New amount per paycheck</td><td id="rCheck">$0</td></tr>
+        <tr><td>Extra per paycheck (gross)</td><td id="rExtra">$0</td></tr>
+        <tr><td>New hourly equivalent</td><td id="rHr">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">New salary = <strong>current salary × (1 + raise % ÷ 100)</strong>. Per-paycheck amounts divide by your pay frequency (26 for biweekly, 12 for monthly, etc.), and the hourly equivalent assumes a standard 2,080-hour work year. All figures are gross, before taxes and deductions.</p>
+    <div class="note">These are gross figures. Your actual take-home increase will be smaller after federal, state, and FICA taxes.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Raise amount = current salary × raise %. New salary = current salary + raise amount. Gross per paycheck = new salary ÷ paychecks per year, and the hourly equivalent = new salary ÷ 2,080 hours.</p>
+    <p><strong>Worked example:</strong> A 5% raise on $60,000 adds $3,000, for a new salary of $63,000 — that is $2,423.08 per biweekly paycheck ($115.38 more per check), or $30.29 an hour.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>Your review is coming and you want a rumoured percentage turned into an actual paycheck number before the meeting.</li><li>Two offers differ in salary and you want them compared per month, not just per year.</li><li>A cost-of-living adjustment was announced and you need to know if it keeps up with your rent increase.</li><li>You are hourly-minded and want a salaried raise expressed as an hourly equivalent to judge it fairly.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter your current annual salary, gross, from your offer letter or last payslip summary.</li><li>Enter the raise as a percentage — if you were quoted a dollar amount, divide it by your salary and multiply by 100 to get the percent.</li><li>Pick your pay frequency so the per-paycheck lines match how you are actually paid.</li><li>Read the new salary, the extra per paycheck, and the hourly equivalent (the tool divides by a 2,080-hour work year).</li><li>Remember every figure here is gross; the take-home increase will be smaller after tax and deductions.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Current annual salary</strong></td><td style="padding:6px 8px">Your gross yearly pay before the raise</td><td style="padding:6px 8px">Use the offer-letter or contract figure</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Raise percent</strong></td><td style="padding:6px 8px">The increase expressed as a percentage of current salary</td><td style="padding:6px 8px">Annual merit 3–5%; promotions often 10–20%</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Pay frequency</strong></td><td style="padding:6px 8px">How often paychecks arrive, which sets the divisor</td><td style="padding:6px 8px">Weekly 52, biweekly 26, twice monthly 24, monthly 12</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A $54,000 salary with a 7% raise, paid monthly: the raise adds $3,780 a year for a new salary of $57,780. That is $4,815.00 per monthly paycheck, which is $315.00 more per check than before, and the new salary works out to $27.78 an hour on the tool's 2,080-hour year — a useful way to see that a solid-looking percentage is about three hundred a month, not a lifestyle change.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What is a good raise percentage?</h3>
+    <p>In the US, merit raises average 3–5% per year. Promotions or job changes often bring 10–20%. Always compare against inflation so your real pay isn't shrinking.</p>
+    <h3>Should I negotiate a 3% raise?</h3>
+    <p>If inflation is 3% and your raise is 3%, your purchasing power didn't change. Aim above inflation and back it up with your contributions.</p>
+    <h3>Is a bonus better than a raise?</h3>
+    <p>A raise compounds year after year; a one-time bonus doesn't. A $3,000 raise beats a $3,000 bonus in every future year.</p>
+    <h3>My raise was quoted as a dollar amount, not a percent — how do I use this?</h3>
+    <p>Divide the dollar raise by your current salary and multiply by 100. A $2,000 raise on a $54,000 salary is about 3.7%, which is the number to enter here — and the honest way to compare a flat-dollar offer against a percentage offer from another employer.</p>
+    <h3>Why is the extra money in my first raised paycheck smaller than expected?</h3>
+    <p>Raises usually take effect partway through a pay period, so the first check blends old-rate days and new-rate days. Benefit deductions that scale with pay, such as a percentage-based retirement contribution, also rise with the salary, trimming the visible increase further.</p>
+    <h3>Does a raise change what my overtime is worth?</h3>
+    <p>For hourly staff, yes directly: overtime is normally paid at one and a half times the new hourly rate, so a raise lifts every overtime hour too. For salaried staff this tool shows the hourly equivalent of the new salary (salary divided by 2,080), which is the figure to use when comparing against an hourly offer.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>💰 Make the raise work harder</h3>
+    <p>See what investing the raise each month grows into with compound interest, or plan the goal it funds.</p>
+    <p><a class="btn" href="compound-interest-calculator.html">Try compound interest</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="hourly-salary-converter.html">Hourly to Salary Converter</a></li>
+    <li><a href="freelance-rate-calculator.html">Freelance Hourly Rate Calculator</a></li>
+    <li><a href="quarterly-tax-calculator.html">Quarterly Estimated Tax Calculator</a></li>
+    <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function fmt2(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});}
+function calc(){
+  const sal=+document.getElementById('sal').value||0,
+        pct=+document.getElementById('pct').value||0,
+        freq=+document.getElementById('freq').value||26;
+  const amt=sal*pct/100, news=sal+amt;
+  document.getElementById('rNew').textContent=fmt(news);
+  document.getElementById('rAmt').textContent='+'+fmt(amt);
+  document.getElementById('rCheck').textContent=fmt2(news/freq);
+  document.getElementById('rExtra').textContent='+'+fmt2(amt/freq);
+  document.getElementById('rHr').textContent=fmt2(news/2080)+' / hr';
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Word Counter — Words, Characters, Reading Time | One Calculator</title>
+<meta name="description" content="Free word counter: paste any text for instant word count, character count (with and without spaces), sentence and paragraph counts, and reading time. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<style>
+#wctext{min-height:220px;width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;font-size:1rem;font-family:inherit;resize:vertical}
+#wctext:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:18px}
+.stat{background:#eef7f2;border:1px solid #cde8d8;border-radius:10px;padding:12px 14px}
+.stat .v{font-size:1.5rem;font-weight:800;color:var(--accent-dark)}
+.stat .k{font-size:.82rem;color:var(--muted)}
+</style>
+<link rel="canonical" href="https://onecalculator.site/tools/word-counter.html">
+<meta property="og:title" content="Free Word Counter — Words, Characters, Reading Time | One Calculator">
+<meta property="og:description" content="Free word counter: paste any text for instant word count, character count (with and without spaces), sentence and paragraph counts, and reading time. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/word-counter.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Word Counter — Words, Characters, Reading Time | One Calculator">
+<meta name="twitter:description" content="Free word counter: paste any text for instant word count, character count (with and without spaces), sentence and paragraph counts, and reading time. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Word Counter",
+  "description": "Free word counter: paste any text for instant word count, character count (with and without spaces), sentence and paragraph counts, and reading time. No signup.",
+  "url": "https://onecalculator.site/tools/word-counter.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/word-counter.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › Free Word Counter</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Free Word Counter</h1>
+  <p class="lede">Paste or type your text below — word count, character count, sentences, paragraphs, and reading time update live as you type.</p>
+
+  <div class="card nn-calc-card">
+    <div class="field">
+      <label for="wctext">Your text</label>
+      <textarea id="wctext" placeholder="Start typing or paste your text here…" oninput="count()"></textarea>
+    </div>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#word-counter">Embed this calculator on your site — free</a></p>
+<div class="stat-grid">
+      <div class="stat"><div class="v" id="sWords">0</div><div class="k">Words</div></div>
+      <div class="stat"><div class="v" id="sChars">0</div><div class="k">Characters</div></div>
+      <div class="stat"><div class="v" id="sNoSpace">0</div><div class="k">Characters (no spaces)</div></div>
+      <div class="stat"><div class="v" id="sSent">0</div><div class="k">Sentences</div></div>
+      <div class="stat"><div class="v" id="sPara">0</div><div class="k">Paragraphs</div></div>
+      <div class="stat"><div class="v" id="sRead">0 sec</div><div class="k">Reading time</div></div>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Words are counted as groups of non-whitespace characters. Sentences split on <strong>. ! ?</strong> punctuation, paragraphs split on blank lines, and reading time assumes an average adult pace of <strong>200 words per minute</strong>. All counting happens in your browser — your text never leaves the page.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>Method &amp; worked example</h2>
+    <p><strong>Method:</strong> Words are counted as runs of non-whitespace characters — the rule most word processors use. Characters are counted with and without spaces, sentences are split on ., ! and ?, paragraphs on blank lines, and reading time is estimated at 200 words per minute.</p>
+    <p><strong>Worked example:</strong> “The quick brown fox jumps over the lazy dog.” counts as 9 words, 44 characters (36 without spaces) and 1 sentence — about 3 seconds of reading time.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>An essay, application or assignment has a hard word limit and you need the live count while you cut or pad.</li><li>A post, listing or bio is limited by characters rather than words and you need to see both numbers at once.</li><li>You are timing a speech, a presentation script or a video voiceover and want the reading time before you rehearse it.</li><li>An editor, teacher or client quoted a length and you want to check the draft against it before sending.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Paste or type your text into the box — every statistic updates live as you type, with nothing to submit.</li><li>Read the Words figure for word limits, and Characters for character limits; Characters (no spaces) is the figure some forms and print specs ask for instead.</li><li>Check Sentences and Paragraphs when a structure rule applies, such as a paragraph count for a school assignment.</li><li>Use Reading time to judge spoken or read-aloud length — it is worked out at 200 words per minute.</li><li>Edit in place and watch the numbers move; when you cut for a limit, trim whole sentences rather than shaving words everywhere.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Your text</strong></td><td style="padding:6px 8px">Any text you paste or type — an essay, post, speech or draft</td><td style="padding:6px 8px">A single sentence up to a full manuscript; counting runs in the page, so length is not uploaded anywhere</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>Paste in this exact text: Maya finished her science project on Tuesday. She built a small volcano that erupted with baking soda and vinegar! The counter reports 19 words, 114 characters, 96 characters with spaces removed, 2 sentences and 1 paragraph, with a reading time of 6 sec at the tool's 200-words-per-minute pace. Note that the exclamation mark ends the second sentence just as a period ends the first — both count as sentence breaks here.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What counts as a word?</h3>
+    <p>Any group of characters separated by spaces or line breaks — "don't" counts as one word, "well-known" counts as one word. This matches how most editors and word processors count.</p>
+    <h3>How is reading time calculated?</h3>
+    <p>Word count ÷ 200 words per minute, the widely used average adult reading speed. A 1,000-word article reads as about 5 minutes.</p>
+    <h3>What are common word limits I should know?</h3>
+    <p>A tweet/X post allows 280 characters. College application essays are often 250–650 words. Blog posts perform best around 1,000–2,000 words, and a typical novel runs 70,000–100,000 words.</p>
+    <h3>How are paragraphs counted — is a blank line required?</h3>
+    <p>No blank line is needed. The counter splits the text at every line break and counts each non-empty piece as a paragraph, so pressing Enter once already starts a new paragraph. Pasted text that arrives as one solid block counts as a single paragraph no matter how long it runs.</p>
+    <h3>Why can the sentence count be higher than the sentences I wrote?</h3>
+    <p>Sentences are counted by splitting on periods, exclamation marks and question marks, and the counter cannot tell a sentence-ending period from the period in an abbreviation or a decimal. Text containing forms like Mr. or a figure like 2.5 will count extra sentence pieces — for ordinary prose without abbreviations the count matches what you would count by hand.</p>
+    <h3>What exactly does Characters (no spaces) remove?</h3>
+    <p>Every whitespace character — spaces, line breaks and tabs — is stripped before counting, and everything else stays, including punctuation. That is why the no-spaces figure is the one to use for specs that price or limit text by its visible characters, while the main Characters figure, spaces included, is the one most form limits mean.</p>
+  </div>
+
+  
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="password-generator.html">Password Generator</a></li>
+    <li><a href="time-duration-calculator.html">Time Duration Calculator</a></li>
+    <li><a href="gpa-calculator.html">GPA Calculator</a></li>
+    <li><a href="freelance-rate-calculator.html">Freelance Hourly Rate Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function count(){
+  const t=document.getElementById('wctext').value;
+  const words=(t.trim().match(/\S+/g)||[]).length;
+  const chars=t.length;
+  const noSpace=t.replace(/\s/g,'').length;
+  const sent=t.split(/[.!?]+/).filter(s=>s.trim().length>0).length;
+  const para=t.split(/\n+/).filter(s=>s.trim().length>0).length;
+  const secs=Math.round(words/200*60);
+  let read;
+  if(words===0)read='0 sec';
+  else if(secs<60)read=secs+' sec';
+  else read=Math.floor(secs/60)+' min '+(secs%60)+' sec';
+  document.getElementById('sWords').textContent=words.toLocaleString('en-US');
+  document.getElementById('sChars').textContent=chars.toLocaleString('en-US');
+  document.getElementById('sNoSpace').textContent=noSpace.toLocaleString('en-US');
+  document.getElementById('sSent').textContent=sent.toLocaleString('en-US');
+  document.getElementById('sPara').textContent=para.toLocaleString('en-US');
+  document.getElementById('sRead').textContent=read;
+}
+count();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

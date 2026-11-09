@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Business Loan Calculator — Monthly Payment & Total Cost | One Calculator</title>
+<meta name="description" content="Free business loan calculator: estimate monthly payments, total interest, and true loan cost including origination fees. Compare terms and rates before you borrow. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/business-loan-calculator.html">
+<meta property="og:title" content="Free Business Loan Calculator — Monthly Payment &amp; Total Cost | One Calculator">
+<meta property="og:description" content="Free business loan calculator: estimate monthly payments, total interest, and true loan cost including origination fees. Compare terms and rates before you borrow. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/business-loan-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Business Loan Calculator — Monthly Payment &amp; Total Cost | One Calculator">
+<meta name="twitter:description" content="Free business loan calculator: estimate monthly payments, total interest, and true loan cost including origination fees. Compare terms and rates before you borrow. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Business Loan Calculator",
+  "description": "Free business loan calculator: estimate monthly payments, total interest, and true loan cost including origination fees. Compare terms and rates before you borrow. No signup.",
+  "url": "https://onecalculator.site/tools/business-loan-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/business-loan-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-small-business-tools">Small business tools</a> › Business Loan Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Business Loan Calculator</h1>
+  <p class="lede">Estimate your monthly payment, total interest, and true cost of a business loan — including origination fees. Compare term lengths and rates before you sign.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="amount">Loan amount ($)</label><input id="amount" type="number" value="100000" min="0"></div>
+      <div class="field"><label for="rate">Annual interest rate (%)</label><input id="rate" type="number" value="8" step="0.01" min="0"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="term">Term (years)</label><select id="term"><option>1</option><option>3</option><option selected>5</option><option>7</option><option>10</option></select></div>
+      <div class="field"><label for="fee">Origination fee ($) — optional</label><input id="fee" type="number" value="1000" min="0">
+        <div class="hint">One-time fee charged by the lender, often 1–5% of the loan. Added to your total cost below.</div>
+      </div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate payment</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#business-loan-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Estimated monthly payment</div>
+      <div class="big" id="rPay">$0</div>
+      <table>
+        <tr><td>Total interest paid</td><td id="rInt">$0</td></tr>
+        <tr><td>Origination fee</td><td id="rFee">$0</td></tr>
+        <tr><td>Total of all payments</td><td id="rTot">$0</td></tr>
+        <tr><td>Total cost (payments + fee)</td><td id="rCost">$0</td></tr>
+        <tr><td>Number of payments</td><td id="rN">0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Your monthly payment uses the standard amortization formula: <strong>M = P × r(1+r)<sup>n</sup> / ((1+r)<sup>n</sup> − 1)</strong>, where P is the loan amount, r the monthly rate, and n the number of payments. Total interest is all payments minus principal; the origination fee is added on top for your true total cost.</p>
+    <div class="note">Estimates only — not a loan offer. Actual terms depend on credit, revenue history, collateral, and lender policies.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Monthly payment M = P × r(1+r)<sup>n</sup> ÷ ((1+r)<sup>n</sup> − 1), with r the monthly interest rate and n the term in months. Total interest = payment × n − principal, and the total borrowing cost adds the origination fee to all the payments.</p>
+    <p><strong>Worked example:</strong> Borrow $100,000 at 8% for 5 years: the payment is $2,028 a month and total interest is $21,658. With a $1,500 origination fee, the all-in cost of the loan is $123,158.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You have a term sheet for equipment, a vehicle or working capital and want the real monthly payment before cash flow commits.</li><li>A lender quotes the rate but buries an origination fee in the closing paperwork, and you want the all-in cost in one number.</li><li>You are choosing between a short term that strains monthly cash flow and a long term that quietly doubles the interest.</li><li>The bank wants a decision this week and you need to test the offer against a second lender's numbers side by side.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the amount you need to borrow, not the amount a lender offered to stretch to.</li><li>Enter the annual rate from the term sheet.</li><li>Pick the term in years — the options run 1, 3, 5, 7 and 10.</li><li>Add the origination fee in dollars; if the lender quotes it as a percentage, multiply it out first.</li><li>Compare the total cost line (payments plus fee) across offers, not just the monthly payment.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Loan amount</strong></td><td style="padding:6px 8px">Principal you are borrowing for the business</td><td style="padding:6px 8px">$10k for a single vehicle to $500k+ for premises or plant</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Annual interest rate</strong></td><td style="padding:6px 8px">The fixed yearly rate on the term sheet</td><td style="padding:6px 8px">Strong credit and collateral: mid single digits; newer firms often 9–15%+</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Term (years)</strong></td><td style="padding:6px 8px">Repayment length, chosen from the list</td><td style="padding:6px 8px">1, 3, 5, 7 or 10 years</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Origination fee</strong></td><td style="padding:6px 8px">One-time lender fee, charged at closing</td><td style="padding:6px 8px">Often 1–5% of the loan amount</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A bakery borrows $60,000 at 9% for 3 years with a $900 origination fee. The payment is $1,907.98 a month across 36 payments, total interest comes to $8,687.42, and the payments add up to $68,687.42. Add the fee and the loan's all-in cost is $69,587.42 — the figure to weigh against what the new equipment earns, not the $60,000 headline.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How do business loan rates work?</h3>
+    <p>Rates are set from your credit profile, business revenue, time in business, and collateral. Stronger profiles earn lower rates; riskier borrowers pay more. Fixed-rate loans keep the same payment for the whole term.</p>
+    <h3>Shorter or longer term — which is better?</h3>
+    <p>Shorter terms mean higher monthly payments but far less total interest. Longer terms ease cash flow but cost much more overall. Compare both above and pick the shortest term your monthly budget can handle.</p>
+    <h3>SBA loan vs. bank loan — what's the difference?</h3>
+    <p>SBA-backed loans typically offer lower rates and longer terms but take weeks or months to close with heavy paperwork. Conventional bank loans close faster but usually carry higher rates and stricter requirements. This calculator works for either once you have the numbers.</p>
+    <h3>What does the origination fee change, and what does it leave alone?</h3>
+    <p>It leaves the monthly payment alone — the payment is worked out from the amount, rate and term only. What the fee changes is the true cost: it is added on top of all the payments in the total cost line, so two loans with identical payments can still differ by thousands once their fees are counted.</p>
+    <h3>Which charges count as an origination fee here?</h3>
+    <p>Any one-time charge the lender takes for making the loan: origination or underwriting fees, documentation and processing charges, and discount points converted to dollars. Ongoing costs like insurance or a required deposit account are not origination fees — leave those out and judge them separately.</p>
+    <h3>Why compare total cost instead of the monthly payment?</h3>
+    <p>Because a longer term can make an expensive loan look cheap month to month while adding years of interest. The payment tells you whether the business can carry the loan; the total cost tells you what the loan actually charges for the money. An offer should win on both, or you should know exactly which one you are trading away.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>📈 Borrow smart, plan smarter</h3>
+    <p>Model what that loan could earn if invested instead with the compound interest calculator.</p>
+    <p><a class="btn" href="compound-interest-calculator.html">Compound Interest Calculator</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="mortgage-calculator.html">Mortgage Payment Calculator</a></li>
+    <li><a href="break-even-calculator.html">Break-Even Calculator</a></li>
+    <li><a href="roi-calculator.html">ROI Calculator</a></li>
+    <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function calc(){
+  const P=+document.getElementById('amount').value||0,
+        r=(+document.getElementById('rate').value||0)/100/12,
+        n=(+document.getElementById('term').value||5)*12,
+        fee=+document.getElementById('fee').value||0;
+  const pay=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n;
+  const totInt=Math.max(pay*n-P,0);
+  document.getElementById('rPay').textContent=fmt(pay);
+  document.getElementById('rInt').textContent=fmt(totInt);
+  document.getElementById('rFee').textContent=fmt(fee);
+  document.getElementById('rTot').textContent=fmt(pay*n);
+  document.getElementById('rCost').textContent=fmt(pay*n+fee);
+  document.getElementById('rN').textContent=n;
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free LLM API Token Cost Estimator — GPT-5, Claude & Gemini Prices Compared | One Calculator</title>
+<meta name="description" content="Free LLM API cost estimator: price the same workload across GPT-5, GPT-5 mini, Claude Sonnet, Claude Opus and Gemini models with published per-token prices, cached-input discounts, and a words-to-tokens converter.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/llm-api-cost-estimator.html">
+<meta property="og:title" content="Free LLM API Token Cost Estimator — GPT-5, Claude & Gemini Prices Compared | One Calculator">
+<meta property="og:description" content="Free LLM API cost estimator: price the same workload across GPT-5, GPT-5 mini, Claude Sonnet, Claude Opus and Gemini models with published per-token prices, cached-input discounts, and a words-to-tokens converter.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/llm-api-cost-estimator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free LLM API Token Cost Estimator — GPT-5, Claude & Gemini Prices Compared | One Calculator">
+<meta name="twitter:description" content="Free LLM API cost estimator: price the same workload across GPT-5, GPT-5 mini, Claude Sonnet, Claude Opus and Gemini models with published per-token prices, cached-input discounts, and a words-to-tokens converter.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "LLM API Token Cost Estimator",
+  "description": "Free LLM API cost estimator: price the same workload across GPT-5, GPT-5 mini, Claude Sonnet, Claude Opus and Gemini models with published per-token prices, cached-input discounts, and a words-to-tokens converter.",
+  "url": "https://onecalculator.site/tools/llm-api-cost-estimator.html",
+  "applicationCategory": "SoftwareApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does GPT-5 cost for 1,000 requests a day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At 2,000 input and 500 output tokens per request: $0.0075 per request, $7.50 a day, about $225 a month. The same workload on GPT-5 mini is $0.0015 per request \u2014 $45 a month. Output tokens dominate: they cost 8\u00d7 the input price on GPT-5."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are output tokens so much more expensive than input?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Input is processed in one parallel pass; output is generated one token at a time, each step re-running the model. Every provider prices that difference in \u2014 output runs 4\u20138\u00d7 the input price on current flagship models. Shortening outputs is usually the biggest single saving available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many tokens is a page of text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A typical page is about 500\u2013600 words, and at \u22480.75 words per token that is roughly 700\u2013800 tokens. Ten pages of source material pasted into every prompt is about 7,333 tokens of input per request \u2014 which is why long-context habits get expensive fast."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does prompt caching actually save?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If 80% of your input is a repeated system prompt or document, the cached share is billed at the cached price \u2014 $0.125 instead of $1.25 per 1M on GPT-5. On a 10,000-token input that is 8,000 tokens at the cached rate, cutting the input cost of each request by about 72%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a cheaper model always the better deal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only if it finishes the job in one call. A mini model that needs two retries or a second verification pass can cost more than one flagship call. Compare cost per successful task, not cost per request \u2014 run both on your real workload with the comparison table here."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do these prices include batch discounts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Batch APIs (OpenAI Batch, Anthropic Message Batches, Gemini batch mode) typically cut prices by about 50% in exchange for asynchronous processing within 24 hours. If your workload is not interactive, halve the figures here as a first approximation and confirm on the provider page."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/llm-api-cost-estimator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-freelancer-tools">Freelancer tools</a> › LLM API Token Cost Estimator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">LLM API Token Cost Estimator</h1>
+  <p class="lede">API bills are just arithmetic — tokens in, tokens out, times a published price. Enter your workload once and see what it costs on six current models side by side, with the cached-input discount and a words-to-tokens converter built in.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="model">Model</label><select id="model"></select></div>
+      <div class="field"><label for="reqday">Requests per day</label><input id="reqday" type="number" value="1000" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="intok">Input tokens per request</label><input id="intok" type="number" value="2000" min="0" step="any"></div>
+      <div class="field"><label for="outtok">Output tokens per request</label><input id="outtok" type="number" value="500" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="cached">Share of input that is cached (%)</label><input id="cached" type="number" value="0" min="0" max="100" step="any"></div>
+      <div class="field"><label for="words">Or estimate tokens from words</label><input id="words" type="number" value="" min="0" step="any" placeholder="e.g. 1500 words ≈ 2,000 tokens"></div>
+    </div>
+    <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Prices below are the providers' published list prices per 1M tokens, as of November 2026 — check your provider's pricing page before budgeting, as prices change. English text runs about 0.75 words per token, so tokens ≈ words ÷ 0.75. Type a word count and it fills the input-tokens box for you.</p>
+    <div class="table-scroll"><table class="breakdown"><thead><tr><th>Model</th><th>Input / 1M</th><th>Cached input / 1M</th><th>Output / 1M</th></tr></thead><tbody>
+    <tr><td>GPT-5</td><td>$1.25</td><td>$0.125</td><td>$10.00</td></tr>
+    <tr><td>GPT-5 mini</td><td>$0.25</td><td>$0.025</td><td>$2.00</td></tr>
+    <tr><td>Claude Sonnet 4.5</td><td>$3.00</td><td>$0.30</td><td>$15.00</td></tr>
+    <tr><td>Claude Opus 4.5</td><td>$5.00</td><td>$0.50</td><td>$25.00</td></tr>
+    <tr><td>Gemini 2.5 Pro</td><td>$1.25</td><td>—</td><td>$10.00</td></tr>
+    <tr><td>Gemini 2.5 Flash</td><td>$0.30</td><td>—</td><td>$2.50</td></tr>
+    </tbody></table></div>
+    <p style="color:var(--muted);font-size:.92rem">Gemini 2.5 Pro is shown at its standard-context price (prompts up to 200K tokens); longer contexts price higher. Gemini models offer cached-input pricing on explicit cached contexts — enter an effective cached share and the standard input price applies to it here, so treat Gemini rows with caching as approximate. Batch/off-peak APIs (typically 50% off) and fine-tuning are not modeled.</p>
+
+    <button class="btn" onclick="calc()">Estimate API cost</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#llm-api-cost-estimator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Estimated monthly cost</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Cost per request = (input tokens × input price + cached input tokens × cached price + output tokens × output price) ÷ 1,000,000. Daily cost is per-request cost × requests per day; monthly uses 30 days and yearly 365. The comparison table reprices your exact workload on every model, which is the only honest way to compare — a model with cheap input but expensive output wins on summarization and loses on generation. Caching matters because a repeated system prompt or document can be served at the cached-input price: on GPT-5 that is a 90% discount on the cached share.</p>
+    <div class="note">Estimates only, from published list prices as of November 2026 — providers change prices and run promotions, and your bill will also reflect retries, failed calls and any minimums. The words-to-tokens rule (≈0.75 words per token) is an English average; code, JSON and non-English text tokenize less efficiently.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Cost per request = (fresh input tokens × input price + cached input tokens × cached price + output tokens × output price) ÷ 1,000,000 — prices are per 1M tokens. Daily = per request × requests per day; monthly = daily × 30; yearly = daily × 365. Tokens from words: tokens ≈ words ÷ 0.75 for typical English.</p>
+    <p><strong>Worked example:</strong> GPT-5 at 2,000 input and 500 output tokens per request: (2,000 × $1.25 + 500 × $10.00) ÷ 1M = $0.0075 per request. At 1,000 requests a day that is $7.50 a day, $225.00 a month, $2,737.50 a year.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are pricing an AI feature and need the monthly API bill before you build it</li><li>Your provider bill surprised you and you want to see which lever — input, output, caching — actually moves it</li><li>You are choosing between a flagship model and its mini sibling for a high-volume workload</li><li>You are budgeting a chatbot, summarizer or extraction pipeline for a client proposal</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Pick the model you are costing — the table reprices all six regardless.</li><li>Enter input tokens per request (or type a word count and let the converter fill it).</li><li>Enter output tokens — be honest; this is the expensive side of the bill.</li><li>Set the cached share if you reuse a system prompt or document across calls.</li><li>Enter requests per day and read per-request, monthly and yearly costs.</li><li>Compare the same workload down the model table before committing to a flagship.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Model</strong></td><td style="padding:6px 8px">Which published price row to cost against; the comparison table prices all six anyway.</td><td style="padding:6px 8px">Mini/Flash class for volume; flagship class for hard tasks</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Input tokens per request</strong></td><td style="padding:6px 8px">Everything you send: system prompt, context, history, the user's message.</td><td style="padding:6px 8px">200–500 chat; 2,000–10,000 with documents attached</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Output tokens per request</strong></td><td style="padding:6px 8px">What the model writes back — priced 4–8× input on flagship models.</td><td style="padding:6px 8px">300–800 typical; cap it in your API settings</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Cached share %</strong></td><td style="padding:6px 8px">The repeated part of your input (system prompt, documents) billed at the cached price.</td><td style="padding:6px 8px">0% if you do not cache; 50–90% for prompt-heavy apps</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Requests per day</strong></td><td style="padding:6px 8px">Your real call volume, including retries if they are common.</td><td style="padding:6px 8px">Multiply the table's per-request cost by this</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A support-chat workload on Claude Sonnet 4.5: 3,000 input and 800 output tokens per conversation, 500 conversations a day. Per conversation: (3,000 × $3.00 + 800 × $15.00) ÷ 1M = $0.0210. That is $10.50 a day and $315.00 a month — output tokens are $12.00 of every $21.00 in that per-request cost, so trimming the model's reply length is worth more than negotiating the input side.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How much does GPT-5 cost for 1,000 requests a day?</h3>
+    <p>At 2,000 input and 500 output tokens per request: $0.0075 per request, $7.50 a day, about $225 a month. The same workload on GPT-5 mini is $0.0015 per request — $45 a month. Output tokens dominate: they cost 8× the input price on GPT-5.</p>
+    <h3>Why are output tokens so much more expensive than input?</h3>
+    <p>Input is processed in one parallel pass; output is generated one token at a time, each step re-running the model. Every provider prices that difference in — output runs 4–8× the input price on current flagship models. Shortening outputs is usually the biggest single saving available.</p>
+    <h3>How many tokens is a page of text?</h3>
+    <p>A typical page is about 500–600 words, and at ≈0.75 words per token that is roughly 700–800 tokens. Ten pages of source material pasted into every prompt is about 7,333 tokens of input per request — which is why long-context habits get expensive fast.</p>
+    <h3>What does prompt caching actually save?</h3>
+    <p>If 80% of your input is a repeated system prompt or document, the cached share is billed at the cached price — $0.125 instead of $1.25 per 1M on GPT-5. On a 10,000-token input that is 8,000 tokens at the cached rate, cutting the input cost of each request by about 72%.</p>
+    <h3>Is a cheaper model always the better deal?</h3>
+    <p>Only if it finishes the job in one call. A mini model that needs two retries or a second verification pass can cost more than one flagship call. Compare cost per successful task, not cost per request — run both on your real workload with the comparison table here.</p>
+    <h3>Do these prices include batch discounts?</h3>
+    <p>No. Batch APIs (OpenAI Batch, Anthropic Message Batches, Gemini batch mode) typically cut prices by about 50% in exchange for asynchronous processing within 24 hours. If your workload is not interactive, halve the figures here as a first approximation and confirm on the provider page.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>🎬 Building a creator business?</h3>
+    <p>The Creator ROI Hub collects the money tools for people who publish for a living — platform earnings, sponsorship rates and the fees in between.</p>
+    <p><a class="btn" href="../creator-roi-calculators.html">Open the Creator ROI Hub</a></p>
+    <h3>How do I estimate tokens for a document I paste into every prompt?</h3>
+    <p>Count its words and divide by 0.75 — a 6,000-word policy document is about 8,000 tokens. If it rides along on every request, caching that block is usually the single biggest cost cut available, at 90% off the cached share on GPT-5 pricing.</p>
+    <h3>Why does the same app cost more on Claude than on GPT-5 here?</h3>
+    <p>At these list prices, Sonnet's input ($3.00) is 2.4× GPT-5's ($1.25) and its output ($15.00) is 1.5× ($10.00). Price is only half the comparison, though — if one model resolves the task in a single call and the other needs a retry loop, the retry loop is the real price.</p>
+  </div>
+</main>
+
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="payment-fee-calculator.html">Payment Fee Calculator</a></li>
+    <li><a href="youtube-earnings-calculator.html">YouTube Earnings Calculator</a></li>
+    <li><a href="freelance-rate-calculator.html">Freelance Rate Calculator</a></li>
+    <li><a href="../creator-roi-calculators.html">Creator ROI Hub</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function sv(id){return document.getElementById(id).value;}
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmt0(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});}
+function fmt1(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function money(n){return '$'+fmt(n);}
+function money0(n){return '$'+fmt0(Math.round(n));}
+function ceilg(x){return Math.ceil(x-1e-9);}
+
+/*PURE-BEGIN*/
+var MODELS=[
+ {id:'gpt5',name:'GPT-5',pin:1.25,pcache:0.125,pout:10.00},
+ {id:'gpt5mini',name:'GPT-5 mini',pin:0.25,pcache:0.025,pout:2.00},
+ {id:'sonnet',name:'Claude Sonnet 4.5',pin:3.00,pcache:0.30,pout:15.00},
+ {id:'opus',name:'Claude Opus 4.5',pin:5.00,pcache:0.50,pout:25.00},
+ {id:'gempro',name:'Gemini 2.5 Pro',pin:1.25,pcache:null,pout:10.00},
+ {id:'gemflash',name:'Gemini 2.5 Flash',pin:0.30,pcache:null,pout:2.50}
+];
+function llmCost(m,inTok,outTok,cachedPct,reqDay){
+  var ct=inTok*Math.min(100,Math.max(0,cachedPct))/100, fresh=inTok-ct;
+  var pc=(m.pcache===null?m.pin:m.pcache);
+  var per=(fresh*m.pin+ct*pc+outTok*m.pout)/1000000;
+  return {per:per,day:per*reqDay,month:per*reqDay*30,year:per*reqDay*365};
+}
+/*PURE-END*/
+var sel=document.getElementById('model');
+MODELS.forEach(function(m){var o=document.createElement('option');o.value=m.id;o.textContent=m.name;sel.appendChild(o);});
+document.getElementById('words').addEventListener('input',function(){
+  var w=+this.value||0; if(w>0){document.getElementById('intok').value=Math.round(w/0.75);} calc();
+});
+function calc(){
+  var m=MODELS.filter(function(x){return x.id===sv('model');})[0]||MODELS[0];
+  var r=llmCost(m,Math.max(0,v('intok')),Math.max(0,v('outtok')),v('cached'),Math.max(0,v('reqday')));
+  document.getElementById('rMain').textContent=money(r.month)+' / month';
+  document.getElementById('verdict').textContent=m.name+' at '+fmt0(v('reqday'))+' requests a day costs about '+money(r.per)+' per request — '+money(r.day)+' a day, '+money(r.year)+' a year.';
+  var h=row('Cost per request',money(r.per))+row('Per day',money(r.day))+row('Per month (30 days)',money(r.month))+row('Per year (365 days)',money(r.year));
+  h+='<tr><td colspan="2"><strong>Same workload on every model (monthly)</strong></td></tr>';
+  MODELS.forEach(function(mm){var rr=llmCost(mm,Math.max(0,v('intok')),Math.max(0,v('outtok')),v('cached'),Math.max(0,v('reqday')));h+=row(mm.name,money(rr.month)+' / mo ('+money(rr.per)+' per request)');});
+  document.getElementById('rows').innerHTML=h;
+  document.getElementById('results').classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

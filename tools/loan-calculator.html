@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Loan Calculator — Solve for Payment, Amount, Term or Rate | One Calculator</title>
+<meta name="description" content="Free loan calculator that solves for any variable: monthly payment, loan amount, term or interest rate. Includes extra-payment impact, total interest and payoff date. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/loan-calculator.html">
+<meta property="og:title" content="Free Loan Calculator — Solve for Payment, Amount, Term or Rate | One Calculator">
+<meta property="og:description" content="Free loan calculator that solves for any variable: monthly payment, loan amount, term or interest rate. Includes extra-payment impact, total interest and payoff date. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/loan-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Loan Calculator — Solve for Payment, Amount, Term or Rate | One Calculator">
+<meta name="twitter:description" content="Free loan calculator that solves for any variable: monthly payment, loan amount, term or interest rate. Includes extra-payment impact, total interest and payoff date. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Loan Calculator",
+  "description": "Free loan calculator that solves for any variable: monthly payment, loan amount, term or interest rate. Includes extra-payment impact, total interest and payoff date. No signup.",
+  "url": "https://onecalculator.site/tools/loan-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I find the interest rate on my loan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose \"Interest rate\" under Solve for, enter the loan amount, term and the monthly payment from your statement, and the calculator backs out the rate that produces that payment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do extra payments really save?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A lot, because every extra dollar goes straight to principal. On a $30,000, 6%, 5-year loan, an extra $100 a month pays the loan off about 10 months early and saves roughly $500 of interest \u2014 try it above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between APR and interest rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The interest rate drives the monthly payment. APR folds in most lender fees as well, so APR is the better number for comparing two loan offers. This calculator uses the interest rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this calculator handle a 0% loan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. With a 0% rate the payment is simply the amount divided by the number of months, and total interest is $0."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/loan-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-debt-money-tools">Debt & money tools</a> › Loan Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Loan Calculator</h1>
+  <p class="lede">Most loan calculators only solve for the payment. This one solves for whichever number you are missing — payment, amount, term or rate — and shows what extra payments do to your payoff date.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="solve">Solve for</label><select id="solve"><option value="payment">Monthly payment</option><option value="principal">Loan amount</option><option value="term">Loan term</option><option value="rate">Interest rate</option></select><span class="hint">The field you solve for is ignored — fill in the other three.</span></div>
+      <div class="field"><label for="extra">Extra payment ($ / mo, optional)</label><input id="extra" type="number" value="0" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="amt">Loan amount ($)</label><input id="amt" type="number" value="30000" min="0" step="any"></div>
+      <div class="field"><label for="rate">Interest rate (% / yr)</label><input id="rate" type="number" value="6" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="yrs">Term (years)</label><input id="yrs" type="number" value="5" min="0" step="any"></div>
+      <div class="field"><label for="pay">Monthly payment ($)</label><input id="pay" type="number" value="579.98" min="0" step="any"></div>
+    </div>
+
+    <button class="btn" onclick="calc()">Calculate</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#loan-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Your answer</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">The loan payment formula is <strong>M = P × r(1+r)<sup>n</sup> / ((1+r)<sup>n</sup> − 1)</strong> with P the amount, r the monthly rate and n the number of payments. Solving for the amount or term rearranges the same formula; solving for the rate is done by testing rates until the payment matches yours exactly. Extra payments are applied to principal every month, which shortens the loan and cuts total interest — the table shows both versions side by side.</p>
+    <div class="note">Estimates only — not a loan offer. Real loans may add origination fees, insurance or taxes that change the totals.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> M = P × r(1+r)<sup>n</sup> ÷ ((1+r)<sup>n</sup> − 1). The same formula rearranges to solve for the amount, the term, or (by testing rates) the interest rate.</p>
+    <p><strong>Worked example:</strong> Borrow $20,000 at 7% over 5 years and the payment is $396.02/month, with $3,761 of total interest over the life of the loan.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>Any loan offer — bank, dealer, online lender — that you want reduced to payment, total interest and payoff date.</li><li>You know the payment you can afford and need the amount or rate that fits (the solver works backwards).</li><li>You are weighing a longer term's smaller payment against its larger lifetime interest.</li><li>You want to see what an extra monthly payment does before you commit to it.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Pick what to solve for — amount, rate, term or payment.</li><li>Fill the three values you know from the offer.</li><li>Add an extra monthly payment if you plan to pay ahead.</li><li>Read the payment, total interest and payoff timeline together — never the payment alone.</li><li>Re-run at the next term up or down; the interest gap is the real price of the smaller payment.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Loan amount</strong></td><td style="padding:6px 8px">Principal borrowed, before interest</td><td style="padding:6px 8px">Any — $1,000 to $1,000,000+</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Interest rate</strong></td><td style="padding:6px 8px">Annual rate (APR-style)</td><td style="padding:6px 8px">Cards 20%+, auto 5–12%, personal 8–20%</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Term</strong></td><td style="padding:6px 8px">Repayment length</td><td style="padding:6px 8px">1–7 years typical, 30 for mortgages</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Extra payment</strong></td><td style="padding:6px 8px">Optional amount added every month</td><td style="padding:6px 8px">$25–$200 changes payoff dates fast</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A $5,000 personal loan at 12% over 24 months costs $235.37 a month and $648.82 of interest in total — about 13 cents of interest per dollar borrowed. Stretch the same loan to 48 months and the payment drops, but you would pay roughly double the interest; the term, not the rate, is usually the expensive dial.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How do I find the interest rate on my loan?</h3>
+    <p>Choose "Interest rate" under Solve for, enter the loan amount, term and the monthly payment from your statement, and the calculator backs out the rate that produces that payment.</p>
+    <h3>How much do extra payments really save?</h3>
+    <p>A lot, because every extra dollar goes straight to principal. On a $30,000, 6%, 5-year loan, an extra $100 a month pays the loan off about 10 months early and saves roughly $500 of interest — try it above.</p>
+    <h3>What is the difference between APR and interest rate?</h3>
+    <p>The interest rate drives the monthly payment. APR folds in most lender fees as well, so APR is the better number for comparing two loan offers. This calculator uses the interest rate.</p>
+    <h3>Can this calculator handle a 0% loan?</h3>
+    <p>Yes. With a 0% rate the payment is simply the amount divided by the number of months, and total interest is $0.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>🗓️ Want the month-by-month picture?</h3>
+    <p>The Amortization Calculator lays out every payment — principal, interest and balance — for the whole loan.</p>
+    <p><a class="btn" href="amortization-calculator.html">See the full schedule</a></p>
+    <h3>What does 'solve for' mean on this calculator?</h3>
+    <p>Most calculators only find the payment. This one rearranges the loan equation so any one unknown — amount, rate, term or payment — can be the answer, using the other three as givens. It is the same formula banks use, run in whichever direction your question points.</p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="amortization-calculator.html">Amortization Calculator</a></li>
+    <li><a href="car-loan-calculator.html">Car Loan Calculator</a></li>
+    <li><a href="business-loan-calculator.html">Business Loan Calculator</a></li>
+    <li><a href="mortgage-calculator.html">Mortgage Payment Calculator</a></li>
+    
+  
+    <li><a href="../guides/why-every-calculator-solves-backwards.html">📖 Blog: Why our calculators solve backwards too</a></li>
+  
+    <li><a href="../guides/calculator-net-alternatives.html">📖 Alternatives: An honest look beyond Calculator.net</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function fmt2(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});}
+function v(id){return +document.getElementById(id).value||0;}
+/*PURE-BEGIN*/
+function loanPayment(P,annualPct,months){var r=annualPct/100/12;if(months<=0)return 0;if(r===0)return P/months;var f=Math.pow(1+r,months);return P*r*f/(f-1);}
+function loanPrincipal(pay,annualPct,months){var r=annualPct/100/12;if(months<=0)return 0;if(r===0)return pay*months;var f=Math.pow(1+r,months);return pay*(f-1)/(r*f);}
+function loanTermMonths(P,annualPct,pay){var r=annualPct/100/12;if(pay<=0)return Infinity;if(r===0)return P/pay;if(pay<=P*r)return Infinity;return -Math.log(1-P*r/pay)/Math.log(1+r);}
+function loanRateAnnual(P,pay,months){if(months<=0||P<=0)return 0;if(pay*months<=P)return 0;var lo=0,hi=0.01;while(loanPayment(P,hi*100*12,months)<pay&&hi<2)hi*=2;for(var i=0;i<200;i++){var mid=(lo+hi)/2;if(loanPayment(P,mid*100*12,months)<pay)lo=mid;else hi=mid;}return (lo+hi)/2*100*12;}
+function amortizeLoan(P,annualPct,months,extra){var r=annualPct/100/12;var pay=loanPayment(P,annualPct,months);var bal=P,totalInt=0,m=0;var cap=months*3+1200;while(bal>0.005&&m<cap){m++;var interest=bal*r;var princ=pay-interest+extra;if(princ>bal)princ=bal;bal-=princ;totalInt+=interest;if(princ<=0)break;}return {months:m,totalInterest:totalInt,totalPaid:P+totalInt,payment:pay};}
+/*PURE-END*/
+var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function payoffStr(months){var d=new Date();d.setMonth(d.getMonth()+months);return MONTHS[d.getMonth()]+' '+d.getFullYear();}
+function termStr(months){var y=Math.floor(months/12),m=Math.round(months%12);if(m===12){y++;m=0;}return (y?y+(y===1?' year':' years'):'')+(y&&m?' ':'')+(m?m+(m===1?' month':' months'):'');}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function calc(){
+  var solve=document.getElementById('solve').value;
+  var P=v('amt'),rate=v('rate'),months=Math.round(v('yrs')*12),pay=v('pay'),extra=v('extra');
+  var big='',verd='',rows='';
+  if(solve==='payment'){pay=loanPayment(P,rate,months);big=fmt2(pay);
+    verd='Borrowing '+fmt(P)+' at '+rate+'% for '+termStr(months)+' costs '+fmt2(pay)+' a month.';}
+  else if(solve==='principal'){P=loanPrincipal(pay,rate,months);big=fmt(P);
+    verd='Paying '+fmt2(pay)+' a month for '+termStr(months)+' at '+rate+'% means you can borrow '+fmt(P)+'.';}
+  else if(solve==='term'){var tm=loanTermMonths(P,rate,pay);months=isFinite(tm)?Math.ceil(tm):0;big=isFinite(tm)?termStr(tm):'Never';
+    verd=isFinite(tm)?('Paying '+fmt2(pay)+' a month clears '+fmt(P)+' at '+rate+'% in '+termStr(tm)+'.'):('That payment does not even cover the monthly interest — the balance would never fall.');}
+  else {rate=loanRateAnnual(P,pay,months);big=rate.toFixed(2)+'%';
+    verd='A '+fmt(P)+' loan repaid at '+fmt2(pay)+' a month over '+termStr(months)+' works out to a '+rate.toFixed(2)+'% interest rate.';}
+  if(months>0&&P>0){
+    var base=amortizeLoan(P,rate,months,0);
+    rows=row('Monthly payment',fmt2(base.payment))+row('Loan amount',fmt(P))+row('Interest rate',rate+'% / yr')
+      +row('Total interest',fmt(base.totalInterest))+row('Total cost (amount + interest)',fmt(base.totalPaid))
+      +row('Payoff date (on schedule)',payoffStr(base.months));
+    if(extra>0){var ex=amortizeLoan(P,rate,months,extra);
+      rows+=row('With extra '+fmt(extra)+'/mo: payoff',payoffStr(ex.months)+' ('+termStr(base.months-ex.months)+' sooner)')
+        +row('With extra: total interest',fmt(ex.totalInterest))+row('Interest saved by extra payments',fmt(base.totalInterest-ex.totalInterest));}
+  }
+  document.getElementById('rMain').textContent=big;
+  document.getElementById('verdict').textContent=verd;
+  document.getElementById('rows').innerHTML=rows;
+  document.getElementById('results').classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free ROI Calculator — Return on Investment & Annualized Return | One Calculator</title>
+<meta name="description" content="Free ROI calculator: compute return on investment, net gain, and annualized ROI for any investment — stocks, real estate, or business. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/roi-calculator.html">
+<meta property="og:title" content="Free ROI Calculator — Return on Investment &amp; Annualized Return | One Calculator">
+<meta property="og:description" content="Free ROI calculator: compute return on investment, net gain, and annualized ROI for any investment — stocks, real estate, or business. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/roi-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free ROI Calculator — Return on Investment &amp; Annualized Return | One Calculator">
+<meta name="twitter:description" content="Free ROI calculator: compute return on investment, net gain, and annualized ROI for any investment — stocks, real estate, or business. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ROI Calculator",
+  "description": "Free ROI calculator: compute return on investment, net gain, and annualized ROI for any investment \u2014 stocks, real estate, or business. No signup.",
+  "url": "https://onecalculator.site/tools/roi-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/roi-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-real-estate-investor-tools">Real estate investor tools</a> › ROI Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">ROI Calculator</h1>
+  <p class="lede">Measure the return on any investment — stocks, real estate, or a business — with total ROI and an annualized figure you can compare across deals.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="invested">Amount invested ($)</label><input id="invested" type="number" value="10000" min="0"></div>
+      <div class="field"><label for="returned">Amount returned ($)</label><input id="returned" type="number" value="15000" min="0"><div class="hint">Total value received: sale proceeds, payouts, or current value.</div></div>
+    </div>
+    <div class="field"><label for="years">Years held</label><input id="years" type="number" value="1" step="0.1" min="0.1"><div class="hint">Used to annualize the return so multi-year investments are comparable.</div></div>
+    <button class="btn" onclick="calc()">Calculate ROI</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#roi-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Return on investment</div>
+      <div class="big" id="rROI">0%</div>
+      <table>
+        <tr><td>Net gain</td><td id="rGain">$0</td></tr>
+        <tr><td>Annualized ROI</td><td id="rAnn">0%</td></tr>
+        <tr><td>Amount invested</td><td id="rInv">$0</td></tr>
+        <tr><td>Amount returned</td><td id="rRet">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Total ROI is <strong>(returned − invested) ÷ invested × 100</strong>. Annualized ROI (CAGR) is <strong>(returned ÷ invested)<sup>1/years</sup> − 1</strong>, which spreads the gain evenly across the holding period so a 3-year deal and a 1-year deal can be compared apples-to-apples.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Total ROI = (returned − invested) ÷ invested × 100. Annualized ROI (CAGR) = (returned ÷ invested)<sup>1 ÷ years</sup> − 1.</p>
+    <p><strong>Worked example:</strong> $10,000 that grows to $13,500 in 3 years is a 35% total ROI, which annualizes to about 10.5% per year.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You sold a stock, a fund or a small business stake and want the return stated plainly, in total and per year.</li><li>Money went into a side project and money came back out — and you want to know whether it beat leaving it in savings.</li><li>Two investments made very different returns over very different lengths of time and need one fair comparison.</li><li>A promoter quotes a big total return and you want to see what it shrinks to once the years are divided in.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter everything you put in as the amount invested — purchase price plus fees and follow-on funding.</li><li>Enter everything that came back as the amount returned: sale proceeds, payouts and dividends, or today's value if you still hold it.</li><li>Enter the years held, using a fraction for part-years.</li><li>Read total ROI for the headline and annualized ROI for the comparison.</li><li>Put the annualized figure next to your next-best alternative before calling the deal good.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Amount invested</strong></td><td style="padding:6px 8px">Total cash committed, fees included</td><td style="padding:6px 8px">Purchase price plus any money added later</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Amount returned</strong></td><td style="padding:6px 8px">Total value received back</td><td style="padding:6px 8px">Sale proceeds, distributions, or current value</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Years held</strong></td><td style="padding:6px 8px">Time between putting money in and taking it out</td><td style="padding:6px 8px">Months as fractions: 18 months is 1.5</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>You put $20,000 into a small business venture and four years later your stake is worth $31,000: the net gain is $11,000 and the total ROI is 55.00%. Annualized, that is 11.58% per year — the number that belongs next to a one-year return from anything else you are comparing it with.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What is a good ROI?</h3>
+    <p>It depends on the asset. The stock market has averaged roughly 7–10% per year after inflation; real estate investors often target higher to compensate for effort and risk. Compare against what else you could do with the money.</p>
+    <h3>Why does annualized ROI matter?</h3>
+    <p>A 50% total return sounds great — but over 5 years it's only ~8.4% per year. Annualizing reveals the true pace of growth and lets you rank opportunities fairly.</p>
+    <h3>What does ROI miss?</h3>
+    <p>Risk, timing of cash flows, taxes, and your time. Two investments with identical ROI can feel very different if one paid out monthly and the other locked your money up for a decade.</p>
+    <h3>Can ROI be negative, and what does that look like here?</h3>
+    <p>Yes — if the amount returned is smaller than the amount invested, total ROI comes out negative and the annualized figure follows it down. A negative annualized ROI over a short holding period looks especially dramatic, because the loss is being spread as if it repeated every year; for a position you still hold, remember the loss is only locked in when you sell.</p>
+    <h3>Should dividends, rent and fees be included?</h3>
+    <p>Yes, on both sides. Distributions you actually received — dividends, rent, interest, profit payouts — belong in the amount returned, and commissions, closing costs and funding fees belong in the amount invested. Leaving fees out flatters every return, and leaving payouts out understates income-producing investments against growth ones.</p>
+    <h3>What if I added money at several different times?</h3>
+    <p>This calculator assumes one amount in and one amount out, so staged contributions distort it — money added late gets credited with growth it was not present for. For irregular deposits and withdrawals, the right measure is an internal-rate-of-return (XIRR) calculation that dates every cash flow; use this tool for single-shot investments and quick comparisons.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>📈 Plan the growth, not just the return</h3>
+    <p>See how reinvested gains compound over time with our compound interest calculator.</p>
+    <p><a class="btn" href="compound-interest-calculator.html">Compound interest calculator</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="cap-rate-calculator.html">Cap Rate Calculator</a></li>
+    <li><a href="cash-on-cash-calculator.html">Cash-on-Cash Return Calculator</a></li>
+    <li><a href="break-even-calculator.html">Break-Even Calculator</a></li>
+    <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function pct(n){return (n*100).toFixed(2)+'%';}
+function calc(){
+  const inv=+document.getElementById('invested').value||0,
+        ret=+document.getElementById('returned').value||0,
+        yrs=+document.getElementById('years').value||0;
+  let roi=0, ann=0;
+  if(inv>0){
+    roi=(ret-inv)/inv;
+    if(yrs>0 && ret>=0){ ann=Math.pow(ret/inv,1/yrs)-1; }
+  }
+  document.getElementById('rROI').textContent=pct(roi);
+  document.getElementById('rGain').textContent=fmt(ret-inv);
+  document.getElementById('rAnn').textContent=pct(ann);
+  document.getElementById('rInv').textContent=fmt(inv);
+  document.getElementById('rRet').textContent=fmt(ret);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

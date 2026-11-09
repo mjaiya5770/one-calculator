@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Age Calculator — Exact Age in Years, Months & Days | One Calculator</title>
+<meta name="description" content="Free age calculator: find your exact age in years, months, and days, total days lived, day of the week you were born, and countdown to your next birthday. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/age-calculator.html">
+<meta property="og:title" content="Free Age Calculator — Exact Age in Years, Months &amp; Days | One Calculator">
+<meta property="og:description" content="Free age calculator: find your exact age in years, months, and days, total days lived, day of the week you were born, and countdown to your next birthday. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/age-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Age Calculator — Exact Age in Years, Months &amp; Days | One Calculator">
+<meta name="twitter:description" content="Free age calculator: find your exact age in years, months, and days, total days lived, day of the week you were born, and countdown to your next birthday. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Age Calculator",
+  "description": "Free age calculator: find your exact age in years, months, and days, total days lived, day of the week you were born, and countdown to your next birthday. No signup.",
+  "url": "https://onecalculator.site/tools/age-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/age-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › Age Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Age Calculator</h1>
+  <p class="lede">Get your exact age down to the day — plus total days lived, the weekday you were born, and a countdown to your next birthday.</p>
+
+  <div class="card nn-calc-card">
+    <div class="field"><label for="dob">Date of birth</label><input id="dob" type="date" value="1990-01-01" max="2026-12-31"></div>
+    <button class="btn" onclick="calc()">Calculate age</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#age-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Your exact age</div>
+      <div class="big" id="rAge">—</div>
+      <table>
+        <tr><td>Total days lived</td><td id="rDays">0</td></tr>
+        <tr><td>Day of the week born</td><td id="rDow">—</td></tr>
+        <tr><td>Next birthday</td><td id="rNext">—</td></tr>
+        <tr><td>Days until next birthday</td><td id="rCount">0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Age is computed by comparing calendar dates, borrowing months and days where needed — the same way official records do it. Leap years are handled automatically because the math uses real calendar months, including February 29 birthdays (which celebrate on February 28 or March 1 in non-leap years, depending on local custom).</p>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Age = target date − birth date, worked out by calendar borrowing: subtract the days first (borrowing the length of the previous month when needed), then the months (borrowing 12 from the year), then the years.</p>
+    <p><strong>Worked example:</strong> Born on Saturday, 10 March 1990? On 24 June 2026 you are exactly 36 years, 3 months and 14 days old.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>A form asks for age at a specific date — school, sport, insurance, eligibility — not 'age now'.</li><li>You want your exact age in days, weeks or hours for a milestone or a bit of fun.</li><li>You are counting down to a birthday, retirement date or eligibility threshold.</li><li>Two people's ages need comparing precisely for a document or a family tree.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the date of birth.</li><li>Optionally set the 'as of' date if the question is about a past or future day.</li><li>Read years, months and days — plus total days lived.</li><li>Use the next-birthday countdown for the milestone view.</li><li>For a second person, run theirs and compare the day counts.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Date of birth</strong></td><td style="padding:6px 8px">The start date</td><td style="padding:6px 8px">From a document if precision matters</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>As-of date</strong></td><td style="padding:6px 8px">The day to measure at</td><td style="padding:6px 8px">Defaults to today</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>Born 15 June 2000, measured on 6 November 2026: exactly 26 years old, and 9,640 days lived — which makes the 10,000-day milestone land in mid-2027, a celebration most people miss because nobody counts in days. This tool does.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How is exact age calculated?</h3>
+    <p>Subtract the birth date from today's date: full years first, then remaining months, then days. If today's day-of-month is earlier than your birth day, a month is borrowed — just like subtraction in school.</p>
+    <h3>What about leap years?</h3>
+    <p>They're built in. Someone born on February 29, 2000 is legally a year older on February 28 or March 1 in non-leap years (it varies by jurisdiction); this calculator counts from the calendar date directly.</p>
+    <h3>Why would I need my exact age?</h3>
+    <p>Benefits eligibility, retirement planning, insurance quotes, school enrollment cutoffs, and milestone birthdays (18, 21, 65) all depend on exact age — "about 40" isn't precise enough for paperwork.</p>
+    <h3>How are months counted in my age?</h3>
+    <p>Calendar months from the birth date, not 30-day approximations: someone born on the 15th turns each new month of age on the 15th. The leftover days are counted exactly, which is why age in years-months-days can look a day different across calculators that approximate.</p>
+    <h3>Why does my age in days matter?</h3>
+    <p>Eligibility rules, insurance bands and some legal thresholds are written in days or in 'age at date X' terms. The day count is also the only version of age that never rounds — useful when two systems disagree about you.</p>
+  </div>
+
+  
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+    <li><a href="time-duration-calculator.html">Time Duration Calculator</a></li>
+    <li><a href="gpa-calculator.html">GPA Calculator</a></li>
+    <li><a href="password-generator.html">Password Generator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+const DOW=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function fmtDate(d){return MON[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();}
+function calc(){
+  const val=document.getElementById('dob').value;
+  if(!val){return;}
+  const parts=val.split('-');
+  const dob=new Date(+parts[0],+parts[1]-1,+parts[2]);
+  const now=new Date();
+  if(dob>now){document.getElementById('rAge').textContent='Not born yet!';document.getElementById('results').classList.add('show');return;}
+  let y=now.getFullYear()-dob.getFullYear(),
+      m=now.getMonth()-dob.getMonth(),
+      d=now.getDate()-dob.getDate();
+  if(d<0){m--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}
+  if(m<0){y--;m+=12;}
+  const totalDays=Math.floor((now-dob)/86400000);
+  let next=new Date(now.getFullYear(),dob.getMonth(),dob.getDate());
+  if(next<new Date(now.getFullYear(),now.getMonth(),now.getDate())){next=new Date(now.getFullYear()+1,dob.getMonth(),dob.getDate());}
+  const daysTo=Math.round((next-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/86400000);
+  document.getElementById('rAge').textContent=y+' years, '+m+' months, '+d+' days';
+  document.getElementById('rDays').textContent=totalDays.toLocaleString('en-US');
+  document.getElementById('rDow').textContent=DOW[dob.getDay()];
+  document.getElementById('rNext').textContent=fmtDate(next)+(daysTo===0?' 🎉 (today!)':'');
+  document.getElementById('rCount').textContent=daysTo.toLocaleString('en-US');
+  document.getElementById('results').classList.add('show');
+}
+document.getElementById('dob').addEventListener('change',calc);
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

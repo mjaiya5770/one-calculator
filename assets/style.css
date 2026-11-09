@@ -1,0 +1,1391 @@
+/* One Calculator — 2026 visual system (REDESIGN PROOF)
+   Deep teal + amber/gold on warm off-white — palette tokens unchanged.
+   Modernization is structural: fluid type scale, airy rhythm, layered
+   soft shadows, hairline borders, flat surfaces, fintech results panel.
+   Mobile-first, no external requests, system font stack */
+
+:root {
+  --teal: #1f2937;
+  --teal-dark: #111827;
+  --teal-darker: #030712;
+  --teal-light: #f3f4f6;
+  --amber: #dc2626;
+  --gold: #f87171;
+  --offwhite: #faf7f0;
+  --surface: #ffffff;
+  --surface-warm: #fdfbf7;
+  --text: #12211f;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --shadow-sm: 0 1px 2px rgba(3, 7, 18, 0.06), 0 1px 3px rgba(3, 7, 18, 0.08);
+  --shadow-md: 0 6px 16px -6px rgba(3, 7, 18, 0.15), 0 10px 30px -12px rgba(3, 7, 18, 0.12);
+  --shadow-lg: 0 20px 40px -20px rgba(3, 7, 18, 0.25);
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --max-width: 1120px;
+  --header-height: 68px;
+  --transition: 180ms ease;
+  --focus-ring: 0 0 0 3px rgba(220, 38, 38, 0.4);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  /* Legacy aliases — inline page styles and older markup reference these */
+  --accent: var(--teal);
+  --accent-dark: var(--teal-dark);
+  --ink: var(--text);
+  --line: var(--border);
+  --warn: #b3541e;
+}
+
+/* 2026 structural tokens — spacing, radii, layered shadows, motion.
+   No new hues: every shadow is the existing teal-black at low alpha. */
+:root {
+  --radius-card: 18px;
+  --radius-xl: 22px;
+  --shadow-card: 0 1px 2px rgba(3, 7, 18, 0.05), 0 16px 40px -24px rgba(3, 7, 18, 0.18);
+  --shadow-card-hover: 0 2px 4px rgba(3, 7, 18, 0.05), 0 24px 48px -20px rgba(3, 7, 18, 0.22);
+  --shadow-panel: 0 24px 48px -24px rgba(3, 7, 18, 0.35);
+  --ease-out: cubic-bezier(0.22, 0.61, 0.21, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--offwhite);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg {
+  max-width: 100%;
+  display: inline-block;
+}
+
+::selection {
+  background: rgba(220, 38, 38, 0.35);
+  color: var(--teal-darker);
+}
+
+a {
+  color: var(--teal);
+  text-decoration: none;
+  transition: color var(--transition), background-color var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+a:hover {
+  color: var(--teal-dark);
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Sticky header — slim, blurred, hairline base */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(180deg, rgba(3, 7, 18, 0.97), rgba(3, 7, 18, 0.94));
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  border-bottom: 1px solid rgba(248, 113, 113, 0.18);
+  box-shadow: 0 12px 32px -16px rgba(3, 7, 18, 0.35);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.brand:hover {
+  color: #fff;
+}
+
+.brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+  color: var(--teal-darker);
+  font-size: 20px;
+  font-weight: 900;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.brand span {
+  color: var(--gold);
+  letter-spacing: -0.02em;
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.site-header nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: var(--radius-pill);
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.site-header nav a:hover {
+  background: rgba(248, 113, 113, 0.12);
+  color: #fff;
+}
+
+.site-header nav a[aria-current="page"] {
+  background: rgba(248, 113, 113, 0.2);
+  color: #fff;
+}
+
+/* Hero — airy, one focal point, search front and centre */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(150deg, #1f2937 0%, #111827 48%, #030712 100%);
+  color: #fff;
+  padding: clamp(64px, 9vw, 104px) 0 clamp(72px, 9vw, 108px);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  right: -120px;
+  top: -140px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(248, 113, 113, 0.35), rgba(220, 38, 38, 0.15) 70%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: -80px;
+  bottom: -140px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.hero .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 6px 14px;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+  border-radius: var(--radius-pill);
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 16ch;
+  margin: 0 0 20px;
+  color: #fff;
+  font-size: clamp(2.6rem, 6vw, 4.1rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.hero p {
+  max-width: 56ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1.08rem, 2vw, 1.28rem);
+  line-height: 1.6;
+}
+
+/* Hero search — white pill, the one clear action */
+.hero-search-wrap {
+  position: relative;
+  max-width: 620px;
+  margin-top: 34px;
+}
+
+.hero-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  background: var(--surface);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 10px 16px;
+  font: inherit;
+  font-size: 1.02rem;
+  color: var(--text);
+}
+
+.hero-search input:focus {
+  outline: none;
+}
+
+.hero-search:focus-within {
+  box-shadow: var(--shadow-lg), var(--focus-ring);
+}
+
+.hero-search .btn {
+  flex: none;
+}
+
+.hero-search-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 5;
+  max-height: 320px;
+  overflow: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+}
+
+.hero-search-results[hidden] {
+  display: none;
+}
+
+.hero-search-results a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.hero-search-results a:hover,
+.hero-search-results a.is-active {
+  background: var(--teal-light);
+  color: var(--teal-darker);
+}
+
+.hero-search-results a span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 36px;
+  margin-top: 38px;
+}
+
+.hero-meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.hero-meta strong {
+  color: var(--gold);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+
+.hero-meta span {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* ---------- Flavor: scrollbar (existing tokens only) ---------- */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--teal-dark) var(--offwhite);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--offwhite);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--teal-dark);
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--offwhite);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--teal);
+}
+
+/* Flavor: nav underline sweep replaces the pill-fill hover */
+.site-header nav a {
+  position: relative;
+}
+
+.site-header nav a::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 3px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--amber);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 260ms var(--ease-out);
+}
+
+.site-header nav a:hover {
+  background: transparent;
+  color: #fff;
+}
+
+.site-header nav a:hover::after,
+.site-header nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.site-header nav a[aria-current="page"] {
+  background: rgba(248, 113, 113, 0.16);
+}
+
+.site-header nav a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* Flavor: nest motif — three woven arcs in the hero's lower-right,
+   drawn from the existing gold/white at low alpha; pointer-free décor */
+.hero .nest-motif {
+  position: absolute;
+  right: -70px;
+  bottom: -96px;
+  width: 430px;
+  height: 430px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero .wrap {
+  z-index: 1;
+}
+
+/* Main content rhythm */
+main.wrap,
+main .wrap {
+  padding-top: 56px;
+  padding-bottom: 80px;
+}
+
+/* Section headings — editorial: eyebrow label + display title.
+   .section-head/.eyebrow are the new markup; bare h2 keeps a refined
+   version of the original amber tick so unconverted pages still work. */
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 64px 0 22px;
+  color: var(--text);
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+h2::before {
+  content: "";
+  flex: none;
+  width: 5px;
+  height: 24px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--gold), var(--amber));
+}
+
+main > h2:first-child,
+main .wrap > h2:first-child {
+  margin-top: 0;
+}
+
+.section-head {
+  margin: 64px 0 22px;
+}
+
+.section-head:first-child {
+  margin-top: 0;
+}
+
+.section-head .eyebrow {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--amber);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.section-head h2 {
+  margin: 0;
+}
+
+.section-head h2::before {
+  display: none;
+}
+
+/* Flavor: nest-arc divider — a shallow woven arc under section heads */
+.section-head .nest-arc {
+  display: block;
+  width: 120px;
+  height: 12px;
+  margin-top: 12px;
+}
+
+/* Cards */
+.card {
+  margin-bottom: 28px;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.card h2 {
+  margin: 0 0 16px;
+  color: var(--teal-dark);
+  font-size: 1.25rem;
+  font-weight: 750;
+  letter-spacing: -0.015em;
+}
+
+.card h2::before {
+  display: none;
+}
+
+.card > p {
+  line-height: 1.65;
+}
+
+/* Tool grid + cards — numbered, editorial index feel */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 248px), 1fr));
+  gap: 16px;
+  margin: 0 0 8px;
+  counter-reset: toolnum;
+}
+
+.tool-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  color: var(--text);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  counter-increment: toolnum;
+  transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out), border-color var(--transition), opacity var(--transition);
+}
+
+.tool-card::after {
+  content: counter(toolnum, decimal-leading-zero);
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  opacity: 0.55;
+  transition: color var(--transition), opacity var(--transition);
+}
+
+.tool-card:hover,
+.tool-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(220, 38, 38, 0.55);
+}
+
+.tool-card:hover::after {
+  color: var(--amber);
+  opacity: 1;
+}
+
+.tool-card:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.tool-card .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(31, 41, 55, 0.14);
+  border-radius: 13px;
+  background: var(--teal-light);
+  font-size: 22px;
+  transition: background var(--transition), border-color var(--transition), transform 240ms var(--ease-out);
+}
+
+.tool-card:hover .icon {
+  background: linear-gradient(135deg, var(--gold), var(--amber));
+  border-color: rgba(220, 38, 38, 0.5);
+  transform: scale(1.05);
+}
+
+.tool-card h3 {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: 1.04rem;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+}
+
+.tool-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* Flavor: hero-search spotlight — while searching, matches stay lit
+   and non-matches recede (classes toggled by the proof's inline script) */
+.tool-grid.is-searching .tool-card {
+  opacity: 0.32;
+}
+
+.tool-grid.is-searching .tool-card.is-match {
+  opacity: 1;
+  border-color: rgba(220, 38, 38, 0.65);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Form fields — larger targets, soft inset, tabular figures */
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--text);
+  font-weight: 650;
+  font-size: 0.88rem;
+  letter-spacing: 0.005em;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 2px rgba(3, 7, 18, 0.05);
+  transition: border-color var(--transition), box-shadow var(--transition), background-color var(--transition);
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: rgba(31, 41, 55, 0.4);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+  background: #fff;
+  box-shadow: var(--focus-ring);
+}
+
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231f2937' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
+  padding-right: 38px;
+}
+
+.field .hint {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+/* Range inputs — slim track, amber thumb (existing tokens) */
+.field input[type="range"] {
+  padding: 0;
+  height: 28px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  accent-color: var(--amber);
+  cursor: pointer;
+}
+
+.field input[type="range"]:focus {
+  box-shadow: none;
+}
+
+.field input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--teal-light);
+}
+
+.field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--amber);
+  box-shadow: var(--shadow-sm);
+}
+
+.field input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--teal-light);
+}
+
+.field input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--amber);
+  box-shadow: var(--shadow-sm);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Segmented control — production pattern for mode switches.
+   JS keeps a hidden <select class="seg-source"> as the value source,
+   so existing calc() code that reads the select keeps working. */
+.segmented {
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  background: var(--teal-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+}
+
+.seg-btn {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  padding: 9px 6px;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--teal-dark);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.seg-btn:hover {
+  color: var(--teal-darker);
+}
+
+.seg-btn.is-on {
+  background: var(--surface);
+  color: var(--teal-darker);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.seg-btn:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 1px;
+}
+
+.seg-source {
+  display: none;
+}
+
+/* Buttons — flat teal, soft shadow, gentle lift */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--teal);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 20px -10px rgba(31, 41, 55, 0.55);
+  transition: background-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.btn:hover {
+  background: var(--teal-dark);
+  color: #fff;
+  box-shadow: 0 12px 24px -10px rgba(31, 41, 55, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.5);
+}
+
+/* Results panel — fintech card with a receipt-style breakdown */
+.results {
+  display: none;
+  margin-top: 26px;
+  padding: 26px 28px;
+  background: linear-gradient(160deg, var(--teal-dark), var(--teal-darker));
+  color: #fff;
+  border: 1px solid rgba(248, 113, 113, 0.28);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+}
+
+.results.show {
+  display: block;
+  animation: fadeInUp 320ms var(--ease-out);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.results .big {
+  margin: 2px 0 10px;
+  color: var(--gold);
+  font-size: clamp(2.6rem, 6vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tool pages use inline color:var(--muted) for result labels — on the dark
+   panel, restyle as an uppercase receipt label */
+.results [style*="--muted"] {
+  color: rgba(255, 255, 255, 0.72) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 650;
+}
+
+#verdict {
+  line-height: 1.55;
+}
+
+/* Receipt tear-line: dashed gold hairline above the breakdown,
+   dotted hairlines between rows, totals row set off in gold */
+.results table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  border-top: 2px dashed rgba(248, 113, 113, 0.4);
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.results td {
+  padding: 12px 2px;
+  border-top: 1px dotted rgba(255, 255, 255, 0.16);
+  font-size: 0.96rem;
+}
+
+.results tr:first-child td {
+  border-top: none;
+}
+
+.results td:first-child {
+  color: rgba(255, 255, 255, 0.78);
+  font-weight: 550;
+}
+
+.results td:last-child {
+  text-align: right;
+  font-weight: 700;
+  font-size: 1.02rem;
+}
+
+.results tr:last-child td {
+  border-top: 1px solid rgba(248, 113, 113, 0.35);
+  padding-top: 14px;
+  font-size: 1.05rem;
+}
+
+/* FAQ — the Q chip becomes a small amber square */
+.faq {
+  margin-top: 24px;
+  padding-top: 8px;
+}
+
+.faq h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 22px 0 8px;
+  color: var(--text);
+  font-size: 1.04rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.faq h3::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--amber);
+  transform: translateY(-1px);
+}
+
+.faq p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 68ch;
+}
+
+/* CTA box */
+.cta-box {
+  margin: 48px 0 24px;
+  padding: 40px 32px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--amber) 100%);
+  color: var(--teal-darker);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.cta-box h3 {
+  margin: 0 0 10px;
+  color: var(--teal-darker);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.cta-box p {
+  margin: 0 0 20px;
+  color: rgba(3, 7, 18, 0.85);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Site footer */
+.site-footer {
+  padding: 44px 0;
+  background: var(--teal-darker);
+  color: rgba(255, 255, 255, 0.78);
+  border-top: 1px solid rgba(248, 113, 113, 0.25);
+  font-size: 0.9rem;
+}
+
+.site-footer .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.site-footer a {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.site-footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Breadcrumb and tool page heading */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+}
+
+.breadcrumb a {
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  color: var(--amber);
+}
+
+h1.tool-title {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: clamp(2.1rem, 4.5vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: -0.028em;
+  line-height: 1.12;
+}
+
+.lede {
+  max-width: 68ch;
+  margin: 0 0 30px;
+  color: var(--muted);
+  font-size: 1.13rem;
+  line-height: 1.65;
+}
+
+.note {
+  margin: 16px 0;
+  padding: 16px 18px;
+  background: rgba(220, 38, 38, 0.09);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 12px 12px 0;
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* Related tools — quiet pills, gentle hover */
+.related-tools {
+  margin-top: 48px;
+  padding: 26px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.related-tools h2 {
+  margin: 0 0 18px;
+  color: var(--teal-dark);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.related-tools h2::before {
+  display: none;
+}
+
+.related-tools ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.related-tools a {
+  display: block;
+  padding: 11px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--teal-dark);
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color var(--transition), background-color var(--transition), transform var(--transition);
+}
+
+.related-tools a:hover {
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.6);
+  color: var(--teal-darker);
+  transform: translateY(-1px);
+}
+
+/* Responsive header — brand row, then a swipeable nav row */
+@media (max-width: 760px) {
+  .site-header .wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .site-header nav {
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: none;
+  }
+
+  .site-header nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-header nav a {
+    white-space: nowrap;
+  }
+
+  .hero .nest-motif {
+    width: 300px;
+    height: 300px;
+    right: -90px;
+    bottom: -110px;
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .results {
+    padding: 22px;
+  }
+
+  main.wrap,
+  main .wrap {
+    padding-top: 40px;
+    padding-bottom: 56px;
+  }
+
+  h2 {
+    margin-top: 48px;
+  }
+
+  .section-head {
+    margin-top: 48px;
+  }
+
+  .section-head:first-child {
+    margin-top: 0;
+  }
+}
+
+/* Print styles */
+@media print {
+  .site-header,
+  .site-footer,
+  .cta-box,
+  .breadcrumb,
+  .no-print,
+  .hero-search-wrap,
+  .hero-meta,
+  .hero-eyebrow {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .wrap {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .card,
+  .tool-card,
+  .results,
+  .cta-box {
+    box-shadow: none;
+    border-color: #ddd;
+    background: #fff;
+    color: #000;
+  }
+
+  .tool-card::after {
+    color: #000;
+    opacity: 1;
+  }
+
+  .results .big {
+    color: #000;
+  }
+
+  .results table {
+    border-top-color: #000;
+  }
+
+  .results td {
+    color: #000;
+    border-color: #ddd;
+  }
+
+  a,
+  h1.tool-title,
+  h2,
+  h3 {
+    color: #000 !important;
+  }
+
+  .btn,
+  .brand-icon {
+    background: #000;
+    color: #fff;
+  }
+
+  .hero {
+    background: #f0f0f0;
+    color: #000;
+  }
+
+  .hero h1,
+  .hero p {
+    color: #000;
+  }
+
+  .hero::before,
+  .hero::after,
+  .hero .nest-motif {
+    display: none;
+  }
+}
+
+/* Ad slots (Adsterra) + house fallback — semantics unchanged, furniture aligned */
+.nn-ad{margin:26px auto;text-align:center;display:flex;flex-direction:column;align-items:center;max-width:100%;overflow:hidden}
+.nn-ad iframe{max-width:100%}
+.nn-ad-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#9aa5a1;margin-bottom:6px}
+.nn-house{display:block;max-width:728px;width:100%;padding:20px 22px;border:1px dashed var(--amber,#dc2626);border-radius:14px;background:#fdecec;color:#12211f;text-decoration:none}
+.nn-house strong{display:block;font-size:1.05rem;margin-bottom:4px;color:#111827}
+.nn-house span{font-size:.9rem;color:#5b6b7f}
+/* NN-EXPERIENCE */
+/* Action toolbar + saved calculations — hooks unchanged, pill furniture kept */
+.nn-actions{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+.nn-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border:1px solid var(--border-strong);border-radius:var(--radius-pill);background:var(--surface);color:var(--teal-dark);font:inherit;font-weight:600;font-size:.87rem;cursor:pointer;box-shadow:0 1px 2px rgba(6,46,43,.05);transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition),background-color var(--transition)}
+.nn-btn:hover{transform:translateY(-1px);box-shadow:var(--shadow-md);border-color:var(--amber)}
+.nn-btn:active{transform:scale(.97)}
+.nn-saves{margin:16px 0 4px;padding:16px 18px;background:var(--surface-warm);border:1px solid var(--border);border-radius:var(--radius-card)}
+.nn-saves-h{font-weight:700;color:var(--teal-dark);margin-bottom:8px}
+.nn-save-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--border)}
+.nn-save-item:first-of-type{border-top:none}
+.nn-save-meta{display:flex;flex-direction:column;gap:1px;min-width:0}
+.nn-save-meta strong{color:var(--text);font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52ch}
+.nn-save-meta span{color:var(--muted);font-size:.8rem}
+.nn-save-btns{display:flex;gap:6px;flex:none}
+.nn-mini{display:inline-flex;align-items:center;padding:6px 12px;border:1px solid var(--border-strong);border-radius:var(--radius-pill);background:var(--surface);color:var(--teal);font:inherit;font-weight:600;font-size:.8rem;cursor:pointer;text-decoration:none;transition:border-color var(--transition),background-color var(--transition),transform var(--transition)}
+.nn-mini:hover{border-color:var(--amber);background:var(--offwhite)}
+.nn-mini:active{transform:scale(.96)}
+/* Verdict highlight pulse — once, when results first show (values unchanged) */
+@keyframes nnPulse{0%{background-color:rgba(245,166,35,0)}25%{background-color:rgba(245,166,35,.28)}100%{background-color:rgba(245,166,35,0)}}
+.nn-pulse{animation:nnPulse 900ms ease;border-radius:6px}
+/* Button press + focus visibility */
+a:focus-visible,button:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .results.show{animation:none}
+  .nn-pulse{animation:none}
+  .nn-btn,.nn-mini,.tool-card,.seg-btn,.site-header nav a::after{transition:none}
+}
+/* Print / Save-as-PDF report: brand bar, tool title, verdict + results only */
+@media print{
+  .nn-ad,.nn-actions,.nn-saves,.nn-saved-home,.cta-box,.breadcrumb,.related-tools,.site-footer,.keypad,.hero-search-wrap,.hero-meta{display:none!important}
+  .site-header{display:block!important;position:static!important;background:#fff!important;box-shadow:none!important;border-bottom:2px solid #000}
+  .site-header nav{display:none!important}
+  .brand,.brand span{color:#000!important}
+  body.nn-has-results .card:not(.nn-calc-card){display:none!important}
+  body.nn-has-results .lede{display:none!important}
+  .nn-calc-card .field,.nn-calc-card label,.nn-calc-card .btn,.nn-calc-card button,.nn-calc-card .hint,.nn-calc-card textarea,.nn-calc-card select,.nn-calc-card input:not([readonly]){display:none!important}
+  .nn-calc-card{border:none!important;box-shadow:none!important}
+  .results{display:block!important;background:#fff!important;color:#000!important;box-shadow:none!important;border:1px solid #ccc}
+  .results .big{color:#000!important}
+  .results table{border-top:2px solid #000!important}
+  .results table td{color:#000!important;border-color:#ccc!important}
+  .results [style*="--muted"]{color:#444!important}
+  #verdict{color:#000!important}
+  .stat-grid{color:#000!important}
+  main .wrap{padding-top:0!important}
+}
+/* NN-EMBED */
+/* Embed mode (?embed=1): chrome-light widget view. The .nn-embed-bar is the
+   only brand element kept — a small "Calculator via <Brand>" link back to the
+   canonical tool page. Everything else is the calculator card on its own. */
+.nn-embed-bar{display:none}
+.nn-embed-link{margin:12px 0 0;font-size:.88rem}
+html.nn-embed .site-header,html.nn-embed .site-footer,html.nn-embed .breadcrumb,html.nn-embed .nn-ad,html.nn-embed .faq,html.nn-embed .related-tools,html.nn-embed .cta-box,html.nn-embed .nn-actions,html.nn-embed .nn-saves,html.nn-embed .nn-embed-link,html.nn-embed .lede{display:none!important}
+html.nn-embed main .card:not(.nn-calc-card){display:none!important}
+html.nn-embed .nn-embed-bar{display:flex;align-items:center;gap:6px;margin:0 0 14px;padding:9px 13px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.85rem;color:var(--muted)}
+html.nn-embed .nn-embed-bar a{font-weight:700}
+html.nn-embed main .wrap{padding-top:14px;padding-bottom:14px}
+html.nn-embed body{background:transparent}
+/* Embed picker page (/embed.html) */
+.nn-embed-preview{border:1px dashed var(--border-strong);border-radius:var(--radius-card);padding:14px;background:var(--surface-warm);overflow:auto;text-align:center}
+.nn-embed-preview iframe{background:transparent;max-width:100%}
+.nn-embed-code{width:100%;min-height:96px;padding:12px;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--text);background:var(--surface-warm);border:1px solid var(--border-strong);border-radius:12px;resize:vertical}
+
+/* NN-MODAL — result interstitial (ads-loader V2 companion). The calculate moment:
+   first fresh result per page view opens a branded modal with ONE fresh 300x250 seat;
+   results render behind it immediately; close (x) works from the first frame;
+   the ready bar and a 20s auto-dismiss always leave the result one tap away. */
+.nn-modal-overlay{position:fixed;inset:0;z-index:1200;background:rgba(6,24,22,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.nn-modal{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);width:100%;max-width:380px;padding:20px 20px 16px;position:relative;text-align:center}
+.nn-modal-brand{font-weight:800;font-size:1.05rem;color:var(--teal-dark);margin:0 0 2px}
+.nn-modal-sub{color:var(--muted);font-size:.88rem;margin:0 0 12px}
+.nn-modal-x{position:absolute;top:8px;right:8px;width:36px;height:36px;border:none;border-radius:50%;background:var(--teal-light);color:var(--teal-dark);font-size:1.15rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.nn-modal-x:hover{background:var(--border)}
+.nn-modal .nn-ad{margin:0 auto}
+
+/* MODAL-FIT2 — round 1's containment rules were LIVE (apex bytes verified
+   identical to the fixed file, Nov 6) yet the clip persisted, because the
+   modal seat carried the WRONG KEY: nnSiteAdKey matched the first [data-key]
+   seat in DOM order, but ads.js pick() writes the 728x90 key (320x50 on
+   mobile) onto the responsive top seat at init — so the modal requested a
+   leaderboard creative into a 300x250 frame and it clipped at the right edge
+   only (a center-crop rule cannot fix a creative that is itself 728 wide
+   inside its frame). Fixed at the source in nn-tools.js (the seat is now
+   matched by its static data-w/data-h). These rules are the second line of
+   defense for ANY oversized frame: the seat stays a hard 300x250 box; every
+   frame in the modal's ad seat is centered WITHOUT a max-width clamp (a clamp
+   shrinks the frame's viewport and clips the creative inside it); and the
+   nn-tools.js sizer scales an oversized frame down whole — complete
+   creative, undistorted, nothing cropped. */
+.nn-modal .nn-ad-modal{width:300px;max-width:100%;height:250px;max-height:250px;overflow:hidden;position:relative;margin:0 auto}
+.nn-modal .nn-ad-modal .nn-ad-label{display:none}
+.nn-modal .nn-ad iframe{max-width:none;border:0;display:block;position:absolute;left:50%;top:0;transform:translateX(-50%)}
+.nn-modal .nn-ad-modal .nn-house{width:100%;height:100%;max-width:300px}
+.nn-modal-ready{display:block;width:100%;margin:14px 0 0;padding:12px;border:none;border-radius:var(--radius-pill);background:var(--teal);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.nn-modal-ready:hover{background:var(--teal-dark)}
+@keyframes nnReadyPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.nn-modal-ready{animation:nnReadyPulse 1.6s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.nn-modal-ready{animation:none}}
+@media print{.nn-modal-overlay{display:none!important}}
+
+/* NN-REDESIGN-FIX — rollout flaw fixes (parent-inspected on the proof):
+   (a) divider rebuilt as ONE continuous path in markup (see patch-redesign M2);
+   (b) hero eyebrow pill never wraps at 390px; (c) breadcrumb wraps cleanly. */
+.hero-eyebrow { white-space: nowrap; }
+@media (max-width: 480px) {
+  .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.04em; padding: 5px 11px; max-width: 100%; }
+}
+.breadcrumb { row-gap: 4px; }
+.breadcrumb a { white-space: nowrap; }
+@media (max-width: 480px) {
+  .breadcrumb { font-size: 0.8rem; }
+}

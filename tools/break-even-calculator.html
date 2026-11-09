@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Break-Even Calculator — Units & Revenue to Break Even | One Calculator</title>
+<meta name="description" content="Free break-even calculator: find how many units you must sell to cover fixed and variable costs. Get break-even units, revenue, and contribution margin. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/break-even-calculator.html">
+<meta property="og:title" content="Free Break-Even Calculator — Units &amp; Revenue to Break Even | One Calculator">
+<meta property="og:description" content="Free break-even calculator: find how many units you must sell to cover fixed and variable costs. Get break-even units, revenue, and contribution margin. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/break-even-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Break-Even Calculator — Units &amp; Revenue to Break Even | One Calculator">
+<meta name="twitter:description" content="Free break-even calculator: find how many units you must sell to cover fixed and variable costs. Get break-even units, revenue, and contribution margin. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Break-Even Calculator",
+  "description": "Free break-even calculator: find how many units you must sell to cover fixed and variable costs. Get break-even units, revenue, and contribution margin. No signup.",
+  "url": "https://onecalculator.site/tools/break-even-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/break-even-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-real-estate-investor-tools">Real estate investor tools</a> › Break-Even Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Break-Even Calculator</h1>
+  <p class="lede">Find exactly how many units you need to sell before your business starts making money — the first number every new venture should know.</p>
+
+  <div class="card nn-calc-card">
+    <div class="field"><label for="fixed">Fixed costs per month ($)</label><input id="fixed" type="number" value="5000" min="0"><div class="hint">Rent, salaries, insurance, subscriptions — costs that don't change with sales.</div></div>
+    <div class="row">
+      <div class="field"><label for="price">Price per unit ($)</label><input id="price" type="number" value="50" min="0" step="0.01"></div>
+      <div class="field"><label for="variable">Variable cost per unit ($)</label><input id="variable" type="number" value="20" min="0" step="0.01"><div class="hint">Materials, packaging, per-sale fees.</div></div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate break-even</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#break-even-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Break-even point</div>
+      <div class="big" id="rUnits">0 units</div>
+      <div id="rWarn" style="display:none;color:var(--warn);font-weight:700;margin:8px 0">⚠️ Price doesn't cover variable cost — this business never breaks even at these numbers.</div>
+      <table>
+        <tr><td>Break-even revenue</td><td id="rRev">$0</td></tr>
+        <tr><td>Contribution margin per unit</td><td id="rMargin">$0</td></tr>
+        <tr><td>Fixed costs per month</td><td id="rFixed">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Each sale contributes <strong>price − variable cost</strong> (the contribution margin) toward fixed costs. Break-even units = <strong>fixed costs ÷ contribution margin</strong>; break-even revenue is units × price. If the price doesn't exceed the variable cost, no volume can ever cover fixed costs.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Contribution margin = price per unit − variable cost per unit. Break-even units = fixed costs ÷ contribution margin, rounded up; break-even revenue = break-even units × price.</p>
+    <p><strong>Worked example:</strong> With $12,000 a month of fixed costs, a $50 selling price and a $30 variable cost, the margin is $20 a unit — so break-even is 600 units a month, or $30,000 of revenue.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are pricing a new product and need the monthly sales target that keeps the business alive, before you set the marketing budget.</li><li>A market stall, coffee cart or small shop has rent and wages to cover and a product margin to cover them with.</li><li>You sell a course, subscription or service and want to know how many paying customers equal survival.</li><li>A discount is on the table and you need to check the business still breaks even at the lower price.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Total your fixed costs for one month — everything you owe even if you sell nothing.</li><li>Enter the real selling price per unit, after the discounts you actually give.</li><li>Enter the full variable cost per unit, including packaging, shipping and per-sale platform or card fees.</li><li>Read the break-even units and the revenue they represent.</li><li>Re-run with a cheaper supplier or a higher price to see which lever moves the target more.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Fixed costs per month</strong></td><td style="padding:6px 8px">Costs owed regardless of sales volume</td><td style="padding:6px 8px">Rent, base wages, insurance, software, loan payments</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Price per unit</strong></td><td style="padding:6px 8px">What a customer actually pays per sale</td><td style="padding:6px 8px">Use the after-discount price if you discount often</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Variable cost per unit</strong></td><td style="padding:6px 8px">Cost that exists only because a sale happened</td><td style="padding:6px 8px">Materials, packaging, shipping, card and platform fees</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>With $9,600 a month of fixed costs, a $75 selling price and $35 of variable cost per unit, each sale contributes $40.00 toward the fixed costs. Break-even is 240 units a month, which is $18,000.00 of revenue — and the 241st unit is the first one whose $40.00 margin is profit rather than rent money.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>Why does break-even matter?</h3>
+    <p>It turns a vague goal ("sell more") into a concrete monthly target. Every unit past break-even is pure contribution toward profit, so it also tells you how fast profits scale.</p>
+    <h3>How can I lower my break-even point?</h3>
+    <p>Three levers: cut fixed costs, raise prices, or reduce variable costs. Raising the contribution margin is usually the most powerful move.</p>
+    <h3>What counts as fixed vs variable?</h3>
+    <p>Fixed: rent, base salaries, insurance, software subscriptions. Variable: raw materials, packaging, shipping, payment processing fees, sales commissions.</p>
+    <h3>Should I include my own pay in fixed costs?</h3>
+    <p>If the business has to support you, yes — put the minimum you must draw each month into fixed costs, because a break-even that assumes you work for free is a hobby budget, not a business target. Many owners run the calculation twice: once to cover the business alone, and once to cover the business plus a real wage, and treat the second number as the true target.</p>
+    <h3>How does break-even work when I sell several products?</h3>
+    <p>Use a weighted average contribution margin: work out each product's margin, average them weighted by how much of your sales each product represents, and divide fixed costs by that blended margin. If the sales mix shifts toward your low-margin products, the break-even rises even though no price or cost changed — which is why the mix matters as much as the margins.</p>
+    <h3>Is break-even the same as covering my cash outgoings?</h3>
+    <p>Not quite. This is an accounting break-even: it covers the fixed and variable costs you enter. Debt payments, tax bills and replacing worn equipment are real cash demands that may not appear in a cost list, so if any of those apply, add them to fixed costs and the figure becomes a cash break-even — the sales level at which the bank account also holds steady.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>💼 Price your work to actually profit</h3>
+    <p>Our freelance rate calculator works backwards from your income goal to the rate you must charge.</p>
+    <p><a class="btn" href="freelance-rate-calculator.html">Freelance rate calculator</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="roi-calculator.html">ROI Calculator</a></li>
+    <li><a href="business-loan-calculator.html">Business Loan Calculator</a></li>
+    <li><a href="invoice-generator.html">Invoice Generator (Printable)</a></li>
+    <li><a href="sales-tax-calculator.html">Sales Tax Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2});}
+function calc(){
+  const fixed=+document.getElementById('fixed').value||0,
+        price=+document.getElementById('price').value||0,
+        variable=+document.getElementById('variable').value||0;
+  const margin=price-variable;
+  const warn=document.getElementById('rWarn');
+  let units=0;
+  if(margin>0){ units=fixed/margin; warn.style.display='none'; }
+  else { warn.style.display='block'; }
+  document.getElementById('rUnits').textContent=margin>0?Math.ceil(units).toLocaleString('en-US')+' units / mo':'—';
+  document.getElementById('rRev').textContent=fmt(units*price);
+  document.getElementById('rMargin').textContent=fmt(margin);
+  document.getElementById('rFixed').textContent=fmt(fixed);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

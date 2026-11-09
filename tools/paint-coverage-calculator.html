@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Paint Coverage Calculator — How Much Paint Do I Need? | One Calculator</title>
+<meta name="description" content="Free paint calculator: enter your room size, doors, windows and coats to find exactly how many gallons of paint you need. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/paint-coverage-calculator.html">
+<meta property="og:title" content="Free Paint Coverage Calculator — How Much Paint Do I Need? | One Calculator">
+<meta property="og:description" content="Free paint calculator: enter your room size, doors, windows and coats to find exactly how many gallons of paint you need. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/paint-coverage-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Paint Coverage Calculator — How Much Paint Do I Need? | One Calculator">
+<meta name="twitter:description" content="Free paint calculator: enter your room size, doors, windows and coats to find exactly how many gallons of paint you need. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Paint Coverage Calculator",
+  "description": "Free paint calculator: enter your room size, doors, windows and coats to find exactly how many gallons of paint you need. No signup.",
+  "url": "https://onecalculator.site/tools/paint-coverage-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/paint-coverage-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-home-diy-tools">Home & DIY tools</a> › Paint Coverage Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Paint Coverage Calculator</h1>
+  <p class="lede">Enter your room's dimensions, subtract doors and windows, and get exactly how many gallons of paint to buy — no more guessing at the store.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="len">Room length (ft)</label><input id="len" type="number" value="12" min="0"></div>
+      <div class="field"><label for="wid">Room width (ft)</label><input id="wid" type="number" value="15" min="0"></div>
+      <div class="field"><label for="hgt">Wall height (ft)</label><input id="hgt" type="number" value="8" min="0"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="doors">Doors</label><input id="doors" type="number" value="1" min="0"><div class="hint">~21 sq ft each.</div></div>
+      <div class="field"><label for="wins">Windows</label><input id="wins" type="number" value="2" min="0"><div class="hint">~15 sq ft each.</div></div>
+      <div class="field"><label for="coats">Coats of paint</label><select id="coats"><option>1</option><option selected>2</option><option>3</option></select></div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate paint</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#paint-coverage-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Gallons to buy</div>
+      <div class="big" id="rGal">0</div>
+      <table>
+        <tr><td>Total wall area</td><td id="rArea">0 sq ft</td></tr>
+        <tr><td>Minus doors & windows</td><td id="rMinus">0 sq ft</td></tr>
+        <tr><td>Paintable area (with coats)</td><td id="rPaint">0 sq ft</td></tr>
+        <tr><td>Coverage rate used</td><td id="rCov">350 sq ft / gal</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Wall area is <strong>2 × (length + width) × height</strong>, minus 21 sq ft per door and 15 sq ft per window, multiplied by the number of coats. At the standard coverage of <strong>350 sq ft per gallon</strong>, the result is rounded up — you can't buy a partial gallon.</p>
+    <div class="note">Textured or dark-over-light jobs may need more paint. Always buy all gallons from the same batch to keep color consistent.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Wall area = 2 × (length + width) × ceiling height. Subtract 21 sq ft per door and 15 sq ft per window, multiply by the number of coats, then divide by 350 sq ft per gallon and round up.</p>
+    <p><strong>Worked example:</strong> A 12 ft × 10 ft room with 8 ft walls has 352 sq ft of wall. Two doors and two windows remove 72 sq ft, leaving 280 sq ft; two coats mean 560 sq ft to cover, so 560 ÷ 350 rounds up to 2 gallons.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are repainting a bedroom and want the gallon count settled before the color is even final.</li><li>A painter's estimate includes paint and you want to know how many gallons the room honestly takes.</li><li>You are doing a rental turnover — same color, several rooms — and need a total buy in one batch.</li><li>The walls are taller than the usual 8 ft and every rough guide you have found quietly assumed they were not.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the room length, width and wall height in feet.</li><li>Count the doors and windows in the room — they come off the paintable area.</li><li>Choose the number of coats you will actually apply.</li><li>Click Calculate paint and read the wall area, the deduction and the gallons together.</li><li>Buy the rounded-up gallons in one batch so the color matches across coats.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Room length and width</strong></td><td style="padding:6px 8px">The floor dimensions that set the wall perimeter</td><td style="padding:6px 8px">12 by 15 ft is the page's starting example</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Wall height</strong></td><td style="padding:6px 8px">Floor-to-ceiling height the perimeter is multiplied by</td><td style="padding:6px 8px">8 ft standard, 9 ft in many newer rooms</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Doors</strong></td><td style="padding:6px 8px">Count of doors, each deducting about 21 sq ft</td><td style="padding:6px 8px">1 or 2 in most bedrooms</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Windows</strong></td><td style="padding:6px 8px">Count of windows, each deducting about 15 sq ft</td><td style="padding:6px 8px">2 is the page default</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Coats</strong></td><td style="padding:6px 8px">How many coats the job gets</td><td style="padding:6px 8px">1, 2 or 3 — 2 is the usual repaint</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A 14 by 11 ft room with 9 ft walls has 450 sq ft of wall. One door and three windows remove 66 sq ft, leaving 384 sq ft to paint; two coats make 768 sq ft of coverage. At 350 sq ft per gallon that is 3 gallons to buy — the tall walls are what push this ordinary-sized bedroom past the 2-gallon answer most people walk in expecting.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How many square feet does a gallon of paint cover?</h3>
+    <p>Most interior latex paints cover about 350 square feet per gallon per coat. Primer and cheap paints may cover less.</p>
+    <h3>Should I paint one coat or two?</h3>
+    <p>Two coats give even color, better durability, and truer coverage of the old color. One coat is fine for a refresh in the same color.</p>
+    <h3>Do I need primer too?</h3>
+    <p>On bare drywall, stains, or dramatic color changes — yes. Over existing paint in good shape, a quality paint-and-primer is usually enough.</p>
+    <h3>Does this include painting the ceiling?</h3>
+    <p>No — the formula is walls only: perimeter times height, minus doors and windows. If the ceiling is getting paint too, work it out separately as length times width divided by 350 per gallon per coat, and add that to the wall gallons. Ceiling paint is also a different, flatter product, so it should be its own purchase line anyway.</p>
+    <h3>What about trim, baseboards and the inside of closets?</h3>
+    <p>They are not in this count. The door deduction assumes the door slab itself is not being painted with wall paint, and trim normally gets a separate semi-gloss product in much smaller quantities. Closet interiors do get wall paint in many repaints — if yours are, measure the closet walls and run them as their own small room rather than ignoring them.</p>
+    <h3>Do textured walls or a dark color underneath change the count?</h3>
+    <p>They can. Heavy texture soaks up paint in its valleys, and covering a dark color with a light one often needs an extra coat to stop the old shade grinning through — the calculator's note flags both cases. If either applies, price the job at the next coat up and treat any leftover as your touch-up supply rather than discovering the shortfall mid-wall.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>🛠️ Planning a bigger project?</h3>
+    <p>Estimate deck lumber with our deck material estimator, or compare paint prices per ounce with the unit price calculator.</p>
+    <p><a class="btn" href="deck-material-estimator.html">Try deck estimator</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="deck-material-estimator.html">Deck Material Estimator</a></li>
+    <li><a href="moving-cost-estimator.html">Moving Cost Estimator</a></li>
+    <li><a href="unit-price-calculator.html">Unit Price Calculator</a></li>
+    <li><a href="home-affordability-calculator.html">Home Affordability Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function calc(){
+  const len=+document.getElementById('len').value||0,
+        wid=+document.getElementById('wid').value||0,
+        hgt=+document.getElementById('hgt').value||0,
+        doors=+document.getElementById('doors').value||0,
+        wins=+document.getElementById('wins').value||0,
+        coats=+document.getElementById('coats').value||2,
+        COV=350;
+  const area=2*(len+wid)*hgt;
+  const minus=doors*21+wins*15;
+  const paintable=Math.max(area-minus,0)*coats;
+  const gal=Math.ceil(paintable/COV);
+  document.getElementById('rGal').textContent=gal+' gallon'+(gal===1?'':'s');
+  document.getElementById('rArea').textContent=area.toFixed(0)+' sq ft';
+  document.getElementById('rMinus').textContent='−'+minus.toFixed(0)+' sq ft';
+  document.getElementById('rPaint').textContent=paintable.toFixed(0)+' sq ft';
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

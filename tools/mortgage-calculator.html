@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Mortgage Payment Calculator — Monthly Payment, Interest & Amortization | One Calculator</title>
+<meta name="description" content="Free mortgage calculator: estimate your monthly payment, total interest, and payoff schedule for any home loan. Adjust rate, term, down payment, taxes and insurance. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/mortgage-calculator.html">
+<meta property="og:title" content="Free Mortgage Payment Calculator — Monthly Payment, Interest &amp; Amortization | One Calculator">
+<meta property="og:description" content="Free mortgage calculator: estimate your monthly payment, total interest, and payoff schedule for any home loan. Adjust rate, term, down payment, taxes and insurance. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/mortgage-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Mortgage Payment Calculator — Monthly Payment, Interest &amp; Amortization | One Calculator">
+<meta name="twitter:description" content="Free mortgage calculator: estimate your monthly payment, total interest, and payoff schedule for any home loan. Adjust rate, term, down payment, taxes and insurance. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mortgage Payment Calculator",
+  "description": "Free mortgage calculator: estimate your monthly payment, total interest, and payoff schedule for any home loan. Adjust rate, term, down payment, taxes and insurance. No signup.",
+  "url": "https://onecalculator.site/tools/mortgage-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/mortgage-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-real-estate-investor-tools">Real estate investor tools</a> › Mortgage Payment Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Mortgage Payment Calculator</h1>
+  <p class="lede">Estimate your monthly mortgage payment, total interest paid, and see a year-by-year payoff schedule. Works for home purchases and refinances.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="price">Home price ($)</label><input id="price" type="number" value="450000" min="0"></div>
+      <div class="field"><label for="down">Down payment ($)</label><input id="down" type="number" value="90000" min="0"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="rate">Interest rate (% / yr)</label><input id="rate" type="number" value="6.5" step="0.01" min="0"></div>
+      <div class="field"><label id="termLabel">Loan term (years)</label><div class="segmented" role="group" aria-labelledby="termLabel"><button type="button" class="seg-btn is-on" data-term="30">30 yr</button><button type="button" class="seg-btn" data-term="20">20 yr</button><button type="button" class="seg-btn" data-term="15">15 yr</button><button type="button" class="seg-btn" data-term="10">10 yr</button></div><select id="term" class="seg-source" aria-hidden="true" tabindex="-1"><option>30</option><option>20</option><option>15</option><option>10</option></select></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="tax">Property tax ($ / yr)</label><input id="tax" type="number" value="4500" min="0"></div>
+      <div class="field"><label for="ins">Homeowner insurance ($ / yr)</label><input id="ins" type="number" value="1500" min="0"></div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate payment</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#mortgage-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Estimated monthly payment</div>
+      <div class="big" id="rPay">$0</div>
+      <table>
+        <tr><td>Principal & interest</td><td id="rPI">$0</td></tr>
+        <tr><td>Property tax (monthly)</td><td id="rTax">$0</td></tr>
+        <tr><td>Insurance (monthly)</td><td id="rIns">$0</td></tr>
+        <tr><td>Loan amount</td><td id="rLoan">$0</td></tr>
+        <tr><td>Total interest over loan life</td><td id="rInt">$0</td></tr>
+        <tr><td>Total of all payments</td><td id="rTot">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Your principal & interest payment uses the standard amortization formula: <strong>M = P × r(1+r)<sup>n</sup> / ((1+r)<sup>n</sup> − 1)</strong>, where P is the loan amount, r the monthly rate, and n the number of payments. Property tax and insurance are divided by 12 and added to get the full monthly housing cost (PITI).</p>
+    <div class="note">Estimates only — not a loan offer. Actual payments vary with PMI, HOA dues, and lender fees.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> M = P × r(1+r)<sup>n</sup> ÷ ((1+r)<sup>n</sup> − 1), where P is the loan amount, r the monthly interest rate and n the number of payments. The full monthly cost (PITI) adds property tax and insurance, each divided by 12.</p>
+    <p><strong>Worked example:</strong> A $300,000 loan at 6.5% for 30 years gives principal & interest of $1,896.20/month — before property tax and insurance are added.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You have a lender quote and want the full monthly cost — PITI, not just principal and interest — before you fall for the house.</li><li>You are deciding between a 15-year and a 30-year term and want the interest difference in dollars, not vibes.</li><li>You are testing how much down payment avoids PMI territory and what a bigger down payment actually saves.</li><li>You are comparing two listings at different prices and tax rates on one honest monthly number.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the home price and your down payment — the loan amount is the difference.</li><li>Set the interest rate and term from your quote (30, 20 or 15 years are the common ones).</li><li>Add yearly property tax and homeowner insurance; both ride inside most real payments.</li><li>Read the PITI total, then re-run with the other term to see the interest trade.</li><li>Try 10% vs 20% down to see the PMI line move.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Home price</strong></td><td style="padding:6px 8px">The purchase price you are modelling</td><td style="padding:6px 8px">$250k–$600k in most markets</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Down payment</strong></td><td style="padding:6px 8px">Cash paid upfront, subtracted from the price</td><td style="padding:6px 8px">3.5% (FHA) to 20%+ (no PMI)</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Interest rate</strong></td><td style="padding:6px 8px">The annual rate on the loan</td><td style="padding:6px 8px">Recent years: roughly 5–8%</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Loan term</strong></td><td style="padding:6px 8px">Years to repay</td><td style="padding:6px 8px">30, 20 or 15</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Property tax / insurance</strong></td><td style="padding:6px 8px">Yearly amounts, divided by 12 into the payment</td><td style="padding:6px 8px">Tax 0.3–2%+ of price by state</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A $400,000 home with $40,000 down (a $360,000 loan) at 7% over 15 years: principal & interest is $3,235.78 a month. Add $4,800/yr of property tax and $1,800/yr of insurance and the true PITI is $3,785.78 — the number your budget actually has to carry, and $550 a month more than the loan payment alone.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How much house can I afford?</h3>
+    <p>A common rule is the 28/36 rule: spend no more than 28% of gross monthly income on housing and 36% on all debt. Plug candidate prices into this calculator to test them.</p>
+    <h3>Does a bigger down payment lower my payment a lot?</h3>
+    <p>Yes two ways: it shrinks the loan amount, and at 20%+ down you avoid PMI. Try 10% vs 20% above to see the difference.</p>
+    <h3>Is a 15-year mortgage worth it?</h3>
+    <p>Rates are usually lower and you pay far less interest, but the monthly payment jumps ~40–50%. Compare both terms above before deciding.</p>
+    <h3>What is not included in this payment?</h3>
+    <p>HOA dues, PMI (when the down payment is under 20%), and maintenance. PITI is the lender's core four; budget another 1–2% of the home's value per year for upkeep on top.</p>
+    <h3>Why is my lender's quote slightly different?</h3>
+    <p>Lenders round the rate differently, escrow tax and insurance with cushions, and may price discount points into the quote. If the difference is more than a few dollars, ask which assumption moved — it is usually the tax or insurance estimate.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>📊 Want the full investor picture?</h3>
+    <p>Our Rental Property Analyzer combines mortgage math with cap rate and cash-on-cash return.</p>
+    <p><a class="btn" href="rental-property-analyzer.html">Try the analyzer</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+<section class="nn-compare">
+  <h2>Compare your options</h2>
+  <p style="color:var(--muted);font-size:.9rem">Affiliate links: none on this page today. We do not take paid placements from lenders, and we will never dress up advertising as a rate table — if affiliate partners are added here, they will be labeled and this note will say so. The links below are our own free tools.</p>
+  <ul><li><a href="refinance-calculator.html">Refinance Calculator</a> — See whether a new loan beats this one, break-even included.</li><li><a href="closing-cost-estimator.html">Closing Cost Estimator</a> — The fees behind this payment, itemized low/mid/high.</li><li><a href="property-tax-calculator.html">Property Tax Calculator</a> — The tax line inside this payment, from your state's real average rate.</li><li><a href="home-affordability-calculator.html">Home Affordability Calculator</a> — What this payment implies about the price you can carry.</li></ul>
+</section>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="refinance-calculator.html">Mortgage Refinance Calculator</a></li>
+    <li><a href="home-affordability-calculator.html">Home Affordability Calculator</a></li>
+    <li><a href="cap-rate-calculator.html">Cap Rate Calculator</a></li>
+    <li><a href="rental-property-analyzer.html">Rental Property Analyzer</a></li>
+  
+    <li><a href="../guides/calculate-mortgage-payment-by-hand.html">📖 How-to: Calculate a mortgage payment by hand</a></li>
+  
+    <li><a href="../guides/heloc-draw-vs-repayment-guide.html">📖 Guide: HELOC draw period vs repayment, with real numbers</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function calc(){
+  const price=+document.getElementById('price').value||0,
+        down=+document.getElementById('down').value||0,
+        rate=(+document.getElementById('rate').value||0)/100/12,
+        n=(+document.getElementById('term').value||30)*12,
+        tax=(+document.getElementById('tax').value||0)/12,
+        ins=(+document.getElementById('ins').value||0)/12;
+  const loan=Math.max(price-down,0);
+  const pi=rate>0?loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1):loan/n;
+  const total=pi+tax+ins, totInt=pi*n-loan;
+  document.getElementById('rPay').textContent=fmt(total);
+  document.getElementById('rPI').textContent=fmt(pi);
+  document.getElementById('rTax').textContent=fmt(tax);
+  document.getElementById('rIns').textContent=fmt(ins);
+  document.getElementById('rLoan').textContent=fmt(loan);
+  document.getElementById('rInt').textContent=fmt(totInt);
+  document.getElementById('rTot').textContent=fmt(pi*n+ (tax+ins)*n);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+<script>
+/* NN-REDESIGN M4 — segmented term control. The hidden <select id="term">
+   stays the value source, so calc() works unchanged. */
+(function(){
+  var sel=document.getElementById('term');
+  var btns=document.querySelectorAll('.seg-btn[data-term]');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      sel.value=b.getAttribute('data-term');
+      btns.forEach(function(x){x.classList.toggle('is-on',x===b);});
+      if (typeof calc==='function') calc();
+    });
+  });
+})();
+</script>
+</body>
+</html>

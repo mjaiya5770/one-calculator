@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Inflation Calculator — Future Cost & Today’s-Money Value | One Calculator</title>
+<meta name="description" content="Free inflation calculator that works both directions: what a price becomes after years of inflation, and what a future sum is worth in today’s money. Adjustable rate and years.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/inflation-calculator.html">
+<meta property="og:title" content="Free Inflation Calculator — Future Cost & Today’s-Money Value | One Calculator">
+<meta property="og:description" content="Free inflation calculator that works both directions: what a price becomes after years of inflation, and what a future sum is worth in today’s money. Adjustable rate and years.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/inflation-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Inflation Calculator — Future Cost & Today’s-Money Value | One Calculator">
+<meta name="twitter:description" content="Free inflation calculator that works both directions: what a price becomes after years of inflation, and what a future sum is worth in today’s money. Adjustable rate and years.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Inflation Calculator",
+  "description": "Free inflation calculator that works both directions: what a price becomes after years of inflation, and what a future sum is worth in today\u2019s money. Adjustable rate and years.",
+  "url": "https://onecalculator.site/tools/inflation-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does $100 become after 10 years at 3% inflation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A price of $134.39 \u2014 and the flip side matters more: $100 received in ten years buys only what $74.41 buys today. Same formula, two directions, one uncomfortable lesson."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until money loses half its value?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide 72 by the inflation rate: at 3%, about 24 years; at 5%, about 14 years; at 7%, about a decade. Cash under the mattress is on a clock."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What inflation rate should I plan with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Long-run US CPI averages near 3%, and most retirement planning uses 2.5\u20133.5%. Run your plan at 4% too \u2014 if it only works at exactly 2%, it does not work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a 5% CD yield a 5% return?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nominally yes, really no: subtract inflation. At 5% APY and 3% inflation your purchasing power grows about 2% a year \u2014 the CD Calculator shows the nominal figure, this tool shows what it will buy."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/inflation-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › Inflation Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Inflation Calculator</h1>
+  <p class="lede">Inflation is compound interest running against you. Enter any amount, a rate and a span of years, and see both directions at once: what today’s price becomes, and what a future sum shrinks to in today’s money.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="amt">Amount ($)</label><input id="amt" type="number" value="100" min="0" step="any"></div>
+      <div class="field"><label for="rate">Inflation rate (% per year)</label><input id="rate" type="number" value="3" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="yrs">Years</label><input id="yrs" type="number" value="10" min="0" step="any"></div>
+      <div class="field"><label>&nbsp;</label><span class="hint">Long-run US inflation has averaged roughly 3% a year; the 1970s ran near 7%, the 2010s under 2%. Try a few rates — the spread over decades is the story.</span></div>
+    </div>
+
+    <button class="btn" onclick="calc()">Calculate</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#inflation-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Future cost of today’s amount</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Both directions are one formula: future value = amount × (1 + rate)<sup>years</sup>, and today’s-money value = amount ÷ (1 + rate)<sup>years</sup>. The purchasing-power line is the quiet one: at 3% inflation, money halves in buying power about every 24 years — the mirror image of the rule of 72.</p>
+    <div class="note">Estimates only — not financial advice. Inflation is not uniform: housing, healthcare and groceries each run their own rate, and the official CPI may not match your personal basket.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Future value = amount × (1 + rate)<sup>years</sup>; today’s-money value = amount ÷ (1 + rate)<sup>years</sup> — one formula read in both directions. Purchasing power halves every ln(2) ÷ ln(1 + rate) years — about 23.4 years at 3%.</p>
+    <p><strong>Worked example:</strong> At 3% inflation for 10 years, a $100 price becomes $134.39 — and $100 received in ten years buys only what $74.41 buys today, a 25.6% loss of purchasing power without a single dollar leaving the account.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You know what rent, groceries or insurance cost today and want a plausible future cost if inflation holds at a given rate.</li><li>You have a retirement or savings target in future dollars and need it translated back into today's money before you judge it.</li><li>Cash is sitting in a non-interest account for years and you want the real cost of leaving it there.</li><li>A flat salary, a fixed pension or a long fixed-price contract needs testing against rising prices.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the amount — a price today, or a sum you expect to receive later.</li><li>Set an inflation rate; run the long-run average first, not the scariest headline.</li><li>Set the years honestly — inflation's damage is mostly a long-horizon story.</li><li>Read both directions: the future cost of today's amount, and today's-money value of that same amount received later.</li><li>Re-run at a rate one or two points higher as a stress test; the gap between the two runs is your planning margin.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Amount</strong></td><td style="padding:6px 8px">The sum whose buying power you are tracking</td><td style="padding:6px 8px">Anything from a $100 bill to a retirement pot</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Inflation rate</strong></td><td style="padding:6px 8px">Assumed yearly rise in prices</td><td style="padding:6px 8px">Long-run US average near 3%; personal baskets vary</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Years</strong></td><td style="padding:6px 8px">The span inflation compounds over</td><td style="padding:6px 8px">5 years for a car fund; 20–30 for retirement</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>Take $1,000 at 4% inflation for 20 years: the same basket of goods costs $2,191.12, a $1,191.12 increase. Read it the other way and $1,000 arriving 20 years from now buys only $456.39 worth of today's goods — a 54.36% loss of purchasing power — and at 4% buying power halves every 17.67 years.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What does $100 become after 10 years at 3% inflation?</h3>
+    <p>A price of $134.39 — and the flip side matters more: $100 received in ten years buys only what $74.41 buys today. Same formula, two directions, one uncomfortable lesson.</p>
+    <h3>How long until money loses half its value?</h3>
+    <p>Divide 72 by the inflation rate: at 3%, about 24 years; at 5%, about 14 years; at 7%, about a decade. Cash under the mattress is on a clock.</p>
+    <h3>What inflation rate should I plan with?</h3>
+    <p>Long-run US CPI averages near 3%, and most retirement planning uses 2.5–3.5%. Run your plan at 4% too — if it only works at exactly 2%, it does not work.</p>
+    <h3>Is a 5% CD yield a 5% return?</h3>
+    <p>Nominally yes, really no: subtract inflation. At 5% APY and 3% inflation your purchasing power grows about 2% a year — the CD Calculator shows the nominal figure, this tool shows what it will buy.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>💿 Earning interest against it?</h3>
+    <p>The CD Calculator works out exactly what a deposit grows to — then bring that number back here to see what it will buy.</p>
+    <p><a class="btn" href="cd-calculator.html">Grow a deposit</a></p>
+    <h3>Does inflation compound, or is it just the rate times the number of years?</h3>
+    <p>It compounds. Each year's price rise applies to a price level that has already risen, exactly like interest in reverse. That is why the simple multiplication understates long spans so badly: the gap between the two methods is small over two or three years and enormous over twenty.</p>
+    <h3>Why does my personal inflation feel higher than the official rate?</h3>
+    <p>Because CPI is an average basket and yours is not. If most of your spending goes to rent, childcare, healthcare or groceries in a year when those run hot, your personal rate can sit well above the headline figure — and the reverse when your big costs are flat. For planning your own future costs, a rate based on your actual basket is the more honest input.</p>
+  </div>
+</main>
+
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+    <li><a href="cd-calculator.html">CD Calculator</a></li>
+    <li><a href="retirement-calculator.html">Retirement Calculator</a></li>
+    <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+/*PURE-BEGIN*/
+function inflated(amount,ratePct,years){return amount*Math.pow(1+ratePct/100,years);}
+function deflated(amount,ratePct,years){return amount/Math.pow(1+ratePct/100,years);}
+function yearsToHalf(ratePct){if(ratePct<=0)return Infinity;return Math.log(2)/Math.log(1+ratePct/100);}
+/*PURE-END*/
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function calc(){
+  var amt=v('amt'),rate=v('rate'),yrs=v('yrs');
+  if(!(amt>0)||!(yrs>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter an amount and a number of years.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');return;}
+  var fv=inflated(amt,rate,yrs),pv=deflated(amt,rate,yrs),half=yearsToHalf(rate);
+  document.getElementById('rMain').textContent='$'+fmt(fv);
+  document.getElementById('verdict').textContent='At '+rate+'% inflation, $'+fmt(amt)+' today is a $'+fmt(fv)+' price in '+yrs+' years — and $'+fmt(amt)+' received then buys only $'+fmt(pv)+' of today’s goods.';
+  document.getElementById('rows').innerHTML=row('Amount today','$'+fmt(amt))+row('Same purchase in '+yrs+' years','$'+fmt(fv))
+    +row('Price increase','$'+fmt(fv-amt))+row('$'+fmt(amt)+' in '+yrs+' years, in today’s money','$'+fmt(pv))
+    +row('Purchasing power lost',fmt(100-pv/amt*100)+'%')+row('Money halves in buying power every',isFinite(half)?fmt(half)+' years':'— (no inflation)');
+  document.getElementById('results').classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Deck Material Estimator — Boards, Screws & Concrete Calculator | One Calculator</title>
+<meta name="description" content="Free deck material calculator: enter deck length and width to estimate deck boards, joists, screws, and concrete footings needed. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/deck-material-estimator.html">
+<meta property="og:title" content="Free Deck Material Estimator — Boards, Screws &amp; Concrete Calculator | One Calculator">
+<meta property="og:description" content="Free deck material calculator: enter deck length and width to estimate deck boards, joists, screws, and concrete footings needed. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/deck-material-estimator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Deck Material Estimator — Boards, Screws &amp; Concrete Calculator | One Calculator">
+<meta name="twitter:description" content="Free deck material calculator: enter deck length and width to estimate deck boards, joists, screws, and concrete footings needed. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Deck Material Estimator",
+  "description": "Free deck material calculator: enter deck length and width to estimate deck boards, joists, screws, and concrete footings needed. No signup.",
+  "url": "https://onecalculator.site/tools/deck-material-estimator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/deck-material-estimator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-home-diy-tools">Home & DIY tools</a> › Deck Material Estimator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Deck Material Estimator</h1>
+  <p class="lede">Enter your deck's length and width to estimate deck boards, joists, screws, and concrete footings — a solid shopping list before you head to the lumber yard.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="len">Deck length (ft)</label><input id="len" type="number" value="16" min="0"></div>
+      <div class="field"><label for="wid">Deck width (ft)</label><input id="wid" type="number" value="12" min="0"></div>
+      <div class="field"><label for="boardLen">Board length (ft)</label><select id="boardLen"><option>8</option><option>10</option><option selected>12</option><option>16</option></select><div class="hint">Match to your deck width if possible.</div></div>
+    </div>
+    <button class="btn" onclick="calc()">Estimate materials</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#deck-material-estimator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Deck boards needed</div>
+      <div class="big" id="rBoards">0</div>
+      <table>
+        <tr><td>Deck area</td><td id="rArea">0 sq ft</td></tr>
+        <tr><td>Joists (16″ on center)</td><td id="rJoists">0</td></tr>
+        <tr><td>Deck screws</td><td id="rScrews">0</td></tr>
+        <tr><td>Concrete footings</td><td id="rFoot">0</td></tr>
+        <tr><td>80-lb concrete bags</td><td id="rBags">0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Assumptions: 5.5″-wide deck boards with a ⅛″ gap (5.625″ effective width), boards laid across the deck width. Board count = <strong>length ÷ 5.625″</strong>, rounded up. Joists run 16″ on center along the length. Screws: 2 per board per joist. Footings: roughly one per 50 sq ft, with two 80-lb concrete bags each.</p>
+    <div class="note">Estimates only — real builds need rim joists, beams, hangers, flashing, and permit-approved footing depths. Buy 10% extra boards for cuts and waste.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Boards = deck length in inches ÷ 5.625 in (a 5.5-in board plus its gap), rounded up. Joists = floor(deck length in inches ÷ 16) + 1, for 16-in spacing; screws = boards × joists × 2. Footings = deck area ÷ 50 sq ft, rounded up, with 2 bags of concrete per footing.</p>
+    <p><strong>Worked example:</strong> A 16 ft × 12 ft deck covers 192 sq ft: 192 ÷ 5.625 rounds up to 35 boards, with 13 joists, about 910 screws, 4 footings and 8 bags of concrete.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are sketching a backyard deck and need a lumber-yard list — boards, joists, screws, footings — before you talk to anyone about building it.</li><li>A deck quote arrived as one lump sum and you want the material counts underneath it to see whether they are sane.</li><li>You are replacing a deck surface on an existing frame and want the board and screw counts without the guesswork.</li><li>You are staging the project over two weekends and need to know what has to be on site for the framing stage alone.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the deck length and width in feet — length is the side the board count is worked from.</li><li>Choose a board length that can span your deck width in one piece where possible.</li><li>Click Estimate materials.</li><li>Read boards first, then joists, screws, footings and concrete bags as one list.</li><li>Add your own margin for cuts and damaged boards before you order — the estimator counts the ideal deck.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Deck length</strong></td><td style="padding:6px 8px">The side divided into board rows</td><td style="padding:6px 8px">16 ft is the page default</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Deck width</strong></td><td style="padding:6px 8px">The span each board runs across</td><td style="padding:6px 8px">12 ft is the page default</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Board length</strong></td><td style="padding:6px 8px">Stock length you will buy, chosen from the list</td><td style="padding:6px 8px">8, 10, 12 or 16 ft</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Board width (built-in assumption)</strong></td><td style="padding:6px 8px">A 5.5 in board plus a 1/8 in gap, 5.625 in of deck per board</td><td style="padding:6px 8px">Fixed — the estimator does not take other board widths</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A 20 by 14 ft deck covers 280 sq ft. The estimator calls for 43 boards in 16 ft lengths, 16 joists at 16 inch spacing, about 1,376 deck screws, 6 concrete footings and 12 bags of 80-lb concrete. The screw count surprises most people on a deck this size — it is simply 2 screws at every board-to-joist crossing, and 43 boards crossing 16 joists adds up fast.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How many deck boards do I need?</h3>
+    <p>Divide the deck length (in inches) by 5.625 (a 5.5″ board plus a ⅛″ gap) and round up. A 16-ft-long deck needs about 35 boards.</p>
+    <h3>How many screws per deck board?</h3>
+    <p>Two screws at every joist crossing. For 16″-on-center joists, a 12-ft board needs about 20 screws.</p>
+    <h3>How deep should deck footings be?</h3>
+    <p>Footings must extend below your local frost line — commonly 36″ deep in cold climates. Always check local building code and permits first.</p>
+    <h3>What if my deck is wider than the longest board I can buy?</h3>
+    <p>This estimator assumes each board runs the full width in one piece, so pick a board length that covers your width — for a 14 ft wide deck, that means the 16 ft option. If your width beats every stock length, you will be butt-jointing boards over a joist, and the simple board count no longer tells the whole story; plan the layout with your lumber yard rather than stretching this estimate.</p>
+    <h3>What materials are not on this list?</h3>
+    <p>The frame beyond the joists: rim joists, beams, posts, ledger board, joist hangers, flashing and railing are all outside the count, and footing depth is set by your local frost line and permit, not by this page. Treat the output as the decking-and-footings shopping list, then build the framing list separately before the first trip.</p>
+    <h3>Should I order extra boards beyond the count?</h3>
+    <p>Yes — the estimator counts a perfect deck with no miscuts, no warped boards and no end waste, and the page's own guidance is to buy about 10% extra. Lumber yards take returns on clean, uncut stock far more happily than they expedite a Sunday-morning emergency run for three boards.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>🛠️ More project math</h3>
+    <p>Figure out paint for the railing with the paint coverage calculator, or compare lumber prices per board foot.</p>
+    <p><a class="btn" href="paint-coverage-calculator.html">Try paint calculator</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="paint-coverage-calculator.html">Paint Coverage Calculator</a></li>
+    <li><a href="moving-cost-estimator.html">Moving Cost Estimator</a></li>
+    <li><a href="home-affordability-calculator.html">Home Affordability Calculator</a></li>
+    <li><a href="unit-price-calculator.html">Unit Price Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function calc(){
+  const len=+document.getElementById('len').value||0,
+        wid=+document.getElementById('wid').value||0,
+        boardLen=+document.getElementById('boardLen').value||12;
+  const EFF=5.625; // effective board width incl. gap, inches
+  const area=len*wid;
+  const boards=Math.ceil(len*12/EFF);
+  const joists=Math.floor(len*12/16)+1;
+  const screws=boards*joists*2;
+  const foot=Math.ceil(area/50);
+  const bags=foot*2;
+  document.getElementById('rBoards').textContent=boards+' ('+boardLen+'-ft boards)';
+  document.getElementById('rArea').textContent=area.toFixed(0)+' sq ft';
+  document.getElementById('rJoists').textContent=joists;
+  document.getElementById('rScrews').textContent='~'+screws.toLocaleString('en-US');
+  document.getElementById('rFoot').textContent=foot;
+  document.getElementById('rBags').textContent=bags;
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

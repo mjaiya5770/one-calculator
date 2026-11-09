@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Quarterly Estimated Tax Calculator — Self-Employed 2026 | One Calculator</title>
+<meta name="description" content="Free quarterly estimated tax calculator for freelancers and the self-employed: estimate self-employment tax + income tax and your four quarterly payments. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/quarterly-tax-calculator.html">
+<meta property="og:title" content="Free Quarterly Estimated Tax Calculator — Self-Employed 2026 | One Calculator">
+<meta property="og:description" content="Free quarterly estimated tax calculator for freelancers and the self-employed: estimate self-employment tax + income tax and your four quarterly payments. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/quarterly-tax-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Quarterly Estimated Tax Calculator — Self-Employed 2026 | One Calculator">
+<meta name="twitter:description" content="Free quarterly estimated tax calculator for freelancers and the self-employed: estimate self-employment tax + income tax and your four quarterly payments. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Quarterly Estimated Tax Calculator",
+  "description": "Free quarterly estimated tax calculator for freelancers and the self-employed: estimate self-employment tax + income tax and your four quarterly payments. No signup.",
+  "url": "https://onecalculator.site/tools/quarterly-tax-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/quarterly-tax-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-small-business-tools">Small business tools</a> › Quarterly Estimated Tax Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Quarterly Estimated Tax Calculator</h1>
+  <p class="lede">Self-employed? The IRS wants its cut four times a year. Enter your expected annual profit and tax bracket to estimate each quarterly payment — covering both self-employment tax and federal income tax.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="profit">Expected annual net self-employment profit ($)</label><input id="profit" type="number" value="100000" min="0"><div class="hint">Revenue minus business expenses for the year.</div></div>
+      <div class="field"><label for="bracket">Marginal federal income tax rate (%)</label><input id="bracket" type="number" value="22" min="0" max="50" step="0.5"><div class="hint">Pick your tax bracket — e.g. 22% for most mid-income filers.</div></div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate quarterly payment</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#quarterly-tax-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Estimated quarterly payment</div>
+      <div class="big" id="rQ">$0</div>
+      <table>
+        <tr><td>Self-employment taxable earnings (92.35%)</td><td id="rSEBase">$0</td></tr>
+        <tr><td>Self-employment tax (15.3%)</td><td id="rSE">$0</td></tr>
+        <tr><td>Federal income tax</td><td id="rInc">$0</td></tr>
+        <tr><td>Total annual tax</td><td id="rTot">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Two taxes apply to self-employment income. <strong>Self-employment tax</strong> = profit × 0.9235 × 15.3% (covers Social Security + Medicare). <strong>Federal income tax</strong> = profit × your marginal bracket. Total annual tax = SE tax + income tax, and each <strong>quarterly payment = total ÷ 4</strong>.</p>
+    <div class="note">Estimates only — not tax advice. This ignores state taxes, deductions, credits, and the Social Security wage base cap. Talk to a tax professional for your actual payments.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Self-employment tax = profit × 92.35% × 15.3% — only 92.35% of profit is subject to SE tax. Income tax = profit × your chosen bracket %. The annual estimate is the sum of the two, and each quarterly payment is a quarter of it.</p>
+    <p><strong>Worked example:</strong> On $80,000 of profit in the 22% bracket: SE tax is $73,880 × 15.3% = $11,304 and income tax is $17,600, totalling $28,904 a year — four quarterly payments of $7,226.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You left a W-2 job for freelancing or contracting and nobody is withholding tax from your pay any more.</li><li>Your side business started making real profit and you need a quarterly figure before the next due date, not at filing time.</li><li>Your income jumped this year and last year's payment amounts no longer look safe.</li><li>You want to see how much of each client payment to move into a tax savings account as it arrives.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter your expected annual net profit — revenue minus business expenses, not gross billings.</li><li>Set the marginal federal income tax rate for your bracket.</li><li>Read the self-employment tax, the income tax and the total, then the quarterly payment, which is the total divided by four.</li><li>Re-run it whenever your profit forecast changes materially; estimates are meant to be revised during the year.</li><li>Treat the result as a planning estimate and confirm the final figures with a tax professional — state tax, deductions and credits are not in this model.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Expected annual net profit</strong></td><td style="padding:6px 8px">Self-employment revenue minus business expenses for the year</td><td style="padding:6px 8px">Part-time freelancing $10k–$40k; full-time often $50k–$150k+</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Marginal federal income tax rate</strong></td><td style="padding:6px 8px">The bracket rate you pick for the income-tax part of the estimate</td><td style="padding:6px 8px">Common brackets used here: 12%, 22%, 24%</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A freelancer expecting $55,000 of net profit in the 12% bracket: the self-employment taxable base is $50,793 (92.35% of profit), self-employment tax comes to $7,771, and federal income tax at 12% adds $6,600. The total annual estimate is $14,371, split into four quarterly payments of $3,593 as the tool displays them — each figure rounded to whole dollars the way the tool formats it.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>Who has to pay estimated taxes quarterly?</h3>
+    <p>Generally, anyone who expects to owe $1,000 or more in tax after withholding and credits. Most freelancers, contractors, and small business owners qualify — employees with enough W-2 withholding usually don't.</p>
+    <h3>When are the quarterly deadlines?</h3>
+    <p>For 2026: April 15, June 15, September 15, 2026, and January 15, 2027. If a date falls on a weekend or holiday, the deadline shifts to the next business day.</p>
+    <h3>What happens if I underpay?</h3>
+    <p>The IRS can charge an underpayment penalty plus interest. Safe harbors: pay at least 90% of this year's tax or 100% of last year's tax (110% if your AGI was over $150,000) through quarterly payments and withholding.</p>
+    <h3>Does this estimate include my state taxes?</h3>
+    <p>No. It covers only the two federal pieces — self-employment tax at 15.3% on 92.35% of profit, and federal income tax at the bracket rate you enter. Most states with an income tax expect their own estimated payments on top, so budget separately for those.</p>
+    <h3>Why does the real return often come out lower than this estimate?</h3>
+    <p>This model is deliberately simple: it applies your bracket rate to the full profit and does not subtract the standard deduction, the deduction for half of self-employment tax, business credits or the qualified business income deduction. Those all reduce a real liability, so treat this figure as a cautious planning estimate, not a prediction of your filed return — and not tax advice.</p>
+    <h3>What if I also have a W-2 job during the year?</h3>
+    <p>Tax withheld by an employer counts toward the same annual bill, so a W-2 job covering part of the year usually means smaller quarterly payments are needed than this full-profit estimate suggests. Some people instead raise their W-2 withholding to cover side income and skip quarterly vouchers; either way, the combined total paid in is what matters at filing.</p>
+  </div>
+
+  
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="freelance-rate-calculator.html">Freelance Hourly Rate Calculator</a></li>
+    <li><a href="invoice-generator.html">Invoice Generator (Printable)</a></li>
+    <li><a href="mileage-deduction-calculator.html">Mileage Deduction Calculator (2026)</a></li>
+    <li><a href="hourly-salary-converter.html">Hourly to Salary Converter</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function calc(){
+  const profit=+document.getElementById('profit').value||0,
+        bracket=(+document.getElementById('bracket').value||0)/100;
+  const seBase=profit*0.9235;
+  const seTax=seBase*0.153;
+  const incTax=profit*bracket;
+  const total=seTax+incTax;
+  document.getElementById('rQ').textContent=fmt(total/4);
+  document.getElementById('rSEBase').textContent=fmt(seBase);
+  document.getElementById('rSE').textContent=fmt(seTax);
+  document.getElementById('rInc').textContent=fmt(incTax);
+  document.getElementById('rTot').textContent=fmt(total);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

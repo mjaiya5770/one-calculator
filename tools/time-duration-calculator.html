@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Time Duration Calculator — Hours Between Two Times, Add & Subtract | One Calculator</title>
+<meta name="description" content="Free time duration calculator: find hours and minutes between two times, or add and subtract durations for shifts and timesheets. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/time-duration-calculator.html">
+<meta property="og:title" content="Free Time Duration Calculator — Hours Between Two Times, Add &amp; Subtract | One Calculator">
+<meta property="og:description" content="Free time duration calculator: find hours and minutes between two times, or add and subtract durations for shifts and timesheets. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/time-duration-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Time Duration Calculator — Hours Between Two Times, Add &amp; Subtract | One Calculator">
+<meta name="twitter:description" content="Free time duration calculator: find hours and minutes between two times, or add and subtract durations for shifts and timesheets. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Time Duration Calculator",
+  "description": "Free time duration calculator: find hours and minutes between two times, or add and subtract durations for shifts and timesheets. No signup.",
+  "url": "https://onecalculator.site/tools/time-duration-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/time-duration-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › Time Duration Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Time Duration Calculator</h1>
+  <p class="lede">Find the time between two clock times — even across midnight — or add and subtract durations for timesheets, shifts, and projects.</p>
+
+  <div class="card nn-calc-card">
+    <h2 style="margin-top:0">Time between two times</h2>
+    <div class="row">
+      <div class="field"><label for="start">Start time</label><input id="start" type="time" value="09:30"></div>
+      <div class="field"><label for="end">End time</label><input id="end" type="time" value="17:45"></div>
+    </div>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#time-duration-calculator">Embed this calculator on your site — free</a></p>
+<div class="results show" style="margin-top:.75rem">
+      <div style="color:var(--muted);font-size:.9rem">Duration</div>
+      <div class="big" id="rDur">—</div>
+      <table>
+        <tr><td>Total minutes</td><td id="rMin">—</td></tr>
+        <tr><td>Decimal hours</td><td id="rDec">—</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2 style="margin-top:0">Add / subtract durations</h2>
+    <div class="row">
+      <div class="field"><label for="d1h">Duration 1 — hours</label><input id="d1h" type="number" value="2" min="0"></div>
+      <div class="field"><label for="d1m">Duration 1 — minutes</label><input id="d1m" type="number" value="30" min="0" max="59"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="d2h">Duration 2 — hours</label><input id="d2h" type="number" value="1" min="0"></div>
+      <div class="field"><label for="d2m">Duration 2 — minutes</label><input id="d2m" type="number" value="45" min="0" max="59"></div>
+    </div>
+    <div class="row">
+      <button class="btn" onclick="addSub('+')">Add (+)</button>
+      <button class="btn" onclick="addSub('-')">Subtract (−)</button>
+    </div>
+    <div class="results" id="results2">
+      <div style="color:var(--muted);font-size:.9rem">Result</div>
+      <div class="big" id="rSum">—</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Between-times math converts both clock times to minutes since midnight; if the end time is earlier than the start, a full day (1,440 minutes) is added — that handles overnight shifts automatically. Duration arithmetic works in total minutes and converts back to hours and minutes.</p>
+    <div class="note">Enter times in 24-hour or use your browser's AM/PM picker. Dates are not tracked — this tool measures within one day span.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Both times are converted to minutes since midnight (hours × 60 + minutes) and subtracted; if the end time is earlier than the start, 1,440 minutes (24 hours) are added so overnight spans work. Durations can also be added to and subtracted from each other directly.</p>
+    <p><strong>Worked example:</strong> From 9:15 AM to 5:45 PM: 1,065 − 555 = 510 minutes, which is 8h 30m — 8.50 hours in decimal form.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>A timesheet needs the length of a shift, including one that runs past midnight.</li><li>You bill or are paid by the hour and need decimal hours, not hours and minutes, for the invoice or payroll form.</li><li>Breaks, meetings and tasks with separate durations need adding together or netting off.</li><li>Mental clock arithmetic across noon or midnight keeps giving you an answer you do not trust.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the start and end times in the between-times section; there is no calculate button, it updates as you change them.</li><li>If the end time is earlier than the start, the tool assumes the span crosses midnight and adds a day.</li><li>Read the duration three ways: hours and minutes, total minutes, and decimal hours.</li><li>For separate durations, use the add and subtract section below — for example, a shift minus its unpaid break.</li><li>Chain the add and subtract section by feeding a result back in as Duration 1 when you have more than two pieces.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Start time and end time</strong></td><td style="padding:6px 8px">The two clock times bounding the span, within one day or across midnight</td><td style="padding:6px 8px">Shift starts and finishes, most often</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Duration 1 and Duration 2</strong></td><td style="padding:6px 8px">Two lengths of time in hours and minutes, for the add and subtract section</td><td style="padding:6px 8px">Breaks, tasks, meetings, travel legs</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A night shift from 10:30 PM to 7:15 AM: the end time is earlier than the start, so the tool adds a full day before subtracting, and the shift comes out at 525 minutes — 8h 45m, or 8.75 hrs in the decimal form payroll wants. Without that overnight handling the same two times would produce a negative answer, which is exactly the error this calculation exists to prevent.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>Does it handle overnight shifts?</h3>
+    <p>Yes. A shift from 22:00 to 06:00 correctly returns 8 hours — end times earlier than the start are treated as the next day.</p>
+    <h3>What are decimal hours for?</h3>
+    <p>Payroll and billing usually use decimal hours: 8 hours 15 minutes = 8.25 hours. The converter gives you both formats.</p>
+    <h3>Can I add more than two durations?</h3>
+    <p>Add the first two, then use the result as Duration 1 with the next duration — or tally weekly hours in our freelance rate calculator.</p>
+    <h3>What happens if the start and end times are exactly the same?</h3>
+    <p>The result is 0h 00m — zero minutes, 0.00 hrs. The tool only adds a day when the end is strictly earlier than the start, so identical times mean no time passed, not a 24-hour span. If you genuinely worked a full day, enter the two halves of it separately and add them.</p>
+    <h3>How do I take an unpaid break out of a shift?</h3>
+    <p>First read the full shift length from the between-times section, then use the subtract section with the shift as Duration 1 and the break as Duration 2. Taking a 45-minute break out of the 8h 45m night shift above leaves 8h 00m — the figure that belongs on the timesheet.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>⏱️ Billing by the hour?</h3>
+    <p>Turn those hours into a rate with the freelance hourly rate calculator, or convert wages with the hourly-to-salary converter.</p>
+    <p><a class="btn" href="freelance-rate-calculator.html">Try freelance rate</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="age-calculator.html">Age Calculator</a></li>
+    <li><a href="word-counter.html">Word Counter</a></li>
+    <li><a href="hourly-salary-converter.html">Hourly to Salary Converter</a></li>
+    <li><a href="password-generator.html">Password Generator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function pad(n){return String(n).padStart(2,'0');}
+function toMin(t){const p=t.split(':');return (+p[0])*60+(+p[1]||0);}
+function fmtDur(mins){
+  const h=Math.floor(Math.abs(mins)/60), m=Math.abs(mins)%60;
+  return (mins<0?'-':'')+h+'h '+pad(m)+'m';
+}
+function between(){
+  const s=document.getElementById('start').value||'00:00',
+        e=document.getElementById('end').value||'00:00';
+  let d=toMin(e)-toMin(s);
+  if(d<0)d+=1440;
+  document.getElementById('rDur').textContent=fmtDur(d);
+  document.getElementById('rMin').textContent=d+' minutes';
+  document.getElementById('rDec').textContent=(d/60).toFixed(2)+' hrs';
+}
+function addSub(op){
+  const a=(+document.getElementById('d1h').value||0)*60+(+document.getElementById('d1m').value||0),
+        b=(+document.getElementById('d2h').value||0)*60+(+document.getElementById('d2m').value||0);
+  const r=op==='+'?a+b:a-b;
+  document.getElementById('rSum').textContent=fmtDur(r);
+  document.getElementById('results2').classList.add('show');
+}
+document.getElementById('start').addEventListener('change',between);
+document.getElementById('end').addEventListener('change',between);
+between();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

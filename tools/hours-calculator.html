@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Hours Calculator — Between Two Times, With Pay | One Calculator</title>
+<meta name="description" content="Free hours calculator: start and end times in, hours and minutes plus decimal hours out — overnight shifts wrap automatically, breaks come off, and an optional rate gives the shift’s gross pay.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/hours-calculator.html">
+<meta property="og:title" content="Free Hours Calculator — Between Two Times, With Pay | One Calculator">
+<meta property="og:description" content="Free hours calculator: start and end times in, hours and minutes plus decimal hours out — overnight shifts wrap automatically, breaks come off, and an optional rate gives the shift’s gross pay.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/hours-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Hours Calculator — Between Two Times, With Pay | One Calculator">
+<meta name="twitter:description" content="Free hours calculator: start and end times in, hours and minutes plus decimal hours out — overnight shifts wrap automatically, breaks come off, and an optional rate gives the shift’s gross pay.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Hours Calculator",
+  "description": "Free hours calculator: start and end times in, hours and minutes plus decimal hours out \u2014 overnight shifts wrap automatically, breaks come off, and an optional rate gives the shift\u2019s gross pay.",
+  "url": "https://onecalculator.site/tools/hours-calculator.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many hours is 9:00 to 17:30 with a 30-minute break?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The span is 8 hours 30 minutes; minus the break, 8 hours exactly \u2014 8.00 decimal hours. At $20 an hour that shift grosses $160.00."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do overnight shifts work here?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter them plainly: 22:00 to 06:00 is 8 hours, because an end earlier than the start is read as the next day. No date fields, no checkboxes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my timesheet say 8.50 for 8 hours 30 minutes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Payroll runs on decimals: minutes \u00f7 60. Thirty minutes is half an hour (.50), fifteen is .25, forty-five is .75. Writing 8.30 on a timesheet underpays you by 12 minutes \u2014 a classic quiet loss."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the break subtracted before pay is computed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 gross pay here is paid hours only, so an unpaid break never inflates the total. If your break is paid, set it to 0."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/hours-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › Hours Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Hours Calculator</h1>
+  <p class="lede">How long is 9:00 to 17:30, minus lunch — and what is it worth? Enter start and end (overnight shifts wrap past midnight on their own), subtract a break, and get the span in hours:minutes, in decimal hours for timesheets, and in gross pay if you add a rate.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="start">Start time</label><input id="start" type="time" value="09:00"></div>
+      <div class="field"><label for="end">End time</label><input id="end" type="time" value="17:30"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="brk">Unpaid break (minutes)</label><input id="brk" type="number" value="30" min="0" step="any"></div>
+      <div class="field"><label for="rate">Pay rate ($/hour, optional)</label><input id="rate" type="number" value="" min="0" step="any" placeholder="optional"></div>
+    </div>
+    <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">An end time earlier than the start is treated as next-day — overnight shifts need no special handling. Timesheets want decimal hours: 8 h 30 m is 8.50, not 8.30.</p>
+
+    <button class="btn" onclick="calc()">Calculate</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#hours-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Time worked</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Both times become minutes since midnight; the end gains 1,440 minutes if it is earlier than the start (the overnight wrap). Subtract the break and you have the shift. The <strong>decimal</strong> form — total minutes ÷ 60 — is the one payroll systems use, which is why 30 minutes shows as .50 and 45 minutes as .75.</p>
+    <div class="note">A calculator, not a payroll service: rounding rules, overtime premiums and break laws vary by employer and jurisdiction — the Overtime Calculator models the premium side.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Method &amp; worked example</h2>
+    <p><strong>Method:</strong> Times convert to minutes since midnight; an end earlier than the start gains 1,440 minutes (the overnight wrap). Paid minutes = span − break, and decimal hours = paid minutes ÷ 60 — the form payroll uses, where 30 minutes is .50, not .30.</p>
+    <p><strong>Worked example:</strong> 9:00 to 17:30 spans 8 h 30 m; minus a 30-minute break, the paid time is exactly 8 h — 8.00 decimal hours, $160.00 gross at $20/hr. An overnight shift of 22:00 to 06:00 is 8 hours with no special handling.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are filling in a weekly timesheet and the shifts were not tidy eight-hour blocks.</li><li>You work nights and need to prove to yourself — or to payroll — what a run of overnight shifts actually totals.</li><li>You are comparing a part-time schedule against your current one and want paid hours, not clock hours.</li><li>An invoice for hourly contract work needs the billable time from a start and end you wrote down.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the start time and the end time exactly as the clock showed them.</li><li>Enter the unpaid break in minutes — total it first if the shift had more than one.</li><li>Add your hourly rate if you want the shift's gross pay as well as its length.</li><li>Read the paid time in hours and minutes, then take the decimal hours figure for the timesheet.</li><li>For a run of shifts, repeat per shift and add the decimal figures.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Start and end time</strong></td><td style="padding:6px 8px">Clock times the shift began and finished</td><td style="padding:6px 8px">An end earlier than the start is read as the next day</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Unpaid break</strong></td><td style="padding:6px 8px">Minutes docked from the span before pay is worked out</td><td style="padding:6px 8px">30 is the page default; 45 and 60 are common on long shifts</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Pay rate</strong></td><td style="padding:6px 8px">Optional hourly rate for the gross pay line</td><td style="padding:6px 8px">Leave it blank if you only need the time</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>An overnight shift from 23:15 to 07:45 spans 8 hours 30 minutes. Take off a 45-minute unpaid break and the paid time is 7 hours 45 minutes — 7.75 decimal hours — which grosses $143.38 at $18.50 an hour. The wrap past midnight needs no special handling: the end being earlier than the start is what tells the calculator the shift crossed into the next day.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How many hours is 9:00 to 17:30 with a 30-minute break?</h3>
+    <p>The span is 8 hours 30 minutes; minus the break, 8 hours exactly — 8.00 decimal hours. At $20 an hour that shift grosses $160.00.</p>
+    <h3>How do overnight shifts work here?</h3>
+    <p>Enter them plainly: 22:00 to 06:00 is 8 hours, because an end earlier than the start is read as the next day. No date fields, no checkboxes.</p>
+    <h3>Why does my timesheet say 8.50 for 8 hours 30 minutes?</h3>
+    <p>Payroll runs on decimals: minutes ÷ 60. Thirty minutes is half an hour (.50), fifteen is .25, forty-five is .75. Writing 8.30 on a timesheet underpays you by 12 minutes — a classic quiet loss.</p>
+    <h3>Is the break subtracted before pay is computed?</h3>
+    <p>Yes — gross pay here is paid hours only, so an unpaid break never inflates the total. If your break is paid, set it to 0.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>⏰ Past 40 hours this week?</h3>
+    <p>The Overtime Calculator splits regular and time-and-a-half pay across a whole week — the version payroll actually runs.</p>
+    <p><a class="btn" href="overtime-calculator.html">Check overtime</a></p>
+    <h3>How do I total a whole week of shifts?</h3>
+    <p>Run each shift on its own and add the decimal hours figures — decimals are made for adding, which is exactly why payroll uses them. Five shifts that each come out at 7.75 is 38.75 hours for the week, a sum you can do on paper; adding 7 hours 45 minutes five times in your head is where errors move in.</p>
+    <h3>My shift had two breaks — which one do I enter?</h3>
+    <p>Add them together and enter the total minutes in the single break field. A 15-minute break and a 30-minute meal break are 45 minutes here. If one of the breaks was paid, leave that one out — only unpaid time comes off, and paid break minutes belong in the paid total.</p>
+  </div>
+</main>
+
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="overtime-calculator.html">Overtime Calculator</a></li>
+    <li><a href="time-duration-calculator.html">Time Duration Calculator</a></li>
+    <li><a href="hourly-salary-converter.html">Hourly to Salary Converter</a></li>
+    <li><a href="paycheck-calculator.html">Paycheck Calculator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function sv(id){return document.getElementById(id).value;}
+function tmin(s){var p=(s||'').split(':');if(p.length<2)return NaN;return (+p[0])*60+(+p[1]);}
+/*PURE-BEGIN*/
+function shiftMinutes(startMin,endMin){if(isNaN(startMin)||isNaN(endMin))return NaN;var d=endMin-startMin;if(d<0)d+=1440;return d;}
+/*PURE-END*/
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function calc(){
+  var span=shiftMinutes(tmin(sv('start')),tmin(sv('end'))),net=span-v('brk');
+  if(isNaN(span)||net<0){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Pick a start and end time (and a break shorter than the shift).';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');return;}
+  var h=Math.floor(net/60),m=net%60,dec=net/60,rate=v('rate');
+  document.getElementById('rMain').textContent=h+' h '+m+' m';
+  document.getElementById('verdict').textContent='That is '+fmt(dec)+' decimal hours'+(v('brk')?' after the '+v('brk')+'-minute break':'')+(rate?(', grossing $'+fmt(dec*rate)+' at $'+fmt(rate)+'/hr'):'')+'.';
+  var rows=row('Shift span',Math.floor(span/60)+' h '+(span%60)+' m')+row('Break','−'+v('brk')+' min')+row('Paid time',h+' h '+m+' m')+row('Decimal hours',fmt(dec));
+  if(rate)rows+=row('Gross pay at $'+fmt(rate)+'/hr','$'+fmt(dec*rate));
+  document.getElementById('rows').innerHTML=rows;
+  document.getElementById('results').classList.add('show');
+}
+document.querySelector('.tools').addEventListener('input',calc);
+document.querySelector('.tools').addEventListener('change',calc);
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+calc();
+
+</script>
+
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

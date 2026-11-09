@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Cap Rate Calculator — Net Operating Income & Property Cap Rate | One Calculator</title>
+<meta name="description" content="Free cap rate calculator: divide net operating income by property value to compare rental properties in seconds. Learn what's a good cap rate and what counts as an operating expense. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/cap-rate-calculator.html">
+<meta property="og:title" content="Free Cap Rate Calculator — Net Operating Income &amp; Property Cap Rate | One Calculator">
+<meta property="og:description" content="Free cap rate calculator: divide net operating income by property value to compare rental properties in seconds. Learn what&#x27;s a good cap rate and what counts as an operating expense. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/cap-rate-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Cap Rate Calculator — Net Operating Income &amp; Property Cap Rate | One Calculator">
+<meta name="twitter:description" content="Free cap rate calculator: divide net operating income by property value to compare rental properties in seconds. Learn what&#x27;s a good cap rate and what counts as an operating expense. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Cap Rate Calculator",
+  "description": "Free cap rate calculator: divide net operating income by property value to compare rental properties in seconds. Learn what's a good cap rate and what counts as an operating expense. No signup.",
+  "url": "https://onecalculator.site/tools/cap-rate-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/cap-rate-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-real-estate-investor-tools">Real estate investor tools</a> › Cap Rate Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Cap Rate Calculator</h1>
+  <p class="lede">Find a rental property's capitalization rate in seconds: net operating income divided by current market value. Compare deals on an apples-to-apples basis, with or without financing.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="value">Property value / price ($)</label><input id="value" type="number" value="350000" min="0"></div>
+      <div class="field"><label for="income">Annual gross rental income ($)</label><input id="income" type="number" value="36000" min="0"></div>
+    </div>
+    <div class="field"><label for="expenses">Annual operating expenses ($)</label><input id="expenses" type="number" value="12000" min="0">
+      <div class="hint">Include: property tax, insurance, maintenance &amp; repairs, property management, vacancy allowance, HOA. Do NOT include mortgage payments — cap rate is measured before financing.</div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate cap rate</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#cap-rate-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Capitalization rate</div>
+      <div class="big" id="rCap">0%</div>
+      <table>
+        <tr><td>Net operating income (NOI)</td><td id="rNoi">$0</td></tr>
+        <tr><td>Annual gross rental income</td><td id="rIncome">$0</td></tr>
+        <tr><td>Annual operating expenses</td><td id="rExp">$0</td></tr>
+        <tr><td>Property value</td><td id="rVal">$0</td></tr>
+        <tr><td>Monthly net operating income</td><td id="rMonthly">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)"><strong>Cap rate = Net Operating Income ÷ Property Value.</strong> NOI is your annual gross rent minus operating expenses (tax, insurance, maintenance, management, vacancy). Mortgage payments are deliberately excluded, so the cap rate measures the property itself — not your financing.</p>
+    <div class="note">Estimates only — not investment advice. Cap rates compress or expand with local market conditions, property age, and tenant quality.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> NOI (net operating income) = annual rental income − annual operating expenses. Cap rate = NOI ÷ property value × 100.</p>
+    <p><strong>Worked example:</strong> Rent of $24,000 a year with $7,200 of expenses leaves an NOI of $16,800. On a $240,000 property, the cap rate is $16,800 ÷ $240,000 = 7.00% — an NOI of $1,400 a month.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>Two rental listings sit at different prices and you want one number that compares the properties themselves, not their loans.</li><li>A seller or agent quotes an NOI and a cap rate and you want to rebuild both from the rent and expenses before believing them.</li><li>You need a quick screen on a property before spending time on full financing and cash-flow analysis.</li><li>You know the cap rate your market trades at and want to check what price a property's income actually justifies.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the asking price or current market value of the property.</li><li>Enter the full annual rent — all units, at the rents you have verified, not the seller's hoped-for increases.</li><li>Enter annual operating expenses, including a vacancy allowance and management, but never the mortgage.</li><li>Read the NOI first, then the cap rate it produces.</li><li>Re-run with your own expense estimates in place of the listing's; seller expense sheets are famously thin.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Property value</strong></td><td style="padding:6px 8px">Asking price or appraised market value</td><td style="padding:6px 8px">The denominator every cap rate is judged against</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Annual gross rental income</strong></td><td style="padding:6px 8px">A full year of rent across all units</td><td style="padding:6px 8px">Monthly rent times 12, before expenses</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Annual operating expenses</strong></td><td style="padding:6px 8px">The cost of running the property for a year</td><td style="padding:6px 8px">Tax, insurance, maintenance, management, vacancy, HOA</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A $425,000 property renting for $42,000 a year, with $15,300 of annual operating expenses, has a net operating income of $26,700 — $2,225 a month — and a cap rate of 6.28%. That 6.28% is the property's unleveraged yield: what it earns before any mortgage, down payment or financing choice enters the picture.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What is a good cap rate?</h3>
+    <p>Most residential rentals fall between 4% and 10%. Higher usually means more risk (or a cheaper market); lower means a pricier, more stable market. Always compare cap rates within the same metro, not across the country.</p>
+    <h3>Cap rate vs. cash-on-cash return — what's the difference?</h3>
+    <p>Cap rate assumes an all-cash purchase and ignores financing. Cash-on-cash measures return on the actual cash you put in, so it changes with your down payment and loan terms. Use both: cap rate to compare properties, cash-on-cash to judge your deal.</p>
+    <h3>Does the cap rate include the mortgage?</h3>
+    <p>No. Operating expenses exclude debt service — principal and interest never go in the cap rate formula. That's what makes it financing-neutral and useful for comparing two properties side by side.</p>
+    <h3>Why do the cap rates in listings often look too good?</h3>
+    <p>Because the two inputs are easy to flatter: rent quoted at aspirational 'pro forma' levels the property has never achieved, and expenses that quietly omit vacancy, management, repairs reserves or the tax increase a sale triggers. Rebuild the NOI with the property's actual rent roll and a full expense list before comparing the rate to anything — a cap rate is only as honest as its NOI.</p>
+    <h3>Can I work backwards from a cap rate to a price?</h3>
+    <p>Yes — the formula rearranges to value equals NOI divided by cap rate. If you know a property's NOI and the rate similar local properties trade at, that division gives the price at which this property would match the market. Offering more than that means accepting a thinner return than the market standard; offering less is where the bargaining starts.</p>
+    <h3>Should vacancy and management be in the expenses if I manage it myself?</h3>
+    <p>Yes to both. A vacancy allowance keeps one empty month from wrecking the year's figures, and charging management — even when the manager is you — keeps the cap rate comparable with professionally managed properties and honest about your time. A property that only works with free management and zero vacancy is priced on two favours you are doing it.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>💰 Take the next step</h3>
+    <p>See your return on actual cash invested with the cash-on-cash calculator.</p>
+    <p><a class="btn" href="cash-on-cash-calculator.html">Cash-on-Cash Calculator</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="cash-on-cash-calculator.html">Cash-on-Cash Return Calculator</a></li>
+    <li><a href="rental-property-analyzer.html">Rental Property Analyzer</a></li>
+    <li><a href="roi-calculator.html">ROI Calculator</a></li>
+    <li><a href="mortgage-calculator.html">Mortgage Payment Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function calc(){
+  const value=+document.getElementById('value').value||0,
+        income=+document.getElementById('income').value||0,
+        expenses=+document.getElementById('expenses').value||0;
+  const noi=Math.max(income-expenses,0);
+  const cap=value>0?(noi/value)*100:0;
+  document.getElementById('rCap').textContent=cap.toFixed(2)+'%';
+  document.getElementById('rNoi').textContent=fmt(noi);
+  document.getElementById('rIncome').textContent=fmt(income);
+  document.getElementById('rExp').textContent=fmt(expenses);
+  document.getElementById('rVal').textContent=fmt(value);
+  document.getElementById('rMonthly').textContent=fmt(noi/12);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

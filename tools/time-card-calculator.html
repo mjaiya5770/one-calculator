@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Time Card Calculator — Weekly Timesheet With Overtime & Gross Pay | One Calculator</title>
+<meta name="description" content="Free time card calculator: a full 7-day timesheet with clock-in, clock-out, breaks and overnight shifts, optional 15-minute rounding, daily and weekly overtime without double-counting, and gross pay.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/time-card-calculator.html">
+<meta property="og:title" content="Free Time Card Calculator — Weekly Timesheet With Overtime & Gross Pay | One Calculator">
+<meta property="og:description" content="Free time card calculator: a full 7-day timesheet with clock-in, clock-out, breaks and overnight shifts, optional 15-minute rounding, daily and weekly overtime without double-counting, and gross pay.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/time-card-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Time Card Calculator — Weekly Timesheet With Overtime & Gross Pay | One Calculator">
+<meta name="twitter:description" content="Free time card calculator: a full 7-day timesheet with clock-in, clock-out, breaks and overnight shifts, optional 15-minute rounding, daily and weekly overtime without double-counting, and gross pay.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Time Card Calculator",
+  "description": "Free time card calculator: a full 7-day timesheet with clock-in, clock-out, breaks and overnight shifts, optional 15-minute rounding, daily and weekly overtime without double-counting, and gross pay.",
+  "url": "https://onecalculator.site/tools/time-card-calculator.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do daily and weekly overtime combine without double-counting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Daily first, weekly second, on what is left. Take the default week: 40.5 hours total, with Wednesday running 9.5 hours. The 1.5 hours past 8 on Wednesday are daily overtime. The other 39 hours are under the 40-hour weekly line, so weekly overtime is zero \u2014 total overtime 1.5 hours, gross $825.00 at $20. Switch daily overtime off and the same week pays $815.00 instead: now the 0.5 hours past 40 are weekly overtime. Same hours, different rule, different pay \u2014 and in neither case is any hour paid at both premiums."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are overnight shifts handled?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A clock-out earlier than the clock-in is read as the next morning. Thursday\u2019s 22:00 to 06:00 shift with a 30-minute break counts 7.5 hours \u2014 and it stays on Thursday\u2019s row, the day the shift started, which is how most payroll systems book it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the 15-minute rounding do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It rounds each shift\u2019s length to the nearest quarter hour \u2014 the long-standing payroll convention (7 minutes rounds down, 8 rounds up). A 9:07 start to a 17:00 finish with a 30-minute break is 7.38 raw hours and 7.5 rounded. Rounding applies per shift, before overtime, which is the order payroll uses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My state pays daily overtime. Is this the rule?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This models the common version \u2014 everything past 8 in a day at 1.5\u00d7 \u2014 which matches the headline rule in states like California, but real state rules add double-time tiers (past 12 hours, or a seventh straight day) and exceptions this calculator does not model. Use it for a close estimate and your state labor board or payroll department for the binding number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my paycheck differ from this estimate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually taxes and deductions (this is gross pay), a different workweek start day, paid-but-unworked hours like holidays, or an employer policy more generous than the legal floor. The hours split \u2014 regular versus overtime \u2014 should match your pay stub closely; if it does not, the stub\u2019s workweek definition is the first thing to check."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/time-card-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › Time Card Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Time Card Calculator</h1>
+  <p class="lede">A real week, not a single shift: seven day rows with clock-in, clock-out and unpaid breaks — overnight shifts included — plus the overtime rules payroll actually uses. Daily overtime over 8 hours and weekly overtime over 40 are combined the standard way, so no hour is ever paid twice, and the result is a timesheet you can print.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="rate">Pay rate ($/hour)</label><input id="rate" type="number" value="20" min="0" step="any"></div>
+      <div class="field"><label for="rounding">Round each shift</label><select id="rounding"><option value="0" selected>No rounding</option><option value="15">Nearest 15 minutes</option></select></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="dailyOT">Daily overtime (over 8h in a day at 1.5×)</label><select id="dailyOT"><option value="on" selected>On — daily + weekly rules</option><option value="off">Off — weekly rule only</option></select></div>
+      <div class="field"><label for="weeklyOT">Weekly overtime (over 40h in the week at 1.5×)</label><select id="weeklyOT"><option value="on" selected>On — standard FLSA-style rule</option><option value="off">Off — no weekly overtime</option></select></div>
+    </div>
+    <div id="dayRows"></div>
+    <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Leave a day’s times blank for a day off. A clock-out earlier than the clock-in is treated as an overnight shift into the next morning. Break minutes are unpaid and come off the shift before overtime is counted.</p>
+
+    <button class="btn" onclick="calc()">Calculate</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#time-card-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Gross pay for the week</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>The week, day by day</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem">
+      <thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Day</th><th style="padding:8px">Hours worked</th><th style="padding:8px">Regular</th><th style="padding:8px">Overtime</th></tr></thead>
+      <tbody id="dayBody"><tr><td colspan="4" style="padding:8px;color:var(--muted)">Calculate to see the day-by-day split.</td></tr></tbody>
+    </table>
+    <p style="color:var(--muted);font-size:.92rem">Use the Print / Save PDF button above the calculator to keep this timesheet — it prints the results and this table without the ads or navigation.</p>
+  </div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Each shift is clock-out minus clock-in — a clock-out at or before the clock-in rolls into the next day, which is how overnight shifts work — minus the unpaid break, with optional rounding of the shift to the nearest 15 minutes. <strong>Overtime is counted once, never twice:</strong> first, hours beyond 8 in a single day are marked daily overtime (where your rules use it — California-style and many union and employer policies do). Then the remaining non-overtime hours are totalled for the week, and anything beyond 40 of those is weekly overtime under the standard federal (FLSA) rule. Because the daily-overtime hours are removed before the weekly test, the same hour can never collect both premiums. Overtime pays 1.5× the rate; regular hours pay 1×. Double-time rules (over 12 hours, seventh consecutive day) exist in some states and contracts and are not modelled here.</p>
+    <div class="note">Estimates only — not payroll or legal advice. Overtime law varies by state, industry and contract (and salaried-exempt status changes everything); your employer’s policy and your state’s rules govern your actual paycheck.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Shift hours = (clock-out − clock-in, plus 24 hours when the clock-out is earlier — the overnight rule) − unpaid break, optionally rounded to the nearest 15 minutes. Overtime: daily OT = hours past 8 in a day (when the daily rule is on); weekly OT = hours past 40 in the week counted on the hours that are not already daily OT, so no hour earns both premiums. Gross = regular × rate + overtime × rate × 1.5.</p>
+    <p><strong>Worked example:</strong> Monday to Friday at $20 an hour: 9:00–17:30 four days with 30-minute breaks (8.0 hours each), Wednesday stretched to 19:00 (9.5 hours), Thursday an overnight 22:00–6:00 (7.5 hours) and Friday 9:00–17:00 (7.5 hours). The week totals 40.5 hours: Wednesday's 1.5 hours past 8 are daily overtime, the remaining 39 hours stay under the weekly line, and gross pay is $825.00 — $780.00 regular plus $45.00 of overtime. Turn the daily rule off and the same week pays $815.00, with 0.5 hours counted as weekly overtime instead.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are hourly and your pay stub looks light — rebuild the week here and compare the regular/overtime split line by line.</li><li>You run payroll for a small crew and need a clean weekly total with daily and weekly overtime handled correctly.</li><li>You work rotating or overnight shifts and want to check that the wrap-around hours were counted.</li><li>You are comparing two job offers with different overtime rules — run the same week through both settings.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the hourly rate and pick a rounding rule — nearest 15 minutes is the common payroll convention.</li><li>Set the overtime rules your job actually uses: daily over 8, weekly over 40, both, or neither.</li><li>Fill each day's clock-in, clock-out and unpaid break. Leave days off blank; an earlier clock-out than clock-in counts as an overnight shift.</li><li>Read the gross at the top, then the day-by-day table to confirm each shift landed the way you expected.</li><li>Use the Print / Save PDF button to keep the timesheet — the printout carries the results and the table, nothing else.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Pay rate</strong></td><td style="padding:6px 8px">Your hourly wage before tax</td><td style="padding:6px 8px">Overtime pays 1.5× this rate</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Rounding</strong></td><td style="padding:6px 8px">Per-shift rounding to the nearest 15 minutes</td><td style="padding:6px 8px">7 minutes rounds down, 8 rounds up</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Daily overtime</strong></td><td style="padding:6px 8px">Hours past 8 in a day paid at 1.5×</td><td style="padding:6px 8px">State/employer rule — California-style when on</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Weekly overtime</strong></td><td style="padding:6px 8px">Hours past 40 in the week paid at 1.5×</td><td style="padding:6px 8px">The standard federal rule when on</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Clock in / out</strong></td><td style="padding:6px 8px">Shift start and end; earlier out = overnight</td><td style="padding:6px 8px">Booked to the day the shift starts</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Unpaid break</strong></td><td style="padding:6px 8px">Minutes deducted from the shift before overtime</td><td style="padding:6px 8px">Typically 30 for a meal break</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A shorter week with a long day: Monday to Thursday, 8:00–18:30 with a 30-minute break (10 hours a day), Friday off, at $18 an hour with both overtime rules on. Each day puts 2 hours into daily overtime — 8 daily OT hours — leaving 32 regular hours, so the weekly rule adds nothing. Gross is $792.00: $576.00 regular plus $216.00 of overtime. With the daily rule off, the same 40 hours contain no weekly overtime at all and pay a flat $720.00 — a $72 difference created purely by which rulebook applies.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How do daily and weekly overtime combine without double-counting?</h3>
+    <p>Daily first, weekly second, on what is left. Take the default week: 40.5 hours total, with Wednesday running 9.5 hours. The 1.5 hours past 8 on Wednesday are daily overtime. The other 39 hours are under the 40-hour weekly line, so weekly overtime is zero — total overtime 1.5 hours, gross $825.00 at $20. Switch daily overtime off and the same week pays $815.00 instead: now the 0.5 hours past 40 are weekly overtime. Same hours, different rule, different pay — and in neither case is any hour paid at both premiums.</p>
+    <h3>How are overnight shifts handled?</h3>
+    <p>A clock-out earlier than the clock-in is read as the next morning. Thursday’s 22:00 to 06:00 shift with a 30-minute break counts 7.5 hours — and it stays on Thursday’s row, the day the shift started, which is how most payroll systems book it.</p>
+    <h3>What does the 15-minute rounding do?</h3>
+    <p>It rounds each shift’s length to the nearest quarter hour — the long-standing payroll convention (7 minutes rounds down, 8 rounds up). A 9:07 start to a 17:00 finish with a 30-minute break is 7.38 raw hours and 7.5 rounded. Rounding applies per shift, before overtime, which is the order payroll uses.</p>
+    <h3>My state pays daily overtime. Is this the rule?</h3>
+    <p>This models the common version — everything past 8 in a day at 1.5× — which matches the headline rule in states like California, but real state rules add double-time tiers (past 12 hours, or a seventh straight day) and exceptions this calculator does not model. Use it for a close estimate and your state labor board or payroll department for the binding number.</p>
+    <h3>Why does my paycheck differ from this estimate?</h3>
+    <p>Usually taxes and deductions (this is gross pay), a different workweek start day, paid-but-unworked hours like holidays, or an employer policy more generous than the legal floor. The hours split — regular versus overtime — should match your pay stub closely; if it does not, the stub’s workweek definition is the first thing to check.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>⏰ One rate, one period instead?</h3>
+    <p>For a single overtime rate across a pay period — no timesheet — the Overtime Calculator totals 1.5× and 2× hours weekly, monthly and annually.</p>
+    <p><a class="btn" href="overtime-calculator.html">Total your overtime</a></p>
+    <h3>Which day does an overnight shift belong to?</h3>
+    <p>The day it starts, in this calculator and in most payroll systems. A Friday 22:00–06:00 shift is Friday's 7.5 hours (with a 30-minute break), even though most of the clock time is Saturday. If your employer books overnights to the day they end, total the week both ways — the weekly overtime line is where the difference would show.</p>
+    <h3>Do salaried employees get overtime on this math?</h3>
+    <p>Only if they are non-exempt. Salaried-exempt employees (many professional, executive and administrative roles over the salary threshold) are outside the federal overtime rules entirely, and this calculator would overstate their pay. If you are salaried and unsure of your status, that classification question matters more than any number here — your state labor board publishes the tests.</p>
+  </div>
+</main>
+
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="overtime-calculator.html">Overtime Calculator</a></li>
+    <li><a href="hours-calculator.html">Hours Calculator</a></li>
+    <li><a href="paycheck-calculator.html">Paycheck Calculator</a></li>
+    <li><a href="time-duration-calculator.html">Time Duration Calculator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function sv(id){return document.getElementById(id).value;}
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmt0(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+
+/*PURE-BEGIN*/
+function timeToMin(t){if(!t)return null;var p=String(t).split(':');if(p.length<2)return null;var h=+p[0],m=+p[1];if(isNaN(h)||isNaN(m))return null;return h*60+m;}
+function shiftHours(cin,cout,brk,roundMin){
+  var a=timeToMin(cin),b=timeToMin(cout);if(a===null||b===null)return 0;
+  var d=b-a;if(d<=0)d+=1440;d-=(+brk||0);if(d<0)d=0;
+  if(roundMin>0)d=Math.round(d/roundMin)*roundMin;
+  return d/60;
+}
+function weekSplit(days,rate,dailyOn,weeklyOn){
+  var per=days.map(function(h){var dot=dailyOn?Math.max(0,h-8):0;return{hours:h,dailyOT:dot,base:h-dot};});
+  var baseTot=per.reduce(function(a,d){return a+d.base;},0);
+  var wot=weeklyOn?Math.max(0,baseTot-40):0,left=wot;
+  per.forEach(function(d){var take=Math.min(left,d.base);d.weeklyOT=take;d.regular=d.base-take;left-=take;});
+  var total=per.reduce(function(a,d){return a+d.hours;},0);
+  var reg=per.reduce(function(a,d){return a+d.regular;},0);
+  var dot=per.reduce(function(a,d){return a+d.dailyOT;},0);
+  var ot=dot+wot;
+  return{perDay:per,totalHours:total,regularHours:reg,dailyOT:dot,weeklyOT:wot,otHours:ot,regularPay:reg*rate,otPay:ot*rate*1.5,gross:reg*rate+ot*rate*1.5};
+}
+/*PURE-END*/
+var DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+var DEFAULTS=[['9:00','17:30',30],['9:00','17:30',30],['9:00','19:00',30],['22:00','6:00',30],['9:00','17:00',30],['','',0],['','',0]];
+function dayRowHTML(i){
+  return '<div class="row"><div class="field"><label for="in-'+i+'">'+DAYS[i]+' — clock in</label><input id="in-'+i+'" type="time" value="'+DEFAULTS[i][0]+'"></div>'
+    +'<div class="field"><label for="out-'+i+'">Clock out</label><input id="out-'+i+'" type="time" value="'+DEFAULTS[i][1]+'"></div>'
+    +'<div class="field"><label for="brk-'+i+'">Unpaid break (minutes)</label><input id="brk-'+i+'" type="number" value="'+DEFAULTS[i][2]+'" min="0" step="1"></div></div>';
+}
+function fmtH(h){return fmt(h)+' h';}
+function calc(){
+  var rate=v('rate'),roundMin=+sv('rounding'),dailyOn=sv('dailyOT')==='on',weeklyOn=sv('weeklyOT')==='on';
+  var hs=DAYS.map(function(_,i){return shiftHours(sv('in-'+i),sv('out-'+i),v('brk-'+i),roundMin);});
+  var w=weekSplit(hs,rate,dailyOn,weeklyOn),db=document.getElementById('dayBody');
+  if(!(w.totalHours>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter at least one shift — clock-in and clock-out for any day.';document.getElementById('rows').innerHTML='';db.innerHTML='';document.getElementById('results').classList.add('show');return;}
+  document.getElementById('rMain').textContent='$'+fmt(w.gross);
+  document.getElementById('verdict').textContent=fmt(w.totalHours)+' hours: '+fmt(w.regularHours)+' regular and '+fmt(w.otHours)+' overtime ('+fmt(w.dailyOT)+' daily, '+fmt(w.weeklyOT)+' weekly) — regular pay $'+fmt(w.regularPay)+', overtime pay $'+fmt(w.otPay)+' at 1.5×.';
+  document.getElementById('rows').innerHTML=row('Total hours',fmt(w.totalHours))+row('Regular hours',fmt(w.regularHours))+row('Daily overtime hours',fmt(w.dailyOT))
+    +row('Weekly overtime hours',fmt(w.weeklyOT))+row('Regular pay ('+fmt(rate)+'×/h)','$'+fmt(w.regularPay))+row('Overtime pay (1.5×)','$'+fmt(w.otPay))+row('Gross pay','$'+fmt(w.gross));
+  db.innerHTML=w.perDay.map(function(d,i){return '<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">'+DAYS[i]+'</td><td style="padding:6px 8px">'+(d.hours>0?fmtH(d.hours):'—')+'</td><td style="padding:6px 8px">'+(d.hours>0?fmt(d.regular):'—')+'</td><td style="padding:6px 8px">'+(d.hours>0?fmt(d.dailyOT+d.weeklyOT):'—')+'</td></tr>';}).join('');
+  document.getElementById('results').classList.add('show');
+}
+document.getElementById('dayRows').innerHTML=DAYS.map(function(_,i){return dayRowHTML(i);}).join('');
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

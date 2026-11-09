@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free GPA Calculator — Semester & Cumulative GPA | One Calculator</title>
+<meta name="description" content="Free GPA calculator: enter your courses, grades, and credit hours to get your semester GPA instantly. Add or remove courses, supports plus/minus grading. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<style>
+.gpa-table{width:100%;border-collapse:collapse;margin-bottom:12px}
+.gpa-table th{text-align:left;font-size:.85rem;color:var(--muted);padding:6px 8px;border-bottom:2px solid var(--line)}
+.gpa-table td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.gpa-table input,.gpa-table select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:.95rem;background:#fff;color:var(--ink)}
+.rm-btn{background:none;border:0;color:#b3261e;font-size:1.2rem;cursor:pointer;line-height:1;padding:4px 8px}
+.rm-btn:hover{opacity:.7}
+.add-btn{background:none;border:1px dashed var(--accent);color:var(--accent);border-radius:8px;padding:10px 16px;font-size:.95rem;font-weight:700;cursor:pointer;width:100%}
+.add-btn:hover{background:#eef7f2}
+@media(max-width:640px){.gpa-table .cname{min-width:90px}}
+</style>
+<link rel="canonical" href="https://onecalculator.site/tools/gpa-calculator.html">
+<meta property="og:title" content="Free GPA Calculator — Semester &amp; Cumulative GPA | One Calculator">
+<meta property="og:description" content="Free GPA calculator: enter your courses, grades, and credit hours to get your semester GPA instantly. Add or remove courses, supports plus/minus grading. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/gpa-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free GPA Calculator — Semester &amp; Cumulative GPA | One Calculator">
+<meta name="twitter:description" content="Free GPA calculator: enter your courses, grades, and credit hours to get your semester GPA instantly. Add or remove courses, supports plus/minus grading. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "GPA Calculator",
+  "description": "Free GPA calculator: enter your courses, grades, and credit hours to get your semester GPA instantly. Add or remove courses, supports plus/minus grading. No signup.",
+  "url": "https://onecalculator.site/tools/gpa-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/gpa-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › GPA Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">GPA Calculator</h1>
+  <p class="lede">Enter your courses, letter grades, and credit hours to get your GPA instantly. Add or remove courses as needed — everything updates live.</p>
+
+  <div class="card nn-calc-card">
+    <table class="gpa-table">
+      <thead><tr><th>Course</th><th style="width:110px">Grade</th><th style="width:90px">Credits</th><th style="width:48px"></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <button class="add-btn" onclick="addRow()">+ Add course</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#gpa-calculator">Embed this calculator on your site — free</a></p>
+<div class="results show" id="results" style="margin-top:16px">
+      <div style="color:var(--muted);font-size:.9rem">Your GPA</div>
+      <div class="big" id="rGPA">0.00</div>
+      <table>
+        <tr><td>Total credits</td><td id="rCredits">0</td></tr>
+        <tr><td>Courses counted</td><td id="rCount">0</td></tr>
+      </table>
+    </div>
+    <div class="note">Uses the standard 4.0 scale with plus/minus grades (A− = 3.7, B+ = 3.3, etc.). This is an unweighted GPA.</div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Each grade converts to grade points (A = 4.0 down to F = 0). Multiply each course's points by its credit hours, add them all up, then divide by total credit hours. Heavier courses pull your GPA more — that's why credits matter.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> GPA = Σ (grade points × credit hours) ÷ total credit hours, with A = 4.0, B = 3.0, C = 2.0, D = 1.0, F = 0.</p>
+    <p><strong>Worked example:</strong> An A in a 3-credit course, a B in a 4-credit course and an A in another 3-credit course: (12 + 12 + 12) ÷ 10 credits = a 3.6 GPA.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>Finals are posted course by course and you want the semester GPA before the school portal updates it.</li><li>You are mid-semester, projecting the grades you expect, to see whether a target GPA is still in reach.</li><li>One heavy credit course went badly and you want to see how much it actually drags the average down.</li><li>You are adding up a transfer transcript where every course carries different credit hours.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Start with the rows already there and change the course names, grades and credits to match your own classes.</li><li>Use Add course for every extra class, and the remove button to drop a row you do not need — at least one row always stays.</li><li>Pick each letter grade from the dropdown, including plus and minus grades if your school uses them.</li><li>Enter the credit hours exactly as your catalog lists them — credits are the weighting, so a 4-credit grade moves the GPA more than a 1-credit grade.</li><li>Read the GPA to two decimals together with the total credits and courses counted, and check the count matches the classes you meant to include.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Course name</strong></td><td style="padding:6px 8px">A label for your own reference — it does not change the math</td><td style="padding:6px 8px">Any name, such as Biology or History</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Grade</strong></td><td style="padding:6px 8px">Letter grade converted on the standard 4.0 scale, with A and A+ both at 4.0 and F at 0.0</td><td style="padding:6px 8px">A, A-, B+, B, B-, C+, C and lower</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Credits</strong></td><td style="padding:6px 8px">Credit hours for the course, which act as its weight in the average</td><td style="padding:6px 8px">Mostly 1 to 4; half-credit steps are accepted</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A five-course semester — Biology A- for 4 credits, Chemistry B+ for 3, English A for 3, History C+ for 2 and Art B for 1: the grade points are 14.8 + 9.9 + 12 + 4.6 + 3 = 44.3, spread over 13 total credits, for a GPA of 3.41 across 5 courses counted. The C+ stings less than it feels like it should, because History carries only 2 credits against Biology's 4.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>Weighted vs unweighted GPA — what's the difference?</h3>
+    <p>Unweighted caps at 4.0 for every class. Weighted gives honors/AP/IB classes extra points (often up to 5.0) to reward harder coursework. This calculator is unweighted.</p>
+    <h3>Does retaking a class replace the old grade?</h3>
+    <p>Depends on your school — many replace the old grade in GPA math, some average the two attempts. Check your school's policy, then enter the courses the way your school counts them.</p>
+    <h3>What GPA do I need?</h3>
+    <p>Most colleges look for 3.0+, competitive programs often want 3.5+. Scholarships and graduate programs each set their own bar — always check the specific requirement.</p>
+    <h3>How much do plus and minus grades move the GPA?</h3>
+    <p>A full letter step is 1.0 point, but a plus adds 0.3 and a minus subtracts 0.3 from the plain letter: B+ is 3.3, B is 3.0 and B- is 2.7. The exceptions sit at the top — A+ and A are both 4.0, so an A+ earns no extra on this unweighted scale.</p>
+    <h3>What happens to a course I enter with 0 credits?</h3>
+    <p>It is left out entirely — the calculator only counts rows with credit hours above zero, and it does not add to the courses-counted total either. That makes 0 a safe way to park a class you have not confirmed yet, but check the count before trusting the GPA.</p>
+    <h3>Can I work out a cumulative GPA across several semesters?</h3>
+    <p>Yes, by entering every course from every semester in one list — the credit weighting does the combining for you. Averaging the semester GPAs instead would be wrong whenever the semesters carry different credit totals, because a 12-credit term and an 18-credit term should not pull equally.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>✏️ Writing papers too?</h3>
+    <p>Our word counter tracks words, characters, and reading time live as you type.</p>
+    <p><a class="btn" href="word-counter.html">Word counter</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="age-calculator.html">Age Calculator</a></li>
+    <li><a href="word-counter.html">Word Counter</a></li>
+    <li><a href="time-duration-calculator.html">Time Duration Calculator</a></li>
+    <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+const GRADES=[['A+',4.0],['A',4.0],['A-',3.7],['B+',3.3],['B',3.0],['B-',2.7],['C+',2.3],['C',2.0],['C-',1.7],['D+',1.3],['D',1.0],['D-',0.7],['F',0.0]];
+function gradeOptions(sel){
+  return GRADES.map(function(g){return '<option value="'+g[1]+'"'+(g[0]===sel?' selected':'')+'>'+g[0]+'</option>';}).join('');
+}
+function addRow(name,grade,credits){
+  const tr=document.createElement('tr');
+  tr.innerHTML='<td class="cname"><input type="text" value="'+(name||'')+'" aria-label="Course name"></td>'+
+    '<td><select aria-label="Grade">'+gradeOptions(grade||'A')+'</select></td>'+
+    '<td><input type="number" value="'+(credits==null?3:credits)+'" min="0" step="0.5" aria-label="Credit hours"></td>'+
+    '<td><button class="rm-btn" onclick="removeRow(this)" aria-label="Remove course">×</button></td>';
+  document.getElementById('rows').appendChild(tr);
+  calc();
+}
+function removeRow(btn){
+  const rows=document.getElementById('rows');
+  if(rows.children.length>1){ btn.closest('tr').remove(); calc(); }
+}
+document.getElementById('rows').addEventListener('input',calc);
+function calc(){
+  let pts=0, credits=0, count=0;
+  const rows=document.getElementById('rows').children;
+  for(let i=0;i<rows.length;i++){
+    const sel=rows[i].querySelector('select');
+    const cin=rows[i].querySelector('input[type=number]');
+    const gp=parseFloat(sel.value)||0, cr=parseFloat(cin.value)||0;
+    if(cr>0){ pts+=gp*cr; credits+=cr; count++; }
+  }
+  const gpa=credits>0?pts/credits:0;
+  document.getElementById('rGPA').textContent=gpa.toFixed(2);
+  document.getElementById('rCredits').textContent=credits;
+  document.getElementById('rCount').textContent=count;
+}
+addRow('Math','A',3);
+addRow('English','B+',3);
+addRow('History','A-',4);
+addRow('Science','B',3);
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SnagYouTube logo">
+<defs><linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+<stop offset="0" stop-color="#ff0000"/><stop offset=".55" stop-color="#ff3b30"/><stop offset="1" stop-color="#ff9500"/>
+</linearGradient></defs>
+<rect width="64" height="64" rx="14" fill="url(#g)"/>
+<g fill="#fff"><rect x="9" y="19" width="46" height="31" rx="10"/><path d="M27 27l12 7.5-12 7.5z" fill="#ff0000"/><path d="M47 5c4.5 1 7 4.5 7 9" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></g>
+</svg>

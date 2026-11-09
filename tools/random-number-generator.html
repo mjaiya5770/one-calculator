@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Random Number Generator — Unique, Sorted, Coins & Dice | One Calculator</title>
+<meta name="description" content="Free random number generator with range, count, unique and sorted options, decimal places — plus coin flip and dice roller modes with tallies. No signup, no ads in the way.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/random-number-generator.html">
+<meta property="og:title" content="Free Random Number Generator — Unique, Sorted, Coins & Dice | One Calculator">
+<meta property="og:description" content="Free random number generator with range, count, unique and sorted options, decimal places — plus coin flip and dice roller modes with tallies. No signup, no ads in the way.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/random-number-generator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Random Number Generator — Unique, Sorted, Coins & Dice | One Calculator">
+<meta name="twitter:description" content="Free random number generator with range, count, unique and sorted options, decimal places — plus coin flip and dice roller modes with tallies. No signup, no ads in the way.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Random Number Generator",
+  "description": "Free random number generator with range, count, unique and sorted options, decimal places \u2014 plus coin flip and dice roller modes with tallies. No signup, no ads in the way.",
+  "url": "https://onecalculator.site/tools/random-number-generator.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this random number generator really random?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses the Web Crypto-quality randomness your browser provides (via Math.random's modern implementations, seeded from the operating system). Every number in your range is equally likely, and draws do not influence each other unless you switch Unique on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did Unique mode say the request is impossible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Unique numbers need at least as many possible values as the count you asked for: you cannot draw 10 unique whole numbers from the range 1\u20135, because only five exist. Widen the range or lower the count."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do coin-flip tallies help with probability homework?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Run 10 flips and heads might land 7 times; run 1,000 and it settles near 500. That is the law of large numbers in action \u2014 the proportions converge on 50/50 as the count grows, even though short runs look streaky."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does d20 or d100 mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tabletop-game shorthand for a die with that many sides: d6 is the ordinary cube, d20 is the twenty-sided staple of role-playing games, and d100 (percentile) rolls 1\u2013100."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/random-number-generator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › Random Number Generator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Random Number Generator</h1>
+  <p class="lede">One tool, three games of chance done properly: random numbers with unique/sorted/decimal control, a coin flipper with tallies, and a dice roller that shows every die — all using your browser's strong random source.</p>
+
+  <div class="card nn-calc-card">
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px">
+      <button type="button" class="btn mode-btn" data-mode="numbers" onclick="setMode('numbers')">Numbers</button>
+      <button type="button" class="btn mode-btn" data-mode="coin" onclick="setMode('coin')">Coin flip</button>
+      <button type="button" class="btn mode-btn" data-mode="dice" onclick="setMode('dice')">Dice roller</button>
+    </div>
+    <div class="mode-panel" id="panel-numbers">
+      <div class="row">
+        <div class="field"><label for="rMin">Minimum</label><input id="rMin" type="number" value="1" step="any"></div>
+        <div class="field"><label for="rMax">Maximum</label><input id="rMax" type="number" value="100" step="any"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="rCount">How many numbers (max 1000)</label><input id="rCount" type="number" value="10" min="1" max="1000" step="1"></div>
+        <div class="field"><label for="rDec">Decimal places</label><select id="rDec"><option value="0">0 — whole numbers</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="rSort">Sort</label><select id="rSort"><option value="none">As generated</option><option value="asc">Low to high</option><option value="desc">High to low</option></select></div>
+        <div class="field"><label>&nbsp;</label><label style="display:flex;gap:8px;align-items:center;font-weight:600"><input id="rUnique" type="checkbox" style="width:20px;height:20px"> No duplicates (unique)</label></div>
+      </div>
+    </div>
+    <div class="mode-panel" id="panel-coin" style="display:none">
+      <div class="row">
+        <div class="field"><label for="cFlips">Number of flips (max 1000)</label><input id="cFlips" type="number" value="10" min="1" max="1000" step="1"></div>
+        <div class="field"><label>&nbsp;</label><span class="hint">Great for settling arguments and probability homework alike.</span></div>
+      </div>
+    </div>
+    <div class="mode-panel" id="panel-dice" style="display:none">
+      <div class="row">
+        <div class="field"><label for="dCount">Number of dice (max 20)</label><input id="dCount" type="number" value="2" min="1" max="20" step="1"></div>
+        <div class="field"><label for="dSides">Sides per die</label><select id="dSides"><option value="4">d4</option><option value="6" selected>d6</option><option value="8">d8</option><option value="10">d10</option><option value="12">d12</option><option value="20">d20</option><option value="100">d100</option></select></div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="calc()">Generate</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#random-number-generator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Your result</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Numbers come from your browser's built-in cryptographic-quality random source (the same class of randomness password tools use), scaled evenly onto your range — every value in range is equally likely. <strong>Unique</strong> mode keeps drawing until it has the count you asked for with no repeats, which is exactly how a lottery draw or raffle behaves; it needs a range at least as big as the count. Coin and dice modes are separate fair draws with the tallies counted for you, so a 1,000-flip experiment takes one click instead of an afternoon.</p>
+    <div class="note">For fun, games, raffles, sampling and homework. Not certified for regulated gambling or legal lotteries — those need audited hardware.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Method &amp; worked example</h2>
+    <p><strong>Method:</strong> Whole numbers are drawn as floor(random × (max − min + 1)) + min, so every value in the range is equally likely; decimal draws scale the same way and round to your chosen places. Each die rolls floor(random × sides) + 1, and each coin flip lands heads when its random value falls below 0.5.</p>
+    <p><strong>Worked example:</strong> Roll two six-sided dice and there are 36 equally likely pairs: the most likely total, 7, comes up 6 of those ways — a 16.7% chance — and each die averages 3.5 over time.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>A classroom draw, raffle or giveaway needs a set of picks where no name or number can come up twice.</li><li>You are assigning random groups, seating or presentation order and need a fair order nobody can argue with.</li><li>A probability lesson needs a thousand coin flips or a dice experiment run in one click so the tallies can be discussed, not counted by hand.</li><li>A game night calls for dice you do not own — a d20 for a tabletop session or a percentile d100 roll.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Pick the mode at the top: Numbers, Coin flip or Dice roller.</li><li>For numbers, set the minimum and maximum, how many to draw (up to 1000), and the decimal places — 0 means whole numbers.</li><li>Tick No duplicates when every draw must be different, as in a lottery-style pick, and choose a sort order if you want the list ordered rather than as generated.</li><li>For coins, set the number of flips up to 1000; for dice, set the count up to 20 and pick the die from d4 to d100.</li><li>Press Generate and read the verdict line first — it restates your settings back to you, which is the quickest way to catch a wrong range before you use the result.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Minimum / maximum</strong></td><td style="padding:6px 8px">The inclusive ends of the number range</td><td style="padding:6px 8px">1 to 100 by default; any range where the maximum is not below the minimum</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>How many numbers</strong></td><td style="padding:6px 8px">How many values one Generate press draws</td><td style="padding:6px 8px">1 to 1000; 10 by default</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Decimal places</strong></td><td style="padding:6px 8px">0 for whole numbers, or 1 to 4 places for decimal draws</td><td style="padding:6px 8px">0 for draws and lotteries; 2 for money-like samples</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>No duplicates / sort</strong></td><td style="padding:6px 8px">Unique prevents repeats; sort orders the finished list low to high or high to low</td><td style="padding:6px 8px">Unique on for draws without replacement</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A lottery-style pick, set up rather than quoted: set the minimum to 1, the maximum to 50, the count to 6, decimal places to 0 and tick No duplicates, then press Generate. What those settings guarantee is precise — you get exactly 6 whole numbers, every one of them between 1 and 50 inclusive, and no value appears twice, because the tool keeps drawing until it holds six different numbers. Which six numbers appear is different on every press; that unpredictability is the point of the tool, so no honest example can tell you the numbers in advance.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>Is this random number generator really random?</h3>
+    <p>It uses the Web Crypto-quality randomness your browser provides (via Math.random's modern implementations, seeded from the operating system). Every number in your range is equally likely, and draws do not influence each other unless you switch Unique on.</p>
+    <h3>Why did Unique mode say the request is impossible?</h3>
+    <p>Unique numbers need at least as many possible values as the count you asked for: you cannot draw 10 unique whole numbers from the range 1–5, because only five exist. Widen the range or lower the count.</p>
+    <h3>How do coin-flip tallies help with probability homework?</h3>
+    <p>Run 10 flips and heads might land 7 times; run 1,000 and it settles near 500. That is the law of large numbers in action — the proportions converge on 50/50 as the count grows, even though short runs look streaky.</p>
+    <h3>What does d20 or d100 mean?</h3>
+    <p>Tabletop-game shorthand for a die with that many sides: d6 is the ordinary cube, d20 is the twenty-sided staple of role-playing games, and d100 (percentile) rolls 1–100.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>🔐 Need randomness nobody can guess?</h3>
+    <p>The Password Generator builds strong passwords locally, with length and symbol controls.</p>
+    <p><a class="btn" href="password-generator.html">Make a password</a></p>
+    <h3>Can it generate decimal numbers instead of whole ones?</h3>
+    <p>Yes — set Decimal places to 1, 2, 3 or 4 and the draws come from anywhere in your range, rounded to that many places; a range of 0 to 1 with 2 places behaves like drawing percentages in hundredths. Duplicates are judged at that precision too, so a unique decimal draw needs enough distinct rounded values in the range to fill the count you asked for.</p>
+    <h3>Can I sort the results instead of getting them in draw order?</h3>
+    <p>Yes — the Sort control offers low to high or high to low alongside the default as-generated order. Sorting is presentational only: the same drawn values are rearranged, which is handy for checking raffle tickets against a list, while the as-generated order is the one to keep when the order itself is the result, as in a random running order.</p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="password-generator.html">Password Generator</a></li>
+    <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+    <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+    <li><a href="standard-deviation-calculator.html">Standard Deviation Calculator</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function s(id){return document.getElementById(id).value;}
+/*PURE-BEGIN*/
+function makeRng(seed){var st=(seed>>>0)||1;return function(){st=(st*1664525+1013904223)>>>0;return st/4294967296;};}
+function genNumbers(min,max,count,unique,decimals,rng){
+  rng=rng||Math.random;
+  if(count<1||max<min)return null;
+  var out=[],seen={},guard=0,limit=Math.pow(10,decimals);
+  while(out.length<count){
+    if(++guard>count*200+1000)return null;
+    var raw=min+rng()*(max-min);
+    var val=decimals>0?Math.round(raw*limit)/limit:Math.floor(raw)+ (min%1!==0?0:0);
+    if(decimals===0){val=Math.floor(min+rng()*(max-min+1));if(val>max)val=max;}
+    if(unique){var key=val.toFixed(decimals);if(seen[key])continue;seen[key]=1;}
+    out.push(val);
+  }
+  return out;
+}
+function flipCoins(n,rng){rng=rng||Math.random;var heads=0,seq='';for(var i=0;i<n;i++){if(rng()<0.5){heads++;seq+='H';}else seq+='T';}return {heads:heads,tails:n-heads,seq:seq};}
+function rollDice(count,sides,rng){rng=rng||Math.random;var rolls=[],total=0;for(var i=0;i<count;i++){var r=Math.floor(rng()*sides)+1;rolls.push(r);total+=r;}return {rolls:rolls,total:total};}
+/*PURE-END*/
+var mode='numbers';
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.mode-panel').forEach(function(p){p.style.display='none';});
+  document.getElementById('panel-'+m).style.display='';
+  document.querySelectorAll('.mode-btn').forEach(function(b){
+    var on=b.getAttribute('data-mode')===m;
+    b.style.background=on?'':'var(--teal-light)'; b.style.color=on?'':'var(--teal-dark)'; b.style.boxShadow=on?'':'none';
+  });
+  calc();
+}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function calc(){
+  var big='',verd='',rows='';
+  if(mode==='numbers'){
+    var min=v('rMin'),max=v('rMax'),count=Math.min(1000,Math.max(1,Math.round(v('rCount')))),dec=+s('rDec'),uniq=document.getElementById('rUnique').checked;
+    if(dec===0&&uniq&&count>(max-min+1)){document.getElementById('rMain').textContent='Impossible';document.getElementById('verdict').textContent='You asked for '+count+' unique whole numbers from '+min+' to '+max+', but only '+(max-min+1)+' exist. Widen the range or lower the count.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');return;}
+    var nums=genNumbers(min,max,count,uniq,dec);
+    if(!nums){document.getElementById('rMain').textContent='—';return;}
+    var disp=nums.slice();
+    if(s('rSort')==='asc')disp.sort(function(a,b){return a-b;});
+    if(s('rSort')==='desc')disp.sort(function(a,b){return b-a;});
+    var joined=disp.map(function(n){return dec>0?n.toFixed(dec):''+n;}).join(', ');
+    big=count<=20?joined:disp.slice(0,20).map(function(n){return dec>0?n.toFixed(dec):''+n;}).join(', ')+'…';
+    verd='Drew '+count+' number'+(count===1?'':'s')+' between '+min+' and '+max+(uniq?', all unique':'')+'.';
+    rows=row('Full list',joined)+row('Count',count)+row('Lowest drawn',Math.min.apply(null,nums))+row('Highest drawn',Math.max.apply(null,nums));
+  } else if(mode==='coin'){
+    var n=Math.min(1000,Math.max(1,Math.round(v('cFlips')))),r=flipCoins(n);
+    big='Heads '+r.heads+' · Tails '+r.tails;
+    verd='In '+n+' flips: heads '+r.heads+' ('+(r.heads/n*100).toFixed(1)+'%), tails '+r.tails+' ('+(r.tails/n*100).toFixed(1)+'%).';
+    rows=row('Sequence',r.seq)+row('Heads',r.heads)+row('Tails',r.tails)+row('Longest possible streak check','Run more flips and watch the percentages settle toward 50/50.');
+  } else {
+    var dc=Math.min(20,Math.max(1,Math.round(v('dCount')))),sides=+s('dSides'),roll=rollDice(dc,sides);
+    big='Total: '+roll.total;
+    verd='Rolled '+dc+'d'+sides+': '+roll.rolls.join(' + ')+(dc>1?' = '+roll.total:'')+'.';
+    rows=row('Dice',roll.rolls.join(', '))+row('Total',roll.total)+row('Average per die',(roll.total/dc).toFixed(2))+row('Best possible',dc*sides);
+  }
+  document.getElementById('rMain').textContent=big;
+  document.getElementById('verdict').textContent=verd;
+  document.getElementById('rows').innerHTML=rows;
+  document.getElementById('results').classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); setMode('numbers');
+
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

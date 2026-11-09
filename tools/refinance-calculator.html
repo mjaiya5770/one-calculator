@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Mortgage Refinance Calculator — Savings, Break-Even & Lifetime Interest | One Calculator</title>
+<meta name="description" content="Free mortgage refinance calculator: compare your current loan to a new rate, see monthly savings, break-even months, and lifetime interest difference. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/refinance-calculator.html">
+<meta property="og:title" content="Free Mortgage Refinance Calculator — Savings, Break-Even &amp; Lifetime Interest | One Calculator">
+<meta property="og:description" content="Free mortgage refinance calculator: compare your current loan to a new rate, see monthly savings, break-even months, and lifetime interest difference. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/refinance-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Mortgage Refinance Calculator — Savings, Break-Even &amp; Lifetime Interest | One Calculator">
+<meta name="twitter:description" content="Free mortgage refinance calculator: compare your current loan to a new rate, see monthly savings, break-even months, and lifetime interest difference. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mortgage Refinance Calculator",
+  "description": "Free mortgage refinance calculator: compare your current loan to a new rate, see monthly savings, break-even months, and lifetime interest difference. No signup.",
+  "url": "https://onecalculator.site/tools/refinance-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/refinance-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-debt-money-tools">Debt & money tools</a> › Mortgage Refinance Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Mortgage Refinance Calculator</h1>
+  <p class="lede">Rates dropped? Compare your current loan against a refinance — monthly savings, how fast closing costs pay for themselves, and total interest over the remaining life.</p>
+
+  <div class="card nn-calc-card">
+    <h2 style="font-size:1.1rem;margin-top:0">Current loan</h2>
+    <div class="row">
+      <div class="field"><label for="bal">Remaining balance ($)</label><input id="bal" type="number" value="320000" min="0"></div>
+      <div class="field"><label for="crate">Current rate (% / yr)</label><input id="crate" type="number" value="7.25" step="0.01" min="0"></div>
+    </div>
+    <div class="field"><label for="cyrs">Years remaining</label><input id="cyrs" type="number" value="27" min="1"></div>
+
+    <h2 style="font-size:1.1rem;margin-top:20px">New loan</h2>
+    <div class="row">
+      <div class="field"><label for="nrate">New rate (% / yr)</label><input id="nrate" type="number" value="6.25" step="0.01" min="0"></div>
+      <div class="field"><label for="nyrs">New term (years)</label><select id="nyrs"><option>30</option><option>20</option><option>15</option></select></div>
+    </div>
+    <div class="field"><label for="close">Closing costs ($)</label><input id="close" type="number" value="6000" min="0"></div>
+
+    <button class="btn" onclick="calc()">Compare loans</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#refinance-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">New monthly payment</div>
+      <div class="big" id="rPay">$0</div>
+      <table>
+        <tr><td>Current monthly payment</td><td id="rCur">$0</td></tr>
+        <tr><td>Monthly savings</td><td id="rSave">$0</td></tr>
+        <tr><td>Break-even on closing costs</td><td id="rBE">—</td></tr>
+        <tr><td>Interest saved over loan life</td><td id="rInt">$0</td></tr>
+      </table>
+      <div class="note" id="rNote" style="display:none"></div>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Both payments use the amortization formula <strong>M = P × r(1+r)<sup>n</sup> / ((1+r)<sup>n</sup> − 1)</strong>. Break-even = closing costs ÷ monthly savings — the point where savings repay the refinance cost. Lifetime interest compares total interest on the current remaining term vs the new term.</p>
+    <div class="note">Estimates only — not a loan offer. Extending the term can raise total interest even while lowering the payment; compare both numbers above.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Both loans use the standard payment formula M = P × r(1+r)<sup>n</sup> ÷ ((1+r)<sup>n</sup> − 1) on today's balance — your current payment is re-amortized over the years you have left. Monthly saving = current payment − new payment, and break-even = closing costs ÷ monthly saving, rounded up.</p>
+    <p><strong>Worked example:</strong> Owe $350,000 at 7.875% with 28 years left (payment $2,584) and refinance to 6.25% for 30 years (payment $2,155): you save $429 a month, so $8,000 of closing costs break even in 19 months — and total interest falls by $92,353 over the two terms.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>Rates have dropped and a lender is pitching a refinance — you want the break-even month before the pitch.</li><li>You are deciding between resetting to a fresh 30 years or keeping your remaining term.</li><li>Cash-out temptation needs pricing in total interest, not just the new payment.</li><li>You plan to move in a few years and need to know if the refi pays back before you sell.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the remaining balance, current rate and years left.</li><li>Enter the new rate and new term being offered.</li><li>Add the closing costs — all of them, in cash terms.</li><li>Read the monthly saving and the break-even month.</li><li>If you will move before break-even, the answer is no — whatever the payment says.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Remaining balance</strong></td><td style="padding:6px 8px">What you still owe</td><td style="padding:6px 8px">From your latest statement</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Current rate / years left</strong></td><td style="padding:6px 8px">Your existing loan's terms</td><td style="padding:6px 8px">Years left, not original term</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>New rate / term</strong></td><td style="padding:6px 8px">The offer's terms</td><td style="padding:6px 8px">Compare same-term for a clean read</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Closing costs</strong></td><td style="padding:6px 8px">Total cost to do the refi</td><td style="padding:6px 8px">Typically 2–5% of the balance</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>Owing $240,000 at 7.25% with 22 years left (payment $1,821.34), refinancing to 5.75% over the same 22 years gives $1,604.11 — saving $217.23 a month. Against $4,800 of closing costs, break-even is about 22 months: a clear yes if you will stay put three years, a clear no if you are selling next spring.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>When does refinancing make sense?</h3>
+    <p>When you'll own the home past the break-even point and the numbers work: lower payment, lower lifetime interest, or both. If you might sell before break-even, the closing costs are money lost.</p>
+    <h3>What is the 1% rule?</h3>
+    <p>An old rule of thumb: refinance when the new rate is at least 1 percentage point below your current rate. With today's closing costs, run the break-even math instead — a 0.5% drop can pay off if costs are low.</p>
+    <h3>Cash-out vs rate-and-term refinance?</h3>
+    <p>Rate-and-term only changes your rate or term; cash-out borrows extra against equity for cash in hand. Cash-out rates run higher and reset your balance upward — use it for value-adding uses, not spending.</p>
+    <h3>Why compare over the same remaining term?</h3>
+    <p>Resetting to a new 30-year term lowers the payment mostly by stretching the debt, not by saving money — lifetime interest often rises. Same-term comparison isolates the rate benefit; if you do reset the clock, this tool's total-interest lines will show the true price.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>🏠 Know your full payment picture</h3>
+    <p>Model any loan with our mortgage calculator.</p>
+    <p><a class="btn" href="mortgage-calculator.html">Try the mortgage calculator</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+<section class="nn-compare">
+  <h2>Compare your options</h2>
+  <p style="color:var(--muted);font-size:.9rem">Affiliate links: none on this page today. We do not take paid placements from lenders, and we will never dress up advertising as a rate table — if affiliate partners are added here, they will be labeled and this note will say so. The links below are our own free tools.</p>
+  <ul><li><a href="mortgage-calculator.html">Mortgage Calculator</a> — Price the replacement loan on its own terms.</li><li><a href="cash-out-refinance-calculator.html">Cash-Out Refinance Calculator</a> — Taking cash out too? The interest cost changes — see it.</li><li><a href="closing-cost-estimator.html">Closing Cost Estimator</a> — Judge the closing costs your break-even depends on.</li><li><a href="heloc-vs-home-equity-loan-calculator.html">HELOC vs Home Equity Loan</a> — Borrowing the difference instead of refinancing the whole loan.</li></ul>
+</section>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="mortgage-calculator.html">Mortgage Payment Calculator</a></li>
+    <li><a href="home-affordability-calculator.html">Home Affordability Calculator</a></li>
+    <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+    <li><a href="credit-card-payoff-calculator.html">Credit Card Payoff Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function pmt(P,apr,yrs){
+  const r=apr/100/12, n=Math.round(yrs*12);
+  if(n<=0||P<=0) return 0;
+  return r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n;
+}
+function calc(){
+  const bal=+document.getElementById('bal').value||0,
+        crate=+document.getElementById('crate').value||0,
+        cyrs=+document.getElementById('cyrs').value||1,
+        nrate=+document.getElementById('nrate').value||0,
+        nyrs=+document.getElementById('nyrs').value||30,
+        close=+document.getElementById('close').value||0;
+  const cur=pmt(bal,crate,cyrs), neu=pmt(bal,nrate,nyrs);
+  const save=cur-neu;
+  const be=save>0?close/save:Infinity;
+  const curInt=cur*cyrs*12-bal, neuInt=neu*nyrs*12-bal, intSave=curInt-neuInt;
+  document.getElementById('rPay').textContent=fmt(neu);
+  document.getElementById('rCur').textContent=fmt(cur);
+  document.getElementById('rSave').textContent=(save>=0?'+':'\u2212')+fmt(Math.abs(save));
+  document.getElementById('rBE').textContent=save>0?Math.ceil(be)+' months':'Never \u2014 payment rises';
+  document.getElementById('rInt').textContent=(intSave>=0?'+':'\u2212')+fmt(Math.abs(intSave));
+  const note=document.getElementById('rNote');
+  if(save<=0){note.style.display='block';note.textContent='This refinance raises your monthly payment. It only makes sense if you need the cash-out or a shorter term.';}
+  else if(nyrs>cyrs&&intSave<0){note.style.display='block';note.textContent='Warning: the new loan costs more in total interest because the term is longer — you trade a lower payment for more interest over time.';}
+  else {note.style.display='none';}
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Discount Calculator — Sale Price, Savings & Tax | One Calculator</title>
+<meta name="description" content="Free discount calculator: enter the original price and discount percent to see the sale price, how much you save, and the total with sales tax. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/discount-calculator.html">
+<meta property="og:title" content="Free Discount Calculator — Sale Price, Savings &amp; Tax | One Calculator">
+<meta property="og:description" content="Free discount calculator: enter the original price and discount percent to see the sale price, how much you save, and the total with sales tax. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/discount-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Discount Calculator — Sale Price, Savings &amp; Tax | One Calculator">
+<meta name="twitter:description" content="Free discount calculator: enter the original price and discount percent to see the sale price, how much you save, and the total with sales tax. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Discount Calculator",
+  "description": "Free discount calculator: enter the original price and discount percent to see the sale price, how much you save, and the total with sales tax. No signup.",
+  "url": "https://onecalculator.site/tools/discount-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/discount-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-debt-money-tools">Debt & money tools</a> › Discount Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Discount Calculator</h1>
+  <p class="lede">Find the sale price, your total savings, and the final cost with tax — before you reach the register.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="price">Original price ($)</label><input id="price" type="number" value="120" min="0" step="0.01"></div>
+      <div class="field"><label for="disc">Discount (%)</label><input id="disc" type="number" value="25" min="0" max="100" step="0.01"></div>
+    </div>
+    <div class="field"><label for="tax">Sales tax (%)</label><input id="tax" type="number" value="0" min="0" step="0.01"><div class="hint">Optional — added after the discount, like most stores do.</div></div>
+    <button class="btn" onclick="calc()">Calculate discount</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#discount-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Sale price</div>
+      <div class="big" id="rSale">$0</div>
+      <table>
+        <tr><td>You save</td><td id="rSave">$0</td></tr>
+        <tr><td>Discount amount</td><td id="rDisc">$0</td></tr>
+        <tr><td>Price with tax</td><td id="rTotal">$0</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">The discount is <strong>price × discount %</strong>, subtracted from the original price to get the sale price. Sales tax is then applied to the <em>discounted</em> price — which is why sale items cost less tax too.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Sale price = original price × (1 − discount %). Sales tax is then charged on the discounted price, not the original.</p>
+    <p><strong>Worked example:</strong> An $80 item at 25% off sells for $60.00; with 8% sales tax the total at the till is $64.80.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>A sale sign says a percentage off and you want the actual price before you queue, not after.</li><li>You are comparing two stores offering different percentages off different starting prices.</li><li>A coupon is in hand and you want the till total, sales tax included, before deciding if the trip is worth it.</li><li>You run a small shop and are testing what a planned promotion does to the price a customer actually pays.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the original price exactly as tagged.</li><li>Enter the discount percentage from the sign or coupon.</li><li>Add your local sales tax rate if you want the final till total; leave it at zero for the bare sale price.</li><li>Read the sale price, the amount saved, and the price with tax as three separate lines — they answer three different questions.</li><li>For a second coupon applied after the first, run the sale price through again; sequential discounts multiply rather than add.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Original price</strong></td><td style="padding:6px 8px">The full tagged price before any discount</td><td style="padding:6px 8px">Any amount, cents included</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Discount percent</strong></td><td style="padding:6px 8px">The percentage taken off the original price</td><td style="padding:6px 8px">Everyday sales 10–30%; clearance 50–70%</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Sales tax percent</strong></td><td style="padding:6px 8px">Optional local rate, applied to the discounted price</td><td style="padding:6px 8px">Combined rates commonly 6–10%; zero if you only want the sale price</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A jacket tagged at $149.99 with 30% off and 6.5% sales tax: the discount takes $45.00 off, the sale price is $104.99, and tax on that discounted price brings the till total to $111.82. Note the tax was charged on $104.99, not on $149.99 — the discount quietly saved a few dollars of tax as well as the $45 on the jacket.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How do stores compute a discount?</h3>
+    <p>The same way this calculator does: take the percent off the sticker price. A 25% discount on $120 is $30 off, so you pay $90. "Percent off" always refers to the original price, not the sale price.</p>
+    <h3>Can I stack two discounts, like 20% + 10%?</h3>
+    <p>Usually they're applied one after another, not added. 20% then 10% on $100 = $80, then $72 — a 28% total discount, not 30%. Enter the final effective percent above, or run it twice.</p>
+    <h3>What's the difference between discount and sale price?</h3>
+    <p>The discount is the amount taken off (your savings); the sale price is what you actually pay. This calculator shows both so there's no confusion.</p>
+    <h3>Why is my register total higher than the sale price this shows?</h3>
+    <p>Usually something this tool does not model: a manufacturer coupon is sometimes taxed on the pre-discount price in some states, and deposits, bag fees, delivery or a discounted extended warranty can be added after the item price. If the gap is more than a few cents of rounding, ask which line was added — the discount math itself is the part you can verify here.</p>
+    <h3>How do I work out the original price if I only know the sale price and the percent off?</h3>
+    <p>Divide the sale price by what remains after the discount. A $104.99 price after 30% off divides by 0.70 to give about $149.99. Dividing by the discount percent itself is the common mistake — the sale price is the percentage that is left, not the percentage that was removed.</p>
+    <h3>What does 'up to 70% off' actually mean?</h3>
+    <p>That the single deepest discount in the store reaches 70%, while most items carry smaller markdowns. Judge any individual item by running its own tag price and its own percentage through this calculator rather than the headline number on the banner.</p>
+  </div>
+
+  
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="sales-tax-calculator.html">Sales Tax Calculator</a></li>
+    <li><a href="unit-price-calculator.html">Unit Price Calculator</a></li>
+    <li><a href="tip-calculator.html">Tip Calculator</a></li>
+    <li><a href="roi-calculator.html">ROI Calculator</a></li>
+  
+    <li><a href="../guides/work-out-percentages-without-a-calculator.html">📖 How-to: Work out percentages without a calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});}
+function calc(){
+  const price=+document.getElementById('price').value||0,
+        disc=Math.min(Math.max(+document.getElementById('disc').value||0,0),100),
+        tax=+document.getElementById('tax').value||0;
+  const saveAmt=price*disc/100, sale=price-saveAmt, total=sale*(1+tax/100);
+  document.getElementById('rSale').textContent=fmt(sale);
+  document.getElementById('rSave').textContent=fmt(saveAmt);
+  document.getElementById('rDisc').textContent=disc.toFixed(2).replace(/\.?0+$/,'')+'% off';
+  document.getElementById('rTotal').textContent=fmt(total);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

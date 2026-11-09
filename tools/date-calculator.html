@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Date Calculator — Days Between Dates, Add Days & Business Days | One Calculator</title>
+<meta name="description" content="Free date calculator: days between two dates with a years/months/days breakdown, add or subtract days, weeks, months or years, and count business days excluding weekends. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/date-calculator.html">
+<meta property="og:title" content="Free Date Calculator — Days Between Dates, Add Days & Business Days | One Calculator">
+<meta property="og:description" content="Free date calculator: days between two dates with a years/months/days breakdown, add or subtract days, weeks, months or years, and count business days excluding weekends. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/date-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Date Calculator — Days Between Dates, Add Days & Business Days | One Calculator">
+<meta name="twitter:description" content="Free date calculator: days between two dates with a years/months/days breakdown, add or subtract days, weeks, months or years, and count business days excluding weekends. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Date Calculator",
+  "description": "Free date calculator: days between two dates with a years/months/days breakdown, add or subtract days, weeks, months or years, and count business days excluding weekends. No signup.",
+  "url": "https://onecalculator.site/tools/date-calculator.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many business days are in a year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A typical year has about 260\u2013262 weekdays. 2026 has 261 business days before holidays \u2014 the exact count for any span is in the Business days mode above."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does \"days between\" count both endpoints?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 it is the difference, so Jan 1 to Jan 2 is 1 day. If you need an inclusive count (both the first and last day), add 1. The business-days mode has an explicit checkbox for its end date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What date is 90 days from today?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the Add / subtract mode: enter today\u2019s date, choose Add, 90, Days. It shows the resulting date and its weekday \u2014 handy for deadlines, trials and payment terms like \"net 90\"."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does adding a month to Jan 31 give Feb 28?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Calendar months have different lengths. Adding one month keeps the same day-of-month when it exists and clamps to the month\u2019s last day when it does not \u2014 the convention calendars and contracts use."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/date-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › Date Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Date Calculator</h1>
+  <p class="lede">Days between dates, dates shifted by any amount, and business-day counts that skip weekends — three date tools in one, with the weekday always shown.</p>
+
+  <div class="card nn-calc-card">
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px">
+      <button type="button" class="btn mode-btn" data-mode="between" onclick="setMode('between')">Days between dates</button>
+      <button type="button" class="btn mode-btn" data-mode="add" onclick="setMode('add')">Add / subtract</button>
+      <button type="button" class="btn mode-btn" data-mode="biz" onclick="setMode('biz')">Business days</button>
+    </div>
+    <div class="mode-panel" id="panel-between">
+      <div class="row">
+        <div class="field"><label for="d1">Start date</label><input id="d1" type="date" value="2026-01-01"></div>
+        <div class="field"><label for="d2">End date</label><input id="d2" type="date" value="2026-12-31"></div>
+      </div>
+    </div>
+    <div class="mode-panel" id="panel-add" style="display:none">
+      <div class="row">
+        <div class="field"><label for="base">Start date</label><input id="base" type="date" value="2026-01-15"></div>
+        <div class="field"><label for="dir">Direction</label><select id="dir"><option value="1">Add</option><option value="-1">Subtract</option></select></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="amt">Amount</label><input id="amt" type="number" value="30" min="0" step="1"></div>
+        <div class="field"><label for="unit">Unit</label><select id="unit"><option value="days">Days</option><option value="weeks">Weeks</option><option value="months">Months</option><option value="years">Years</option><option value="bizdays">Business days (skip weekends)</option></select></div>
+      </div>
+    </div>
+    <div class="mode-panel" id="panel-biz" style="display:none">
+      <div class="row">
+        <div class="field"><label for="b1">Start date</label><input id="b1" type="date" value="2026-01-05"></div>
+        <div class="field"><label for="b2">End date</label><input id="b2" type="date" value="2026-01-30"></div>
+      </div>
+      <div class="field"><label for="inclEnd"><input id="inclEnd" type="checkbox" checked style="width:auto;margin-right:8px">Include the end date in the count</label></div>
+    </div>
+
+    <button class="btn" onclick="calc()">Calculate</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#date-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Your answer</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">All math is done on calendar days (in UTC, so daylight-saving changes can never shift a result). <strong>Days between</strong> is the exact difference between the two dates, also broken into years, months and days. <strong>Add/subtract</strong> moves a date by days or weeks exactly, and by months or years on the calendar — adding a month to Jan 31 lands on Feb 28 rather than overflowing into March. <strong>Business days</strong> counts Mondays to Fridays only; the count starts the day after your start date, and the end date is included only if you tick the box.</p>
+    <div class="note">Business-day counts skip weekends only — public holidays vary by country and employer and are not excluded.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Days between = end date − start date counted in whole days, leap days included. The same span is also broken into years, months and days by calendar borrowing and into weeks; the tool can instead add or subtract days, weeks, months, years or business days to or from any date.</p>
+    <p><strong>Worked example:</strong> From 1 March 2026 to 15 June 2026 is 106 days — that is 3 months and 14 days, or 15 weeks and 1 day.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>A contract, notice period or deadline is '90 days from signing' and the date matters.</li><li>You are counting business days for shipping, processing or a statutory window.</li><li>Two dates need their exact gap — days, weeks and months — for planning.</li><li>A project plan needs dates added or subtracted in weeks and months, not guesses.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Pick the mode: days between, add/subtract, or business days.</li><li>Enter the start date (and end date, for gaps).</li><li>For add/subtract, set the amount and unit — days, weeks, months or years.</li><li>Read the resulting date and its day of the week.</li><li>For deadlines, sanity-check whether the landing day falls on a weekend.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Start / end dates</strong></td><td style="padding:6px 8px">The span being measured</td><td style="padding:6px 8px">Inclusive/exclusive conventions differ — see the FAQ</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Amount + unit</strong></td><td style="padding:6px 8px">What to add or subtract</td><td style="padding:6px 8px">Days, weeks, months, years</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Business days</strong></td><td style="padding:6px 8px">Weekdays excluding weekends</td><td style="padding:6px 8px">Public holidays are not built in</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>Thirty days from 6 November 2026 lands on 6 December 2026 — a Sunday, which quietly pushes any 'business day' deadline to Monday the 7th. Between 2 November and 13 November 2026 there are 10 business days, not 12 calendar days: the two-day gap is where most deadline math goes wrong.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How many business days are in a year?</h3>
+    <p>A typical year has about 260–262 weekdays. 2026 has 261 business days before holidays — the exact count for any span is in the Business days mode above.</p>
+    <h3>Does "days between" count both endpoints?</h3>
+    <p>No — it is the difference, so Jan 1 to Jan 2 is 1 day. If you need an inclusive count (both the first and last day), add 1. The business-days mode has an explicit checkbox for its end date.</p>
+    <h3>What date is 90 days from today?</h3>
+    <p>Use the Add / subtract mode: enter today’s date, choose Add, 90, Days. It shows the resulting date and its weekday — handy for deadlines, trials and payment terms like "net 90".</p>
+    <h3>Why does adding a month to Jan 31 give Feb 28?</h3>
+    <p>Calendar months have different lengths. Adding one month keeps the same day-of-month when it exists and clamps to the month’s last day when it does not — the convention calendars and contracts use.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>🎂 How old are you, exactly?</h3>
+    <p>The Age Calculator turns two dates into your exact age, total days lived and a next-birthday countdown.</p>
+    <p><a class="btn" href="age-calculator.html">Calculate my age</a></p>
+    <h3>Are the start and end days counted?</h3>
+    <p>The difference counts whole days between the dates (end minus start), the standard convention: Monday to Tuesday is 1 day. Legal deadlines sometimes count inclusively or exclude the trigger day — if the stakes are legal, confirm the convention for your document.</p>
+    <h3>Are public holidays excluded from business days?</h3>
+    <p>No — holidays vary by country and state, so business days here means Monday–Friday. Subtract your local holidays from the result for a statutory count.</p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="age-calculator.html">Age Calculator</a></li>
+    <li><a href="time-duration-calculator.html">Time Duration Calculator</a></li>
+    <li><a href="paycheck-calculator.html">Paycheck Calculator</a></li>
+    <li><a href="word-counter.html">Word Counter</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function dv(id){return document.getElementById(id).value;}
+/*PURE-BEGIN*/
+function parseD(s){var p=s.split('-');return {y:+p[0],m:+p[1],d:+p[2]};}
+function toUTC(s){var p=parseD(s);return Date.UTC(p.y,p.m-1,p.d);}
+function fromUTC(ms){var d=new Date(ms);function z(n){return (n<10?'0':'')+n;}return d.getUTCFullYear()+'-'+z(d.getUTCMonth()+1)+'-'+z(d.getUTCDate());}
+function daysBetween(a,b){return Math.round(Math.abs(toUTC(b)-toUTC(a))/86400000);}
+function addDaysStr(s,n){return fromUTC(toUTC(s)+n*86400000);}
+function addMonthsStr(s,n){var p=parseD(s);var total=(p.m-1)+n;var y=p.y+Math.floor(total/12);var m=((total%12)+12)%12;var dim=new Date(Date.UTC(y,m+1,0)).getUTCDate();var d=Math.min(p.d,dim);return fromUTC(Date.UTC(y,m,d));}
+function addYearsStr(s,n){return addMonthsStr(s,n*12);}
+function weekdayName(s){return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][new Date(toUTC(s)).getUTCDay()];}
+function isWeekendStr(s){var d=new Date(toUTC(s)).getUTCDay();return d===0||d===6;}
+function businessDaysBetween(a,b,includeEnd){
+  var start=toUTC(a),end=toUTC(b);if(end<start){var t=start;start=end;end=t;}
+  var last=includeEnd?end:end-86400000,count=0;
+  for(var ms=start+86400000;ms<=last;ms+=86400000){var d=new Date(ms).getUTCDay();if(d!==0&&d!==6)count++;}
+  return count;
+}
+function addBusinessDays(s,n){var ms=toUTC(s);var step=n>=0?1:-1;var left=Math.abs(n);while(left>0){ms+=step*86400000;var d=new Date(ms).getUTCDay();if(d!==0&&d!==6)left--;}return fromUTC(ms);}
+function diffYMD(a,b){
+  if(toUTC(a)>toUTC(b)){var tmp=a;a=b;b=tmp;}
+  var A=parseD(a),B=parseD(b);var y=B.y-A.y,m=B.m-A.m,d=B.d-A.d;
+  if(d<0){m--;var dimPrev=new Date(Date.UTC(B.y,B.m-1,0)).getUTCDate();d+=dimPrev;}
+  if(m<0){y--;m+=12;}
+  return {y:y,m:m,d:d};
+}
+function prettyDate(s){var MN=['January','February','March','April','May','June','July','August','September','October','November','December'];var p=parseD(s);return weekdayName(s)+', '+MN[p.m-1]+' '+p.d+', '+p.y;}
+/*PURE-END*/
+var mode='between';
+function setMode(m){
+  mode=m;
+  document.querySelectorAll('.mode-panel').forEach(function(p){p.style.display='none';});
+  document.getElementById('panel-'+m).style.display='';
+  document.querySelectorAll('.mode-btn').forEach(function(b){var on=b.getAttribute('data-mode')===m;b.style.background=on?'':'var(--teal-light)';b.style.color=on?'':'var(--teal-dark)';b.style.boxShadow=on?'':'none';});
+  calc();
+}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function calc(){
+  var big='',verd='',rows='';
+  if(mode==='between'){
+    var d1=dv('d1'),d2=dv('d2');if(!d1||!d2)return;
+    var days=daysBetween(d1,d2),ymd=diffYMD(d1,d2);
+    var startStr=toUTC(d1)<=toUTC(d2)?d1:d2;
+    var biz=businessDaysBetween(d1,d2,true)+(isWeekendStr(startStr)?0:1);
+    var weekend=(days+1)-biz;
+    big=days+' days';
+    verd='From '+prettyDate(d1)+' to '+prettyDate(d2)+' is '+days+' days — that is '+ymd.y+' years, '+ymd.m+' months and '+ymd.d+' days.';
+    rows=row('Total days',days)+row('As years / months / days',ymd.y+'y '+ymd.m+'m '+ymd.d+'d')
+      +row('Weeks and days',Math.floor(days/7)+' weeks, '+(days%7)+' days')
+      +row('Business days in the span (incl. both ends)',biz)+row('Weekend days in the span',weekend)
+      +row('Start date is a',weekdayName(d1))+row('End date is a',weekdayName(d2));
+  } else if(mode==='add'){
+    var base=dv('base');if(!base)return;
+    var dir=+dv('dir'),amt=+document.getElementById('amt').value||0,unit=dv('unit'),n=dir*amt,res,unitLabel=unit;
+    if(unit==='days')res=addDaysStr(base,n);
+    else if(unit==='weeks')res=addDaysStr(base,n*7);
+    else if(unit==='months')res=addMonthsStr(base,n);
+    else if(unit==='years')res=addYearsStr(base,n);
+    else {res=addBusinessDays(base,n);unitLabel='business days';}
+    big=prettyDate(res);
+    verd=(dir>0?'Adding ':'Subtracting ')+amt+' '+unitLabel+' '+(dir>0?'to ':'from ')+prettyDate(base)+' lands on '+prettyDate(res)+'.';
+    rows=row('Start date',prettyDate(base))+row('Change',(dir>0?'+':'−')+' '+amt+' '+unitLabel)+row('Result date',prettyDate(res))+row('Calendar days moved',daysBetween(base,res));
+  } else {
+    var b1=dv('b1'),b2=dv('b2');if(!b1||!b2)return;
+    var incl=document.getElementById('inclEnd').checked;
+    var bizN=businessDaysBetween(b1,b2,incl);
+    var firstBiz=businessDaysBetween(b1,b2,true)+(isWeekendStr(toUTC(b1)<=toUTC(b2)?b1:b2)?0:1);
+    var total=daysBetween(b1,b2);
+    big=bizN+' business days';
+    verd='Between '+prettyDate(b1)+' and '+prettyDate(b2)+' there are '+bizN+' business days (weekends skipped'+(incl?', end date included':'')+').';
+    rows=row('Business days',bizN)+row('Total calendar days (difference)',total)
+      +row('Weekend days in the span (incl. both ends)',(total+1)-firstBiz)+row('Start date is a',weekdayName(b1))+row('End date is a',weekdayName(b2));
+  }
+  document.getElementById('rMain').textContent=big;
+  document.getElementById('verdict').textContent=verd;
+  document.getElementById('rows').innerHTML=rows;
+  document.getElementById('results').classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); setMode('between');
+
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

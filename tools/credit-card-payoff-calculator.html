@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Credit Card Payoff Calculator — Months to Debt-Free & Interest | One Calculator</title>
+<meta name="description" content="Free credit card payoff calculator: enter your balance, APR and monthly payment to see how many months until you're debt-free and the total interest you'll pay. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/credit-card-payoff-calculator.html">
+<meta property="og:title" content="Free Credit Card Payoff Calculator — Months to Debt-Free &amp; Interest | One Calculator">
+<meta property="og:description" content="Free credit card payoff calculator: enter your balance, APR and monthly payment to see how many months until you&#x27;re debt-free and the total interest you&#x27;ll pay. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/credit-card-payoff-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Credit Card Payoff Calculator — Months to Debt-Free &amp; Interest | One Calculator">
+<meta name="twitter:description" content="Free credit card payoff calculator: enter your balance, APR and monthly payment to see how many months until you&#x27;re debt-free and the total interest you&#x27;ll pay. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Credit Card Payoff Calculator",
+  "description": "Free credit card payoff calculator: enter your balance, APR and monthly payment to see how many months until you're debt-free and the total interest you'll pay. No signup.",
+  "url": "https://onecalculator.site/tools/credit-card-payoff-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/credit-card-payoff-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-debt-money-tools">Debt & money tools</a> › Credit Card Payoff Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Credit Card Payoff Calculator</h1>
+  <p class="lede">See exactly how long your credit card balance will take to pay off, how much interest you'll pay, and what happens if you bump up your payment.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="bal">Card balance ($)</label><input id="bal" type="number" value="5000" min="0"></div>
+      <div class="field"><label for="apr">APR (% / yr)</label><input id="apr" type="number" value="24.99" step="0.01" min="0"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="pay">Monthly payment ($)</label><input id="pay" type="number" value="150" min="0"></div>
+      <div class="field"><label for="extra">Extra per month ($)</label><input id="extra" type="number" value="0" min="0"><div class="hint">Optional — even $25 helps.</div></div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate payoff</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#credit-card-payoff-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Time to payoff</div>
+      <div class="big" id="rMonths">0 months</div>
+      <table>
+        <tr><td>Debt-free date</td><td id="rDate">—</td></tr>
+        <tr><td>Total interest paid</td><td id="rInt">$0</td></tr>
+        <tr><td>Total paid</td><td id="rTot">$0</td></tr>
+      </table>
+      <div class="note" id="rWarn" style="display:none"></div>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Each month, interest accrues on the balance (APR ÷ 12), then your payment is applied. Payoff time uses the amortization formula: <strong>n = −ln(1 − r·B / p) / ln(1 + r)</strong>, where B is the balance, r the monthly rate, and p the payment. Total interest is simulated month by month for exactness.</p>
+    <div class="note">Estimates only. Real cards add fees, penalties, and rate changes that extend payoff time.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Months to clear = −ln(1 − rB ÷ p) ÷ ln(1 + r), where B is the balance, r the monthly rate (APR ÷ 12) and p your monthly payment. Interest is simulated month by month for the totals.</p>
+    <p><strong>Worked example:</strong> A $5,000 balance at 22% APR paid at $150/month is gone in 52 months, costing about $2,798 in interest — more than half the original balance.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>A statement balance and a fixed monthly amount — you want the debt-free date and the interest bill.</li><li>You are choosing between paying more per month or a balance-transfer offer.</li><li>Minimum payments feel endless and you want to see the fixed-payment difference.</li><li>You are setting the autopay amount for a card you have stopped using.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Enter the balance and the card's APR.</li><li>Set the monthly payment you will actually make.</li><li>Add any extra you can commit on top.</li><li>Read months to clear and total interest.</li><li>If the interest figure shocks you, raise the payment until it stops — that is the plan.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Balance</strong></td><td style="padding:6px 8px">What you owe today</td><td style="padding:6px 8px">Use the statement balance</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>APR</strong></td><td style="padding:6px 8px">The card's purchase rate</td><td style="padding:6px 8px">Store cards 25–32%; bank cards 18–28%</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Monthly payment</strong></td><td style="padding:6px 8px">Fixed amount, not the minimum</td><td style="padding:6px 8px">Must exceed monthly interest to work</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Extra per month</strong></td><td style="padding:6px 8px">On top of the base payment</td><td style="padding:6px 8px">Every $25–$50 is months off</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A $7,500 balance at 22% APR paid at $250 a month takes 44 months and $3,488.35 of interest. Add $50 — $300 a month — and it clears in 34 months with $2,624.82 of interest: ten months sooner and $863.53 cheaper, from a change most budgets can find.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>Why does the minimum payment take forever?</h3>
+    <p>Minimums are often 1–2% of the balance, so most of your payment goes to interest. Paying even a fixed amount above the minimum cuts years off.</p>
+    <h3>What if my payment doesn't cover the interest?</h3>
+    <p>Then the balance grows and you never pay it off — the calculator will warn you. You must pay more than the monthly interest charge (balance × APR ÷ 12) to make progress.</p>
+    <h3>Should I pay extra or save?</h3>
+    <p>At 20%+ APR, extra card payments beat almost any investment return. Kill high-rate balances before investing beyond an emergency fund.</p>
+    <h3>Why do minimum payments take so long?</h3>
+    <p>Minimums are usually interest plus ~1% of the balance, so they shrink as the balance shrinks — a treadmill designed to keep the account alive. A fixed payment holds its size, so every month more of it hits principal; that one change is the whole trick.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>💳 Ready to attack the balance?</h3>
+    <p>Our debt payoff calculator models extra payments across multiple debts.</p>
+    <p><a class="btn" href="debt-payoff-calculator.html">Try debt payoff</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="debt-payoff-calculator.html">Debt Payoff Calculator</a></li>
+    <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+    <li><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li>
+    <li><a href="car-loan-calculator.html">Car Loan Calculator</a></li>
+  
+    <li><a href="../guides/get-out-of-debt-avalanche-vs-snowball.html">📖 Guide: Avalanche vs snowball — the debt payoff playbook</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+function calc(){
+  const bal=+document.getElementById('bal').value||0,
+        r=(+document.getElementById('apr').value||0)/100/12,
+        p=(+document.getElementById('pay').value||0)+(+document.getElementById('extra').value||0);
+  const warn=document.getElementById('rWarn');
+  if(p<=0||bal<=0){document.getElementById('results').classList.add('show');return;}
+  if(r>0&&p<=r*bal){
+    warn.style.display='block';
+    warn.textContent='⚠️ Your payment doesn\u2019t cover the monthly interest — the balance will never shrink. Increase your payment above '+fmt(r*bal)+'.';
+    document.getElementById('rMonths').textContent='Never';
+    document.getElementById('rDate').textContent='—';
+    document.getElementById('rInt').textContent='—';
+    document.getElementById('rTot').textContent='—';
+    document.getElementById('results').classList.add('show');
+    return;
+  }
+  warn.style.display='none';
+  let b=bal,int=0,months=0;
+  while(b>0&&months<1200){const i=b*r;int+=i;b=b+i-p;months++;}
+  const d=new Date();d.setMonth(d.getMonth()+months);
+  document.getElementById('rMonths').textContent=months+' months ('+(months/12).toFixed(1)+' yrs)';
+  document.getElementById('rDate').textContent=d.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+  document.getElementById('rInt').textContent=fmt(int);
+  document.getElementById('rTot').textContent=fmt(bal+int);
+  document.getElementById('results').classList.add('show');
+}
+calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

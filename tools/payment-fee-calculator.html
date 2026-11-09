@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Payment Fee Calculator — Stripe, PayPal & Square Fees, Net & Gross-Up | One Calculator</title>
+<meta name="description" content="Free payment processing fee calculator: Stripe, PayPal and Square published rates, what you actually net per sale, monthly fee totals, and the gross-up solve — the exact charge that nets you the amount you want.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/payment-fee-calculator.html">
+<meta property="og:title" content="Free Payment Fee Calculator — Stripe, PayPal & Square Fees, Net & Gross-Up | One Calculator">
+<meta property="og:description" content="Free payment processing fee calculator: Stripe, PayPal and Square published rates, what you actually net per sale, monthly fee totals, and the gross-up solve — the exact charge that nets you the amount you want.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/payment-fee-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Payment Fee Calculator — Stripe, PayPal & Square Fees, Net & Gross-Up | One Calculator">
+<meta name="twitter:description" content="Free payment processing fee calculator: Stripe, PayPal and Square published rates, what you actually net per sale, monthly fee totals, and the gross-up solve — the exact charge that nets you the amount you want.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Payment Fee Calculator",
+  "description": "Free payment processing fee calculator: Stripe, PayPal and Square published rates, what you actually net per sale, monthly fee totals, and the gross-up solve \u2014 the exact charge that nets you the amount you want.",
+  "url": "https://onecalculator.site/tools/payment-fee-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does Stripe take from a $100 sale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At the standard online rate of 2.9% + 30\u00a2, the fee is $3.20 and you net $96.80. On a $20 sale the fee is $0.88 \u2014 4.4% of the sale, because the fixed 30\u00a2 weighs more as tickets shrink."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I charge so I net exactly $100?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gross it up: ($100 + $0.30) \u00f7 (1 \u2212 0.029) = $103.30 on Stripe online. Charging $103.20 \u2014 simply adding the $3.20 fee from a $100 sale \u2014 nets only $99.90, because the fee also applies to the amount you added. The solver above does this exactly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which is cheaper, Stripe, PayPal or Square?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a $100 online sale: Stripe $3.20, Square (Free plan) $3.60, PayPal Checkout $3.98. In person the order flips: Square $2.75, Stripe $2.75, and both beat most online rates. At volume, negotiated rates matter more than the list-price gap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do small sales lose so much to fees?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The fixed fee is charged per transaction regardless of size: 30\u00a2 on a $3 sale is 10% before the percentage even applies. Bundling, minimum order sizes or subscription billing (one charge instead of many) are the standard fixes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are processing fees tax-deductible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a business, yes \u2014 card processing fees are an ordinary business expense in the US. Track the annual total (this calculator estimates it from your monthly volume) for your return or bookkeeper."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the processor refund the fee when I refund a customer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Generally no: Stripe, PayPal and Square all keep the original processing fee on refunded transactions under their current standard terms. A $100 sale refunded in full costs you the $3.20 fee with nothing to show for it."
+      }
+    }
+  ]
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/payment-fee-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-small-business-tools">Small business tools</a> › Payment Fee Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">Payment Fee Calculator</h1>
+  <p class="lede">Every card payment quietly takes a cut. Pick your processor, enter a charge, and see the fee, what you actually keep, and what your monthly volume really costs — plus the gross-up solve most fee calculators leave out: the exact amount to charge so you net what you intended.</p>
+
+  <div class="card nn-calc-card">
+
+    <div class="row">
+      <div class="field"><label for="preset">Processor &amp; rate</label><select id="preset">
+        <option value="2.9|30" selected>Stripe — online card: 2.9% + 30¢</option>
+        <option value="2.7|5">Stripe — in person: 2.7% + 5¢</option>
+        <option value="3.49|49">PayPal Checkout: 3.49% + 49¢</option>
+        <option value="2.99|49">PayPal — standard card: 2.99% + 49¢</option>
+        <option value="3.3|30">Square — online (Free plan): 3.3% + 30¢</option>
+        <option value="2.6|15">Square — in person (Free plan): 2.6% + 15¢</option>
+        <option value="custom">Custom rate…</option>
+      </select></div>
+      <div class="field"><label for="amount">Charge amount ($)</label><input id="amount" type="number" value="100" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="pct">Custom / adjusted rate (%)</label><input id="pct" type="number" value="2.9" min="0" step="any"></div>
+      <div class="field"><label for="fixed">Custom / adjusted fixed fee (¢)</label><input id="fixed" type="number" value="30" min="0" step="any"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="txns">Transactions per month</label><input id="txns" type="number" value="200" min="0" step="any"></div>
+      <div class="field"><label for="target">I want to NET exactly ($) — gross-up</label><input id="target" type="number" value="100" min="0" step="any"></div>
+    </div>
+    <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Rates are the processors' published US list rates, retrieved from their pricing pages in November 2026: Stripe 2.9% + 30¢ online and 2.7% + 5¢ in person; PayPal Checkout 3.49% + 49¢ and standard card processing 2.99% + 49¢; Square's Free plan 3.3% + 30¢ online and 2.6% + 15¢ in person (Square Plus plans price in-person lower). Negotiated, interchange-plus and international rates differ — enter yours in the custom fields. Chargebacks, refunds (fees are generally not returned) and currency conversion are not modeled.</p>
+
+    <button class="btn" onclick="calc()">Calculate fees</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#payment-fee-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">You net per sale</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
+      <div class="big" id="rMain">—</div>
+      <table><tbody id="rows"></tbody></table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">The fee on a charge is amount × percentage + the fixed fee in dollars. What you keep is the charge minus that fee. The <strong>gross-up</strong> runs the algebra backwards: to net exactly N, charge (N + fixed fee) ÷ (1 − percentage). At Stripe's online rate, netting $100 means charging $103.30 — the extra $3.30 covers the fee on the higher amount. Monthly totals multiply the per-sale fee by your transaction count, which is where the fixed fee stops being small: on a $5 sale, Stripe's 30¢ alone is 6%.</p>
+    <div class="note">Estimates from published list rates as of November 2026. Your effective rate can differ with volume pricing, card mix (rewards and corporate cards cost more on some plans), international cards and currency conversion. Fees on refunded sales are generally kept by the processor — price that risk into thin-margin products.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> Fee = charge × percentage rate + fixed fee. Net = charge − fee. Gross-up (charge needed to net N) = (N + fixed fee) ÷ (1 − percentage rate). Monthly fees = fee per sale × transactions per month.</p>
+    <p><strong>Worked example:</strong> Stripe online on $100: fee = $100 × 2.9% + $0.30 = $3.20, net $96.80. To net exactly $100: ($100 + $0.30) ÷ (1 − 0.029) = $103.30.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>You are choosing between Stripe, PayPal and Square for a shop or checkout</li><li>A client asks you to absorb card fees and you need the exact grossed-up invoice amount</li><li>Your monthly processor bill looks wrong and you want an independent estimate</li><li>You sell many small items and suspect the fixed fee is eating your margin</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Pick your processor preset, or enter a custom rate you negotiated.</li><li>Enter a representative charge — then repeat with your smallest common ticket.</li><li>Set monthly transactions to see the channel's real annual cost.</li><li>Use the gross-up field when a client or platform must net you an exact amount.</li><li>Compare the same sale across presets in the results table before switching processors.</li><li>If refunds are common in your business, remember the original fee is kept — price that in.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Processor preset</strong></td><td style="padding:6px 8px">Published US list rate for the channel you sell through.</td><td style="padding:6px 8px">Online and in-person rates differ — pick the right one</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Charge amount</strong></td><td style="padding:6px 8px">A representative sale; use your average ticket for planning.</td><td style="padding:6px 8px">Test your smallest common ticket too — fixed fees bite there</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Transactions per month</strong></td><td style="padding:6px 8px">Turns a per-sale fee into the monthly and annual cost of the channel.</td><td style="padding:6px 8px">Count every swipe, including small ones</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Target net (gross-up)</strong></td><td style="padding:6px 8px">What you want to actually receive; the calculator solves the charge.</td><td style="padding:6px 8px">The mode most fee calculators omit — use it for quotes and invoices</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>A coffee cart on Square in person (2.6% + 15¢): a $25 sale loses $0.80 to fees and nets $24.20. At 800 sales a month that is $640 in fees, $7,680 a year — the same as the online example on much smaller tickets, because the fixed fee is charged 800 times. This is why high-frequency, low-ticket businesses fight hardest over the fixed fee, not the percentage.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>How much does Stripe take from a $100 sale?</h3>
+    <p>At the standard online rate of 2.9% + 30¢, the fee is $3.20 and you net $96.80. On a $20 sale the fee is $0.88 — 4.4% of the sale, because the fixed 30¢ weighs more as tickets shrink.</p>
+    <h3>How do I charge so I net exactly $100?</h3>
+    <p>Gross it up: ($100 + $0.30) ÷ (1 − 0.029) = $103.30 on Stripe online. Charging $103.20 — simply adding the $3.20 fee from a $100 sale — nets only $99.90, because the fee also applies to the amount you added. The solver above does this exactly.</p>
+    <h3>Which is cheaper, Stripe, PayPal or Square?</h3>
+    <p>On a $100 online sale: Stripe $3.20, Square (Free plan) $3.60, PayPal Checkout $3.98. In person the order flips: Square $2.75, Stripe $2.75, and both beat most online rates. At volume, negotiated rates matter more than the list-price gap.</p>
+    <h3>Why do small sales lose so much to fees?</h3>
+    <p>The fixed fee is charged per transaction regardless of size: 30¢ on a $3 sale is 10% before the percentage even applies. Bundling, minimum order sizes or subscription billing (one charge instead of many) are the standard fixes.</p>
+    <h3>Are processing fees tax-deductible?</h3>
+    <p>For a business, yes — card processing fees are an ordinary business expense in the US. Track the annual total (this calculator estimates it from your monthly volume) for your return or bookkeeper.</p>
+    <h3>Does the processor refund the fee when I refund a customer?</h3>
+    <p>Generally no: Stripe, PayPal and Square all keep the original processing fee on refunded transactions under their current standard terms. A $100 sale refunded in full costs you the $3.20 fee with nothing to show for it.</p>
+    
+  </div>
+  <div class="cta-box">
+    <h3>🎬 Selling as a creator?</h3>
+    <p>Fees are one leak; platform revenue share is the other. The Creator ROI Hub gathers the earnings, sponsorship and fee tools in one place.</p>
+    <p><a class="btn" href="../creator-roi-calculators.html">Open the Creator ROI Hub</a></p>
+    <h3>What is interchange, and is it the same as these fees?</h3>
+    <p>Interchange is the portion of the fee that flows to the cardholder's bank; the flat rates here bundle interchange, network fees and the processor's margin into one published price. Large merchants can buy interchange-plus pricing and sometimes beat the flat rate — small ones usually cannot, once the markup is added.</p>
+    <h3>Do fees apply to the tax and tip portions too?</h3>
+    <p>Yes — the percentage and fixed fee are charged on the total amount swiped, including sales tax and tips. A restaurant's effective fee burden is therefore slightly higher than the rate on its food prices alone suggests.</p>
+  </div>
+</main>
+
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="llm-api-cost-estimator.html">LLM API Cost Estimator</a></li>
+    <li><a href="invoice-generator.html">Invoice Generator</a></li>
+    <li><a href="freelance-rate-calculator.html">Freelance Rate Calculator</a></li>
+    <li><a href="../creator-roi-calculators.html">Creator ROI Hub</a></li>
+    
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+
+function v(id){return +document.getElementById(id).value||0;}
+function sv(id){return document.getElementById(id).value;}
+function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function fmt0(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});}
+function fmt1(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});}
+function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
+function money(n){return '$'+fmt(n);}
+function money0(n){return '$'+fmt0(Math.round(n));}
+function ceilg(x){return Math.ceil(x-1e-9);}
+
+/*PURE-BEGIN*/
+function feeCalc(amount,pct,fixedCents,txns){
+  var fee=amount*pct/100+fixedCents/100;
+  return {fee:fee,net:amount-fee,monthly:fee*txns,annual:fee*txns*12};
+}
+function grossUp(net,pct,fixedCents){
+  return (net+fixedCents/100)/(1-pct/100);
+}
+/*PURE-END*/
+function rates(){
+  var p=sv('preset');
+  if(p==='custom'){return [v('pct'),v('fixed')];}
+  var parts=p.split('|');
+  document.getElementById('pct').value=parts[0]; document.getElementById('fixed').value=parts[1];
+  return [+parts[0],+parts[1]];
+}
+function calc(){
+  var r=rates(), pct=r[0], fixed=r[1];
+  var amt=Math.max(0,v('amount')), txns=Math.max(0,v('txns')), tgt=Math.max(0,v('target'));
+  var f=feeCalc(amt,pct,fixed,txns);
+  var g=grossUp(tgt,pct,fixed), gf=feeCalc(g,pct,fixed,1);
+  document.getElementById('rMain').textContent=money(f.net)+' of '+money(amt);
+  document.getElementById('verdict').textContent='On '+money(amt)+' the processor keeps '+money(f.fee)+' ('+fmt1(amt>0?f.fee/amt*100:0)+'% effective). To net exactly '+money(tgt)+', charge '+money(g)+'.';
+  document.getElementById('rows').innerHTML=row('Fee on this sale',money(f.fee))+row('You net',money(f.net))
+    +row('Fees per month ('+fmt0(txns)+' sales)',money(f.monthly))+row('Fees per year',money(f.annual))
+    +row('Gross-up: charge to net '+money(tgt),money(g))+row('Fee on the grossed-up charge',money(gf.fee));
+  document.getElementById('results').classList.add('show');
+}
+
+function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+
+live(); calc();
+
+</script>
+
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>

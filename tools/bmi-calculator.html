@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free BMI Calculator — Body Mass Index with Imperial & Metric | One Calculator</title>
+<meta name="description" content="Free BMI calculator with imperial (ft/in, lbs) and metric (cm, kg) modes. Get your Body Mass Index and health category instantly. No signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icon-192.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="manifest" href="../assets/site.webmanifest">
+<meta name="theme-color" content="#374151">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta property="og:site_name" content="One Calculator">
+<link rel="canonical" href="https://onecalculator.site/tools/bmi-calculator.html">
+<meta property="og:title" content="Free BMI Calculator — Body Mass Index with Imperial &amp; Metric | One Calculator">
+<meta property="og:description" content="Free BMI calculator with imperial (ft/in, lbs) and metric (cm, kg) modes. Get your Body Mass Index and health category instantly. No signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://onecalculator.site/tools/bmi-calculator.html">
+<meta property="og:image" content="https://onecalculator.site/assets/icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free BMI Calculator — Body Mass Index with Imperial &amp; Metric | One Calculator">
+<meta name="twitter:description" content="Free BMI calculator with imperial (ft/in, lbs) and metric (cm, kg) modes. Get your Body Mass Index and health category instantly. No signup.">
+<meta name="twitter:image" content="https://onecalculator.site/assets/icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BMI Calculator",
+  "description": "Free BMI calculator with imperial (ft/in, lbs) and metric (cm, kg) modes. Get your Body Mass Index and health category instantly. No signup.",
+  "url": "https://onecalculator.site/tools/bmi-calculator.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "One Calculator",
+    "url": "https://onecalculator.site/"
+  }
+}
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
+<!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img class="brand-icon" src="../assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
+    <nav><a href="../index.html">All Tools</a><a href="../tools/percentage-calculator.html">Percentage</a><a href="../tools/loan-calculator.html">Loan</a></nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="nn-embed-bar">Calculator via <a href="https://onecalculator.site/tools/bmi-calculator.html" target="_top" rel="noopener">One Calculator</a></div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#cat-everyday-tools">Everyday tools</a> › BMI Calculator</div>
+<div class="nn-ad nn-ad-top" data-k728="00000000000000000000000000000000" data-k320="00000000000000000000000000000000"><div class="nn-ad-label">Advertisement</div></div>
+  <h1 class="tool-title">BMI Calculator</h1>
+  <p class="lede">Enter your height and weight to get your Body Mass Index and see which category you fall into. Switch between imperial and metric anytime.</p>
+
+  <div class="card nn-calc-card">
+    <div class="row">
+      <div class="field"><label for="units">Units</label><select id="units" onchange="toggleUnits()"><option value="imp">Imperial (ft / in / lbs)</option><option value="met">Metric (cm / kg)</option></select></div>
+    </div>
+    <div id="impFields">
+      <div class="row">
+        <div class="field"><label for="ft">Height — feet</label><input id="ft" type="number" value="5" min="0"></div>
+        <div class="field"><label for="inch">Height — inches</label><input id="inch" type="number" value="10" min="0" max="11"></div>
+        <div class="field"><label for="lbs">Weight (lbs)</label><input id="lbs" type="number" value="180" min="0"></div>
+      </div>
+    </div>
+    <div id="metFields" style="display:none">
+      <div class="row">
+        <div class="field"><label for="cm">Height (cm)</label><input id="cm" type="number" value="178" min="0"></div>
+        <div class="field"><label for="kg">Weight (kg)</label><input id="kg" type="number" value="82" min="0"></div>
+      </div>
+    </div>
+    <button class="btn" onclick="calc()">Calculate BMI</button>
+    <div class="nn-actions no-print" data-nn-actions>
+  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
+  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
+  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
+  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
+</div>
+<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
+<p class="nn-embed-link no-print"><a href="../embed.html#bmi-calculator">Embed this calculator on your site — free</a></p>
+<div class="results" id="results">
+      <div style="color:var(--muted);font-size:.9rem">Your BMI</div>
+      <div class="big" id="rBmi">0</div>
+      <table>
+        <tr><td>Category</td><td id="rCat">—</td></tr>
+        <tr><td>Healthy weight range for your height</td><td id="rRange">—</td></tr>
+      </table>
+    </div>
+  </div>
+<div class="nn-ad" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+
+  <div class="card">
+    <h2>How it works</h2>
+    <p style="color:var(--muted)">Imperial: <strong>BMI = 703 × weight (lbs) ÷ height (in)<sup>2</sup></strong>. Metric: <strong>BMI = weight (kg) ÷ height (m)<sup>2</sup></strong>. Categories follow CDC cutoffs: under 18.5 underweight, 18.5–24.9 healthy, 25–29.9 overweight, 30+ obese.</p>
+    <div class="note">BMI is a screening measure, not a diagnosis — it doesn't account for muscle mass, bone density, or body composition. Talk to your doctor for personal health advice.</div>
+  </div>
+
+
+  <div class="card">
+    <h2>Formula &amp; worked example</h2>
+    <p><strong>Formula:</strong> BMI = 703 × weight (lb) ÷ height (in)², or weight (kg) ÷ height (m)². Categories: under 18.5 underweight, 18.5–24.9 healthy, 25–29.9 overweight, 30+ obese.</p>
+    <p><strong>Worked example:</strong> At 180 lb and 5′10″ (70 in): 703 × 180 ÷ 4,900 = 25.8 — just inside the overweight band.</p>
+  </div>
+
+
+  <div class="card">
+    <h2>When to use this</h2>
+    <ul><li>A quick screening number for a health form, sport or insurance questionnaire.</li><li>You are tracking weight change and want the category context, not just the scale.</li><li>You are setting a goal weight and want to know which BMI it corresponds to.</li><li>A clinician mentioned BMI and you want to see where the bands sit for your height.</li></ul>
+  </div>
+
+  <div class="card">
+    <h2>How to use it, step by step</h2>
+    <ol><li>Choose imperial or metric.</li><li>Enter height and weight as they are today.</li><li>Read the BMI and its band.</li><li>Use the healthy-range line to see the weights that correspond to BMI 18.5–24.9 at your height.</li><li>If you train seriously, pair this with a body-fat estimate — BMI cannot see muscle.</li></ol>
+    <h3>What the inputs mean</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:.95rem"><thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Input</th><th style="padding:8px">What it is</th><th style="padding:8px">Typical values</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Height</strong></td><td style="padding:6px 8px">Barefoot height</td><td style="padding:6px 8px">Adult range roughly 4′8″–6′8″</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Weight</strong></td><td style="padding:6px 8px">Current body weight</td><td style="padding:6px 8px">Morning, post-bathroom is the consistent measure</td></tr><tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>Units</strong></td><td style="padding:6px 8px">Imperial (lb/in) or metric (kg/cm)</td><td style="padding:6px 8px">BMI = 703 × lb ÷ in², or kg ÷ m²</td></tr></tbody></table>
+  </div>
+
+  <div class="card">
+    <h2>Another worked example</h2>
+    <p>At 5′6″ and 160 lb, BMI is 25.8 — just inside the 'overweight' band (25–29.9). The same person at 148 lb would read 23.9, inside the healthy band, which shows how few pounds separate the categories at this height — and why the trend matters more than any single reading.</p>
+  </div>
+
+  <div class="card faq">
+    <h2>Frequently asked questions</h2>
+    <h3>What is a healthy BMI?</h3>
+    <p>The CDC defines a healthy BMI as 18.5 to 24.9 for adults. Athletes with high muscle mass may score above 25 while still being healthy.</p>
+    <h3>How accurate is BMI?</h3>
+    <p>It's a quick population-level screen, not a body-fat measurement. Two people with the same BMI can have very different health profiles.</p>
+    <h3>Should I convert my units first?</h3>
+    <p>No — just pick Imperial or Metric above and enter your numbers as-is. The tool converts behind the scenes.</p>
+    <h3>Why does BMI call muscular people overweight?</h3>
+    <p>BMI is weight divided by height squared — it has no way to know what the weight is made of. A lean athlete at 5′10″ and 200 lb scores about 28.7. That is a known limitation, which is why waist size and body-fat percentage are the follow-up checks.</p>
+    <h3>Is BMI used for children?</h3>
+    <p>Not this adult scale. Children and teens are assessed on percentile curves by age and sex — a pediatric standard this calculator deliberately does not apply.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>📊 Want the full picture?</h3>
+    <p>Pair your BMI with your savings and health goals — our compound interest and savings goal calculators do the money math.</p>
+    <p><a class="btn" href="savings-goal-calculator.html">Try savings goal</a></p>
+  </div>
+</main>
+<div class="nn-ad nn-ad-bottom" data-key="00000000000000000000000000000000" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div></div>
+<section class="related-tools">
+  <h2>Related tools</h2>
+  <ul>
+    <li><a href="age-calculator.html">Age Calculator</a></li>
+    <li><a href="gpa-calculator.html">GPA Calculator</a></li>
+    <li><a href="tip-calculator.html">Tip Calculator</a></li>
+    <li><a href="time-duration-calculator.html">Time Duration Calculator</a></li>
+  </ul>
+</section>
+<footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
+<script>
+function toggleUnits(){
+  const met=document.getElementById('units').value==='met';
+  document.getElementById('impFields').style.display=met?'none':'block';
+  document.getElementById('metFields').style.display=met?'block':'none';
+}
+function calc(){
+  const met=document.getElementById('units').value==='met';
+  let bmi;
+  if(met){
+    const h=(+document.getElementById('cm').value||0)/100, w=+document.getElementById('kg').value||0;
+    bmi=h>0?w/(h*h):0;
+    const lo=18.5*h*h, hi=24.9*h*h;
+    document.getElementById('rRange').textContent=lo.toFixed(1)+' – '+hi.toFixed(1)+' kg';
+  }else{
+    const h=(+document.getElementById('ft').value||0)*12+(+document.getElementById('inch').value||0), w=+document.getElementById('lbs').value||0;
+    bmi=h>0?703*w/(h*h):0;
+    const lo=18.5*h*h/703, hi=24.9*h*h/703;
+    document.getElementById('rRange').textContent=lo.toFixed(1)+' – '+hi.toFixed(1)+' lbs';
+  }
+  const cat=bmi<18.5?'Underweight':bmi<25?'Healthy weight':bmi<30?'Overweight':'Obese';
+  document.getElementById('rBmi').textContent=bmi.toFixed(1);
+  document.getElementById('rCat').textContent=cat;
+  document.getElementById('results').classList.add('show');
+}
+toggleUnits();calc();
+</script>
+<script src="../assets/ads.js"></script>
+<script src="../assets/track.js"></script>
+<script src="../assets/nn-tools.js"></script>
+</body>
+</html>
