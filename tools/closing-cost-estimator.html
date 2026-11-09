@@ -257,7 +257,7 @@ function calc(){
   var st=STATES[+sv('state')]||STATES[42];
   var r=closingCalc(Math.max(0,v('loan')),Math.max(0,v('price')),st[1],Math.max(0,v('ins')),Math.max(0,v('ratepct')),Math.max(0,v('taxmonths')),3);
   document.getElementById('rMain').textContent=money0(r.mid)+' mid estimate';
-  document.getElementById('verdict').textContent='Total range '+money0(r.low)+' to '+money0(r.high)+' (mid '+money0(r.mid)+', '+fmt(r.pct)+'% of the loan). The tax escrow uses '+st[0]+''s '+st[1]+'% average effective rate — about '+money0(r.taxYr)+' of tax a year on this price.';
+  document.getElementById('verdict').textContent='Total range '+money0(r.low)+' to '+money0(r.high)+' (mid '+money0(r.mid)+', '+fmt(r.pct)+'% of the loan). The tax escrow uses '+st[0]+'\'s '+st[1]+'% average effective rate — about '+money0(r.taxYr)+' of tax a year on this price.';
   var h='';
   r.items.forEach(function(it){h+=row(it[0],money0(it[1])+' / '+money0(it[2])+' / '+money0(it[3]));});
   h+=row('Totals (low / mid / high)',money0(r.low)+' / '+money0(r.mid)+' / '+money0(r.high));

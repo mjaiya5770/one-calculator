@@ -243,7 +243,7 @@ function setMode(m){
 function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
 function calc(){
   var today=todayStr(),due='',lmpImplied='',method='',rows='';
-  if(mode==='lmp'){var lmp=dv('lmp');if(!lmp)return;due=dueFromLMP(lmp);lmpImplied=lmp;method='Last menstrual period (Naegele's rule)';}
+  if(mode==='lmp'){var lmp=dv('lmp');if(!lmp)return;due=dueFromLMP(lmp);lmpImplied=lmp;method='Last menstrual period (Naegele\'s rule)';}
   else if(mode==='conception'){var c=dv('concep');if(!c)return;due=dueFromConception(c);lmpImplied=dAdd(c,-14);method='Conception date (+266 days)';}
   else {var sd=dv('scanDate');if(!sd)return;var w=v('scanWeeks'),dd=v('scanDays');due=dueFromUltrasound(sd,w,dd);lmpImplied=dAdd(sd,-(w*7+dd));method='Ultrasound — '+w+'w '+dd+'d on '+prettyDate(sd);}
   var ga=gestAge(lmpImplied,today),te=trimesterEnds(lmpImplied),left=dDiff(today,due);

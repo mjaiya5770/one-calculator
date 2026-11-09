@@ -250,7 +250,7 @@ function calc(){
   var st=STATES[+sv('state')]||STATES[42];
   var r=propTaxCalc(Math.max(0,v('value')),Math.max(0,v('rate')),Math.max(0,v('exempt')));
   document.getElementById('rMain').textContent=money0(r.annual)+' / year';
-  document.getElementById('verdict').textContent='At '+st[0]+''s '+fmt(Math.max(0,v('rate')))+'% effective rate on '+money0(r.taxable)+' of taxable value. For context, the median '+st[0]+' homeowner pays about '+money0(st[2])+' a year — the state ranks #'+st[3]+' of 50 by rate.';
+  document.getElementById('verdict').textContent='At '+st[0]+'\'s '+fmt(Math.max(0,v('rate')))+'% effective rate on '+money0(r.taxable)+' of taxable value. For context, the median '+st[0]+' homeowner pays about '+money0(st[2])+' a year — the state ranks #'+st[3]+' of 50 by rate.';
   document.getElementById('rows').innerHTML=row('Annual property tax',money0(r.annual))+row('Monthly (annual ÷ 12)',money(r.monthly))
     +row('Monthly escrow with 2-month cushion',money(r.escrowMonthly))+row('Taxable value after exemption',money0(r.taxable))
     +row('State median annual bill (ACS 2024)',money0(st[2]))+row('State rank by effective rate','#'+st[3]+' of 50');

@@ -254,7 +254,7 @@ function calc(){
   if(mode==='needed'){
     var cur=v('nCur'),w=v('nW'),tgt=v('nTarget'),need=neededScore(cur,w,tgt);
     big=isNaN(need)?'—':fmt(need)+'%';
-    verd=isNaN(need)?'Enter the final's weight to run the math.':(need<=0?'Good news — a '+fmt(tgt)+'% course grade ('+letterGrade(tgt)+') is already locked in. Any final score keeps it.':need>100?'A '+fmt(tgt)+'% course grade is out of reach — even 100% on the final tops out at '+fmt(courseGrade(cur,w,100))+'%. Aim for the grades in the table instead.':'You need '+fmt(need)+'% on the final to finish with '+fmt(tgt)+'% ('+letterGrade(tgt)+').');
+    verd=isNaN(need)?'Enter the final\'s weight to run the math.':(need<=0?'Good news — a '+fmt(tgt)+'% course grade ('+letterGrade(tgt)+') is already locked in. Any final score keeps it.':need>100?'A '+fmt(tgt)+'% course grade is out of reach — even 100% on the final tops out at '+fmt(courseGrade(cur,w,100))+'%. Aim for the grades in the table instead.':'You need '+fmt(need)+'% on the final to finish with '+fmt(tgt)+'% ('+letterGrade(tgt)+').');
     rows=row('Points already banked',fmt(cur*(1-w/100))+' of '+fmt(100-w)+' coursework points')
       +row('Target '+fmt(tgt)+'% ('+letterGrade(tgt)+')','Need '+fmt(need)+'% — '+statusFor(need).trim());
     [[90,'A range'],[80,'B range'],[70,'C range'],[60,'D range']].forEach(function(T){
