@@ -89,7 +89,7 @@
       el.setAttribute('data-house', '1');
       done(); return;
     }
-    if (!key || !w || !h || el.getAttribute('data-loaded')) { done(); return; }
+    if (!key || !w || !h || el.getAttribute('data-loaded')) { watchSeat(el, Date.now()); done(); return; } /* NN-KEYLESS-WATCHDOG: a keyless seat still gets the house fallback — never a blank seat */
     el.setAttribute('data-loaded', '1');
     var startedAt = Date.now();
     var s1 = document.createElement('script');
