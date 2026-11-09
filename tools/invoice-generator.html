@@ -182,10 +182,10 @@ function rowHTML(d,q,r){
     +'<div class="field" style="margin:0"><input class="i-desc" type="text" value="'+d+'" placeholder="Description"></div>'
     +'<div class="field" style="margin:0;max-width:90px"><input class="i-qty" type="number" value="'+q+'" min="0" step="any" placeholder="Qty"></div>'
     +'<div class="field" style="margin:0;max-width:120px"><input class="i-rate" type="number" value="'+r+'" min="0" step="any" placeholder="Rate"></div>'
-    +'<div class="field" style="margin:0;max-width:48px"><button class="btn" style="padding:8px 12px;background:#c0392b" onclick="this.closest(\'.item-row\').remove();calc()">×</button></div>'
+    +'<div class="field" style="margin:0;max-width:48px"><button class="btn" style="padding:8px 12px;background:#c0392b" onclick="rmRow(this)">×</button></div>'
     +'</div>';
 }
-function addRow(){document.getElementById('items').insertAdjacentHTML('beforeend',rowHTML('','1','0'));calc();}
+function addRow(){document.getElementById('items').insertAdjacentHTML('beforeend',rowHTML('','1','0'));syncItemIds();calc();}
 function calc(){
   document.getElementById('pBiz').textContent=document.getElementById('biz').value||'Your Business';
   document.getElementById('pClient').textContent=document.getElementById('client').value||'—';
@@ -212,6 +212,36 @@ function calc(){
 document.getElementById('items').innerHTML=DEFAULTS.map(function(x){return rowHTML(x[0],x[1],x[2]);}).join('');
 /* default the invoice date to the visitor's today (was a hard-coded stale date) */
 (function(){var _d=document.getElementById('invdate');if(_d&&!_d.value){var _t=new Date();_d.value=_t.getFullYear()+'-'+String(_t.getMonth()+1).padStart(2,'0')+'-'+String(_t.getDate()).padStart(2,'0');}})();
+/* NN-INVOICE-STATE (Nov 8 2026): the generic save/share serializer in
+   nn-tools.js only collects inputs that carry an id — the line-item inputs
+   are class-only, so saved/shared invoices silently lost every billed
+   item, and share URLs carried the client's name and the notes (a privacy
+   leak). This block gives the invoice its complete state: positional ids
+   on the item inputs (so the generic save + share flows capture them),
+   row hydration before any restore, a share handler that never puts the
+   client name or the notes in a URL, and a strip of those two fields from
+   incoming links. Local saves stay complete (they never leave the
+   visitor's own device); only URLs are sanitized. */
+function syncItemIds(){document.querySelectorAll('.item-row').forEach(function(row,i){row.querySelector('.i-desc').id='it'+i+'d';row.querySelector('.i-qty').id='it'+i+'q';row.querySelector('.i-rate').id='it'+i+'r';});}
+function ensureRows(n){var tb=document.getElementById('items');while(tb.querySelectorAll('.item-row').length<n)tb.insertAdjacentHTML('beforeend',rowHTML('','1','0'));while(tb.querySelectorAll('.item-row').length>n)tb.querySelector('.item-row:last-child').remove();syncItemIds();}
+function invItemCount(params){var max=-1;for(var k in params){var m=/^it(\d+)[dqr]$/.exec(k);if(m)max=Math.max(max,parseInt(m[1],10));}return max+1;}
+function rmRow(btn){btn.closest('.item-row').remove();syncItemIds();calc();}
+function invCopyFallback(text,done){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+/* incoming share link: build the rows its item params need before nn-tools
+   restores (its init runs on DOMContentLoaded; this runs at parse time),
+   and strip any client name / notes an older link may carry */
+(function(){var q=window.location.search;if(!q)return;var params={};q.slice(1).split('&').forEach(function(p){if(!p)return;var eq=p.indexOf('=');var k=eq>=0?p.slice(0,eq):p;try{k=decodeURIComponent(k.replace(/\+/g,' '));}catch(e){}params[k]=eq>=0?p.slice(eq+1):'';});var n=invItemCount(params);if(n>0)ensureRows(n);if(('client' in params)||('notes' in params)){var keep=q.slice(1).split('&').filter(function(p){var k=p.split('=')[0];return k!=='client'&&k!=='notes';});try{history.replaceState(null,'',window.location.pathname+(keep.length?'?'+keep.join('&'):''));}catch(e){}}})();
+/* outgoing share: same field collection as the generic serializer, minus
+   the client name and the notes; save loads: hydrate rows first so the
+   generic restore finds every item input (capture phase — runs before
+   the nn-tools bubble-phase handler) */
+document.addEventListener('click',function(e){
+ var share=e.target.closest&&e.target.closest('[data-nn="share"]');
+ if(share){e.stopPropagation();e.preventDefault();var parts=[];document.querySelectorAll('main input[id], main select[id], main textarea[id]').forEach(function(el){if(el.id==='client'||el.id==='notes')return;var tag=el.tagName;if((tag==='INPUT'&&el.readOnly)||el.type==='file'||el.type==='submit'||el.type==='button'||el.type==='hidden'||el.closest('.nn-actions, .nn-saves'))return;if(el.type==='radio'){if(el.checked)parts.push(encodeURIComponent(el.id)+'='+encodeURIComponent(el.value));}else if(el.type==='checkbox'){parts.push(encodeURIComponent(el.id)+'='+encodeURIComponent(el.checked?'1':'0'));}else{parts.push(encodeURIComponent(el.id)+'='+encodeURIComponent(el.value));}});var url=window.location.origin+window.location.pathname+(parts.length?'?'+parts.join('&'):'');var done=function(){var old=share.getAttribute('data-label')||share.textContent;share.setAttribute('data-label',old);share.textContent='\u2713 Copied';setTimeout(function(){share.textContent=old;},1600);};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(done,function(){invCopyFallback(url,done);});}else{invCopyFallback(url,done);}return;}
+ var load=e.target.closest&&e.target.closest('[data-nn-load]');
+ if(load){try{var saves=JSON.parse(window.localStorage.getItem('nnSavesV1')||'[]');var en=saves[parseInt(load.getAttribute('data-nn-load'),10)];if(en&&en.inputs){var n=invItemCount(en.inputs);if(n>0)ensureRows(n);}}catch(err){}}
+},true);
+syncItemIds();
 calc();
 </script>
 <script src="../assets/ads.js"></script>
