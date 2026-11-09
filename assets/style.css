@@ -1273,7 +1273,7 @@ h1.tool-title {
 .nn-ad{margin:26px auto;text-align:center;display:flex;flex-direction:column;align-items:center;max-width:100%;overflow:hidden}
 .nn-ad iframe{max-width:100%}
 .nn-ad-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#9aa5a1;margin-bottom:6px}
-.nn-house{display:block;max-width:728px;width:100%;padding:20px 22px;border:1px dashed var(--amber,#dc2626);border-radius:14px;background:#fdecec;color:#12211f;text-decoration:none}
+.nn-house{display:block;max-width:728px;width:100%;box-sizing:border-box;max-height:120px;overflow:hidden;padding:14px 20px;border:1px dashed var(--amber,#dc2626);border-radius:14px;background:#fdecec;color:#12211f;text-decoration:none}
 .nn-house strong{display:block;font-size:1.05rem;margin-bottom:4px;color:#111827}
 .nn-house span{font-size:.9rem;color:#5b6b7f}
 /* NN-EXPERIENCE */
@@ -1389,3 +1389,29 @@ html.nn-embed body{background:transparent}
 @media (max-width: 480px) {
   .breadcrumb { font-size: 0.8rem; }
 }
+
+/* FLEET LIBRARY (/calculators.html) — sticky category sub-nav + scrollspy */
+.lib-subnav{position:sticky;top:var(--header-height,68px);z-index:40;background:var(--offwhite);border-bottom:1px solid var(--border);margin:0 0 10px}
+.lib-subnav .wrap{display:flex;gap:8px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.lib-subnav .wrap::-webkit-scrollbar{display:none}
+.lib-subnav a{flex:none;padding:7px 14px;border:1px solid var(--border-strong);border-radius:var(--radius-pill);background:var(--surface);color:var(--teal-dark);font-weight:600;font-size:.86rem;text-decoration:none;white-space:nowrap}
+.lib-subnav a:hover{border-color:var(--amber)}
+.lib-subnav a.is-active{background:var(--teal);border-color:var(--teal);color:#fff}
+.lib-sec{scroll-margin-top:calc(var(--header-height,68px) + 64px)}
+.cat-teaser-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:12px;margin:0 0 8px}
+.cat-teaser{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);text-decoration:none;font-weight:600;box-shadow:var(--shadow-sm)}
+.cat-teaser:hover{border-color:var(--amber)}
+.cat-teaser span{color:var(--muted);font-weight:500;font-size:.85rem;white-space:nowrap}
+
+/* LIBRARY DENSITY (Nov 8 2026 refinement): /calculators.html renders a compact
+   multi-column grid — icon + name, one-line description, tight padding — so a
+   screenful of tools is visible at once. Homepage grids keep the tall cards. */
+.lib-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+@media (min-width:640px){.lib-grid{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:900px){.lib-grid{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:1180px){.lib-grid{grid-template-columns:repeat(5,1fr)}}
+.lib-grid .tool-card{padding:12px 14px;gap:2px}
+.lib-grid .tool-card .icon{font-size:1.25rem;margin-bottom:2px}
+.lib-grid .tool-card h3{font-size:.95rem;margin:0;line-height:1.25}
+.lib-grid .tool-card p{font-size:.8rem;line-height:1.35;margin:0;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.lib-grid .tool-card::after{display:none}

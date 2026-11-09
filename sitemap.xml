@@ -1,165 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://onecalculator.site/</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://onecalculator.site/calculators.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://onecalculator.site/embed.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://onecalculator.site/partnerships.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://onecalculator.site/creator-roi-calculators.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://onecalculator.site/terms.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://onecalculator.site/privacy.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://onecalculator.site/tools/cap-rate-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/cash-on-cash-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/mortgage-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/rental-property-analyzer.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/roi-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/break-even-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/home-affordability-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/debt-payoff-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+
+
+
+
+
+
+
   <url><loc>https://onecalculator.site/tools/discount-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://onecalculator.site/tools/sales-tax-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/hourly-salary-converter.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/car-loan-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/refinance-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/savings-goal-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/credit-card-payoff-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/salary-raise-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/freelance-rate-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/invoice-generator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/compound-interest-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/mileage-deduction-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/quarterly-tax-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/business-loan-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+
+
+
+
+
+
+
+
+
+
+
   <url><loc>https://onecalculator.site/tools/tip-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://onecalculator.site/tools/password-generator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/word-counter.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/gpa-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/age-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+
+
   <url><loc>https://onecalculator.site/tools/unit-price-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/bmi-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/time-duration-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/paint-coverage-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/deck-material-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/moving-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/percentage-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/loan-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/amortization-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/scientific-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/fraction-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/retirement-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/paycheck-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/mortgage-payoff-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/rent-vs-buy-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/date-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <url><loc>https://onecalculator.site/tools/currency-converter.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/pregnancy-due-date-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/calorie-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/bmr-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/ovulation-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/concrete-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/square-footage-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/standard-deviation-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+
+
+
+
+
+
   <url><loc>https://onecalculator.site/tools/random-number-generator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/final-grade-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/personal-loan-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/student-loan-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/debt-snowball-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/love-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/tile-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/gravel-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/mulch-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/down-payment-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/overtime-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/electricity-cost-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/sleep-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/days-until-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/heloc-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/trump-accounts-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/ai-job-risk-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/time-card-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/debt-avalanche-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/apr-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/cd-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/inflation-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/body-fat-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/macro-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/drywall-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/flooring-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/hours-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/test-grade-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/dog-age-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/roofing-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/brick-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/concrete-block-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/insulation-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/siding-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/fence-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/carpet-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/wallpaper-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/topsoil-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/sand-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/paver-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/sod-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/board-foot-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/stair-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/pool-volume-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/countertop-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/roof-replacement-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/bathroom-remodel-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/kitchen-remodel-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/home-renovation-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/wedding-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/college-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/pet-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/trip-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/asphalt-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/grass-seed-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/retaining-wall-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/framing-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/rebar-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/stone-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/plywood-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/roof-pitch-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/metal-roofing-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/concrete-block-fill-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/concrete-mix-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/baluster-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/deck-stain-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/epoxy-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/plant-spacing-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/french-drain-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/tank-volume-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/btu-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/solar-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/ev-charging-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/deck-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/fence-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/driveway-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/siding-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/painting-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/window-replacement-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/gutter-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/shed-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/home-addition-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/house-building-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/hvac-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/water-heater-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/water-bill-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/house-cleaning-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/lawn-care-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/catering-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/llm-api-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/payment-fee-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/youtube-earnings-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/tiktok-earnings-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/sponsorship-rate-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/buy-vs-lease-car-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/cash-out-refinance-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/heloc-vs-home-equity-loan-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/car-total-cost-of-ownership-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/repair-vs-replace-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/ev-vs-gas-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/closing-cost-estimator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/property-tax-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://onecalculator.site/tools/home-equity-calculator.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <url><loc>https://onecalculator.site/guides/get-out-of-debt-avalanche-vs-snowball.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://onecalculator.site/guides/calculate-mortgage-payment-by-hand.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://onecalculator.site/guides/compound-interest-explained.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
