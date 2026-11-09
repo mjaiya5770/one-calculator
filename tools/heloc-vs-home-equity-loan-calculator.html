@@ -143,6 +143,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -213,9 +214,6 @@
 <section class="related-tools">
   <h2>Related tools</h2>
   <ul>
-    <li><a href="heloc-calculator.html">HELOC Calculator</a></li>
-    <li><a href="home-equity-calculator.html">Home Equity Calculator</a></li>
-    <li><a href="cash-out-refinance-calculator.html">Cash-Out Refinance Calculator</a></li>
     <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
     
   </ul>
@@ -249,11 +247,15 @@ function helocVsCalc(amt,helocRate,drawY,repayY,helRate,helY){
 function calc(){
   var r=helocVsCalc(Math.max(0,v('amt')),Math.max(0,v('helocrate')),Math.max(0,v('drawy')),Math.max(0.1,v('repayy')),Math.max(0,v('helrate')),Math.max(0.1,v('hely')));
   document.getElementById('rMain').textContent='HELOC '+money0(r.helocInt)+' vs loan '+money0(r.helInt);
-  document.getElementById('verdict').textContent='Held in full for their whole lives, the fixed loan costs '+money0(r.helocInt-r.helInt)+' less interest. The HELOC only wins if you draw gradually or repay long before its repayment phase ends.';
+  var diff=r.helocInt-r.helInt;
+  document.getElementById('verdict').textContent=diff>=0?('Held in full for their whole lives, the fixed loan costs '+money0(diff)+' less interest. The HELOC only wins if you draw gradually or repay long before its repayment phase ends.'):('Held in full for their whole lives, the HELOC costs '+money0(-diff)+' less interest on these rates — its interest-only years at the lower rate win the math. The fixed loan still wins on certainty: its cost cannot move if rates rise.');
   document.getElementById('rows').innerHTML=row('HELOC draw payment (interest only)',money(r.ioMonthly)+' / month')
     +row('HELOC draw-period interest',money0(r.ioInt))+row('HELOC repayment payment',money(r.repayPmt)+' / month')
     +row('HELOC total interest',money0(r.helocInt))+row('Home equity loan payment',money(r.helPmt)+' / month')
     +row('Home equity loan total interest',money0(r.helInt));
+  sigSet(sigPairHTML('Total cost of borrowing the same amount',[
+    {label:'HELOC',parts:[{label:'Amount borrowed',value:Math.max(0,v('amt')),cls:'s-a'},{label:'Draw-period interest',value:r.ioInt,cls:'s-b'},{label:'Repayment interest',value:Math.max(r.helocInt-r.ioInt,0),cls:'s-c'}]},
+    {label:'Home equity loan (fixed)',parts:[{label:'Amount borrowed',value:Math.max(0,v('amt')),cls:'s-a'},{label:'Interest',value:r.helInt,cls:'s-b'}]}]));
   document.getElementById('results').classList.add('show');
 }
 
@@ -261,7 +263,26 @@ function live(){document.querySelectorAll('input,select,textarea').forEach(funct
 
 live(); calc();
 
-</script>
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigCompInner(parts){
+  var tot=0,i;for(i=0;i<parts.length;i++)tot+=Math.max(parts[i].value,0);
+  if(tot<=0)return '';
+  var bar='',leg='';
+  for(i=0;i<parts.length;i++){var p=parts[i];if(p.value<=0)continue;
+    bar+='<span class="sig-seg '+p.cls+'" style="width:'+(p.value/tot*100).toFixed(2)+'%"></span>';
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+p.cls+'"></span><span class="sig-leg-label">'+p.label+'</span><strong>'+sigMoney(p.value)+' \u00b7 '+Math.round(p.value/tot*100)+'%</strong></div>';}
+  return '<div class="sig-comp">'+bar+'</div>'+leg;
+}
+function sigCompHTML(title,parts){var inner=sigCompInner(parts);return inner?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+inner+'</div>':'';}
+function sigPairHTML(title,bars){
+  var h='',i;
+  for(i=0;i<bars.length;i++){var inner=sigCompInner(bars[i].parts);if(inner)h+='<div class="sig-pair-label">'+bars[i].label+'</div>'+inner;}
+  return h?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+h+'</div>':'';
+}</script>
 
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

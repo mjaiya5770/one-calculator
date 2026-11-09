@@ -129,6 +129,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -236,6 +237,25 @@ function payoffPlan(debts,budget,strategy){
   ds.forEach(function(d){if(order.indexOf(d.name)<0)order.push(d.name);});
   return{months:m,totalInterest:ti,order:order,minSum:minSum};
 }
+
+function payoffPath(debts,budget,strategy){
+  var ds=debts.filter(function(d){return d.balance>0;}).map(function(d){return{name:d.name||'Debt',bal:d.balance,r:d.apr/100/12,min:d.minPayment};});
+  if(!ds.length)return null;
+  var minSum=ds.reduce(function(a,d){return a+d.min;},0);
+  if(budget<minSum)return{error:'min',minSum:minSum};
+  var ti=0,m=0,order=[],path=[[0,ds.reduce(function(a,d){return a+d.bal;},0)]];
+  function totBal(){return ds.reduce(function(a,d){return a+Math.max(d.bal,0);},0);}
+  while(ds.some(function(d){return d.bal>0.005;})&&m<1200){
+    m++;var left=budget,i,d,p;
+    for(i=0;i<ds.length;i++){d=ds[i];if(d.bal>0){var it=d.bal*d.r;ti+=it;p=Math.min(d.min,d.bal+it);d.bal-=(p-it);left-=p;if(d.bal<=0.005&&order.indexOf(d.name)<0)order.push(d.name);}}
+    var alive=ds.filter(function(d){return d.bal>0.005;});
+    if(strategy==='snowball')alive.sort(function(a,b){return a.bal-b.bal;});else alive.sort(function(a,b){return b.r-a.r;});
+    for(i=0;i<alive.length;i++){if(left<=0)break;d=alive[i];var add=Math.min(left,d.bal);d.bal-=add;left-=add;if(d.bal<=0.005&&order.indexOf(d.name)<0)order.push(d.name);}
+    if(m%12===0||!ds.some(function(d){return d.bal>0.005;}))path.push([m,totBal()]);
+  }
+  ds.forEach(function(d){if(order.indexOf(d.name)<0)order.push(d.name);});
+  return{months:m,totalInterest:ti,order:order,path:path};
+}
 /*PURE-END*/
 function debtRowHTML(name,bal,apr,minp){
   return '<div class="row debt-row"><div class="field"><label>Debt name</label><input class="d-name" type="text" value="'+name+'"></div>'
@@ -250,7 +270,7 @@ function calc(){
   var debts=[];document.querySelectorAll('.debt-row').forEach(function(el){debts.push({name:el.querySelector('.d-name').value||'Debt',balance:+el.querySelector('.d-bal').value||0,apr:+el.querySelector('.d-apr').value||0,minPayment:+el.querySelector('.d-min').value||0});});
   var budget=v('budget'),snow=payoffPlan(debts,budget,'snowball'),aval=payoffPlan(debts,budget,'avalanche');
   var rb=document.getElementById('raceBody');
-  if(!snow||snow.error){var need=snow?fmt(snow.minSum):'—';document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Your budget must at least cover the minimums — they alone come to $'+need+' a month.';document.getElementById('rows').innerHTML='';rb.innerHTML='<tr><td colspan="4" style="padding:8px;color:var(--muted)">Raise the budget to at least the sum of the minimums to run the race.</td></tr>';document.getElementById('results').classList.add('show');return;}
+  if(!snow||snow.error){var need=snow?fmt(snow.minSum):'—';document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Your budget must at least cover the minimums — they alone come to $'+need+' a month.';document.getElementById('rows').innerHTML='';rb.innerHTML='<tr><td colspan="4" style="padding:8px;color:var(--muted)">Raise the budget to at least the sum of the minimums to run the race.</td></tr>';sigSet('');document.getElementById('results').classList.add('show');return;}
   var totalBal=debts.reduce(function(a,d){return a+d.balance;},0);
   document.getElementById('rMain').textContent=Math.min(snow.months,aval.months)+' months';
   var diff=snow.totalInterest-aval.totalInterest;
@@ -260,6 +280,8 @@ function calc(){
     +row('Avalanche — debt-free in',aval.months+' months')+row('Avalanche — total interest','$'+fmt(aval.totalInterest));
   function raceRow(label,p){return '<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px"><strong>'+label+'</strong></td><td style="padding:6px 8px">'+p.months+' months</td><td style="padding:6px 8px">$'+fmt(p.totalInterest)+'</td><td style="padding:6px 8px">'+p.order.join(' → ')+'</td></tr>';}
   rb.innerHTML=raceRow('❄️ Snowball (smallest first)',snow)+raceRow('🏔️ Avalanche (highest APR first)',aval);
+  var pa=payoffPath(debts,budget,'avalanche'), ps=payoffPath(debts,budget,'snowball');
+  if(pa&&ps&&pa.path&&ps.path)sigSet(sigTrajHTML('Total balance by year — both plans',[{label:'Avalanche',cls:'s-a',path:pa.path},{label:'Snowball',cls:'s-b',dash:true,path:ps.path}]));
   document.getElementById('results').classList.add('show');
 }
 document.getElementById('debtRows').innerHTML=debtRowHTML('Store card',500,18,25)+debtRowHTML('Credit card',3000,22,60)+debtRowHTML('Personal loan',8000,8,150)+debtRowHTML('','','','');
@@ -269,7 +291,23 @@ function live(){document.querySelectorAll('input,select,textarea').forEach(funct
 
 live(); calc();
 
-</script>
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigTrajHTML(title,series,note){
+  var maxV=0,maxM=0,i,j;
+  for(i=0;i<series.length;i++){var p=series[i].path;for(j=0;j<p.length;j++){if(p[j][1]>maxV)maxV=p[j][1];if(p[j][0]>maxM)maxM=p[j][0];}}
+  if(maxV<=0||maxM<=0)return '';
+  var W=320,H=110,PL=4,PR=4,PT=6,PB=4,polys='',leg='';
+  for(i=0;i<series.length;i++){var s=series[i],pts='';
+    for(j=0;j<s.path.length;j++){var x=PL+(s.path[j][0]/maxM)*(W-PL-PR),y=PT+(1-s.path[j][1]/maxV)*(H-PT-PB);pts+=(j?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    polys+='<path d="'+pts+'" class="sig-line '+s.cls+(s.dash?' sig-dash':'')+'" fill="none" vector-effect="non-scaling-stroke"/>';
+    var last=s.path[s.path.length-1];
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+s.cls+'"></span><span class="sig-leg-label">'+s.label+'</span><strong>'+sigMoney(last[1])+' after '+(Math.round(last[0]/12*10)/10)+' yrs</strong></div>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><svg class="sig-traj" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true">'+polys+'</svg>'+leg+(note?'<div class="sig-note">'+note+'</div>':'')+'</div>';
+}</script>
 
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

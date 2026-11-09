@@ -135,6 +135,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -232,11 +233,12 @@ function setMode(m){
 function calc(){
   var price=v('price'),down=mode==='pct'?downFromPct(price,v('pct')):v('amtIn');
   var pct=mode==='pct'?v('pct'):pctFromAmt(price,down),closing=closingCost(price,v('closingPct')),loan=price-down,total=down+closing;
-  if(!(price>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter a home price to see the cash you need.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');return;}
+  if(!(price>0)){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter a home price to see the cash you need.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');sigSet('');return;}
   document.getElementById('rMain').textContent='$'+fmt(total);
   document.getElementById('verdict').textContent=pmiApplies(pct)?'Heads up: at '+fmt(pct)+'% down, PMI will apply on a conventional loan until you reach about 20% equity.':'At '+fmt(pct)+'% down you clear the 20% line — no PMI on a conventional loan.';
   document.getElementById('rows').innerHTML=row('Home price','$'+fmt(price))+row('Down payment','$'+fmt(down)+' ('+fmt(pct)+'%)')+row('Loan amount','$'+fmt(loan))
     +row('Closing costs (est.)','$'+fmt(closing))+row('Total cash to close','$'+fmt(total))+row('PMI',pmiApplies(pct)?'Applies — under 20% down':'Not required — 20%+ down');
+  sigSet(sigPosHTML('Your down payment against the 20% PMI line',{value:pct,max:Math.max(30,Math.ceil(pct)),valueLabel:fmt(pct)+'% down',ticks:[{at:20,label:'20% — PMI line'}],note:pmiApplies(pct)?'PMI applies below 20% down':'no PMI at 20% or more'})+sigCompHTML('Cash to close',[{label:'Down payment',value:down,cls:'s-a'},{label:'Closing costs (est.)',value:closing,cls:'s-c'}]));
   document.getElementById('results').classList.add('show');
 }
 function fmt(n){return isNaN(n)?'—':n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
@@ -245,7 +247,29 @@ function live(){document.querySelectorAll('input,select,textarea').forEach(funct
 
 live(); setMode('pct');
 
-</script>
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigCompInner(parts){
+  var tot=0,i;for(i=0;i<parts.length;i++)tot+=Math.max(parts[i].value,0);
+  if(tot<=0)return '';
+  var bar='',leg='';
+  for(i=0;i<parts.length;i++){var p=parts[i];if(p.value<=0)continue;
+    bar+='<span class="sig-seg '+p.cls+'" style="width:'+(p.value/tot*100).toFixed(2)+'%"></span>';
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+p.cls+'"></span><span class="sig-leg-label">'+p.label+'</span><strong>'+sigMoney(p.value)+' \u00b7 '+Math.round(p.value/tot*100)+'%</strong></div>';}
+  return '<div class="sig-comp">'+bar+'</div>'+leg;
+}
+function sigCompHTML(title,parts){var inner=sigCompInner(parts);return inner?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+inner+'</div>':'';}
+function sigPosHTML(title,spec){
+  var max=spec.max>0?spec.max:100;
+  var pct=Math.min(Math.max(spec.value/max*100,0),100),ticks='',i;
+  var tk=spec.ticks||[];
+  for(i=0;i<tk.length;i++){var p=Math.min(Math.max(tk[i].at/max*100,0),100);
+    ticks+='<span class="sig-tick" style="left:'+p+'%"></span><span class="sig-tick-lab" style="left:'+p+'%">'+tk[i].label+'</span>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><div class="sig-pos"><span class="sig-pos-fill" style="width:'+pct+'%"></span>'+ticks+'<span class="sig-pos-marker" style="left:'+pct+'%"></span></div><div class="sig-note"><strong>'+spec.valueLabel+'</strong>'+(spec.note?' \u2014 '+spec.note:'')+'</div></div>';
+}</script>
 
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

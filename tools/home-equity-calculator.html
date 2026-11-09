@@ -139,6 +139,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -239,6 +240,7 @@ function calc(){
     +row('Equity percentage',fmt1(r.pct)+'%')+row('Combined loan-to-value (CLTV)',fmt1(r.cltv)+'%')
     +row('Borrowable room at 80% CLTV',money0(r.room80))+row('Borrowable room at 85% CLTV',money0(r.room85))
     +row('Net if you sold (after selling costs)',money0(sellNet));
+  sigSet(sigPosHTML('Your combined loan-to-value (CLTV)',{value:r.cltv,max:100,valueLabel:fmt1(r.cltv)+'% CLTV',ticks:[{at:80,label:'80%'},{at:85,label:'85%'}],note:'the caps most equity lenders use'})+sigCompHTML('What you own vs what you owe',[{label:'Your equity',value:Math.max(r.equity,0),cls:'s-a'},{label:'Total owed',value:r.owed,cls:'s-b'}]));
   document.getElementById('results').classList.add('show');
 }
 
@@ -246,7 +248,29 @@ function live(){document.querySelectorAll('input,select,textarea').forEach(funct
 
 live(); calc();
 
-</script>
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigCompInner(parts){
+  var tot=0,i;for(i=0;i<parts.length;i++)tot+=Math.max(parts[i].value,0);
+  if(tot<=0)return '';
+  var bar='',leg='';
+  for(i=0;i<parts.length;i++){var p=parts[i];if(p.value<=0)continue;
+    bar+='<span class="sig-seg '+p.cls+'" style="width:'+(p.value/tot*100).toFixed(2)+'%"></span>';
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+p.cls+'"></span><span class="sig-leg-label">'+p.label+'</span><strong>'+sigMoney(p.value)+' \u00b7 '+Math.round(p.value/tot*100)+'%</strong></div>';}
+  return '<div class="sig-comp">'+bar+'</div>'+leg;
+}
+function sigCompHTML(title,parts){var inner=sigCompInner(parts);return inner?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+inner+'</div>':'';}
+function sigPosHTML(title,spec){
+  var max=spec.max>0?spec.max:100;
+  var pct=Math.min(Math.max(spec.value/max*100,0),100),ticks='',i;
+  var tk=spec.ticks||[];
+  for(i=0;i<tk.length;i++){var p=Math.min(Math.max(tk[i].at/max*100,0),100);
+    ticks+='<span class="sig-tick" style="left:'+p+'%"></span><span class="sig-tick-lab" style="left:'+p+'%">'+tk[i].label+'</span>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><div class="sig-pos"><span class="sig-pos-fill" style="width:'+pct+'%"></span>'+ticks+'<span class="sig-pos-marker" style="left:'+pct+'%"></span></div><div class="sig-note"><strong>'+spec.valueLabel+'</strong>'+(spec.note?' \u2014 '+spec.note:'')+'</div></div>';
+}</script>
 
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

@@ -1508,3 +1508,47 @@ html.nn-embed .inv-toolbar{position:static;box-shadow:none;border-top:none}
  .nn-fx-burst{display:none!important}
  .results,.stat-grid{animation:none!important}
 }
+
+/* ===== NN-P2-SIG (polish wave P2: signature elements) ===== */
+.nn-signature{margin-top:14px}
+.sig-block{margin-top:12px}
+.sig-title{font-weight:700;font-size:.95rem;margin:0 0 6px}
+.sig-comp{display:flex;height:16px;border-radius:8px;overflow:hidden;background:var(--teal-light)}
+.sig-seg{display:block;height:100%}
+.s-a{background:var(--teal)}
+.s-b{background:var(--amber)}
+.s-c{background:var(--gold)}
+.s-d{background:var(--muted)}
+.sig-dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;vertical-align:-1px;flex:0 0 auto}
+.sig-leg-row{display:flex;align-items:center;font-size:.9rem;color:var(--muted);margin-top:4px}
+.sig-leg-row strong{margin-left:auto;color:var(--ink);white-space:nowrap}
+.sig-leg-label{color:var(--ink)}
+.sig-traj{width:100%;height:110px;display:block;background:var(--teal-light);border-radius:10px}
+.sig-line{stroke-width:2}
+.sig-line.s-a{stroke:var(--teal);background:none}
+.sig-line.s-b{stroke:var(--amber);background:none}
+.sig-line.s-c{stroke:var(--gold);background:none}
+.sig-dash{stroke-dasharray:5 4}
+.sig-note{font-size:.9rem;color:var(--muted);margin-top:6px}
+.sig-pair-label{font-weight:600;font-size:.9rem;margin:8px 0 2px}
+.sig-bars{display:flex;gap:3px;align-items:flex-end}
+.sig-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;min-width:0}
+.sig-bar-pair{display:flex;gap:2px;align-items:flex-end;height:76px;width:100%;justify-content:center}
+.sig-bar{display:block;width:38%;border-radius:3px 3px 0 0}
+.sig-bar-lab{font-size:.68rem;color:var(--muted);margin-top:3px;white-space:nowrap}
+.sig-pos{position:relative;height:14px;background:var(--teal-light);border-radius:7px;margin:16px 0 4px}
+.sig-pos-fill{position:absolute;left:0;top:0;bottom:0;background:var(--teal);border-radius:7px}
+.sig-pos-marker{position:absolute;top:-4px;width:3px;height:22px;background:var(--ink);border-radius:2px;transform:translateX(-50%)}
+.sig-tick{position:absolute;top:0;width:2px;height:14px;background:var(--amber)}
+.sig-tick-lab{position:absolute;top:-15px;transform:translateX(-50%);font-size:.68rem;color:var(--muted);white-space:nowrap}
+.sig-hbar-row{display:flex;align-items:center;gap:8px;font-size:.9rem;margin-top:5px}
+.sig-hbar-label{flex:0 0 34%;color:var(--ink)}
+.sig-hbar{flex:1;height:12px;background:var(--teal-light);border-radius:6px;overflow:hidden}
+.sig-hbar-fill{display:block;height:100%}
+.sig-delta{font-weight:700;color:var(--teal-dark)}
+.nn-pin-wrap{margin-top:12px;border-top:1px dashed var(--border-strong);padding-top:10px}
+.nn-pin-btn{background:var(--teal-light);color:var(--teal-dark);border:0;border-radius:999px;padding:8px 14px;font-weight:600;cursor:pointer;min-height:44px;font-size:.92rem}
+.nn-pin-note{font-size:.82rem;color:var(--muted);margin-top:5px}
+.nn-disc{margin:10px 0;border:1px solid var(--border);border-radius:12px;padding:4px 12px}
+.nn-disc summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
+@media print{.nn-signature{break-inside:avoid}}

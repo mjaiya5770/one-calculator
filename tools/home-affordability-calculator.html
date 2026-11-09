@@ -88,6 +88,7 @@
 <p class="nn-embed-link no-print"><a href="../embed.html#home-affordability-calculator">Embed this calculator on your site — free</a></p>
 <div class="results" id="results">
       <div style="color:var(--muted);font-size:.9rem">Maximum home price</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rPrice">$0</div>
       <table>
         <tr><td>Max monthly housing payment</td><td id="rPay">$0</td></tr>
@@ -95,6 +96,7 @@
         <tr><td>Loan amount</td><td id="rLoan">$0</td></tr>
         <tr><td>Down payment</td><td id="rDown">$0</td></tr>
       </table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -183,10 +185,28 @@ function calc(){
   document.getElementById('rRule').textContent=cap28<cap36?'28% housing rule':'36% total-debt rule';
   document.getElementById('rLoan').textContent=fmt(loan);
   document.getElementById('rDown').textContent=fmt(down);
+  document.getElementById('verdict').textContent='The '+(cap28<cap36?'28% housing rule':'36% total-debt rule')+' is the limit here: it leaves '+fmt(maxPay)+' a month for principal and interest after tax and insurance, which carries a '+fmt(loan)+' loan — a '+fmt(price)+' home with your '+fmt(down)+' down.';
+  const head=Math.max(inc-(debt+ti+maxPay),0);
+  sigSet(sigCompHTML('Where a month of gross income goes',[{label:'Existing debts',value:debt,cls:'s-b'},{label:'Tax + insurance',value:ti,cls:'s-c'},{label:'Mortgage principal & interest room',value:maxPay,cls:'s-a'},{label:'Everything else',value:head,cls:'s-d'}]));
   document.getElementById('results').classList.add('show');
 }
-calc();
-</script>
+function live(){document.querySelectorAll('.nn-calc-card input,.nn-calc-card select,.nn-calc-card textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+live(); calc();
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigCompInner(parts){
+  var tot=0,i;for(i=0;i<parts.length;i++)tot+=Math.max(parts[i].value,0);
+  if(tot<=0)return '';
+  var bar='',leg='';
+  for(i=0;i<parts.length;i++){var p=parts[i];if(p.value<=0)continue;
+    bar+='<span class="sig-seg '+p.cls+'" style="width:'+(p.value/tot*100).toFixed(2)+'%"></span>';
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+p.cls+'"></span><span class="sig-leg-label">'+p.label+'</span><strong>'+sigMoney(p.value)+' \u00b7 '+Math.round(p.value/tot*100)+'%</strong></div>';}
+  return '<div class="sig-comp">'+bar+'</div>'+leg;
+}
+function sigCompHTML(title,parts){var inner=sigCompInner(parts);return inner?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+inner+'</div>':'';}</script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>

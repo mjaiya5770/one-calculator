@@ -67,7 +67,7 @@
   <div class="card nn-calc-card">
     <div class="row">
       <div class="field"><label for="price">Home price ($)</label><input id="price" type="number" value="450000" min="0"></div>
-      <div class="field"><label for="down">Down payment ($)</label><input id="down" type="number" value="90000" min="0"></div>
+      <div class="field"><label for="down" id="downLabel">Down payment</label><input id="down" type="number" value="90000" min="0"><div class="segmented" role="group" aria-labelledby="downLabel" style="margin-top:6px"><button type="button" class="seg-btn is-on" data-dpmode="$">$</button><button type="button" class="seg-btn" data-dpmode="%">%</button></div><select id="downmode" class="seg-source" aria-hidden="true" tabindex="-1"><option value="$" selected>$</option><option value="%">%</option></select></div>
     </div>
     <div class="row">
       <div class="field"><label for="rate">Interest rate (% / yr)</label><input id="rate" type="number" value="6.5" step="0.01" min="0"></div>
@@ -77,6 +77,15 @@
       <div class="field"><label for="tax">Property tax ($ / yr)</label><input id="tax" type="number" value="4500" min="0"></div>
       <div class="field"><label for="ins">Homeowner insurance ($ / yr)</label><input id="ins" type="number" value="1500" min="0"></div>
     </div>
+    <details class="nn-disc"><summary>More options — PMI, HOA &amp; custom term</summary>
+    <div class="row">
+      <div class="field"><label for="pmiRate">PMI rate (% of loan / yr)</label><input id="pmiRate" type="number" step="0.01" min="0"><div class="hint">Auto-estimated from your loan-to-value when the down payment is under 20% — 80–85% LTV: 0.30%/yr · 85–90%: 0.50% · 90–95%: 0.75% · over 95%: 1.00%. Planning bands inside the published ~0.3–1.1%/yr range for good-credit 30-year loans; edit the field to use a lender's quote instead. PMI is estimated to drop off when the balance reaches 78% of the original price, the federal automatic-termination point.</div></div>
+      <div class="field"><label for="hoa">HOA dues ($ / mo)</label><input id="hoa" type="number" value="0" min="0"></div>
+    </div>
+        <div class="row">
+      <div class="field"><label for="termCustom">Custom term (years) — optional</label><input id="termCustom" type="number" min="1" max="50" step="1" inputmode="numeric" placeholder="e.g. 22"><div class="hint">Leave empty to use the 30 / 20 / 15 / 10 term buttons above — choosing a button clears this field.</div></div>
+    </div>
+    </details>
     <button class="btn" onclick="calc()">Calculate payment</button>
     <div class="nn-actions no-print" data-nn-actions>
   <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
@@ -88,15 +97,19 @@
 <p class="nn-embed-link no-print"><a href="../embed.html#mortgage-calculator">Embed this calculator on your site — free</a></p>
 <div class="results" id="results">
       <div style="color:var(--muted);font-size:.9rem">Estimated monthly payment</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rPay">$0</div>
       <table>
         <tr><td>Principal & interest</td><td id="rPI">$0</td></tr>
         <tr><td>Property tax (monthly)</td><td id="rTax">$0</td></tr>
         <tr><td>Insurance (monthly)</td><td id="rIns">$0</td></tr>
+        <tr id="rowPmi" style="display:none"><td>PMI (estimated, until it drops off)</td><td id="rPmi">$0</td></tr>
+        <tr id="rowHoa" style="display:none"><td>HOA dues (monthly)</td><td id="rHoa">$0</td></tr>
         <tr><td>Loan amount</td><td id="rLoan">$0</td></tr>
         <tr><td>Total interest over loan life</td><td id="rInt">$0</td></tr>
         <tr><td>Total of all payments</td><td id="rTot">$0</td></tr>
       </table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -162,8 +175,6 @@
 <section class="related-tools">
   <h2>Related tools</h2>
   <ul>
-    <li><a href="refinance-calculator.html">Mortgage Refinance Calculator</a></li>
-    <li><a href="home-affordability-calculator.html">Home Affordability Calculator</a></li>
     <li><a href="cap-rate-calculator.html">Cap Rate Calculator</a></li>
     <li><a href="rental-property-analyzer.html">Rental Property Analyzer</a></li>
   
@@ -174,27 +185,149 @@
 </section>
 <footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
 <script>
+
+/*PURE-BEGIN*/
+function pmiTierRate(ltv){if(ltv>95)return 1.00;if(ltv>90)return 0.75;if(ltv>85)return 0.50;if(ltv>80)return 0.30;return 0;}
+function mortYearly(P,annualPct,termMonths){
+  var r=annualPct/100/12;
+  var pay=termMonths>0?(r===0?P/termMonths:P*r*Math.pow(1+r,termMonths)/(Math.pow(1+r,termMonths)-1)):0;
+  var bal=P,totalInt=0,m=0,cap=termMonths*3+1200,path=[[0,bal]];
+  while(bal>0.005&&m<cap){m++;var interest=bal*r;var princ=pay-interest;var applied=princ;if(applied>bal)applied=bal;bal-=applied;totalInt+=interest;if(applied<=0)break;if(m%12===0||bal<=0.005)path.push([m,Math.max(bal,0)]);}
+  return {payment:pay,months:m,totalInterest:totalInt,path:path};
+}
+function pmiDropMonth(P,annualPct,termMonths,price){
+  if(P<=0.78*price)return 0;
+  var r=annualPct/100/12;
+  var pay=termMonths>0?(r===0?P/termMonths:P*r*Math.pow(1+r,termMonths)/(Math.pow(1+r,termMonths)-1)):0;
+  var bal=P,m=0,cap=termMonths*3+1200;
+  while(bal>0.005&&m<cap){m++;var interest=bal*r;var princ=pay-interest;if(princ>bal)princ=bal;bal-=princ;if(bal<=0.78*price)return m;if(princ<=0)break;}
+  return termMonths;
+}
+/*PURE-END*/
 function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+var pmiAutoVal=-1, P2LAST=null;
+function p2PinMetrics(){if(!P2LAST)return null;return [
+  {label:'Monthly payment',raw:P2LAST.total,display:fmt(P2LAST.total),kind:'money'},
+  {label:'Total interest',raw:P2LAST.totInt,display:fmt(P2LAST.totInt),kind:'money'},
+  {label:'Payoff in',raw:P2LAST.n,display:P2LAST.n+' payments',kind:'months'}];}
 function calc(){
   const price=+document.getElementById('price').value||0,
-        down=+document.getElementById('down').value||0,
-        rate=(+document.getElementById('rate').value||0)/100/12,
-        n=(+document.getElementById('term').value||30)*12,
+        ratePct=+document.getElementById('rate').value||0,
+        rate=ratePct/100/12,
+        n=(function(){var ct=+document.getElementById('termCustom').value||0;return ct>0?Math.round(ct*12):(+document.getElementById('term').value||30)*12;})(),
         tax=(+document.getElementById('tax').value||0)/12,
         ins=(+document.getElementById('ins').value||0)/12;
+  const dpMode=document.getElementById('downmode').value;
+  document.querySelectorAll('.seg-btn[data-dpmode]').forEach(function(b){b.classList.toggle('is-on',b.getAttribute('data-dpmode')===dpMode);});
+  const downRaw=+document.getElementById('down').value||0;
+  const down=dpMode==='%'?price*downRaw/100:downRaw;
   const loan=Math.max(price-down,0);
-  const pi=rate>0?loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1):loan/n;
-  const total=pi+tax+ins, totInt=pi*n-loan;
+  const pi=rate>0?loan*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1):(n>0?loan/n:0);
+  const ltv=price>0?loan/price*100:0;
+  const pmiField=document.getElementById('pmiRate');
+  if(ltv>80){const tier=pmiTierRate(ltv);if(pmiField.value===''||+pmiField.value===pmiAutoVal){pmiField.value=tier;pmiAutoVal=tier;}}
+  const pmiRate=ltv>80?Math.max(+pmiField.value||0,0):0;
+  const pmiM=loan*pmiRate/100/12;
+  const hoa=Math.max(+document.getElementById('hoa').value||0,0);
+  const dropM=pmiM>0?pmiDropMonth(loan,ratePct,n,price):0;
+  const pmiTotal=pmiM*(dropM>0?dropM:n);
+  const total=pi+tax+ins+pmiM+hoa, totInt=pi*n-loan;
   document.getElementById('rPay').textContent=fmt(total);
   document.getElementById('rPI').textContent=fmt(pi);
   document.getElementById('rTax').textContent=fmt(tax);
   document.getElementById('rIns').textContent=fmt(ins);
+  document.getElementById('rowPmi').style.display=pmiM>0?'':'none';
+  document.getElementById('rPmi').textContent=fmt(pmiM);
+  document.getElementById('rowHoa').style.display=hoa>0?'':'none';
+  document.getElementById('rHoa').textContent=fmt(hoa);
   document.getElementById('rLoan').textContent=fmt(loan);
   document.getElementById('rInt').textContent=fmt(totInt);
-  document.getElementById('rTot').textContent=fmt(pi*n+ (tax+ins)*n);
+  document.getElementById('rTot').textContent=fmt(pi*n+(tax+ins+hoa)*n+pmiTotal);
+  const d=new Date(); d.setMonth(d.getMonth()+n);
+  const when=d.toLocaleString('en-US',{month:'long',year:'numeric'});
+  let verd='Paid off in '+when+' \u00b7 '+fmt(totInt)+' of interest over the loan.';
+  if(pmiM>0){const dd=new Date(); dd.setMonth(dd.getMonth()+dropM); verd+=' PMI adds '+fmt(pmiM)+'/mo until about '+dd.toLocaleString('en-US',{month:'long',year:'numeric'})+' ('+fmt(pmiTotal)+' in all), when the balance reaches 78% of the price.';}
+  document.getElementById('verdict').textContent=verd;
+  P2LAST={total:total,totInt:totInt,n:n};
+  const parts=[{label:'Principal & interest',value:pi,cls:'s-a'},{label:'Property tax',value:tax,cls:'s-c'},{label:'Insurance',value:ins,cls:'s-d'}];
+  if(pmiM>0)parts.push({label:'PMI (estimated)',value:pmiM,cls:'s-b'});
+  if(hoa>0)parts.push({label:'HOA dues',value:hoa,cls:'s-b'});
+  const my=mortYearly(loan,ratePct,n);
+  sigSet(sigCompHTML('Where the monthly payment goes',parts)+sigTrajHTML('Loan balance by year',[{label:'Balance',cls:'s-a',path:my.path}]));
+  pinRender();
   document.getElementById('results').classList.add('show');
 }
 calc();
+
+/* NN-P2: down-payment $/% toggle — the hidden select stays the value source,
+   so share/save restore and stale snapshots keep working unchanged. */
+(function(){
+  var sel=document.getElementById('downmode');
+  var btns=document.querySelectorAll('.seg-btn[data-dpmode]');
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    var to=b.getAttribute('data-dpmode'); if(to===sel.value)return;
+    var price=+document.getElementById('price').value||0, f=document.getElementById('down'), cur=+f.value||0;
+    if(to==='%')f.value=price>0?Math.round(cur/price*10000)/100:0; else f.value=Math.round(price*cur/100);
+    sel.value=to; calc();
+  });});
+})();
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigCompInner(parts){
+  var tot=0,i;for(i=0;i<parts.length;i++)tot+=Math.max(parts[i].value,0);
+  if(tot<=0)return '';
+  var bar='',leg='';
+  for(i=0;i<parts.length;i++){var p=parts[i];if(p.value<=0)continue;
+    bar+='<span class="sig-seg '+p.cls+'" style="width:'+(p.value/tot*100).toFixed(2)+'%"></span>';
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+p.cls+'"></span><span class="sig-leg-label">'+p.label+'</span><strong>'+sigMoney(p.value)+' \u00b7 '+Math.round(p.value/tot*100)+'%</strong></div>';}
+  return '<div class="sig-comp">'+bar+'</div>'+leg;
+}
+function sigCompHTML(title,parts){var inner=sigCompInner(parts);return inner?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+inner+'</div>':'';}
+function sigTrajHTML(title,series,note){
+  var maxV=0,maxM=0,i,j;
+  for(i=0;i<series.length;i++){var p=series[i].path;for(j=0;j<p.length;j++){if(p[j][1]>maxV)maxV=p[j][1];if(p[j][0]>maxM)maxM=p[j][0];}}
+  if(maxV<=0||maxM<=0)return '';
+  var W=320,H=110,PL=4,PR=4,PT=6,PB=4,polys='',leg='';
+  for(i=0;i<series.length;i++){var s=series[i],pts='';
+    for(j=0;j<s.path.length;j++){var x=PL+(s.path[j][0]/maxM)*(W-PL-PR),y=PT+(1-s.path[j][1]/maxV)*(H-PT-PB);pts+=(j?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    polys+='<path d="'+pts+'" class="sig-line '+s.cls+(s.dash?' sig-dash':'')+'" fill="none" vector-effect="non-scaling-stroke"/>';
+    var last=s.path[s.path.length-1];
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+s.cls+'"></span><span class="sig-leg-label">'+s.label+'</span><strong>'+sigMoney(last[1])+' after '+(Math.round(last[0]/12*10)/10)+' yrs</strong></div>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><svg class="sig-traj" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true">'+polys+'</svg>'+leg+(note?'<div class="sig-note">'+note+'</div>':'')+'</div>';
+}
+var NNPIN=null;
+function pinRender(){
+  if(!NNPIN||typeof p2PinMetrics!=='function')return;
+  var wrap=document.querySelector('.nn-pin-wrap');if(!wrap)return;
+  var box=wrap.querySelector('.nn-pin-cmp');if(!box)return;
+  var cur=null;try{cur=p2PinMetrics();}catch(e){}
+  if(!cur){box.innerHTML='';return;}
+  var same=true,i;
+  for(i=0;i<cur.length&&i<NNPIN.length;i++){if(Math.abs(cur[i].raw-NNPIN[i].raw)>0.005)same=false;}
+  if(same){box.innerHTML='<div class="sig-note">This is your pinned scenario \u2014 change any input to compare against it.</div>';return;}
+  var h='<div class="sig-title" style="margin-top:10px">Pinned baseline vs this plan</div>';
+  for(i=0;i<cur.length&&i<NNPIN.length;i++){var c=cur[i],b=NNPIN[i],d=c.raw-b.raw,dtxt;
+    if(Math.abs(d)<=0.005)dtxt='same as pin';
+    else if(c.kind==='months')dtxt=(d>0?'+':'\u2212')+Math.round(Math.abs(d))+' mo vs pin';
+    else dtxt=(d>0?'+':'\u2212')+sigMoney(Math.abs(d))+' vs pin';
+    h+='<div class="sig-leg-row"><span class="sig-leg-label">'+c.label+'</span><span style="margin-left:10px">'+b.display+' \u2192 <strong>'+c.display+'</strong></span><span class="sig-delta" style="margin-left:auto">'+dtxt+'</span></div>';}
+  box.innerHTML=h;
+}
+function pinSetup(){
+  var slot=document.querySelector('[data-nn-signature]');if(!slot||slot.querySelector('.nn-pin-wrap'))return;
+  var wrap=document.createElement('div');wrap.className='nn-pin-wrap no-print';
+  wrap.innerHTML='<button type="button" class="nn-pin-btn">\ud83d\udccc Pin this scenario</button><div class="nn-pin-note">Pin a scenario, change any input, and watch this plan compare itself against the pin. Pins last for this visit only.</div><div class="nn-pin-cmp"></div>';
+  slot.appendChild(wrap);
+  wrap.querySelector('.nn-pin-btn').addEventListener('click',function(){
+    var m=null;try{m=p2PinMetrics();}catch(e){}
+    if(!m)return;
+    NNPIN=m;this.textContent='\ud83d\udccc Pinned \u2014 change an input to compare';pinRender();
+  });
+}
+pinSetup();
 </script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
@@ -207,7 +340,7 @@ calc();
   var btns=document.querySelectorAll('.seg-btn[data-term]');
   btns.forEach(function(b){
     b.addEventListener('click',function(){
-      sel.value=b.getAttribute('data-term');
+      sel.value=b.getAttribute('data-term');var ct=document.getElementById('termCustom');if(ct)ct.value='';
       btns.forEach(function(x){x.classList.toggle('is-on',x===b);});
       if (typeof calc==='function') calc();
     });

@@ -116,8 +116,12 @@
     </div>
     <div class="row">
       <div class="field"><label for="lump">One-time extra payment ($)</label><input id="lump" type="number" value="0" min="0" step="any"></div>
+    </div>
+    <details class="nn-disc"><summary>More options — when the one-time payment lands</summary>
+    <div class="row">
       <div class="field"><label for="lumpMonth">One-time payment in month #</label><input id="lumpMonth" type="number" value="12" min="1" step="1"></div>
     </div>
+    </details>
     <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px">
       <button type="button" class="btn view-btn" data-view="year" onclick="setView('year')">Yearly view</button>
       <button type="button" class="btn view-btn" data-view="month" onclick="setView('month')">Monthly view</button>
@@ -137,18 +141,21 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
   <div class="card">
     <h2>Payment schedule</h2>
+    <details class="nn-disc"><summary>View schedule — <span id="schedCount">360</span> payments</summary>
     <div style="overflow:auto;max-height:520px">
       <table style="width:100%;border-collapse:collapse;font-size:.92rem">
         <thead><tr style="text-align:left;border-bottom:2px solid var(--border-strong)"><th style="padding:8px">Period</th><th style="padding:8px">Payment</th><th style="padding:8px">Principal</th><th style="padding:8px">Interest</th><th style="padding:8px">Extra</th><th style="padding:8px">Balance</th></tr></thead>
         <tbody id="sched"></tbody>
       </table>
     </div>
+    </details>
     <p style="color:var(--muted);font-size:.9rem">The schedule starts next month and assumes every payment is made on time. Extra payments go straight to principal.</p>
   </div>
 
@@ -238,6 +245,17 @@ function buildSchedule(P,annualPct,termMonths,extraMonthly,lumpSum,lumpMonth){
   }
   return {payment:pay,rows:rows,months:rows.length,totalInterest:totalInt,totalPaid:P+totalInt};
 }
+
+function annualSplit(rows,startYear,startMonth0){
+  var groups={},order=[];
+  rows.forEach(function(rw){
+    var off=startMonth0+(rw.n-1), y=startYear+Math.floor(off/12);
+    if(!groups[y]){groups[y]={year:y,principal:0,interest:0,extra:0,endBalance:rw.balance};order.push(y);}
+    var g=groups[y];g.principal+=rw.principal;g.interest+=rw.interest;g.extra+=rw.extra;g.endBalance=rw.balance;
+  });
+  return order.map(function(y){return groups[y];});
+}
+function trajFromRows(rows,P){var path=[[0,P]];for(var i=0;i<rows.length;i++){if(rows[i].n%12===0||i===rows.length-1)path.push([rows[i].n,rows[i].balance]);}return path;}
 /*PURE-END*/
 var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 var view='year',last=null;
@@ -265,7 +283,7 @@ function renderSched(){
 }
 function calc(){
   var P=v('amt'),rate=v('rate'),months=Math.round(v('yrs')*12),extra=v('extra'),lump=v('lump'),lm=Math.max(1,Math.round(v('lumpMonth')));
-  if(P<=0||months<=0){document.getElementById('rMain').textContent='—';return;}
+  if(P<=0||months<=0){document.getElementById('rMain').textContent='—';sigSet('');return;}
   var s=buildSchedule(P,rate,months,extra,lump,lm);last=s;
   var rows=row('Monthly payment (principal & interest)',fmt2(s.payment))+row('Payoff date',dateStr(s.months))
     +row('Time to pay off',termStr(s.months))+row('Total interest',fmt(s.totalInterest))+row('Total of all payments',fmt(s.totalPaid));
@@ -280,6 +298,13 @@ function calc(){
   document.getElementById('rMain').textContent=fmt2(s.payment)+' / mo';
   document.getElementById('verdict').textContent=verd;
   document.getElementById('rows').innerHTML=rows;
+  document.getElementById('schedCount').textContent=s.months;
+  var sd=new Date();sd.setDate(1);sd.setMonth(sd.getMonth()+1);
+  var groups=annualSplit(s.rows,sd.getFullYear(),sd.getMonth());
+  var cross=null;for(var gi=0;gi<groups.length;gi++){if(groups[gi].principal>=groups[gi].interest){cross=groups[gi].year;break;}}
+  var series=[{label:'Your plan',cls:'s-a',path:trajFromRows(s.rows,P)}];
+  if(extra>0||lump>0){series.push({label:'No extra payments',cls:'s-b',dash:true,path:trajFromRows(base.rows,P)});}
+  sigSet(sigBarsHTML('Principal vs interest, year by year',groups,cross)+sigTrajHTML('Balance by year',series));
   document.getElementById('results').classList.add('show');
   renderSched();
 }
@@ -288,7 +313,40 @@ function live(){document.querySelectorAll('input,select,textarea').forEach(funct
 
 live(); calc(); setView('year');
 
-</script>
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigBarsHTML(title,groups,crossYear){
+  if(!groups.length)return '';
+  var buckets=[],i,j;
+  if(groups.length>12){var size=Math.ceil(groups.length/10);
+    for(i=0;i<groups.length;i+=size){var pr=0,it=0,end=Math.min(i+size,groups.length);
+      for(j=i;j<end;j++){pr+=groups[j].principal;it+=groups[j].interest;}
+      buckets.push({label:groups[i].year+'\u2013'+groups[end-1].year,principal:pr,interest:it});}}
+  else{for(i=0;i<groups.length;i++)buckets.push({label:''+groups[i].year,principal:groups[i].principal,interest:groups[i].interest});}
+  var maxV=0;for(i=0;i<buckets.length;i++)maxV=Math.max(maxV,buckets[i].principal,buckets[i].interest);
+  if(maxV<=0)return '';
+  var h='<div class="sig-block"><div class="sig-title">'+title+'</div><div class="sig-bars">';
+  for(i=0;i<buckets.length;i++){var b=buckets[i];
+    h+='<div class="sig-bar-col"><div class="sig-bar-pair"><span class="sig-bar s-a" style="height:'+Math.max(b.principal/maxV*100,1.5)+'%"></span><span class="sig-bar s-b" style="height:'+Math.max(b.interest/maxV*100,1.5)+'%"></span></div><div class="sig-bar-lab">'+b.label+'</div></div>';}
+  h+='</div><div class="sig-leg-row"><span class="sig-dot s-a"></span><span class="sig-leg-label">Principal paid</span><span class="sig-dot s-b" style="margin-left:14px"></span><span class="sig-leg-label">Interest paid</span></div>';
+  if(crossYear)h+='<div class="sig-note">In <strong>'+crossYear+'</strong>, principal overtakes interest \u2014 from then on, most of every payment builds equity.</div>';
+  return h+'</div>';
+}
+function sigTrajHTML(title,series,note){
+  var maxV=0,maxM=0,i,j;
+  for(i=0;i<series.length;i++){var p=series[i].path;for(j=0;j<p.length;j++){if(p[j][1]>maxV)maxV=p[j][1];if(p[j][0]>maxM)maxM=p[j][0];}}
+  if(maxV<=0||maxM<=0)return '';
+  var W=320,H=110,PL=4,PR=4,PT=6,PB=4,polys='',leg='';
+  for(i=0;i<series.length;i++){var s=series[i],pts='';
+    for(j=0;j<s.path.length;j++){var x=PL+(s.path[j][0]/maxM)*(W-PL-PR),y=PT+(1-s.path[j][1]/maxV)*(H-PT-PB);pts+=(j?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    polys+='<path d="'+pts+'" class="sig-line '+s.cls+(s.dash?' sig-dash':'')+'" fill="none" vector-effect="non-scaling-stroke"/>';
+    var last=s.path[s.path.length-1];
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+s.cls+'"></span><span class="sig-leg-label">'+s.label+'</span><strong>'+sigMoney(last[1])+' after '+(Math.round(last[0]/12*10)/10)+' yrs</strong></div>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><svg class="sig-traj" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true">'+polys+'</svg>'+leg+(note?'<div class="sig-note">'+note+'</div>':'')+'</div>';
+}</script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>

@@ -135,15 +135,18 @@
       </select></div>
       <div class="field"><label for="amount">Charge amount ($)</label><input id="amount" type="number" value="100" min="0" step="any"></div>
     </div>
-    <div class="row">
-      <div class="field"><label for="pct">Custom / adjusted rate (%)</label><input id="pct" type="number" value="2.9" min="0" step="any"></div>
-      <div class="field"><label for="fixed">Custom / adjusted fixed fee (¢)</label><input id="fixed" type="number" value="30" min="0" step="any"></div>
+    <p id="rateUsed" style="color:var(--muted);font-size:.92rem;margin:2px 0 0"></p>
+    <div class="row" id="customRow" hidden>
+      <div class="field"><label for="pct">Custom rate (%)</label><input id="pct" type="number" value="2.9" min="0" step="any"></div>
+      <div class="field"><label for="fixed">Custom fixed fee (¢)</label><input id="fixed" type="number" value="30" min="0" step="any"></div>
     </div>
+    <details class="nn-disc"><summary>More options — monthly volume &amp; gross-up</summary>
     <div class="row">
       <div class="field"><label for="txns">Transactions per month</label><input id="txns" type="number" value="200" min="0" step="any"></div>
-      <div class="field"><label for="target">I want to NET exactly ($) — gross-up</label><input id="target" type="number" value="100" min="0" step="any"></div>
+      <div class="field"><label for="target">Amount you want to receive ($)</label><input id="target" type="number" value="100" min="0" step="any"></div>
     </div>
-    <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Rates are the processors' published US list rates, retrieved from their pricing pages in November 2026: Stripe 2.9% + 30¢ online and 2.7% + 5¢ in person; PayPal Checkout 3.49% + 49¢ and standard card processing 2.99% + 49¢; Square's Free plan 3.3% + 30¢ online and 2.6% + 15¢ in person (Square Plus plans price in-person lower). Negotiated, interchange-plus and international rates differ — enter yours in the custom fields. Chargebacks, refunds (fees are generally not returned) and currency conversion are not modeled.</p>
+    </details>
+    
 
     <button class="btn" onclick="calc()">Calculate fees</button>
     <div class="nn-actions no-print" data-nn-actions>
@@ -159,8 +162,10 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
+<p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">Rates are the processors' published US list rates, retrieved from their pricing pages in November 2026: Stripe 2.9% + 30¢ online and 2.7% + 5¢ in person; PayPal Checkout 3.49% + 49¢ and standard card processing 2.99% + 49¢; Square's Free plan 3.3% + 30¢ online and 2.6% + 15¢ in person (Square Plus plans price in-person lower). Negotiated, interchange-plus and international rates differ — enter yours in the custom fields. Chargebacks, refunds (fees are generally not returned) and currency conversion are not modeled.</p>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
   <div class="card">
@@ -258,19 +263,41 @@ function rates(){
   var p=sv('preset');
   if(p==='custom'){return [v('pct'),v('fixed')];}
   var parts=p.split('|');
-  document.getElementById('pct').value=parts[0]; document.getElementById('fixed').value=parts[1];
   return [+parts[0],+parts[1]];
+}
+function syncRateUI(){
+  var sel=document.getElementById('preset'), isCustom=sel.value==='custom';
+  document.getElementById('customRow').hidden=!isCustom;
+  var ru=document.getElementById('rateUsed');
+  if(isCustom){ru.textContent='Using your custom rate below — it drives the fee math and the comparison strip.';}
+  else{var parts=sel.value.split('|'),label=sel.options[sel.selectedIndex].textContent.split(':')[0];
+    ru.textContent='Rate used: '+parts[0]+'% + '+parts[1]+'¢ per sale ('+label+'). Pick the Custom rate option to enter your own.';}
 }
 function calc(){
   var r=rates(), pct=r[0], fixed=r[1];
+  syncRateUI();
   var amt=Math.max(0,v('amount')), txns=Math.max(0,v('txns')), tgt=Math.max(0,v('target'));
   var f=feeCalc(amt,pct,fixed,txns);
-  var g=grossUp(tgt,pct,fixed), gf=feeCalc(g,pct,fixed,1);
   document.getElementById('rMain').textContent=money(f.net)+' of '+money(amt);
-  document.getElementById('verdict').textContent='On '+money(amt)+' the processor keeps '+money(f.fee)+' ('+fmt1(amt>0?f.fee/amt*100:0)+'% effective). To net exactly '+money(tgt)+', charge '+money(g)+'.';
-  document.getElementById('rows').innerHTML=row('Fee on this sale',money(f.fee))+row('You net',money(f.net))
-    +row('Fees per month ('+fmt0(txns)+' sales)',money(f.monthly))+row('Fees per year',money(f.annual))
-    +row('Gross-up: charge to net '+money(tgt),money(g))+row('Fee on the grossed-up charge',money(gf.fee));
+  var verd='On '+money(amt)+' the processor keeps '+money(f.fee)+' ('+fmt1(amt>0?f.fee/amt*100:0)+'% effective).';
+  var rowsHtml=row('Fee on this sale',money(f.fee))+row('You net',money(f.net));
+  if(txns>0){rowsHtml+=row('Fees per month ('+fmt0(txns)+' sales)',money(f.monthly))+row('Fees per year',money(f.annual));}
+  if(tgt>0){var g=grossUp(tgt,pct,fixed), gf=feeCalc(g,pct,fixed,1);
+    verd+=' To net exactly '+money(tgt)+', charge '+money(g)+'.';
+    rowsHtml+=row('Gross-up: charge to net '+money(tgt),money(g))+row('Fee on the grossed-up charge',money(gf.fee));}
+  document.getElementById('verdict').textContent=verd;
+  document.getElementById('rows').innerHTML=rowsHtml;
+  var sel=document.getElementById('preset'),strip='';
+  if(amt>0){
+    strip='<div class="sig-block"><div class="sig-title">The same '+money(amt)+' sale on every processor</div>';
+    for(var oi=0;oi<sel.options.length;oi++){var o=sel.options[oi];if(o.value==='custom')continue;var pr=o.value.split('|');var pf=feeCalc(amt,+pr[0],+pr[1],1);
+      var nm=o.textContent.split(':')[0];
+      strip+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+nm+(o.value===sel.value?' ✓':'')+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-a" style="width:'+(pf.net/amt*100).toFixed(1)+'%"></span></span><strong>'+money(pf.net)+' net</strong></div>';}
+    if(sel.value==='custom'){var cf=feeCalc(amt,pct,fixed,1);
+      strip+='<div class="sig-hbar-row"><span class="sig-hbar-label">Your custom rate ✓</span><span class="sig-hbar"><span class="sig-hbar-fill s-b" style="width:'+(cf.net/amt*100).toFixed(1)+'%"></span></span><strong>'+money(cf.net)+' net</strong></div>';}
+    strip+='<div class="sig-note">The bar is what you keep from the sale. Rates are the published US list rates in the note below the calculator.</div></div>';
+  }
+  sigSet(strip);
   document.getElementById('results').classList.add('show');
 }
 
@@ -278,7 +305,11 @@ function live(){document.querySelectorAll('input,select,textarea').forEach(funct
 
 live(); calc();
 
-</script>
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}</script>
 
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

@@ -147,6 +147,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -217,9 +218,6 @@
 <section class="related-tools">
   <h2>Related tools</h2>
   <ul>
-    <li><a href="refinance-calculator.html">Mortgage Refinance Calculator</a></li>
-    <li><a href="heloc-vs-home-equity-loan-calculator.html">HELOC vs Home Equity Loan</a></li>
-    <li><a href="closing-cost-estimator.html">Closing Cost Estimator</a></li>
     <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
     
   </ul>
@@ -248,6 +246,12 @@ function cashOutCalc(bal,oldRate,oldYears,newRate,newYears,cash,closingPct){
   var saving=op-np;
   return {newLoan:newLoan,oldPmt:op,newPmt:np,oldInt:oi,newInt:ni,closing:closing,be:saving>0?closing/saving:-1};
 }
+
+function stdYearly(P,pay,annualPct,months){
+  var r=annualPct/100/12,bal=P,ti=0,m=0,path=[[0,bal]];
+  while(bal>0.005&&m<months*3+1200){m++;var interest=bal*r;var princ=pay-interest;if(princ>bal)princ=bal;bal-=princ;ti+=interest;if(princ<=0)break;if(m%12===0||bal<=0.005)path.push([m,Math.max(bal,0)]);}
+  return {months:m,totalInterest:ti,path:path};
+}
 /*PURE-END*/
 function calc(){
   var r=cashOutCalc(Math.max(0,v('bal')),Math.max(0,v('oldrate')),Math.max(0.1,v('oldterm')),Math.max(0,v('newrate')),Math.max(0.1,v('newterm')),Math.max(0,v('cash')),Math.max(0,v('closingpct')));
@@ -259,6 +263,12 @@ function calc(){
     +row('Total interest — current loan',money0(r.oldInt))+row('Total interest — new loan',money0(r.newInt))
     +row('Closing costs',money0(r.closing))+row('Break-even on closing costs',r.be>=0?fmt1(r.be)+' months':'None — payment rises')
     +(ltv>0?row('Loan-to-value after cash out',fmt1(ltv)+'%'+(ltv>80?' — above the typical 80% cash-out cap':'')):'');
+  var oldPath=stdYearly(Math.max(0,v('bal')),r.oldPmt,Math.max(0,v('oldrate')),Math.round(Math.max(0.1,v('oldterm'))*12));
+  var newPath=stdYearly(r.newLoan,r.newPmt,Math.max(0,v('newrate')),Math.round(Math.max(0.1,v('newterm'))*12));
+  sigSet(sigPairHTML('Total still to pay from here',[
+    {label:'Keep the current loan',parts:[{label:'Balance owed',value:Math.max(0,v('bal')),cls:'s-a'},{label:'Interest still to pay',value:Math.max(r.oldInt,0),cls:'s-b'}]},
+    {label:'Cash-out refinance',parts:[{label:'New loan (incl. cash out)',value:r.newLoan,cls:'s-a'},{label:'Interest to pay',value:Math.max(r.newInt,0),cls:'s-b'},{label:'Closing costs',value:r.closing,cls:'s-c'}]}])
+    +sigTrajHTML('Balance from here',[{label:'Current loan',cls:'s-b',dash:true,path:oldPath.path},{label:'New loan',cls:'s-a',path:newPath.path}]));
   document.getElementById('results').classList.add('show');
 }
 
@@ -266,7 +276,38 @@ function live(){document.querySelectorAll('input,select,textarea').forEach(funct
 
 live(); calc();
 
-</script>
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigCompInner(parts){
+  var tot=0,i;for(i=0;i<parts.length;i++)tot+=Math.max(parts[i].value,0);
+  if(tot<=0)return '';
+  var bar='',leg='';
+  for(i=0;i<parts.length;i++){var p=parts[i];if(p.value<=0)continue;
+    bar+='<span class="sig-seg '+p.cls+'" style="width:'+(p.value/tot*100).toFixed(2)+'%"></span>';
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+p.cls+'"></span><span class="sig-leg-label">'+p.label+'</span><strong>'+sigMoney(p.value)+' \u00b7 '+Math.round(p.value/tot*100)+'%</strong></div>';}
+  return '<div class="sig-comp">'+bar+'</div>'+leg;
+}
+function sigCompHTML(title,parts){var inner=sigCompInner(parts);return inner?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+inner+'</div>':'';}
+function sigPairHTML(title,bars){
+  var h='',i;
+  for(i=0;i<bars.length;i++){var inner=sigCompInner(bars[i].parts);if(inner)h+='<div class="sig-pair-label">'+bars[i].label+'</div>'+inner;}
+  return h?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+h+'</div>':'';
+}
+function sigTrajHTML(title,series,note){
+  var maxV=0,maxM=0,i,j;
+  for(i=0;i<series.length;i++){var p=series[i].path;for(j=0;j<p.length;j++){if(p[j][1]>maxV)maxV=p[j][1];if(p[j][0]>maxM)maxM=p[j][0];}}
+  if(maxV<=0||maxM<=0)return '';
+  var W=320,H=110,PL=4,PR=4,PT=6,PB=4,polys='',leg='';
+  for(i=0;i<series.length;i++){var s=series[i],pts='';
+    for(j=0;j<s.path.length;j++){var x=PL+(s.path[j][0]/maxM)*(W-PL-PR),y=PT+(1-s.path[j][1]/maxV)*(H-PT-PB);pts+=(j?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    polys+='<path d="'+pts+'" class="sig-line '+s.cls+(s.dash?' sig-dash':'')+'" fill="none" vector-effect="non-scaling-stroke"/>';
+    var last=s.path[s.path.length-1];
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+s.cls+'"></span><span class="sig-leg-label">'+s.label+'</span><strong>'+sigMoney(last[1])+' after '+(Math.round(last[0]/12*10)/10)+' yrs</strong></div>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><svg class="sig-traj" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true">'+polys+'</svg>'+leg+(note?'<div class="sig-note">'+note+'</div>':'')+'</div>';
+}</script>
 
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

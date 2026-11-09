@@ -116,8 +116,12 @@
     </div>
     <div class="row">
       <div class="field"><label for="lump">One-time extra payment ($)</label><input id="lump" type="number" value="0" min="0" step="any"></div>
+    </div>
+    <details class="nn-disc"><summary>More options — when the one-time payment lands</summary>
+    <div class="row">
       <div class="field"><label for="lumpMonth">One-time payment in month #</label><input id="lumpMonth" type="number" value="12" min="1" step="1"></div>
     </div>
+    </details>
 
     <button class="btn" onclick="calc()">Find my payoff date</button>
     <div class="nn-actions no-print" data-nn-actions>
@@ -133,6 +137,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -228,6 +233,14 @@ function payoffCalc(P,annualPct,monthsLeft,extra,lump,lumpMonth){
     baseMonths:base.months,baseInterest:base.totalInterest,
     savedInterest:base.totalInterest-withX.totalInterest,savedMonths:base.months-withX.months};
 }
+
+function schedYearly(P,annualPct,termMonths,extraMonthly,lumpSum,lumpMonth){
+  var r=annualPct/100/12;
+  var pay=termMonths>0?(r===0?P/termMonths:P*r*Math.pow(1+r,termMonths)/(Math.pow(1+r,termMonths)-1)):0;
+  var bal=P,totalInt=0,m=0,cap=termMonths*3+1200,path=[[0,bal]];
+  while(bal>0.005&&m<cap){m++;var interest=bal*r;var princ=pay-interest;var extra=extraMonthly+(m===lumpMonth?lumpSum:0);var applied=princ+extra;if(applied>bal)applied=bal;bal-=applied;totalInt+=interest;if(applied<=0)break;if(m%12===0||bal<=0.005)path.push([m,Math.max(bal,0)]);}
+  return {payment:pay,months:m,totalInterest:totalInt,path:path};
+}
 /*PURE-END*/
 var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
 function dateStr(offset){var d=new Date();d.setMonth(d.getMonth()+offset);return MONTHS[d.getMonth()]+' '+d.getFullYear();}
@@ -235,7 +248,7 @@ function termStr(months){var y=Math.floor(months/12),m=months%12;return (y?y+(y=
 function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
 function calc(){
   var P=v('bal'),rate=v('rate'),months=Math.round(v('yrsLeft')*12),extra=v('extra'),lump=v('lump'),lm=Math.max(1,Math.round(v('lumpMonth')));
-  if(P<=0||months<=0){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter a balance and the years left on your loan.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');return;}
+  if(P<=0||months<=0){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter a balance and the years left on your loan.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');sigSet('');return;}
   var p=payoffCalc(P,rate,months,extra,lump,lm);
   document.getElementById('rMain').textContent=dateStr(p.months);
   var rows=row('Required monthly payment (P&I)',fmt2(p.payment))+row('Payoff date on schedule',dateStr(p.baseMonths))
@@ -247,6 +260,10 @@ function calc(){
     document.getElementById('verdict').textContent='On schedule, your last payment is '+dateStr(p.baseMonths)+', and the remaining interest adds up to '+fmt(p.baseInterest)+'. Try adding an extra monthly amount to see the date move.';
   }
   document.getElementById('rows').innerHTML=rows;
+  var planY=schedYearly(P,rate,months,extra,lump,lm), baseY=schedYearly(P,rate,months,0,0,1);
+  var series=[{label:(extra>0||lump>0)?'With your extra payments':'Balance',cls:'s-a',path:planY.path}];
+  if(extra>0||lump>0)series.push({label:'On schedule',cls:'s-b',dash:true,path:baseY.path});
+  sigSet(sigTrajHTML('Balance by year',series));
   document.getElementById('results').classList.add('show');
 }
 
@@ -254,7 +271,23 @@ function live(){document.querySelectorAll('input,select,textarea').forEach(funct
 
 live(); calc();
 
-</script>
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigTrajHTML(title,series,note){
+  var maxV=0,maxM=0,i,j;
+  for(i=0;i<series.length;i++){var p=series[i].path;for(j=0;j<p.length;j++){if(p[j][1]>maxV)maxV=p[j][1];if(p[j][0]>maxM)maxM=p[j][0];}}
+  if(maxV<=0||maxM<=0)return '';
+  var W=320,H=110,PL=4,PR=4,PT=6,PB=4,polys='',leg='';
+  for(i=0;i<series.length;i++){var s=series[i],pts='';
+    for(j=0;j<s.path.length;j++){var x=PL+(s.path[j][0]/maxM)*(W-PL-PR),y=PT+(1-s.path[j][1]/maxV)*(H-PT-PB);pts+=(j?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    polys+='<path d="'+pts+'" class="sig-line '+s.cls+(s.dash?' sig-dash':'')+'" fill="none" vector-effect="non-scaling-stroke"/>';
+    var last=s.path[s.path.length-1];
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+s.cls+'"></span><span class="sig-leg-label">'+s.label+'</span><strong>'+sigMoney(last[1])+' after '+(Math.round(last[0]/12*10)/10)+' yrs</strong></div>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><svg class="sig-traj" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true">'+polys+'</svg>'+leg+(note?'<div class="sig-note">'+note+'</div>':'')+'</div>';
+}</script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>

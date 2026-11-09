@@ -88,6 +88,7 @@
 <p class="nn-embed-link no-print"><a href="../embed.html#car-loan-calculator">Embed this calculator on your site — free</a></p>
 <div class="results" id="results">
       <div style="color:var(--muted);font-size:.9rem">Estimated monthly payment</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rPay">$0</div>
       <table>
         <tr><td>Amount financed</td><td id="rFin">$0</td></tr>
@@ -95,6 +96,7 @@
         <tr><td>Total cost of the car</td><td id="rTot">$0</td></tr>
         <tr><td>Interest share of total</td><td id="rShare">0%</td></tr>
       </table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -169,12 +171,25 @@
 <footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
 <script>
 function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+/*PURE-BEGIN*/
+function stdYearly(P,pay,annualPct,months){
+  var r=annualPct/100/12,bal=P,ti=0,m=0,path=[[0,bal]];
+  while(bal>0.005&&m<months*3+1200){m++;var interest=bal*r;var princ=pay-interest;if(princ>bal)princ=bal;bal-=princ;ti+=interest;if(princ<=0)break;if(m%12===0||bal<=0.005)path.push([m,Math.max(bal,0)]);}
+  return {months:m,totalInterest:ti,path:path};
+}
+/*PURE-END*/
+var P2LAST=null;
+function p2PinMetrics(){if(!P2LAST)return null;return [
+  {label:'Monthly payment',raw:P2LAST.pay,display:fmt(P2LAST.pay),kind:'money'},
+  {label:'Total interest',raw:P2LAST.totInt,display:fmt(P2LAST.totInt),kind:'money'},
+  {label:'Payoff in',raw:P2LAST.n,display:P2LAST.n+' payments',kind:'months'}];}
 function calc(){
   const price=+document.getElementById('price').value||0,
         down=+document.getElementById('down').value||0,
         trade=+document.getElementById('trade').value||0,
         fees=+document.getElementById('fees').value||0,
-        rate=(+document.getElementById('rate').value||0)/100/12,
+        ratePct=+document.getElementById('rate').value||0,
+        rate=ratePct/100/12,
         n=(+document.getElementById('term').value||5)*12;
   const fin=Math.max(price+fees-down-trade,0);
   const pmt=rate>0?fin*rate*Math.pow(1+rate,n)/(Math.pow(1+rate,n)-1):(n>0?fin/n:0);
@@ -184,9 +199,73 @@ function calc(){
   document.getElementById('rInt').textContent=fmt(totInt);
   document.getElementById('rTot').textContent=fmt(tot);
   document.getElementById('rShare').textContent=(tot>0?(totInt/tot*100):0).toFixed(1)+'%';
+  const d=new Date(); d.setMonth(d.getMonth()+n);
+  document.getElementById('verdict').textContent='Interest adds '+fmt(totInt)+' — '+(tot>0?(totInt/tot*100).toFixed(1):'0')+'% of everything this car costs you — and the loan ends in '+d.toLocaleString('en-US',{month:'long',year:'numeric'})+'.';
+  P2LAST={pay:pmt,totInt:totInt,n:n};
+  var sy=stdYearly(fin,pmt,ratePct,n);
+  sigSet(sigCompHTML('What the car really costs',[{label:'Down payment + trade-in',value:down+trade,cls:'s-c'},{label:'Amount financed',value:fin,cls:'s-a'},{label:'Interest',value:totInt,cls:'s-b'}])+sigTrajHTML('Loan balance by year',[{label:'Balance',cls:'s-a',path:sy.path}]));
+  pinRender();
   document.getElementById('results').classList.add('show');
 }
-calc();
+function live(){document.querySelectorAll('.nn-calc-card input,.nn-calc-card select,.nn-calc-card textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+live(); calc();
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigCompInner(parts){
+  var tot=0,i;for(i=0;i<parts.length;i++)tot+=Math.max(parts[i].value,0);
+  if(tot<=0)return '';
+  var bar='',leg='';
+  for(i=0;i<parts.length;i++){var p=parts[i];if(p.value<=0)continue;
+    bar+='<span class="sig-seg '+p.cls+'" style="width:'+(p.value/tot*100).toFixed(2)+'%"></span>';
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+p.cls+'"></span><span class="sig-leg-label">'+p.label+'</span><strong>'+sigMoney(p.value)+' \u00b7 '+Math.round(p.value/tot*100)+'%</strong></div>';}
+  return '<div class="sig-comp">'+bar+'</div>'+leg;
+}
+function sigCompHTML(title,parts){var inner=sigCompInner(parts);return inner?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+inner+'</div>':'';}
+function sigTrajHTML(title,series,note){
+  var maxV=0,maxM=0,i,j;
+  for(i=0;i<series.length;i++){var p=series[i].path;for(j=0;j<p.length;j++){if(p[j][1]>maxV)maxV=p[j][1];if(p[j][0]>maxM)maxM=p[j][0];}}
+  if(maxV<=0||maxM<=0)return '';
+  var W=320,H=110,PL=4,PR=4,PT=6,PB=4,polys='',leg='';
+  for(i=0;i<series.length;i++){var s=series[i],pts='';
+    for(j=0;j<s.path.length;j++){var x=PL+(s.path[j][0]/maxM)*(W-PL-PR),y=PT+(1-s.path[j][1]/maxV)*(H-PT-PB);pts+=(j?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    polys+='<path d="'+pts+'" class="sig-line '+s.cls+(s.dash?' sig-dash':'')+'" fill="none" vector-effect="non-scaling-stroke"/>';
+    var last=s.path[s.path.length-1];
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+s.cls+'"></span><span class="sig-leg-label">'+s.label+'</span><strong>'+sigMoney(last[1])+' after '+(Math.round(last[0]/12*10)/10)+' yrs</strong></div>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><svg class="sig-traj" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true">'+polys+'</svg>'+leg+(note?'<div class="sig-note">'+note+'</div>':'')+'</div>';
+}
+var NNPIN=null;
+function pinRender(){
+  if(!NNPIN||typeof p2PinMetrics!=='function')return;
+  var wrap=document.querySelector('.nn-pin-wrap');if(!wrap)return;
+  var box=wrap.querySelector('.nn-pin-cmp');if(!box)return;
+  var cur=null;try{cur=p2PinMetrics();}catch(e){}
+  if(!cur){box.innerHTML='';return;}
+  var same=true,i;
+  for(i=0;i<cur.length&&i<NNPIN.length;i++){if(Math.abs(cur[i].raw-NNPIN[i].raw)>0.005)same=false;}
+  if(same){box.innerHTML='<div class="sig-note">This is your pinned scenario \u2014 change any input to compare against it.</div>';return;}
+  var h='<div class="sig-title" style="margin-top:10px">Pinned baseline vs this plan</div>';
+  for(i=0;i<cur.length&&i<NNPIN.length;i++){var c=cur[i],b=NNPIN[i],d=c.raw-b.raw,dtxt;
+    if(Math.abs(d)<=0.005)dtxt='same as pin';
+    else if(c.kind==='months')dtxt=(d>0?'+':'\u2212')+Math.round(Math.abs(d))+' mo vs pin';
+    else dtxt=(d>0?'+':'\u2212')+sigMoney(Math.abs(d))+' vs pin';
+    h+='<div class="sig-leg-row"><span class="sig-leg-label">'+c.label+'</span><span style="margin-left:10px">'+b.display+' \u2192 <strong>'+c.display+'</strong></span><span class="sig-delta" style="margin-left:auto">'+dtxt+'</span></div>';}
+  box.innerHTML=h;
+}
+function pinSetup(){
+  var slot=document.querySelector('[data-nn-signature]');if(!slot||slot.querySelector('.nn-pin-wrap'))return;
+  var wrap=document.createElement('div');wrap.className='nn-pin-wrap no-print';
+  wrap.innerHTML='<button type="button" class="nn-pin-btn">\ud83d\udccc Pin this scenario</button><div class="nn-pin-note">Pin a scenario, change any input, and watch this plan compare itself against the pin. Pins last for this visit only.</div><div class="nn-pin-cmp"></div>';
+  slot.appendChild(wrap);
+  wrap.querySelector('.nn-pin-btn').addEventListener('click',function(){
+    var m=null;try{m=p2PinMetrics();}catch(e){}
+    if(!m)return;
+    NNPIN=m;this.textContent='\ud83d\udccc Pinned \u2014 change an input to compare';pinRender();
+  });
+}
+pinSetup();
 </script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

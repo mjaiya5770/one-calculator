@@ -84,12 +84,14 @@
 <p class="nn-embed-link no-print"><a href="../embed.html#savings-goal-calculator">Embed this calculator on your site — free</a></p>
 <div class="results" id="results">
       <div style="color:var(--muted);font-size:.9rem">Monthly deposit needed</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rPmt">$0</div>
       <table>
         <tr><td>Total you'll deposit</td><td id="rDep">$0</td></tr>
         <tr><td>Interest earned</td><td id="rInt">$0</td></tr>
         <tr><td>Final balance</td><td id="rTot">$0</td></tr>
       </table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -161,11 +163,20 @@
 <script>
 function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
 function fmt2(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});}
+/*PURE-BEGIN*/
+function savingsYears(pv,pmt,annualPct,months){
+  var r=annualPct/100/12,bal=pv,out=[],path=[[0,pv]];
+  for(var m=1;m<=months;m++){bal=bal*(1+r)+pmt;
+    if(m%12===0||m===months){var deposits=pv+pmt*m;out.push({month:m,deposits:deposits,interest:bal-deposits,balance:bal});path.push([m,bal]);}}
+  return {yearly:out,finalBalance:bal,path:path};
+}
+/*PURE-END*/
 function calc(){
   const fv=+document.getElementById('goal').value||0,
         pv=+document.getElementById('start').value||0,
         n=Math.max(+document.getElementById('months').value||1,1),
-        r=(+document.getElementById('rate').value||0)/100/12;
+        ratePct=+document.getElementById('rate').value||0,
+        r=ratePct/100/12;
   const grow=Math.pow(1+r,n);
   let pmt;
   if(r>0){ pmt=Math.max((fv-pv*grow)*r/(grow-1),0); }
@@ -175,10 +186,45 @@ function calc(){
   document.getElementById('rDep').textContent=fmt(dep);
   document.getElementById('rInt').textContent=fmt(intEarned);
   document.getElementById('rTot').textContent=fmt(fv);
+  if(pmt>0){
+    document.getElementById('verdict').textContent='Deposit '+fmt2(pmt)+' a month for '+n+' months and interest covers '+fmt(intEarned)+' of the '+fmt(fv)+' goal — you deposit '+fmt(dep)+' of it yourself.';
+    var sy=savingsYears(pv,pmt,ratePct,n);
+    sigSet(sigCompHTML('Where the goal comes from',[{label:'Your starting amount',value:pv,cls:'s-c'},{label:'Your deposits',value:dep,cls:'s-a'},{label:'Interest',value:intEarned,cls:'s-b'}])+sigTrajHTML('Balance on the way',[{label:'Balance',cls:'s-a',path:sy.path}]));
+  } else {
+    document.getElementById('verdict').textContent='Your starting '+fmt(pv)+' already covers the '+fmt(fv)+' goal — no monthly deposit needed.';
+    sigSet('');
+  }
   document.getElementById('results').classList.add('show');
 }
-calc();
-</script>
+function live(){document.querySelectorAll('.nn-calc-card input,.nn-calc-card select,.nn-calc-card textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+live(); calc();
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigCompInner(parts){
+  var tot=0,i;for(i=0;i<parts.length;i++)tot+=Math.max(parts[i].value,0);
+  if(tot<=0)return '';
+  var bar='',leg='';
+  for(i=0;i<parts.length;i++){var p=parts[i];if(p.value<=0)continue;
+    bar+='<span class="sig-seg '+p.cls+'" style="width:'+(p.value/tot*100).toFixed(2)+'%"></span>';
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+p.cls+'"></span><span class="sig-leg-label">'+p.label+'</span><strong>'+sigMoney(p.value)+' \u00b7 '+Math.round(p.value/tot*100)+'%</strong></div>';}
+  return '<div class="sig-comp">'+bar+'</div>'+leg;
+}
+function sigCompHTML(title,parts){var inner=sigCompInner(parts);return inner?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+inner+'</div>':'';}
+function sigTrajHTML(title,series,note){
+  var maxV=0,maxM=0,i,j;
+  for(i=0;i<series.length;i++){var p=series[i].path;for(j=0;j<p.length;j++){if(p[j][1]>maxV)maxV=p[j][1];if(p[j][0]>maxM)maxM=p[j][0];}}
+  if(maxV<=0||maxM<=0)return '';
+  var W=320,H=110,PL=4,PR=4,PT=6,PB=4,polys='',leg='';
+  for(i=0;i<series.length;i++){var s=series[i],pts='';
+    for(j=0;j<s.path.length;j++){var x=PL+(s.path[j][0]/maxM)*(W-PL-PR),y=PT+(1-s.path[j][1]/maxV)*(H-PT-PB);pts+=(j?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    polys+='<path d="'+pts+'" class="sig-line '+s.cls+(s.dash?' sig-dash':'')+'" fill="none" vector-effect="non-scaling-stroke"/>';
+    var last=s.path[s.path.length-1];
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+s.cls+'"></span><span class="sig-leg-label">'+s.label+'</span><strong>'+sigMoney(last[1])+' after '+(Math.round(last[0]/12*10)/10)+' yrs</strong></div>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><svg class="sig-traj" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true">'+polys+'</svg>'+leg+(note?'<div class="sig-note">'+note+'</div>':'')+'</div>';
+}</script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>

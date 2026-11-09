@@ -130,6 +130,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -234,6 +235,29 @@ function studentPlan(loans,termMonths,extra){
   var base=sim(0),withX=sim(extra||0);
   return{monthlyMin:totalMin,months:withX.months,totalInterest:withX.totalInterest,saved:base.totalInterest-withX.totalInterest,baseMonths:base.months,perLoan:mins};
 }
+
+function studentPath(loans,termMonths,extra){
+  var act=loans.filter(function(L){return L.balance>0;});
+  if(!act.length||termMonths<=0)return null;
+  var mins=act.map(function(L){return loanPayment(L.balance,L.apr,termMonths);});
+  if(mins.some(function(m){return isNaN(m);}))return null;
+  var totalMin=mins.reduce(function(a,b){return a+b;},0);
+  function sim(ex){
+    var bals=act.map(function(L){return L.balance;});
+    var rates=act.map(function(L){return L.apr/100/12;});
+    var ti=0,m=0,path=[[0,bals.reduce(function(a,b){return a+b;},0)]];
+    while(bals.some(function(b){return b>0.005;})&&m<1200){
+      m++;var left=totalMin+ex;
+      for(var i=0;i<bals.length;i++){if(bals[i]>0){var it=bals[i]*rates[i];ti+=it;var p=Math.min(mins[i],bals[i]+it);bals[i]-=(p-it);left-=p;}}
+      var order=bals.map(function(_,i){return i;}).sort(function(a,b){return rates[b]-rates[a];});
+      for(var j=0;j<order.length;j++){if(left<=0)break;var ix=order[j];var add=Math.min(left,bals[ix]);bals[ix]-=add;left-=add;}
+      if(m%12===0||!bals.some(function(b){return b>0.005;}))path.push([m,Math.max(bals.reduce(function(a,b){return a+b;},0),0)]);
+    }
+    return{months:m,totalInterest:ti,path:path};
+  }
+  var base=sim(0),withX=sim(extra||0);
+  return{months:withX.months,totalInterest:withX.totalInterest,baseMonths:base.months,baseInterest:base.totalInterest,path:withX.path,basePath:base.path};
+}
 /*PURE-END*/
 function loanRowHTML(bal,apr){
   return '<div class="row loan-row"><div class="field"><label>Balance ($)</label><input class="l-bal" type="number" value="'+bal+'" min="0" step="any"></div>'
@@ -241,11 +265,16 @@ function loanRowHTML(bal,apr){
 }
 function addLoanRow(){var c=document.getElementById('loanRows');if(c.querySelectorAll('.loan-row').length>=5)return;c.insertAdjacentHTML('beforeend',loanRowHTML('',''));wireRows();calc();}
 function removeLoanRow(){var c=document.getElementById('loanRows');var rows=c.querySelectorAll('.loan-row');if(rows.length>1)rows[rows.length-1].remove();calc();}
+var P2LAST=null;
+function p2PinMetrics(){if(!P2LAST)return null;return [
+  {label:'Combined payment',raw:P2LAST.pay,display:'$'+fmt(P2LAST.pay),kind:'money'},
+  {label:'Total interest',raw:P2LAST.ti,display:'$'+fmt(P2LAST.ti),kind:'money'},
+  {label:'Debt-free in',raw:P2LAST.months,display:P2LAST.months+' months',kind:'months'}];}
 function wireRows(){document.querySelectorAll('#loanRows input').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
 function calc(){
   var loans=[];document.querySelectorAll('.loan-row').forEach(function(el){loans.push({balance:+el.querySelector('.l-bal').value||0,apr:+el.querySelector('.l-apr').value||0});});
   var plan=studentPlan(loans,Math.round(v('term')),v('extra'));
-  if(!plan){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Add at least one loan with a balance and a term.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');return;}
+  if(!plan){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Add at least one loan with a balance and a term.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');sigSet('');P2LAST=null;return;}
   var extra=v('extra'),totalBal=loans.reduce(function(a,L){return a+L.balance;},0);
   document.getElementById('rMain').textContent='$'+fmt(plan.monthlyMin+extra);
   document.getElementById('verdict').textContent='Debt-free in '+plan.months+' months. Total interest across all loans: $'+fmt(plan.totalInterest)+'.';
@@ -254,6 +283,11 @@ function calc(){
   rows+=row('Months to debt-free',plan.months)+row('Total interest','$'+fmt(plan.totalInterest))+row('Total repaid','$'+fmt(totalBal+plan.totalInterest));
   if(extra>0)rows+=row('Interest saved by the extra $'+fmt(extra), '$'+fmt(plan.saved)+' (and '+(plan.baseMonths-plan.months)+' months sooner)');
   document.getElementById('rows').innerHTML=rows;
+  var sp=studentPath(loans,Math.round(v('term')),extra);
+  if(sp){var series=[{label:'Your plan',cls:'s-a',path:sp.path}];
+    if(extra>0)series.push({label:'Minimums only',cls:'s-b',dash:true,path:sp.basePath});
+    sigSet(sigTrajHTML('Total balance by year',series));
+    P2LAST={pay:plan.monthlyMin+extra,ti:plan.totalInterest,months:plan.months};pinRender();}
   document.getElementById('results').classList.add('show');
 }
 document.getElementById('loanRows').innerHTML=loanRowHTML(5000,5)+loanRowHTML(7000,6.5)+loanRowHTML('','');
@@ -263,6 +297,53 @@ function live(){document.querySelectorAll('input,select,textarea').forEach(funct
 
 live(); calc();
 
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigTrajHTML(title,series,note){
+  var maxV=0,maxM=0,i,j;
+  for(i=0;i<series.length;i++){var p=series[i].path;for(j=0;j<p.length;j++){if(p[j][1]>maxV)maxV=p[j][1];if(p[j][0]>maxM)maxM=p[j][0];}}
+  if(maxV<=0||maxM<=0)return '';
+  var W=320,H=110,PL=4,PR=4,PT=6,PB=4,polys='',leg='';
+  for(i=0;i<series.length;i++){var s=series[i],pts='';
+    for(j=0;j<s.path.length;j++){var x=PL+(s.path[j][0]/maxM)*(W-PL-PR),y=PT+(1-s.path[j][1]/maxV)*(H-PT-PB);pts+=(j?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    polys+='<path d="'+pts+'" class="sig-line '+s.cls+(s.dash?' sig-dash':'')+'" fill="none" vector-effect="non-scaling-stroke"/>';
+    var last=s.path[s.path.length-1];
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+s.cls+'"></span><span class="sig-leg-label">'+s.label+'</span><strong>'+sigMoney(last[1])+' after '+(Math.round(last[0]/12*10)/10)+' yrs</strong></div>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><svg class="sig-traj" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true">'+polys+'</svg>'+leg+(note?'<div class="sig-note">'+note+'</div>':'')+'</div>';
+}
+var NNPIN=null;
+function pinRender(){
+  if(!NNPIN||typeof p2PinMetrics!=='function')return;
+  var wrap=document.querySelector('.nn-pin-wrap');if(!wrap)return;
+  var box=wrap.querySelector('.nn-pin-cmp');if(!box)return;
+  var cur=null;try{cur=p2PinMetrics();}catch(e){}
+  if(!cur){box.innerHTML='';return;}
+  var same=true,i;
+  for(i=0;i<cur.length&&i<NNPIN.length;i++){if(Math.abs(cur[i].raw-NNPIN[i].raw)>0.005)same=false;}
+  if(same){box.innerHTML='<div class="sig-note">This is your pinned scenario \u2014 change any input to compare against it.</div>';return;}
+  var h='<div class="sig-title" style="margin-top:10px">Pinned baseline vs this plan</div>';
+  for(i=0;i<cur.length&&i<NNPIN.length;i++){var c=cur[i],b=NNPIN[i],d=c.raw-b.raw,dtxt;
+    if(Math.abs(d)<=0.005)dtxt='same as pin';
+    else if(c.kind==='months')dtxt=(d>0?'+':'\u2212')+Math.round(Math.abs(d))+' mo vs pin';
+    else dtxt=(d>0?'+':'\u2212')+sigMoney(Math.abs(d))+' vs pin';
+    h+='<div class="sig-leg-row"><span class="sig-leg-label">'+c.label+'</span><span style="margin-left:10px">'+b.display+' \u2192 <strong>'+c.display+'</strong></span><span class="sig-delta" style="margin-left:auto">'+dtxt+'</span></div>';}
+  box.innerHTML=h;
+}
+function pinSetup(){
+  var slot=document.querySelector('[data-nn-signature]');if(!slot||slot.querySelector('.nn-pin-wrap'))return;
+  var wrap=document.createElement('div');wrap.className='nn-pin-wrap no-print';
+  wrap.innerHTML='<button type="button" class="nn-pin-btn">\ud83d\udccc Pin this scenario</button><div class="nn-pin-note">Pin a scenario, change any input, and watch this plan compare itself against the pin. Pins last for this visit only.</div><div class="nn-pin-cmp"></div>';
+  slot.appendChild(wrap);
+  wrap.querySelector('.nn-pin-btn').addEventListener('click',function(){
+    var m=null;try{m=p2PinMetrics();}catch(e){}
+    if(!m)return;
+    NNPIN=m;this.textContent='\ud83d\udccc Pinned \u2014 change an input to compare';pinRender();
+  });
+}
+pinSetup();
 </script>
 
 <script src="../assets/ads.js"></script>

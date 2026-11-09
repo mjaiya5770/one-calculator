@@ -84,6 +84,7 @@
 <p class="nn-embed-link no-print"><a href="../embed.html#credit-card-payoff-calculator">Embed this calculator on your site — free</a></p>
 <div class="results" id="results">
       <div style="color:var(--muted);font-size:.9rem">Time to payoff</div>
+      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMonths">0 months</div>
       <table>
         <tr><td>Debt-free date</td><td id="rDate">—</td></tr>
@@ -91,6 +92,7 @@
         <tr><td>Total paid</td><td id="rTot">$0</td></tr>
       </table>
       <div class="note" id="rWarn" style="display:none"></div>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -159,12 +161,22 @@
 <footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
 <script>
 function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+/*PURE-BEGIN*/
+function payoffSimCC(bal0,aprPct,pay){
+  var r=aprPct/100/12,b=bal0,interest=0,months=0,path=[[0,b]];
+  while(b>0&&months<1200){var i=b*r;interest+=i;b=b+i-pay;months++;if(months%12===0||b<=0)path.push([months,Math.max(b,0)]);}
+  return {months:months,interest:interest,path:path};
+}
+/*PURE-END*/
 function calc(){
   const bal=+document.getElementById('bal').value||0,
-        r=(+document.getElementById('apr').value||0)/100/12,
-        p=(+document.getElementById('pay').value||0)+(+document.getElementById('extra').value||0);
+        aprPct=+document.getElementById('apr').value||0,
+        r=aprPct/100/12,
+        payBase=+document.getElementById('pay').value||0,
+        extra=+document.getElementById('extra').value||0,
+        p=payBase+extra;
   const warn=document.getElementById('rWarn');
-  if(p<=0||bal<=0){document.getElementById('results').classList.add('show');return;}
+  if(p<=0||bal<=0){document.getElementById('verdict').textContent='';sigSet('');document.getElementById('results').classList.add('show');return;}
   if(r>0&&p<=r*bal){
     warn.style.display='block';
     warn.textContent='⚠️ Your payment doesn\u2019t cover the monthly interest — the balance will never shrink. Increase your payment above '+fmt(r*bal)+'.';
@@ -172,21 +184,48 @@ function calc(){
     document.getElementById('rDate').textContent='—';
     document.getElementById('rInt').textContent='—';
     document.getElementById('rTot').textContent='—';
+    document.getElementById('verdict').textContent='';
+    sigSet('');
     document.getElementById('results').classList.add('show');
     return;
   }
   warn.style.display='none';
-  let b=bal,int=0,months=0;
-  while(b>0&&months<1200){const i=b*r;int+=i;b=b+i-p;months++;}
+  const plan=payoffSimCC(bal,aprPct,p);
+  let b=bal,int=plan.interest,months=plan.months;
   const d=new Date();d.setMonth(d.getMonth()+months);
   document.getElementById('rMonths').textContent=months+' months ('+(months/12).toFixed(1)+' yrs)';
   document.getElementById('rDate').textContent=d.toLocaleDateString('en-US',{month:'long',year:'numeric'});
   document.getElementById('rInt').textContent=fmt(int);
   document.getElementById('rTot').textContent=fmt(bal+int);
+  let verd='Debt-free in '+document.getElementById('rDate').textContent+' — '+months+' months, with '+fmt(int)+' paid in interest.';
+  var series=[{label:'At '+fmt(p)+'/mo',cls:'s-a',path:plan.path}];
+  if(extra>0){
+    if(payBase>r*bal){const base=payoffSimCC(bal,aprPct,payBase);series.push({label:'At '+fmt(payBase)+'/mo',cls:'s-b',dash:true,path:base.path});verd+=' Without the extra '+fmt(extra)+'/mo it would take '+base.months+' months and '+fmt(base.interest)+' of interest.';}
+    else{verd+=' At '+fmt(payBase)+'/mo alone the balance would never shrink — the extra is what makes this plan work.';}
+  }
+  document.getElementById('verdict').textContent=verd;
+  sigSet(sigTrajHTML('Your balance, year by year',series));
   document.getElementById('results').classList.add('show');
 }
-calc();
-</script>
+function live(){document.querySelectorAll('.nn-calc-card input,.nn-calc-card select,.nn-calc-card textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
+live(); calc();
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigTrajHTML(title,series,note){
+  var maxV=0,maxM=0,i,j;
+  for(i=0;i<series.length;i++){var p=series[i].path;for(j=0;j<p.length;j++){if(p[j][1]>maxV)maxV=p[j][1];if(p[j][0]>maxM)maxM=p[j][0];}}
+  if(maxV<=0||maxM<=0)return '';
+  var W=320,H=110,PL=4,PR=4,PT=6,PB=4,polys='',leg='';
+  for(i=0;i<series.length;i++){var s=series[i],pts='';
+    for(j=0;j<s.path.length;j++){var x=PL+(s.path[j][0]/maxM)*(W-PL-PR),y=PT+(1-s.path[j][1]/maxV)*(H-PT-PB);pts+=(j?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    polys+='<path d="'+pts+'" class="sig-line '+s.cls+(s.dash?' sig-dash':'')+'" fill="none" vector-effect="non-scaling-stroke"/>';
+    var last=s.path[s.path.length-1];
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+s.cls+'"></span><span class="sig-leg-label">'+s.label+'</span><strong>'+sigMoney(last[1])+' after '+(Math.round(last[0]/12*10)/10)+' yrs</strong></div>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><svg class="sig-traj" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true">'+polys+'</svg>'+leg+(note?'<div class="sig-note">'+note+'</div>':'')+'</div>';
+}</script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>

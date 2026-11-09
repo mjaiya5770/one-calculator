@@ -117,8 +117,12 @@
     </div>
     <div class="row">
       <div class="field"><label for="repayYrs">Repayment period (years)</label><input id="repayYrs" type="number" value="10" min="1" step="1"></div>
+    </div>
+    <details class="nn-disc"><summary>More options — extra payments</summary>
+    <div class="row">
       <div class="field"><label for="extra">Extra principal per month during draw ($)</label><input id="extra" type="number" value="0" min="0" step="any"></div>
     </div>
+    </details>
     <p style="color:var(--muted);font-size:.92rem;margin:4px 0 0">HELOC rates are variable — this model holds the rate you enter steady so you can see the phase mechanics. Re-run it 2 points higher to see your exposure if rates rise.</p>
 
     <button class="btn" onclick="calc()">Calculate</button>
@@ -135,6 +139,7 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
+    <div class="nn-signature" data-nn-signature><div class="nn-sig-body"></div></div>
     </div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
@@ -203,7 +208,6 @@
 <section class="related-tools">
   <h2>Related tools</h2>
   <ul>
-    <li><a href="mortgage-calculator.html">Mortgage Calculator</a></li>
     <li><a href="mortgage-payoff-calculator.html">Mortgage Payoff Calculator</a></li>
     <li><a href="apr-calculator.html">APR Calculator</a></li>
     <li><a href="loan-calculator.html">Loan Calculator</a></li>
@@ -236,17 +240,32 @@ function helocPlan(draw,apr,drawMonths,repayMonths,extra){
   var tiRepay=repayPay*repayMonths-bal;
   return{ioPayment:ioPay,balanceAtRepay:bal,repayPayment:repayPay,interestDraw:tiDraw,interestRepay:tiRepay,totalInterest:tiDraw+tiRepay,totalPaid:draw+tiDraw+tiRepay};
 }
+
+function helocPath(draw,apr,drawMonths,repayMonths,extra){
+  if(draw<=0||repayMonths<=0)return null;
+  var r=apr/100/12,bal=draw,tiDraw=0,m=0,path=[[0,bal]];
+  for(var k=0;k<drawMonths;k++){m++;var i=bal*r;tiDraw+=i;bal-=Math.min(extra,bal);if(m%12===0)path.push([m,Math.max(bal,0)]);}
+  var repayPay=loanPayment(bal,apr,repayMonths);
+  if(isNaN(repayPay))return null;
+  var tiRepay=repayPay*repayMonths-bal;
+  var b2=bal;
+  for(var j=0;j<repayMonths;j++){m++;var i2=b2*r;var princ=repayPay-i2;if(princ>b2)princ=b2;b2-=princ;if(m%12===0||b2<=0.005)path.push([m,Math.max(b2,0)]);}
+  if(path[path.length-1][0]!==m)path.push([m,Math.max(b2,0)]);
+  return {balanceAtRepay:bal,interestDraw:tiDraw,interestRepay:tiRepay,totalInterest:tiDraw+tiRepay,path:path};
+}
 /*PURE-END*/
 function calc(){
   var plan=helocPlan(v('draw'),v('apr'),Math.round(v('drawYrs')*12),Math.round(v('repayYrs')*12),v('extra'));
   var avail=Math.max(0,v('line')-v('draw'));
-  if(!plan){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter an amount drawn and a repayment period.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');return;}
+  if(!plan){document.getElementById('rMain').textContent='—';document.getElementById('verdict').textContent='Enter an amount drawn and a repayment period.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');sigSet('');return;}
   document.getElementById('rMain').textContent='$'+fmt(plan.ioPayment)+' /mo';
   document.getElementById('verdict').textContent='Draw phase: $'+fmt(plan.ioPayment)+' a month, interest only. Repayment phase: $'+fmt(plan.repayPayment)+' a month. Total interest across both: $'+fmt(plan.totalInterest)+'.';
   document.getElementById('rows').innerHTML=row('Credit line','$'+fmt(v('line')))+row('Drawn','$'+fmt(v('draw')))+row('Still available','$'+fmt(avail))
     +row('Interest-only payment (draw)','$'+fmt(plan.ioPayment)+'/mo')+row('Interest paid during draw','$'+fmt(plan.interestDraw))
     +row('Balance entering repayment','$'+fmt(plan.balanceAtRepay))+row('Repayment payment','$'+fmt(plan.repayPayment)+'/mo')
     +row('Interest during repayment','$'+fmt(plan.interestRepay))+row('Total interest','$'+fmt(plan.totalInterest));
+  var hp=helocPath(v('draw'),v('apr'),Math.round(v('drawYrs')*12),Math.round(v('repayYrs')*12),v('extra'));
+  if(hp)sigSet(sigCompHTML('What the HELOC costs all-in',[{label:'Amount drawn',value:v('draw'),cls:'s-a'},{label:'Interest — draw phase',value:plan.interestDraw,cls:'s-b'},{label:'Interest — repayment phase',value:plan.interestRepay,cls:'s-c'}])+sigTrajHTML('Balance by year',[{label:'Balance',cls:'s-a',path:hp.path}],'During the interest-only draw the balance only falls by your extra payments; the steep drop is the repayment phase.')+(v('extra')>0?'<div class="sig-note">Includes '+sigMoney(v('extra'))+'/mo extra principal during the draw phase in every figure above.</div>':''));
   document.getElementById('results').classList.add('show');
 }
 
@@ -254,7 +273,33 @@ function live(){document.querySelectorAll('input,select,textarea').forEach(funct
 
 live(); calc();
 
-</script>
+
+/*NN-P2-HELPERS — signature renderers + scenario pin (polish wave P2)*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(html){var b=sigSlotBody();if(b)b.innerHTML=html;}
+function sigMoney(v){return '$'+Math.round(v).toLocaleString('en-US');}
+function sigCompInner(parts){
+  var tot=0,i;for(i=0;i<parts.length;i++)tot+=Math.max(parts[i].value,0);
+  if(tot<=0)return '';
+  var bar='',leg='';
+  for(i=0;i<parts.length;i++){var p=parts[i];if(p.value<=0)continue;
+    bar+='<span class="sig-seg '+p.cls+'" style="width:'+(p.value/tot*100).toFixed(2)+'%"></span>';
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+p.cls+'"></span><span class="sig-leg-label">'+p.label+'</span><strong>'+sigMoney(p.value)+' \u00b7 '+Math.round(p.value/tot*100)+'%</strong></div>';}
+  return '<div class="sig-comp">'+bar+'</div>'+leg;
+}
+function sigCompHTML(title,parts){var inner=sigCompInner(parts);return inner?'<div class="sig-block"><div class="sig-title">'+title+'</div>'+inner+'</div>':'';}
+function sigTrajHTML(title,series,note){
+  var maxV=0,maxM=0,i,j;
+  for(i=0;i<series.length;i++){var p=series[i].path;for(j=0;j<p.length;j++){if(p[j][1]>maxV)maxV=p[j][1];if(p[j][0]>maxM)maxM=p[j][0];}}
+  if(maxV<=0||maxM<=0)return '';
+  var W=320,H=110,PL=4,PR=4,PT=6,PB=4,polys='',leg='';
+  for(i=0;i<series.length;i++){var s=series[i],pts='';
+    for(j=0;j<s.path.length;j++){var x=PL+(s.path[j][0]/maxM)*(W-PL-PR),y=PT+(1-s.path[j][1]/maxV)*(H-PT-PB);pts+=(j?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' ';}
+    polys+='<path d="'+pts+'" class="sig-line '+s.cls+(s.dash?' sig-dash':'')+'" fill="none" vector-effect="non-scaling-stroke"/>';
+    var last=s.path[s.path.length-1];
+    leg+='<div class="sig-leg-row"><span class="sig-dot '+s.cls+'"></span><span class="sig-leg-label">'+s.label+'</span><strong>'+sigMoney(last[1])+' after '+(Math.round(last[0]/12*10)/10)+' yrs</strong></div>';}
+  return '<div class="sig-block"><div class="sig-title">'+title+'</div><svg class="sig-traj" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true">'+polys+'</svg>'+leg+(note?'<div class="sig-note">'+note+'</div>':'')+'</div>';
+}</script>
 
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
