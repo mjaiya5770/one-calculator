@@ -1643,3 +1643,48 @@ html.nn-embed .inv-toolbar{position:static;box-shadow:none;border-top:none}
   #cat-guides-and-articles,
   #cat-guides-and-articles + .tool-grid { display: none !important; }
 }
+
+/* NN-MOBILE-OPT (Nov 9, 2026 — muni phone-optimization order; audit in
+   polish/mobile-opt/AUDIT.md): rendered census at 375/390/430 found the
+   header nav's last link clipped mid-label with no scroll cue, tap targets
+   under the fleet's 44px floor, a stale --header-height hiding the library
+   subnav behind the sticky header, 13px invoice/embed fields (iOS focus
+   zoom), and wide guide tables clipped instead of scrolling. Every rule
+   below is phone-only (max-width:760px); desktop rendering is untouched. */
+@media (max-width: 760px) {
+  :root { --header-height: 121px; }
+  .site-header .brand { min-height: 44px; }
+  .site-header nav {
+    padding-right: 44px;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+    mask-image: linear-gradient(to right, #000 calc(100% - 30px), transparent 100%);
+  }
+  .site-header nav a { min-height: 44px; }
+  .btn, .seg-btn { min-height: 44px; }
+  .lib-subnav a { min-height: 44px; }
+  .inv-chip { min-height: 44px; }
+  .nn-modal-x { width: 44px; height: 44px; }
+  .site-footer a { display: inline-block; padding: 12px 3px; }
+  .inv-item input { font-size: 16px; min-height: 44px; }
+  .nn-embed-code { font-size: 16px; }
+  .nn-hero-stage .nn-house {
+    display: flex; align-items: center; justify-content: center;
+    padding: 6px 12px; text-align: center;
+  }
+  .nn-hero-stage .nn-house strong { font-size: .95rem; margin: 0; }
+  .nn-hero-stage .nn-house span { display: none; }
+  .card table, .results table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  details .card table, .card details table, .results details table {
+    display: table;
+    overflow: visible;
+    max-width: none;
+  }
+}
+@media print {
+  .card table, .results table { display: table; overflow: visible; max-width: none; }
+}
