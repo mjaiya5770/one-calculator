@@ -1,3 +1,24 @@
+/* NN-APP-MODE (Nov 9, 2026 — muni app build direction): the installed-app
+   experience is TOOL-PLATFORM ONLY. When the site runs as an installed app
+   (standalone display mode), the homepage forwards straight to the
+   calculator library, so the app always opens on the tools. Display layer
+   only: keyed off the app context — never the user agent, never
+   server-side — and double-gated, so a normal browser or crawler can never
+   be redirected. The matching chrome rules live in assets/style.css under
+   @media (display-mode: standalone). */
+(function () {
+  try {
+    var standalone = (typeof window.matchMedia === 'function' &&
+      window.matchMedia('(display-mode: standalone)').matches) ||
+      window.navigator.standalone === true;
+    if (!standalone) return;
+    var p = window.location.pathname;
+    if (p === '/' || p === '/index.html' || p.slice(-11) === '/index.html') {
+      window.location.replace('/calculators.html');
+    }
+  } catch (e) { /* app mode is an enhancement — never break the page */ }
+})();
+
 /* One Calculator — first-party analytics beacon (no third-party trackers) */
 (function () {
   if (location.pathname.indexOf('/admin') === 0) return;

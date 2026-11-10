@@ -1628,3 +1628,18 @@ html.nn-embed .inv-toolbar{position:static;box-shadow:none;border-top:none}
 .nn-hero-stage ins.adsbygoogle{position:absolute;inset:0;width:100%;height:100%}
 .nn-hero-fill{position:absolute;inset:0;text-align:center}
 @media (max-width:759px){.nn-hero-stage{height:50px}}
+/* NN-APP-MODE (Nov 9, 2026 — muni app build direction): installed-app
+   (standalone) display layer. In app mode the chrome is tool-platform
+   only: guide/blog links in the header nav and footer are hidden, and so
+   is the homepage's "Guides & articles" shelf. These rules exist ONLY
+   inside this media query — the web experience, the served HTML and the
+   indexed pages are completely unchanged. The homepage forward itself
+   lives in assets/track.js (NN-APP-MODE). */
+@media (display-mode: standalone) {
+  .site-header nav a[href*="guides/"],
+  .site-header nav a[href*="blog"],
+  .site-footer a[href*="guides/"],
+  .site-footer a[href*="blog"],
+  #cat-guides-and-articles,
+  #cat-guides-and-articles + .tool-grid { display: none !important; }
+}
