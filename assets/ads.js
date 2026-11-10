@@ -126,10 +126,15 @@
   var HERO_WATCHDOG_MS = 3000; /* AdSense fill check before the Adsterra backfill */
 
   function adsenseFilled(ins) {
+    /* NN-HERO-FIX: Google's own data-ad-status is the ONLY fill signal.
+       An iframe's size proves nothing — a live probe (Nov 9, 2026) caught
+       the UNFILLED responsive unit carrying a fully sized 728x280 iframe
+       that landed seconds BEFORE data-ad-status="unfilled" was set; the
+       old size heuristic declared that blank unit "filled", locked the
+       chain on 'adsense', the backfill never ran, and the seat ended
+       blank. Status 'filled' is set by Google on a genuine fill only. */
     if (!ins) return false;
-    if (ins.getAttribute('data-ad-status') === 'filled') return true;
-    var f = ins.querySelector('iframe');
-    return !!(f && (f.offsetHeight > 0 || f.clientHeight > 0));
+    return ins.getAttribute('data-ad-status') === 'filled';
   }
 
   function heroChain(el) {
@@ -144,11 +149,67 @@
       }
       return null;
     }
-    /* a real iframe anywhere in the stage always displaces the floor promo */
+    /* NN-HERO-FIX: only a GENUINE fill displaces the floor promo — a filled
+       AdSense unit (its status attribute) or a backfill iframe with a real
+       size and a real ad URL. A sized-but-empty iframe never does. */
+    function genuineFill() {
+      if (adsenseFilled(stage.querySelector('ins.adsbygoogle'))) return true;
+      var fill = stage.querySelector('.nn-hero-fill');
+      if (fill) {
+        var f = fill.querySelector('iframe');
+        if (f && f.offsetWidth > 0 && f.offsetHeight > 0) {
+          var src = f.getAttribute('src') || '';
+          if (src && src !== 'about:blank') return true;
+        }
+      }
+      return false;
+    }
     function sweep() {
-      if (!stage.querySelector('iframe')) return;
+      if (!genuineFill()) return;
       var fh = floorHouse();
       if (fh) fh.parentNode.removeChild(fh);
+    }
+    /* NN-HERO-FIX terminal guard: whatever the chain did — unfilled unit,
+       empty backfill iframe, no iframe at all — the seat must never END
+       blank. If no genuine fill is present and no house promo is showing,
+       the floor is restored on top of whatever remnants remain (appended
+       last in the stage, it paints above them). The first pass only
+       pre-empts the remnant case nothing else can fix (watchSeat's own
+       fallback stays out when an iframe exists); the final pass at
+       OBSERVE_MS is unconditional. A genuine fill arriving later still
+       displaces the restored floor via sweep(). */
+    function guard(finalPass) {
+      dedupeFloor();
+      if (genuineFill()) return;
+      var house = stage.querySelector('.nn-house');
+      if (house) {
+        /* a floor that never left can still sit UNDER a later-appended
+           backfill layer (both are absolutely positioned in the stage, so
+           DOM order paints) — re-append it above any empty remnant */
+        if (house.parentNode === stage &&
+            stage.children[stage.children.length - 1] !== house) {
+          stage.appendChild(house);
+        }
+        return;
+      }
+      if (!finalPass && !stage.querySelector('iframe')) return;
+      var wrap = document.createElement('div');
+      wrap.innerHTML = houseHTML();
+      if (wrap.firstChild) stage.appendChild(wrap.firstChild);
+    }
+    setTimeout(function () { guard(false); }, 20000);
+    setTimeout(function () { guard(true); }, OBSERVE_MS);
+    /* the shared loader's own in-fill house fallback (watchSeat) can also
+       land while the stage floor is showing — an identical promo stacked
+       pixel-perfect underneath it. Drop the duplicate so exactly one
+       floor is ever in the stage. Safe by construction: an in-fill house
+       only exists when no genuine fill displaced the stage floor. */
+    function dedupeFloor() {
+      if (!floorHouse()) return;
+      var fill = stage.querySelector('.nn-hero-fill');
+      if (!fill) return;
+      var extra = fill.querySelector('.nn-house');
+      if (extra) extra.parentNode.removeChild(extra);
     }
     var obs = null;
     if (window.MutationObserver) {
@@ -157,6 +218,7 @@
     }
     var iv = setInterval(function () {
       sweep();
+      dedupeFloor();
       if (!resolved && adsenseFilled(ins)) { resolved = true; el.setAttribute('data-hero-resolved', 'adsense'); }
       if (Date.now() - startedAt > OBSERVE_MS) { if (obs) obs.disconnect(); clearInterval(iv); }
     }, 250);

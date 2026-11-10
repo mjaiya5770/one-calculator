@@ -1,6 +1,6 @@
 /* One Calculator service worker — app-shell cache, network-first for pages.
    Calculators keep working offline once visited; ads and APIs are never intercepted. */
-const CACHE = 'onecalculator-v7';
+const CACHE = 'onecalculator-v8';
 const SHELL = [
   '/',
   '/index.html',
