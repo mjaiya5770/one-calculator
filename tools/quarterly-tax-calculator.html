@@ -81,13 +81,16 @@
 <div class="results" id="results">
       <div style="color:var(--muted);font-size:.9rem">Estimated quarterly payment</div>
       <div class="big" id="rQ">$0</div>
-      <table>
+      <p class="verdict" id="verdict"></p>
+<table>
         <tr><td>Self-employment taxable earnings (92.35%)</td><td id="rSEBase">$0</td></tr>
         <tr><td>Self-employment tax (15.3%)</td><td id="rSE">$0</td></tr>
         <tr><td>Federal income tax</td><td id="rInc">$0</td></tr>
         <tr><td>Total annual tax</td><td id="rTot">$0</td></tr>
       </table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Your payment year</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -165,12 +168,37 @@ function calc(){
   document.getElementById('rSE').textContent=fmt(seTax);
   document.getElementById('rInc').textContent=fmt(incTax);
   document.getElementById('rTot').textContent=fmt(total);
+  document.getElementById('verdict').textContent='Estimated total '+fmt(total)+' for the year — '+fmt(total/4)+' per quarter. Setting aside about '+fmt(total/12)+' a month keeps each due date painless.';sigSet(null,sigStripHTML(0,365,[[0,105,'Q1'],[105,166,'Q2'],[166,258,'Q3'],[258,365,'Q4']],[[105,'Due Apr 15'],[166,'Due Jun 15'],[258,'Due Sep 15'],[365,'Due Jan 15']],'Standard federal estimated-tax due dates — when one lands on a weekend or holiday it moves to the next business day. Each quarter here is '+fmt(total/4)+'.'));
   document.getElementById('results').classList.add('show');
 }
 calc();
-</script>
+
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigStripHTML(min,max,segs,markers,note){
+  if(!(max>min))return '';
+  var span=max-min;
+  function pct(v){ return Math.max(0,Math.min(100,(v-min)/span*100)); }
+  var cells=segs.map(function(s,i){
+    return '<span class="sig-strip-seg s-'+String.fromCharCode(97+(i%5))+'" style="left:'+pct(s[0]).toFixed(2)+'%;width:'+Math.max(0,pct(s[1])-pct(s[0])).toFixed(2)+'%"><span class="sig-strip-lab">'+s[2]+'</span></span>';
+  }).join('');
+  var marks=(markers||[]).map(function(mk){
+    return '<span class="sig-strip-mark" style="left:'+pct(mk[0]).toFixed(2)+'%"><span class="sig-strip-mlab">'+mk[1]+'</span></span>';
+  }).join('');
+  var aria=segs.map(function(s){return s[2];}).join('; ');
+  return '<div class="sig-strip" role="img" aria-label="'+aria+'"><div class="sig-strip-track">'+cells+marks+'</div></div>'+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STRIP-END*/</script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>
+<script>document.querySelectorAll('.nn-calc-card input,.nn-calc-card select,.nn-calc-card textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});</script>
 </body>
 </html>

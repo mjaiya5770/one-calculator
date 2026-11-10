@@ -1582,3 +1582,24 @@ html.nn-embed .inv-toolbar{position:static;box-shadow:none;border-top:none}
 .nn-tierchips .seg-btn{min-height:44px}
 .nn-dim-help{font-size:.8rem;color:var(--muted);margin-top:2px}
 @media print{.sig-check{break-inside:avoid}.sig-diagram{max-width:300px}}
+/* P4 signature primitives (Wave P4) */
+.sig-stackbar{display:flex;height:16px;border-radius:8px;overflow:hidden;border:1px solid var(--border);margin:.35rem 0 .5rem}
+.sig-stack-seg{display:block;height:100%}
+.sig-ruler{position:relative;margin:1.15rem 0 .4rem}
+.sig-ruler-track{display:flex;height:14px;border-radius:7px;overflow:visible;border:1px solid var(--border);position:relative}
+.sig-ruler-band{display:block;height:100%;position:relative}
+.sig-ruler-band:first-child{border-radius:7px 0 0 7px}
+.sig-ruler-band:last-child{border-radius:0 7px 7px 0}
+.sig-ruler-lab{position:absolute;top:17px;left:50%;transform:translateX(-50%);font-size:.68rem;color:var(--muted);white-space:nowrap}
+.sig-ruler-mark{position:absolute;top:-5px;width:3px;height:24px;background:var(--ink);border-radius:2px;transform:translateX(-50%);z-index:2}
+.sig-ruler-val{position:absolute;top:-1.35rem;transform:translateX(-50%);font-weight:700;font-size:.85rem;white-space:nowrap}
+.sig-step-n{display:inline-flex;align-items:center;justify-content:center;width:1.25rem;height:1.25rem;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);font-size:.72rem;font-weight:700;flex:none;margin-right:8px}
+.sig-lines{width:100%;height:auto;display:block;margin:.3rem 0}
+.sig-strip{position:relative;margin:1.3rem 0 .5rem}
+.sig-strip-track{position:relative;height:16px;border-radius:8px;background:var(--accent-soft);border:1px solid var(--border)}
+.sig-strip-seg{position:absolute;top:0;height:100%;border-radius:8px}
+.sig-strip-lab{position:absolute;top:19px;left:50%;transform:translateX(-50%);font-size:.68rem;color:var(--muted);white-space:nowrap}
+.sig-strip-mark{position:absolute;top:-5px;width:3px;height:26px;background:var(--ink);border-radius:2px;transform:translateX(-50%);z-index:2}
+.sig-strip-mlab{position:absolute;top:-1.15rem;left:50%;transform:translateX(-50%);font-size:.68rem;font-weight:700;white-space:nowrap}
+.s-e{background:#0ea5a5}
+@media print{.sig-ruler-mark,.sig-strip-mark{background:#000}}

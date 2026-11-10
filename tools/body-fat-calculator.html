@@ -135,7 +135,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Where your body fat sits</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -222,6 +224,40 @@ function bfCategory(sex,bf){
   return 'Obese';
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigRulerHTML(min,max,bands,value,valueLabel,note){
+  if(!(max>min))return '';
+  var span=max-min;
+  var cells=bands.map(function(b,i){
+    var from=i===0?min:bands[i-1][0], to=b[0];
+    var w=Math.max(0,Math.min(100,(to-from)/span*100));
+    return '<span class="sig-ruler-band s-'+String.fromCharCode(97+(i%5))+'" style="width:'+w.toFixed(2)+'%"><span class="sig-ruler-lab">'+b[1]+'</span></span>';
+  }).join('');
+  var pos=Math.max(0,Math.min(100,(value-min)/span*100));
+  return '<div class="sig-ruler" role="img" aria-label="'+valueLabel+'"><div class="sig-ruler-track">'+cells+'<span class="sig-ruler-mark" style="left:'+pos.toFixed(2)+'%"></span></div><div class="sig-ruler-val" style="left:'+pos.toFixed(2)+'%">'+valueLabel+'</div></div>'+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4RULER-END*/
+function sigStackHTML(segs,total,fmt,note){
+  var vis=segs.filter(function(s){return s[1]>0;});
+  if(!vis.length||!(total>0))return '';
+  var bar=vis.map(function(s,i){
+    var pct=Math.max(0,Math.min(100,s[1]/total*100));
+    return '<span class="sig-stack-seg s-'+String.fromCharCode(97+(i%5))+'" style="width:'+pct.toFixed(2)+'%"></span>';
+  }).join('');
+  var leg=vis.map(function(s,i){
+    return '<div class="sig-leg-row"><span class="sig-dot s-'+String.fromCharCode(97+(i%5))+'"></span><span class="sig-leg-label">'+s[0]+'</span><strong>'+fmt(s[1])+' · '+(s[1]/total*100).toFixed(0)+'%</strong></div>';
+  }).join('');
+  return '<div class="sig-stackbar" role="img" aria-label="Composition breakdown">'+bar+'</div>'+leg+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STACK-END*/
 function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function fmt1(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});}
 function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
@@ -232,6 +268,7 @@ function calc(){
   document.getElementById('rMain').textContent=fmt1(bf)+'%';
   document.getElementById('verdict').textContent='Navy-method estimate: '+fmt1(bf)+'% body fat — '+cat+'. That is '+fmt1(fat)+' lb of fat mass and '+fmt1(lean)+' lb of lean mass at '+fmt(wt)+' lb.';
   document.getElementById('rows').innerHTML=row('Body fat',fmt1(bf)+'%')+row('Category',cat)+row('Fat mass',fmt1(fat)+' lb')+row('Lean mass',fmt1(lean)+' lb')+row('Body weight',fmt(wt)+' lb');
+  var __bands=sex==='female'?[[13,'Essential'],[20,'Athletes'],[24,'Fitness'],[31,'Average'],[42,'Obese']]:[[5,'Essential'],[13,'Athletes'],[17,'Fitness'],[24,'Average'],[42,'Obese']];sigSet(null, sigRulerHTML(2,42,__bands,bf,fmt1(bf)+'%','Bands match the category table this calculator uses (U.S. Navy method ranges).')+sigStackHTML([['Fat mass',fat],['Lean mass',lean]],wt,function(n){return fmt1(n)+' lb';},'Fat vs lean mass at '+fmt(wt)+' lb body weight.'));
   document.getElementById('results').classList.add('show');
 }
 

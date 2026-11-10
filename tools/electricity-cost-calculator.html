@@ -143,7 +143,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">From watts to the bill</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -221,6 +223,17 @@ function sv(id){return document.getElementById(id).value;}
 function kwhPerDay(watts,hours){return watts/1000*hours;}
 function costFor(kwh,rate){return kwh*rate;}
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
 function syncPreset(){
@@ -235,6 +248,7 @@ function calc(){
   document.getElementById('rows').innerHTML=row('Energy per day',fmt(day)+' kWh')+row('Cost per day','$'+fmt(costFor(day,rate)))
     +row('Energy per month',fmt(day*30)+' kWh')+row('Cost per month','$'+fmt(costFor(day*30,rate)))
     +row('Energy per year',fmt(day*365)+' kWh')+row('Cost per year','$'+fmt(costFor(day*365,rate)));
+  sigSet(null,sigLadderHTML([['Power draw',fmt(w)+' W'],['Energy per day',fmt(day)+' kWh'],['Cost per day','$'+fmt(costFor(day,rate))],['Cost per month','$'+fmt(costFor(day*30,rate))],['Cost per year','$'+fmt(costFor(day*365,rate))]],'One appliance — a house full of always-on draws is how bills surprise you.'));
   document.getElementById('results').classList.add('show');
 }
 document.getElementById('preset').addEventListener('change',syncPreset);

@@ -151,7 +151,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">The payback curve</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -245,6 +247,27 @@ function evGasCalc(evPrice,gasCarPrice,incentive,mpg,kwh100,gasPrice,elecPrice,m
   return {premium:premium,gasYr:gasYr,evYr:evYr,saveYr:saveYr,be:saveYr>0?premium/saveYr:-1,total:saveYr*years-premium,gasMile:milesPerYr>0?gasYr/milesPerYr:0,evMile:milesPerYr>0?evYr/milesPerYr:0};
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLinesSVG(a,b,labA,labB,fmt){
+  if(!a||a.length<2)return '';
+  function sample(arr){ if(arr.length<=41)return arr; var out=[],step=(arr.length-1)/40; for(var i=0;i<40;i++)out.push(arr[Math.round(i*step)]); out.push(arr[arr.length-1]); return out; }
+  var A=sample(a), B=b&&b.length>1?sample(b):null;
+  var all=B?A.concat(B):A, mn=Math.min.apply(null,all), mx=Math.max.apply(null,all);
+  if(mx<=mn){ mx=mn+1; }
+  function pts(arr){ return arr.map(function(v,i){ var x=(i/(arr.length-1)*284+8).toFixed(1); var y=(138-(v-mn)/(mx-mn)*124).toFixed(1); return x+','+y; }).join(' '); }
+  var last=A[A.length-1];
+  var aria=labA+' ends at '+fmt(last)+(B?'; '+labB+' ends at '+fmt(B[B.length-1]):'');
+  return '<svg class="sig-lines" viewBox="0 0 300 150" role="img" aria-label="'+aria+'"><polyline points="'+pts(A)+'" fill="none" stroke="var(--accent)" stroke-width="2.5"/>'+(B?'<polyline points="'+pts(B)+'" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 3"/>':'')+'</svg><div class="sig-leg-row"><span class="sig-dot s-a"></span><span class="sig-leg-label">'+labA+'</span><strong>'+fmt(last)+'</strong></div>'+(B?'<div class="sig-leg-row"><span class="sig-dot s-b"></span><span class="sig-leg-label">'+labB+'</span><strong>'+fmt(B[B.length-1])+'</strong></div>':'');
+}
+/*P4LINES-END*/
 function calc(){
   var r=evGasCalc(Math.max(0,v('evprice')),Math.max(0,v('gasprice2')),Math.max(0,v('incentive')),Math.max(0,v('mpg')),Math.max(0,v('kwh100')),Math.max(0,v('gasprice')),Math.max(0,v('elecprice')),Math.max(0,v('miles')),Math.max(1,v('years')),Math.max(0,v('maint')));
   document.getElementById('rMain').textContent=r.premium<=0?'EV is cheaper from day one':(r.be>0?'About '+fmt1(r.be)+' years':'No break-even at these inputs');
@@ -253,6 +276,7 @@ function calc(){
     +row('Gas cost per year',money0(r.gasYr)+' ($'+fmt(r.gasMile)+' / mile)')+row('Electricity cost per year',money0(r.evYr)+' ($'+fmt(r.evMile)+' / mile)')
     +row('Total saved per year (incl. maintenance)',money0(r.saveYr))+row('Break-even',r.premium<=0?'Immediate':(r.be>0?fmt1(r.be)+' years':'Beyond horizon'))
     +row('Net position after '+fmt0(v('years'))+' years',money0(r.total));
+  var __yrs=Math.max(1,v('years')),__ev=[],__zero=[];for(var __i=0;__i<=__yrs;__i++){__ev.push(-r.premium+r.saveYr*__i);__zero.push(0);}sigSet(null,sigLinesSVG(__ev,__zero,'EV net position vs gas','Break-even line',function(n){return money0(n);}));
   document.getElementById('results').classList.add('show');
 }
 

@@ -152,7 +152,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">The split, shown</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -244,6 +246,28 @@ function weddingCalc(total,guests){
   return {cats:cats,venue:total*0.45,photo:total*0.12,perGuest:guests>0?total/guests:0};
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigStackHTML(segs,total,fmt,note){
+  var vis=segs.filter(function(s){return s[1]>0;});
+  if(!vis.length||!(total>0))return '';
+  var bar=vis.map(function(s,i){
+    var pct=Math.max(0,Math.min(100,s[1]/total*100));
+    return '<span class="sig-stack-seg s-'+String.fromCharCode(97+(i%5))+'" style="width:'+pct.toFixed(2)+'%"></span>';
+  }).join('');
+  var leg=vis.map(function(s,i){
+    return '<div class="sig-leg-row"><span class="sig-dot s-'+String.fromCharCode(97+(i%5))+'"></span><span class="sig-leg-label">'+s[0]+'</span><strong>'+fmt(s[1])+' · '+(s[1]/total*100).toFixed(0)+'%</strong></div>';
+  }).join('');
+  return '<div class="sig-stackbar" role="img" aria-label="Composition breakdown">'+bar+'</div>'+leg+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STACK-END*/
 function calc(){
   var r=weddingCalc(Math.max(0,v('total')),Math.max(0,v('guests')));
   var res=document.getElementById('results');
@@ -254,6 +278,7 @@ function calc(){
   for(i=0;i<r.cats.length;i++){h+=row(r.cats[i][0]+' ('+fmt0(r.cats[i][2])+'%)',money0(r.cats[i][1]));}
   if(r.perGuest>0){h+=row('Per guest',money0(r.perGuest));}
   document.getElementById('rows').innerHTML=h;
+  var __segs=r.cats.map(function(c){return [c[0],c[1]];});sigSet(null,sigStackHTML(__segs,Math.max(0,v('total')),money0,'Published average shares — your wedding will bend them; the venue-and-catering share is the one to watch.'));
   res.classList.add('show');
 }
 

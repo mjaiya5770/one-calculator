@@ -66,8 +66,10 @@
 
   <div class="card nn-calc-card">
     <div class="row">
-      <div class="field"><label for="units">Units</label><select id="units" onchange="toggleUnits()"><option value="imp">Imperial (ft / in / lbs)</option><option value="met">Metric (cm / kg)</option></select></div>
+      <div class="field"><label for="units">Units</label><select id="units" onchange="toggleUnits(true)"><option value="imp">Imperial (ft / in / lbs)</option><option value="met">Metric (cm / kg)</option></select></div>
+      <div class="field"><label>Mode</label><div class="nn-seg no-print" role="tablist" aria-label="BMI mode"><button type="button" id="bmiModeMine" class="active" onclick="setBmiMode('mine')">My BMI</button><button type="button" id="bmiModeTarget" onclick="setBmiMode('target')">Weight for a target BMI</button></div></div>
     </div>
+    <div class="field" id="bmiTargetField" hidden><label for="targetBmi">Target BMI</label><input id="targetBmi" type="number" value="22" min="10" max="60" step="0.1"></div>
     <div id="impFields">
       <div class="row">
         <div class="field"><label for="ft">Height — feet</label><input id="ft" type="number" value="5" min="0"></div>
@@ -93,11 +95,15 @@
 <div class="results" id="results">
       <div style="color:var(--muted);font-size:.9rem">Your BMI</div>
       <div class="big" id="rBmi">0</div>
+      <p class="verdict" id="verdict"></p>
       <table>
         <tr><td>Category</td><td id="rCat">—</td></tr>
         <tr><td>Healthy weight range for your height</td><td id="rRange">—</td></tr>
+        <tr id="bmiTargetRow" hidden><td id="rTargetLab">Weight at your target BMI</td><td id="rTargetWeight">—</td></tr>
       </table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Where your BMI sits</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -164,32 +170,88 @@
 </section>
 <footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
 <script>
-function toggleUnits(){
-  const met=document.getElementById('units').value==='met';
+/*P4PURE*/
+function bmiMetric(kg,cm){var h=cm/100;return h>0?kg/(h*h):0;}
+function bmiImperial(lbs,totalIn){return totalIn>0?703*lbs/(totalIn*totalIn):0;}
+function bmiCategory(bmi){return bmi<18.5?'Underweight':bmi<25?'Healthy weight':bmi<30?'Overweight':'Obese';}
+function weightForBmiMetric(target,cm){var h=cm/100;return target*h*h;}
+function weightForBmiImperial(target,totalIn){return target*totalIn*totalIn/703;}
+/*P4PURE-END*/
+var UMAP={kg:'kg',cm:'cm',lb:'lbs',ft:'ft',inch:'inch'};
+function convToImp_(){var cm=+document.getElementById(UMAP.cm).value||0,kg=+document.getElementById(UMAP.kg).value||0;var t=cm/2.54,ft=Math.floor(t/12),inch=Math.round((t-ft*12)*10)/10;if(inch>=12){ft+=1;inch=0;}document.getElementById(UMAP.ft).value=ft;document.getElementById(UMAP.inch).value=inch;document.getElementById(UMAP.lb).value=Math.round(kg/0.45359237*10)/10;}
+function convToMet_(){var ft=+document.getElementById(UMAP.ft).value||0,inch=+document.getElementById(UMAP.inch).value||0,lb=+document.getElementById(UMAP.lb).value||0;document.getElementById(UMAP.cm).value=Math.round((ft*12+inch)*2.54*10)/10;document.getElementById(UMAP.kg).value=Math.round(lb*0.45359237*10)/10;}
+var bmiUnitsPrev='imp',bmiMode='mine';
+function toggleUnits(conv){
+  var met=document.getElementById('units').value==='met';
+  var cur=met?'met':'imp';
+  if(conv&&bmiUnitsPrev!==cur){if(met)convToMet_();else convToImp_();}
+  bmiUnitsPrev=cur;
+  try{localStorage.setItem('nnBmiUnits',cur);}catch(e){}
   document.getElementById('impFields').style.display=met?'none':'block';
   document.getElementById('metFields').style.display=met?'block':'none';
+  if(conv)calc();
+}
+function setBmiMode(m){
+  bmiMode=m;
+  document.getElementById('bmiModeMine').classList.toggle('active',m==='mine');
+  document.getElementById('bmiModeTarget').classList.toggle('active',m==='target');
+  document.getElementById('bmiTargetField').hidden=m!=='target';
+  document.getElementById('bmiTargetRow').hidden=m!=='target';
+  calc();
 }
 function calc(){
-  const met=document.getElementById('units').value==='met';
-  let bmi;
+  var met=document.getElementById('units').value==='met';
+  var bmi,rangeTxt,unit;
   if(met){
-    const h=(+document.getElementById('cm').value||0)/100, w=+document.getElementById('kg').value||0;
-    bmi=h>0?w/(h*h):0;
-    const lo=18.5*h*h, hi=24.9*h*h;
-    document.getElementById('rRange').textContent=lo.toFixed(1)+' – '+hi.toFixed(1)+' kg';
+    var cm=+document.getElementById('cm').value||0,kg=+document.getElementById('kg').value||0;
+    bmi=bmiMetric(kg,cm);
+    var lo=18.5*(cm/100)*(cm/100),hi=24.9*(cm/100)*(cm/100);
+    rangeTxt=lo.toFixed(1)+' – '+hi.toFixed(1)+' kg'; unit='kg';
+    var tw=weightForBmiMetric(+document.getElementById('targetBmi').value||0,cm);
   }else{
-    const h=(+document.getElementById('ft').value||0)*12+(+document.getElementById('inch').value||0), w=+document.getElementById('lbs').value||0;
-    bmi=h>0?703*w/(h*h):0;
-    const lo=18.5*h*h/703, hi=24.9*h*h/703;
-    document.getElementById('rRange').textContent=lo.toFixed(1)+' – '+hi.toFixed(1)+' lbs';
+    var ti=(+document.getElementById('ft').value||0)*12+(+document.getElementById('inch').value||0),lbs=+document.getElementById('lbs').value||0;
+    bmi=bmiImperial(lbs,ti);
+    var lo=18.5*ti*ti/703,hi=24.9*ti*ti/703;
+    rangeTxt=lo.toFixed(1)+' – '+hi.toFixed(1)+' lbs'; unit='lbs';
+    var tw=weightForBmiImperial(+document.getElementById('targetBmi').value||0,ti);
   }
-  const cat=bmi<18.5?'Underweight':bmi<25?'Healthy weight':bmi<30?'Overweight':'Obese';
+  var cat=bmiCategory(bmi);
   document.getElementById('rBmi').textContent=bmi.toFixed(1);
   document.getElementById('rCat').textContent=cat;
+  document.getElementById('rRange').textContent=rangeTxt;
+  var tb=+document.getElementById('targetBmi').value||0;
+  document.getElementById('rTargetLab').textContent='Weight at BMI '+tb;
+  document.getElementById('rTargetWeight').textContent=tw>0?tw.toFixed(1)+' '+unit:'—';
+  var bandTxt=cat==='Underweight'?'below 18.5':cat==='Healthy weight'?'18.5–24.9':cat==='Overweight'?'25–29.9':'30 and above';
+  document.getElementById('verdict').textContent='Your BMI of '+bmi.toFixed(1)+' sits in the '+cat+' band ('+bandTxt+'). For your height, the healthy band (18.5–24.9) is '+rangeTxt+'. BMI is a screening measure, not a diagnosis.';
   document.getElementById('results').classList.add('show');
+  sigSet('Where your BMI sits', sigRulerHTML(14,40,[[18.5,'Under 18.5'],[25,'18.5–24.9'],[30,'25–29.9'],[40,'30 +']],bmi,bmi.toFixed(1),'Bands: CDC adult cutoffs — under 18.5 underweight, 18.5–24.9 healthy, 25–29.9 overweight, 30+ obese.'));
 }
+try{var __su=localStorage.getItem('nnBmiUnits');if(__su){document.getElementById('units').value=__su;bmiUnitsPrev=__su;}}catch(e){}
+document.querySelectorAll('.nn-calc-card input,.nn-calc-card select').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});
 toggleUnits();calc();
-</script>
+
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigRulerHTML(min,max,bands,value,valueLabel,note){
+  if(!(max>min))return '';
+  var span=max-min;
+  var cells=bands.map(function(b,i){
+    var from=i===0?min:bands[i-1][0], to=b[0];
+    var w=Math.max(0,Math.min(100,(to-from)/span*100));
+    return '<span class="sig-ruler-band s-'+String.fromCharCode(97+(i%5))+'" style="width:'+w.toFixed(2)+'%"><span class="sig-ruler-lab">'+b[1]+'</span></span>';
+  }).join('');
+  var pos=Math.max(0,Math.min(100,(value-min)/span*100));
+  return '<div class="sig-ruler" role="img" aria-label="'+valueLabel+'"><div class="sig-ruler-track">'+cells+'<span class="sig-ruler-mark" style="left:'+pos.toFixed(2)+'%"></span></div><div class="sig-ruler-val" style="left:'+pos.toFixed(2)+'%">'+valueLabel+'</div></div>'+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4RULER-END*/</script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>

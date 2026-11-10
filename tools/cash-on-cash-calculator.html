@@ -87,13 +87,16 @@
 <div class="results" id="results">
       <div style="color:var(--muted);font-size:.9rem">Cash-on-cash return</div>
       <div class="big" id="rCoc">0%</div>
-      <table>
+      <p class="verdict" id="verdict"></p>
+<table>
         <tr><td>Down payment</td><td id="rDown">$0</td></tr>
         <tr><td>Total cash invested</td><td id="rInvested">$0</td></tr>
         <tr><td>Annual pre-tax cash flow</td><td id="rFlow">$0</td></tr>
         <tr><td>Monthly cash flow</td><td id="rMonthly">$0</td></tr>
       </table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">How the return is built</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -176,12 +179,25 @@ function calc(){
   document.getElementById('rInvested').textContent=fmt(invested);
   document.getElementById('rFlow').textContent=fmt(cashflow);
   document.getElementById('rMonthly').textContent=fmt(cashflow/12);
+  document.getElementById('verdict').textContent='Your '+fmt(invested)+' of cash in returns '+fmt(cashflow)+' a year — a '+coc.toFixed(2)+'% cash-on-cash return, '+fmt(cashflow/12)+' a month.';sigSet(null,sigLadderHTML([['Down payment',fmt(down)],['+ closing costs',fmt(closing)],['= cash invested',fmt(invested)],['Annual cash flow',fmt(cashflow)],['Cash-on-cash return',coc.toFixed(2)+'%']],null));
   document.getElementById('results').classList.add('show');
 }
 calc();
+
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
 </script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>
+<script>document.querySelectorAll('.nn-calc-card input,.nn-calc-card select,.nn-calc-card textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});</script>
 </body>
 </html>

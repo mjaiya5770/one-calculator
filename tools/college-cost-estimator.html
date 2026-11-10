@@ -143,7 +143,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">The cost, year by year</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -244,6 +246,19 @@ function collegeCalc(annual,yearsUntil,inflPct,yearsEnrolled,savings,retPct){
   return {costs:costs,total:total,fvSavings:fv,gap:gap,monthly:pmt};
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigHBarHTML(items){var mx=0,i;for(i=0;i<items.length;i++){if(items[i][1]>mx)mx=items[i][1];}if(!(mx>0))mx=1;var h='<div class="sig-hbars">';for(i=0;i<items.length;i++){var p=Math.max(2,items[i][1]/mx*100);h+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+items[i][0]+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'" style="width:'+p.toFixed(1)+'%"></span></span><strong>'+items[i][2]+'</strong></div>';}return h+'</div>';}
+
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
   var r=collegeCalc(Math.max(0,v('annual')),Math.max(0,v('yrs')),Math.max(0,v('infl')),Math.max(1,v('enrolled')),Math.max(0,v('savings')),Math.max(0,v('ret')));
   var res=document.getElementById('results');
@@ -253,6 +268,7 @@ function calc(){
   document.getElementById('rows').innerHTML=row('First-year cost at enrollment',money0(r.costs[0]))+row('Total for '+fmt0(v('enrolled'))+' years',money0(r.total))
     +row('Savings grown to enrollment',money0(r.fvSavings))+row('Gap to close',money0(r.gap))+row('Monthly deposit that closes it',money0(r.monthly));
   document.getElementById('collegeBody').innerHTML=r.costs.map(function(c,i){return '<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">Year '+(i+1)+'</td><td style="padding:6px 8px">'+money0(c)+'</td></tr>';}).join('');
+  var __bars=r.costs.slice(0,12).map(function(c,i){return ['Year '+(i+1),c,money0(c)];});sigSet(null,sigHBarHTML(__bars)+sigLadderHTML([['Savings grown by enrollment',money0(r.fvSavings)],['Gap to close',money0(r.gap)],['Monthly deposit that closes it',money0(r.monthly)]],'Costs inflate every year of the program — the later years cost more than the first.'));
   res.classList.add('show');
 }
 

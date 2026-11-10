@@ -79,13 +79,16 @@
 <div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
 <p class="nn-embed-link no-print"><a href="../embed.html#time-duration-calculator">Embed this calculator on your site — free</a></p>
 <div class="results show" style="margin-top:.75rem">
+<p class="verdict" id="verdict"></p>
       <div style="color:var(--muted);font-size:.9rem">Duration</div>
       <div class="big" id="rDur">—</div>
       <table>
         <tr><td>Total minutes</td><td id="rMin">—</td></tr>
         <tr><td>Decimal hours</td><td id="rDec">—</td></tr>
       </table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">On the clock</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -186,6 +189,8 @@ function between(){
   document.getElementById('rDur').textContent=fmtDur(d);
   document.getElementById('rMin').textContent=d+' minutes';
   document.getElementById('rDec').textContent=(d/60).toFixed(2)+' hrs';
+
+  var __s=toMin(s),__e=__s+d;document.getElementById('verdict').textContent='From '+s+' to '+e+' is '+fmtDur(d)+' — '+d+' minutes, or '+(d/60).toFixed(2)+' decimal hours.';sigSet(null,sigStripHTML(0,Math.max(1440,__e),[[__s,__e,'Duration']],[[__s,'Start '+s],[__e,'End '+e]],'Durations that run past midnight wrap into the next day.'));
 }
 function addSub(op){
   const a=(+document.getElementById('d1h').value||0)*60+(+document.getElementById('d1m').value||0),
@@ -197,7 +202,30 @@ function addSub(op){
 document.getElementById('start').addEventListener('change',between);
 document.getElementById('end').addEventListener('change',between);
 between();
-</script>
+
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigStripHTML(min,max,segs,markers,note){
+  if(!(max>min))return '';
+  var span=max-min;
+  function pct(v){ return Math.max(0,Math.min(100,(v-min)/span*100)); }
+  var cells=segs.map(function(s,i){
+    return '<span class="sig-strip-seg s-'+String.fromCharCode(97+(i%5))+'" style="left:'+pct(s[0]).toFixed(2)+'%;width:'+Math.max(0,pct(s[1])-pct(s[0])).toFixed(2)+'%"><span class="sig-strip-lab">'+s[2]+'</span></span>';
+  }).join('');
+  var marks=(markers||[]).map(function(mk){
+    return '<span class="sig-strip-mark" style="left:'+pct(mk[0]).toFixed(2)+'%"><span class="sig-strip-mlab">'+mk[1]+'</span></span>';
+  }).join('');
+  var aria=segs.map(function(s){return s[2];}).join('; ');
+  return '<div class="sig-strip" role="img" aria-label="'+aria+'"><div class="sig-strip-track">'+cells+marks+'</div></div>'+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STRIP-END*/</script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>

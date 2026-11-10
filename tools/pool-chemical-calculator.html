@@ -167,7 +167,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Dose in this order</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -255,6 +257,17 @@ function poolCalc(gal,curFc,tgtFc,curTa,tgtTa,curPh,tgtPh,shock){
   return {fc:fc,shockLb:shockLb,ta:ta,acid:acid,soda:soda};
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
   var r=poolCalc(Math.max(0,v('gal')),Math.max(0,v('curfc')),Math.max(0,v('tgtfc')),Math.max(0,v('curta')),Math.max(0,v('tgtta')),Math.max(0,v('curph')),Math.max(0,v('tgtph')),sv('shock')==='1');
   var tub=sv('mode')==='tub', res=document.getElementById('results');
@@ -268,6 +281,7 @@ function calc(){
   if(r.soda>0){h+=row('Soda ash (raise pH, approximate)',fmt1(r.soda)+' oz');}
   if(r.acid===0&&r.soda===0){h+=row('pH adjustment','None needed at these readings');}
   document.getElementById('rows').innerHTML=h;
+  var __ph=r.acid>0?['2 · Lower pH — muriatic acid',fmt1(r.acid)+' fl oz']:r.soda>0?['2 · Raise pH — soda ash',fmt1(r.soda)+' oz']:['2 · pH','No adjustment needed'];var __steps=[['1 · Alkalinity first — baking soda',fmt1(r.ta)+' lb'],__ph,['3 · Chlorine — liquid 12.5%',fmt1(r.fc)+' fl oz']];if(r.shockLb>0)__steps.push(['Shock — cal-hypo 65%',fmt1(r.shockLb)+' lb']);sigSet(null,sigLadderHTML(__steps,'Order matters: alkalinity buffers the water first, pH moves at ¾ of the printed figure, and chlorine holds once the first two are set. Retest before redosing.'))
   res.classList.add('show');
 }
 

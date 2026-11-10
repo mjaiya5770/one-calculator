@@ -143,7 +143,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">The range, placed</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -233,6 +235,17 @@ function ttCalc(views,qualPct,low,mid,high){
   return {qualified:views*Math.min(100,Math.max(0,qualPct))/100,low:k*low,mid:k*mid,high:k*high,year:k*mid*12};
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigRailHTML(lo,mid,hi,fmtFn){var span=(hi*1.08)-(lo*0.92);if(!(span>0)){span=1;}var lp=((lo-lo*0.92)/span*100),mp=((mid-lo*0.92)/span*100),wp=((hi-lo)/span*100);var h='<div class="sig-rail" role="img" aria-label="Planning range '+fmtFn(lo)+' to '+fmtFn(hi)+', midpoint '+fmtFn(mid)+'"><span class="sig-rail-band" style="left:'+lp.toFixed(1)+'%;width:'+wp.toFixed(1)+'%"></span><span class="sig-rail-mid" style="left:'+mp.toFixed(1)+'%"></span><span class="sig-rail-lab sig-rail-lo" style="left:'+lp.toFixed(1)+'%">'+fmtFn(lo)+'</span><span class="sig-rail-lab sig-rail-midlab" style="left:'+mp.toFixed(1)+'%">mid '+fmtFn(mid)+'</span><span class="sig-rail-lab sig-rail-hi" style="left:'+(lp+wp).toFixed(1)+'%">'+fmtFn(hi)+'</span></div>';return h;}
+
 function rateRange(){
   var r=sv('rate');
   if(r==='custom'){var m=Math.max(0,v('customrate'));return [m*0.6,m,m*1.4];}
@@ -248,6 +261,7 @@ function calc(){
     +row('Rate used (low / mid / high)','$'+fmt(r[0])+' / $'+fmt(r[1])+' / $'+fmt(r[2])+' per 1,000')
     +row('Monthly — low estimate',money0(e.low))+row('Monthly — mid estimate',money0(e.mid))+row('Monthly — high estimate',money0(e.high))
     +row('Yearly at mid',money0(e.year));
+  sigSet(null, sigRailHTML(e.low,e.mid,e.high,money0));
   document.getElementById('results').classList.add('show');
 }
 

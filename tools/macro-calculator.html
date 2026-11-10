@@ -144,7 +144,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Your macro split</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -223,6 +225,34 @@ var MACRO_SPLITS={balanced:[30,40,30],highprotein:[40,30,30],lowcarb:[35,20,45],
 function macroGrams(calories,splitKey){var s=MACRO_SPLITS[splitKey];if(!s||!(calories>0))return null;return{protein:calories*s[0]/100/4,carbs:calories*s[1]/100/4,fat:calories*s[2]/100/9,pct:s};}
 function mifflinBmr(sex,kg,cm,age){return 10*kg+6.25*cm-5*age+(sex==='female'?-161:5);}
 /*PURE-END*/
+function syncMacroMode(){
+  var tdee=sv('mode')==='tdee';
+  ['sex2','age','wtkg','htcm','act','goal'].forEach(function(id){var el=document.getElementById(id);var f=el&&el.closest?el.closest('.field'):null;if(f)f.hidden=!tdee;});
+  var c=document.getElementById('cal');var cf=c&&c.closest?c.closest('.field'):null;if(cf)cf.hidden=tdee;
+}
+/*P4GATE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigStackHTML(segs,total,fmt,note){
+  var vis=segs.filter(function(s){return s[1]>0;});
+  if(!vis.length||!(total>0))return '';
+  var bar=vis.map(function(s,i){
+    var pct=Math.max(0,Math.min(100,s[1]/total*100));
+    return '<span class="sig-stack-seg s-'+String.fromCharCode(97+(i%5))+'" style="width:'+pct.toFixed(2)+'%"></span>';
+  }).join('');
+  var leg=vis.map(function(s,i){
+    return '<div class="sig-leg-row"><span class="sig-dot s-'+String.fromCharCode(97+(i%5))+'"></span><span class="sig-leg-label">'+s[0]+'</span><strong>'+fmt(s[1])+' · '+(s[1]/total*100).toFixed(0)+'%</strong></div>';
+  }).join('');
+  return '<div class="sig-stackbar" role="img" aria-label="Composition breakdown">'+bar+'</div>'+leg+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STACK-END*/
 function fmt(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function fmt1(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});}
 function fmt0(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});}
@@ -238,6 +268,7 @@ function calc(){
   var rows=row('Daily calories',fmt0(cal)+' kcal')+row('Protein ('+g.pct[0]+'%)',fmt1(g.protein)+' g')+row('Carbs ('+g.pct[1]+'%)',fmt1(g.carbs)+' g')+row('Fat ('+g.pct[2]+'%)',fmt1(g.fat)+' g');
   if(sv('mode')==='tdee')rows+=row('BMR (Mifflin–St Jeor)',fmt0(mifflinBmr(sv('sex2'),v('wtkg'),v('htcm'),v('age')))+' kcal')+row('TDEE before goal adjustment',fmt0(mifflinBmr(sv('sex2'),v('wtkg'),v('htcm'),v('age'))*(+sv('act')))+' kcal');
   document.getElementById('rows').innerHTML=rows;
+  sigSet(null, sigStackHTML([['Protein',g.protein*4],['Carbs',g.carbs*4],['Fat',g.fat*9]],cal,function(n){return fmt0(n)+' kcal';},'≈ '+fmt1(g.protein)+' g protein · '+fmt1(g.carbs)+' g carbs · '+fmt1(g.fat)+' g fat per day.'));
   document.getElementById('results').classList.add('show');
 }
 document.getElementById('mode').addEventListener('change',function(){syncMode();calc();});
@@ -245,7 +276,7 @@ syncMode();
 
 function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
 
-live(); calc();
+document.getElementById('mode').addEventListener('change',syncMacroMode);syncMacroMode();live(); calc();
 
 </script>
 

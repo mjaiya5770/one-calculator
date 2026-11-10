@@ -140,7 +140,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Your week, day by day</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -249,8 +251,32 @@ function weekSplit(days,rate,dailyOn,weeklyOn){
   return{perDay:per,totalHours:total,regularHours:reg,dailyOT:dot,weeklyOT:wot,otHours:ot,regularPay:reg*rate,otPay:ot*rate*1.5,gross:reg*rate+ot*rate*1.5};
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigHBarHTML(items){var mx=0,i;for(i=0;i<items.length;i++){if(items[i][1]>mx)mx=items[i][1];}if(!(mx>0))mx=1;var h='<div class="sig-hbars">';for(i=0;i<items.length;i++){var p=Math.max(2,items[i][1]/mx*100);h+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+items[i][0]+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'" style="width:'+p.toFixed(1)+'%"></span></span><strong>'+items[i][2]+'</strong></div>';}return h+'</div>';}
+
+function sigStackHTML(segs,total,fmt,note){
+  var vis=segs.filter(function(s){return s[1]>0;});
+  if(!vis.length||!(total>0))return '';
+  var bar=vis.map(function(s,i){
+    var pct=Math.max(0,Math.min(100,s[1]/total*100));
+    return '<span class="sig-stack-seg s-'+String.fromCharCode(97+(i%5))+'" style="width:'+pct.toFixed(2)+'%"></span>';
+  }).join('');
+  var leg=vis.map(function(s,i){
+    return '<div class="sig-leg-row"><span class="sig-dot s-'+String.fromCharCode(97+(i%5))+'"></span><span class="sig-leg-label">'+s[0]+'</span><strong>'+fmt(s[1])+' · '+(s[1]/total*100).toFixed(0)+'%</strong></div>';
+  }).join('');
+  return '<div class="sig-stackbar" role="img" aria-label="Composition breakdown">'+bar+'</div>'+leg+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STACK-END*/
 var DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
-var DEFAULTS=[['9:00','17:30',30],['9:00','17:30',30],['9:00','19:00',30],['22:00','6:00',30],['9:00','17:00',30],['','',0],['','',0]];
+var DEFAULTS=[['09:00','17:30',30],['09:00','17:30',30],['09:00','19:00',30],['22:00','06:00',30],['09:00','17:00',30],['','',0],['','',0]];
 function dayRowHTML(i){
   return '<div class="row"><div class="field"><label for="in-'+i+'">'+DAYS[i]+' — clock in</label><input id="in-'+i+'" type="time" value="'+DEFAULTS[i][0]+'"></div>'
     +'<div class="field"><label for="out-'+i+'">Clock out</label><input id="out-'+i+'" type="time" value="'+DEFAULTS[i][1]+'"></div>'
@@ -267,6 +293,7 @@ function calc(){
   document.getElementById('rows').innerHTML=row('Total hours',fmt(w.totalHours))+row('Regular hours',fmt(w.regularHours))+row('Daily overtime hours',fmt(w.dailyOT))
     +row('Weekly overtime hours',fmt(w.weeklyOT))+row('Regular pay ('+fmt(rate)+'×/h)','$'+fmt(w.regularPay))+row('Overtime pay (1.5×)','$'+fmt(w.otPay))+row('Gross pay','$'+fmt(w.gross));
   db.innerHTML=w.perDay.map(function(d,i){return '<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">'+DAYS[i]+'</td><td style="padding:6px 8px">'+(d.hours>0?fmtH(d.hours):'—')+'</td><td style="padding:6px 8px">'+(d.hours>0?fmt(d.regular):'—')+'</td><td style="padding:6px 8px">'+(d.hours>0?fmt(d.dailyOT+d.weeklyOT):'—')+'</td></tr>';}).join('');
+  var __bars=w.perDay.map(function(d,i){return [DAYS[i].slice(0,3),d.hours,fmt(d.hours)+' h'];});sigSet(null,sigHBarHTML(__bars)+sigStackHTML([['Regular pay',w.regularPay],['Overtime pay',w.otPay]],w.gross,function(n){return money(n);},'Gross pay split — overtime hours pay 1.5× under the rules you selected above.'));
   document.getElementById('results').classList.add('show');
 }
 document.getElementById('dayRows').innerHTML=DAYS.map(function(_,i){return dayRowHTML(i);}).join('');

@@ -149,7 +149,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Cumulative cost, year by year</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -256,6 +258,27 @@ function rentVsBuy(o){
   return {rows:rows,breakEven:breakEven,buyTotal:last.buyCost,rentTotal:last.rentCost,payment:pay};
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLinesSVG(a,b,labA,labB,fmt){
+  if(!a||a.length<2)return '';
+  function sample(arr){ if(arr.length<=41)return arr; var out=[],step=(arr.length-1)/40; for(var i=0;i<40;i++)out.push(arr[Math.round(i*step)]); out.push(arr[arr.length-1]); return out; }
+  var A=sample(a), B=b&&b.length>1?sample(b):null;
+  var all=B?A.concat(B):A, mn=Math.min.apply(null,all), mx=Math.max.apply(null,all);
+  if(mx<=mn){ mx=mn+1; }
+  function pts(arr){ return arr.map(function(v,i){ var x=(i/(arr.length-1)*284+8).toFixed(1); var y=(138-(v-mn)/(mx-mn)*124).toFixed(1); return x+','+y; }).join(' '); }
+  var last=A[A.length-1];
+  var aria=labA+' ends at '+fmt(last)+(B?'; '+labB+' ends at '+fmt(B[B.length-1]):'');
+  return '<svg class="sig-lines" viewBox="0 0 300 150" role="img" aria-label="'+aria+'"><polyline points="'+pts(A)+'" fill="none" stroke="var(--accent)" stroke-width="2.5"/>'+(B?'<polyline points="'+pts(B)+'" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 3"/>':'')+'</svg><div class="sig-leg-row"><span class="sig-dot s-a"></span><span class="sig-leg-label">'+labA+'</span><strong>'+fmt(last)+'</strong></div>'+(B?'<div class="sig-leg-row"><span class="sig-dot s-b"></span><span class="sig-leg-label">'+labB+'</span><strong>'+fmt(B[B.length-1])+'</strong></div>':'');
+}
+/*P4LINES-END*/
 function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
 function calc(){
   var o={price:v('price'),down:v('down'),rate:v('rate'),termYears:v('term'),stayYears:Math.max(1,Math.round(v('stay'))),rent:v('rent'),rentGrowth:v('rentG'),appr:v('appr'),taxPct:v('taxPct'),ins:v('ins'),maintPct:v('maint'),opp:v('opp'),closingPct:v('closing'),sellingPct:v('selling')};
@@ -273,6 +296,7 @@ function calc(){
   document.getElementById('rbRows').innerHTML=res.rows.map(function(rw){
     return '<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">'+rw.year+'</td><td style="padding:6px 8px">'+fmt(rw.buyCost)+'</td><td style="padding:6px 8px">'+fmt(rw.rentCost)+'</td><td style="padding:6px 8px">'+(rw.buyCost<=rw.rentCost?'Buying':'Renting')+'</td></tr>';
   }).join('');
+  var __b=[0].concat(res.rows.map(function(rw){return rw.buyCost;})),__r=[0].concat(res.rows.map(function(rw){return rw.rentCost;}));sigSet(null,sigLinesSVG(__b,__r,'Buying (cumulative net cost)','Renting (cumulative rent)',function(n){return fmt(n);}));
   document.getElementById('results').classList.add('show');
 }
 

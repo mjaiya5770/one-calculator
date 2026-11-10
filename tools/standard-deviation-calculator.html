@@ -127,7 +127,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">How the spread is built</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -227,6 +229,52 @@ function freqList(arr){
   return Object.keys(freq).map(function(k){return [+k,freq[k]];}).sort(function(a,b){return a[0]-b[0];});
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigStepsHTML(steps,note){
+  if(!steps.length)return '';
+  var rows=steps.map(function(s,i){
+    return '<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-step-n">'+(i+1)+'</span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';
+  }).join('');
+  return rows+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STEPS-END*/
+function sigStripHTML(min,max,segs,markers,note){
+  if(!(max>min))return '';
+  var span=max-min;
+  function pct(v){ return Math.max(0,Math.min(100,(v-min)/span*100)); }
+  var cells=segs.map(function(s,i){
+    return '<span class="sig-strip-seg s-'+String.fromCharCode(97+(i%5))+'" style="left:'+pct(s[0]).toFixed(2)+'%;width:'+Math.max(0,pct(s[1])-pct(s[0])).toFixed(2)+'%"><span class="sig-strip-lab">'+s[2]+'</span></span>';
+  }).join('');
+  var marks=(markers||[]).map(function(mk){
+    return '<span class="sig-strip-mark" style="left:'+pct(mk[0]).toFixed(2)+'%"><span class="sig-strip-mlab">'+mk[1]+'</span></span>';
+  }).join('');
+  var aria=segs.map(function(s){return s[2];}).join('; ');
+  return '<div class="sig-strip" role="img" aria-label="'+aria+'"><div class="sig-strip-track">'+cells+marks+'</div></div>'+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STRIP-END*/
+/*P4PURE2*/
+function pointsSteps(earned,poss,finalPts,targetPct){
+  var total=poss+finalPts,targetPts=targetPct/100*total,need=targetPts-earned;
+  var pct=finalPts>0?need/finalPts*100:NaN;
+  return [['Class total after the final',''+total],
+          [targetPct+'% of '+total+' points',''+targetPts],
+          [targetPts+' − '+earned+' already earned',''+need],
+          [need+' of '+finalPts+' final points',pct.toFixed(1)+'%']];
+}
+function statsSteps(arr){
+  var st=dataStats(arr);if(!st)return [];
+  var ss=0;for(var i=0;i<arr.length;i++)ss+=(arr[i]-st.mean)*(arr[i]-st.mean);
+  return [['sum',st.sum],['mean',st.mean],['ss',ss],['popVar',st.popVar],['popSD',st.popSD]];
+}
+/*P4PURE2-END*/
 function fmt(n,d){return n.toLocaleString('en-US',{minimumFractionDigits:d===undefined?0:d,maximumFractionDigits:d===undefined?4:d});}
 function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
 function calc(){
@@ -243,6 +291,7 @@ function calc(){
   fl.slice(0,60).forEach(function(p){html+='<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 8px">'+fmt(p[0])+'</td><td style="padding:6px 8px">'+p[1]+'</td><td style="padding:6px 8px">'+(p[1]/st.n*100).toFixed(1)+'%</td></tr>';});
   if(fl.length>60)html+='<tr><td colspan="3" style="padding:6px 8px;color:var(--muted)">…and '+(fl.length-60)+' more distinct values.</td></tr>';
   document.getElementById('freqBody').innerHTML=html;
+  var __ss=statsSteps(arr);var __steps=__ss.map(function(p,i){return [p[0]==='sum'?'Add up all '+st.n+' values':p[0]==='mean'?'Mean = sum ÷ '+st.n:p[0]==='ss'?'Σ(x − mean)² — squared distances added':p[0]==='popVar'?'Variance = Σ ÷ '+st.n+' (population)':'σ = √variance',fmt(p[1])];});sigSet(null,sigStepsHTML(__steps,'Sample statistics (s) divide by n − 1 instead — both are in the table above.')+sigStripHTML(st.min,st.max,[[Math.max(st.min,st.mean-st.popSD),Math.min(st.max,st.mean+st.popSD),'Mean ± σ']],[[st.mean,'Mean '+fmt(st.mean)]],'The band holds the typical spread around the mean; the strip runs from your smallest to largest value.'));
   document.getElementById('results').classList.add('show');
 }
 document.getElementById('csvFile').addEventListener('change',function(){

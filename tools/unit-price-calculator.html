@@ -103,7 +103,9 @@
         <tr><td>Product B unit price</td><td id="rB">—</td></tr>
         <tr><td>Savings vs the other</td><td id="rPct">—</td></tr>
       </table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Unit prices, side by side</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -199,9 +201,21 @@ function calc(){
   document.getElementById('rA').textContent=uprice(ua_)+' / '+base;
   document.getElementById('rB').textContent=uprice(ub_)+' / '+base;
   document.getElementById('rPct').textContent=pct;
+  sigSet(null,sigHBarHTML([['Product A',isFinite(ua_)?ua_:0,isFinite(ua_)?uprice(ua_)+' / '+base:'—'],['Product B',isFinite(ub_)?ub_:0,isFinite(ub_)?uprice(ub_)+' / '+base:'—']],'Lower is better — the shorter bar is the cheaper way to buy the same amount.'));
   box.classList.add('show');
 }
 calc();
+
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigHBarHTML(items){var mx=0,i;for(i=0;i<items.length;i++){if(items[i][1]>mx)mx=items[i][1];}if(!(mx>0))mx=1;var h='<div class="sig-hbars">';for(i=0;i<items.length;i++){var p=Math.max(2,items[i][1]/mx*100);h+='<div class="sig-hbar-row"><span class="sig-hbar-label">'+items[i][0]+'</span><span class="sig-hbar"><span class="sig-hbar-fill s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'" style="width:'+p.toFixed(1)+'%"></span></span><strong>'+items[i][2]+'</strong></div>';}return h+'</div>';}
 </script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

@@ -64,9 +64,11 @@
   <p class="lede">Find the sale price, your total savings, and the final cost with tax — before you reach the register.</p>
 
   <div class="card nn-calc-card">
+    <div class="nn-seg no-print" role="tablist" aria-label="Discount mode"><button type="button" id="discModeSale" class="active" onclick="setDiscMode('sale')">Sale price</button><button type="button" id="discModePct" onclick="setDiscMode('pct')">% off</button><button type="button" id="discModeOrig" onclick="setDiscMode('orig')">Original price</button></div>
     <div class="row">
       <div class="field"><label for="price">Original price ($)</label><input id="price" type="number" value="120" min="0" step="0.01"></div>
       <div class="field"><label for="disc">Discount (%)</label><input id="disc" type="number" value="25" min="0" max="100" step="0.01"></div>
+      <div class="field" id="discSaleField" hidden><label for="saleIn">Sale price ($)</label><input id="saleIn" type="number" value="90" min="0" step="0.01"></div>
     </div>
     <div class="field"><label for="tax">Sales tax (%)</label><input id="tax" type="number" value="0" min="0" step="0.01"><div class="hint">Optional — added after the discount, like most stores do.</div></div>
     <button class="btn" onclick="calc()">Calculate discount</button>
@@ -81,12 +83,15 @@
 <div class="results" id="results">
       <div style="color:var(--muted);font-size:.9rem">Sale price</div>
       <div class="big" id="rSale">$0</div>
-      <table>
+      <p class="verdict" id="verdict"></p>
+<table>
         <tr><td>You save</td><td id="rSave">$0</td></tr>
         <tr><td>Discount amount</td><td id="rDisc">$0</td></tr>
         <tr><td>Price with tax</td><td id="rTotal">$0</td></tr>
       </table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Price vs savings</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -154,17 +159,65 @@
 <script>
 function fmt(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2});}
 function calc(){
-  const price=+document.getElementById('price').value||0,
-        disc=Math.min(Math.max(+document.getElementById('disc').value||0,0),100),
-        tax=+document.getElementById('tax').value||0;
-  const saveAmt=price*disc/100, sale=price-saveAmt, total=sale*(1+tax/100);
-  document.getElementById('rSale').textContent=fmt(sale);
-  document.getElementById('rSave').textContent=fmt(saveAmt);
-  document.getElementById('rDisc').textContent=disc.toFixed(2).replace(/\.?0+$/,'')+'% off';
-  document.getElementById('rTotal').textContent=fmt(total);
+  var price=+document.getElementById('price').value||0,
+      disc=+document.getElementById('disc').value||0,
+      saleIn=+document.getElementById('saleIn').value||0,
+      tax=+document.getElementById('tax').value||0;
+  var r=discountSolve(discMode,price,disc,saleIn,tax);
+  document.getElementById('rSale').textContent=fmt(r.sale);
+  document.getElementById('rSave').textContent=fmt(r.orig-r.sale);
+  document.getElementById('rDisc').textContent=discStr(r.disc);
+  document.getElementById('rTotal').textContent=fmt(r.total);
+  document.getElementById('verdict').textContent='You pay '+fmt(r.sale)+' and save '+fmt(r.orig-r.sale)+' ('+discStr(r.disc)+') off the '+fmt(r.orig)+' original'+(tax>0?' — '+fmt(r.total)+' with tax.':'.');
   document.getElementById('results').classList.add('show');
+  sigSet(null,sigStackHTML([['You pay',r.sale],['You save',r.orig-r.sale]],r.orig,fmt,'The original price, split into what leaves your pocket and what stays in it.'));
 }
 calc();
+
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigStackHTML(segs,total,fmt,note){
+  var vis=segs.filter(function(s){return s[1]>0;});
+  if(!vis.length||!(total>0))return '';
+  var bar=vis.map(function(s,i){
+    var pct=Math.max(0,Math.min(100,s[1]/total*100));
+    return '<span class="sig-stack-seg s-'+String.fromCharCode(97+(i%5))+'" style="width:'+pct.toFixed(2)+'%"></span>';
+  }).join('');
+  var leg=vis.map(function(s,i){
+    return '<div class="sig-leg-row"><span class="sig-dot s-'+String.fromCharCode(97+(i%5))+'"></span><span class="sig-leg-label">'+s[0]+'</span><strong>'+fmt(s[1])+' · '+(s[1]/total*100).toFixed(0)+'%</strong></div>';
+  }).join('');
+  return '<div class="sig-stackbar" role="img" aria-label="Composition breakdown">'+bar+'</div>'+leg+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STACK-END*/
+/*P4PURE*/
+function discountSolve(mode,price,disc,sale,tax){
+  var orig,sp,dp;
+  if(mode==='sale'){orig=price;sp=price*(1-disc/100);dp=disc;}
+  else if(mode==='pct'){orig=price;sp=sale;dp=price>0?(1-sale/price)*100:0;}
+  else {orig=disc<100?sale/(1-disc/100):0;sp=sale;dp=disc;}
+  return {orig:orig,sale:sp,disc:dp,total:sp*(1+tax/100)};
+}
+function discStr(d){var s=d.toFixed(2);if(s.indexOf('.')>=0){s=s.replace(/0+$/,'').replace(/\.$/,'');}return s+'% off';}
+/*P4PURE-END*/
+var discMode='sale';
+function setDiscMode(m){
+  discMode=m;
+  document.getElementById('discModeSale').classList.toggle('active',m==='sale');
+  document.getElementById('discModePct').classList.toggle('active',m==='pct');
+  document.getElementById('discModeOrig').classList.toggle('active',m==='orig');
+  var pf=document.getElementById('price').closest('.field');if(pf)pf.hidden=(m==='orig');
+  var df=document.getElementById('disc').closest('.field');if(df)df.hidden=(m==='pct');
+  document.getElementById('discSaleField').hidden=(m==='sale');
+  calc();
+}
+document.querySelectorAll('.nn-calc-card input').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});
 </script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>

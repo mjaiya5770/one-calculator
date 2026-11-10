@@ -163,7 +163,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">How the load is built</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -249,6 +251,17 @@ function snowCalc(pg,ce,ct,isF,pitchDeg,slippery,area){
   return {pf:pf,cs:cs,ps:ps,gamma:gamma,depth:gamma>0?ps/gamma*12:0,totalLb:ps*area,tons:ps*area/2000};
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
   var r=snowCalc(Math.max(0,v('pg')),+sv('ce'),+sv('ct'),+sv('imp'),Math.max(0,v('pitch')),sv('slip')==='1',Math.max(0,v('area')));
   var res=document.getElementById('results');
@@ -256,6 +269,7 @@ function calc(){
   document.getElementById('rMain').textContent=fmt1(r.ps)+' psf — '+fmt1(r.tons)+' tons on this roof';
   document.getElementById('verdict').textContent='Flat-roof design load '+fmt1(r.pf)+' psf; slope factor '+fmt(r.cs)+' brings the sloped load to '+fmt1(r.ps)+' psf. That equals about '+fmt1(r.depth)+' in of settled snow at code density.';
   document.getElementById('rows').innerHTML=row('Flat-roof load pf',fmt1(r.pf)+' psf')+row('Slope factor Cs',fmt(r.cs))+row('Sloped-roof load ps',fmt1(r.ps)+' psf')+row('Snow density (code line)',fmt1(r.gamma)+' lb/ft³')+row('Total weight at design load',fmt0(r.totalLb)+' lb ('+fmt1(r.tons)+' tons)')+row('Equivalent settled depth',fmt1(r.depth)+' in');
+  sigSet(null,sigLadderHTML([['Ground snow load (pg)',fmt1(Math.max(0,v('pg')))+' psf'],['Flat-roof load (pf)',fmt1(r.pf)+' psf'],['× slope factor Cs '+fmt(r.cs),fmt1(r.ps)+' psf'],['Total on this roof',fmt1(r.tons)+' tons'],['= settled snow depth',fmt1(r.depth)+' in']],'ASCE 7 method — flat-roof load first, then the slope factor for your pitch and surface.'))
   res.classList.add('show');
 }
 

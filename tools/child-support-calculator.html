@@ -160,7 +160,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">How the estimate is built</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -255,6 +257,30 @@ function childSupportCalc(incPayerY,incOtherY,kids,healthM,careM){
   return {combined:combined,applied:applied,pct:pct*100,basicY:basicY,basicM:basicY/12,share:share*100,baseM:baseM,addonsM:addonsM,monthly:totalM,annual:totalM*12,overCap:combined>CS_CAP};
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigStackHTML(segs,total,fmt,note){
+  var vis=segs.filter(function(s){return s[1]>0;});
+  if(!vis.length||!(total>0))return '';
+  var bar=vis.map(function(s,i){
+    var pct=Math.max(0,Math.min(100,s[1]/total*100));
+    return '<span class="sig-stack-seg s-'+String.fromCharCode(97+(i%5))+'" style="width:'+pct.toFixed(2)+'%"></span>';
+  }).join('');
+  var leg=vis.map(function(s,i){
+    return '<div class="sig-leg-row"><span class="sig-dot s-'+String.fromCharCode(97+(i%5))+'"></span><span class="sig-leg-label">'+s[0]+'</span><strong>'+fmt(s[1])+' · '+(s[1]/total*100).toFixed(0)+'%</strong></div>';
+  }).join('');
+  return '<div class="sig-stackbar" role="img" aria-label="Composition breakdown">'+bar+'</div>'+leg+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STACK-END*/
+function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
+
 function calc(){
   var r=childSupportCalc(Math.max(0,v('incp')),Math.max(0,v('inco')),+sv('kids'),Math.max(0,v('health')),Math.max(0,v('care')));
   document.getElementById('rMain').textContent=money0(r.monthly)+' / month';
@@ -262,6 +288,7 @@ function calc(){
   var h=row('Combined income',money0(r.combined)+' / yr')+row('Basic obligation ('+fmt0(r.pct)+'%'+(r.overCap?', applied to the $193,000 cap':'')+')',money0(r.basicY)+' / yr ('+money0(r.basicM)+' / mo)')
     +row('Paying parent income share',fmt0(r.share)+'%')+row('Base support share',money0(r.baseM)+' / mo')+row('Add-ons share (insurance + childcare)',money0(r.addonsM)+' / mo')+row('Estimated support',money0(r.monthly)+' / mo');
   document.getElementById('rows').innerHTML=h;
+  sigSet(null, sigStackHTML([['Paying parent income',Math.max(0,v('incp'))],['Other parent income',Math.max(0,v('inco'))]],r.combined,function(n){return money0(n);},'Combined income — the paying parent covers '+fmt0(r.share)+'% of it.')+sigLadderHTML([['Basic obligation',money0(r.basicM)+' / mo'],['Paying share of it',money0(r.baseM)+' / mo'],['+ add-ons share (insurance + childcare)',money0(r.addonsM)+' / mo'],['Estimated support',money0(r.monthly)+' / mo']],'Guideline-model estimate only — your state\'s formula controls a real order.'));
   document.getElementById('results').classList.add('show');
 }
 

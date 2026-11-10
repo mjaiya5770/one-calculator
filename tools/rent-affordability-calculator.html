@@ -155,7 +155,9 @@
       <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
       <div class="big" id="rMain">—</div>
       <table><tbody id="rows"></tbody></table>
-    </div>
+    
+<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Three ceilings, one target</div><div class="nn-sig-body"></div></div>
+</div>
   </div>
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
@@ -245,6 +247,29 @@ function rentCalc(grossAnnual,monthlyDebts){
   return {m28:m*0.28,m30:m*0.30,m36:Math.max(0,m*0.36-monthlyDebts),h30:grossAnnual*0.30};
 }
 /*PURE-END*/
+/*P4SIG*/
+function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
+function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
+function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
+var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
+var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
+var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
+
+function sigStripHTML(min,max,segs,markers,note){
+  if(!(max>min))return '';
+  var span=max-min;
+  function pct(v){ return Math.max(0,Math.min(100,(v-min)/span*100)); }
+  var cells=segs.map(function(s,i){
+    return '<span class="sig-strip-seg s-'+String.fromCharCode(97+(i%5))+'" style="left:'+pct(s[0]).toFixed(2)+'%;width:'+Math.max(0,pct(s[1])-pct(s[0])).toFixed(2)+'%"><span class="sig-strip-lab">'+s[2]+'</span></span>';
+  }).join('');
+  var marks=(markers||[]).map(function(mk){
+    return '<span class="sig-strip-mark" style="left:'+pct(mk[0]).toFixed(2)+'%"><span class="sig-strip-mlab">'+mk[1]+'</span></span>';
+  }).join('');
+  var aria=segs.map(function(s){return s[2];}).join('; ');
+  return '<div class="sig-strip" role="img" aria-label="'+aria+'"><div class="sig-strip-track">'+cells+marks+'</div></div>'+(note?'<div class="sig-note">'+note+'</div>':'');
+}
+/*P4STRIP-END*/
 function calc(){
   var r=rentCalc(Math.max(0,v('gross')),Math.max(0,v('debts')));
   var res=document.getElementById('results');
@@ -255,6 +280,7 @@ function calc(){
   if(t>0){msg+=' Your target rent of '+money0(t)+' '+(t<=low?'fits under all three ceilings.':(t<=Math.max(r.m28,r.m30,r.m36)?'passes some rules but breaks the strictest ('+money0(low)+').':'breaks all three ceilings.'));}
   document.getElementById('verdict').textContent=msg;
   document.getElementById('rows').innerHTML=row('28% rule (front-end)',money0(r.m28)+' / mo')+row('30% rule (HUD line)',money0(r.m30)+' / mo')+row('28/36 rule (debts-aware)',money0(r.m36)+' / mo')+row('Annual housing at the 30% line',money0(r.h30));
+  var __mx=Math.max(r.m28,r.m30,r.m36)*1.15,__t=v('target');var __marks=[[r.m28,'28% — '+money0(r.m28)],[r.m30,'30% — '+money0(r.m30)],[r.m36,'28/36 — '+money0(r.m36)]];if(__t>0)__marks.push([Math.min(__t,__mx),'Your target — '+money0(__t)]);sigSet(null,sigStripHTML(0,__mx,[],__marks,'The ceilings as monthly rent. Budget by the lowest — it is the only one that accounts for your other debts.'));
   res.classList.add('show');
 }
 
