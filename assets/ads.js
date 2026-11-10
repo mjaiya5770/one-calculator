@@ -114,9 +114,77 @@
     if (key) { el.setAttribute('data-key', key); el.setAttribute('data-w', wide ? '728' : '320'); el.setAttribute('data-h', wide ? '90' : '50'); }
   }
 
+
+  /* NN-HERO-SEAT: the homepage hero prime seat runs its own fill chain on top
+     of NN-ADS-V2. The house promo is preloaded in the markup as the floor (the
+     seat is never blank); the AdSense hero unit (slot
+     6671053734, loader already in <head>) gets first claim; a ~3s watchdog
+     checks for a real fill and otherwise falls back to Adsterra through the
+     SAME serialized loader + pick() (this site's own 728/320 keys); a filled
+     AdSense unit is terminal — the backfill never runs over it and the sweep
+     below only ever removes the floor promo, never a filled unit. */
+  var HERO_WATCHDOG_MS = 3000; /* AdSense fill check before the Adsterra backfill */
+
+  function adsenseFilled(ins) {
+    if (!ins) return false;
+    if (ins.getAttribute('data-ad-status') === 'filled') return true;
+    var f = ins.querySelector('iframe');
+    return !!(f && (f.offsetHeight > 0 || f.clientHeight > 0));
+  }
+
+  function heroChain(el) {
+    var stage = el.querySelector('.nn-hero-stage') || el;
+    var ins = el.querySelector('ins.adsbygoogle');
+    var startedAt = Date.now();
+    var resolved = false;
+    function floorHouse() {
+      for (var i = 0; i < stage.children.length; i++) {
+        var c = stage.children[i];
+        if (c.classList && c.classList.contains('nn-house')) return c;
+      }
+      return null;
+    }
+    /* a real iframe anywhere in the stage always displaces the floor promo */
+    function sweep() {
+      if (!stage.querySelector('iframe')) return;
+      var fh = floorHouse();
+      if (fh) fh.parentNode.removeChild(fh);
+    }
+    var obs = null;
+    if (window.MutationObserver) {
+      obs = new MutationObserver(sweep);
+      obs.observe(stage, { childList: true, subtree: true });
+    }
+    var iv = setInterval(function () {
+      sweep();
+      if (!resolved && adsenseFilled(ins)) { resolved = true; el.setAttribute('data-hero-resolved', 'adsense'); }
+      if (Date.now() - startedAt > OBSERVE_MS) { if (obs) obs.disconnect(); clearInterval(iv); }
+    }, 250);
+    /* AdSense gets first claim */
+    if (ins) { try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {} }
+    setTimeout(function () {
+      if (resolved || adsenseFilled(ins)) { resolved = true; el.setAttribute('data-hero-resolved', 'adsense'); return; } /* a filled AdSense unit wins and stays */
+      /* Unfilled at the watchdog: the AdSense unit leaves the stage (so a late
+         fill can never displace the backfill) and Adsterra loads through the
+         shared serialized queue with this site's own keys. If Adsterra also
+         fails, the floor promo simply stays. */
+      if (ins && ins.parentNode) ins.parentNode.removeChild(ins);
+      ins = null;
+      var fill = document.createElement('div');
+      fill.className = 'nn-hero-fill';
+      fill.setAttribute('data-k728', el.getAttribute('data-k728') || '');
+      fill.setAttribute('data-k320', el.getAttribute('data-k320') || '');
+      stage.appendChild(fill);
+      pick(fill);
+      nnEnqueue(fill, null, false);
+      el.setAttribute('data-hero-resolved', 'backfill');
+    }, HERO_WATCHDOG_MS);
+  }
+
   function init() {
     var slots = document.querySelectorAll('.nn-ad');
     for (var i = 0; i < slots.length; i++) {
+      if (slots[i].hasAttribute('data-hero-seat')) { heroChain(slots[i]); continue; } /* NN-HERO-SEAT: AdSense-first chain, not the plain Adsterra queue */
       if (slots[i].hasAttribute('data-k728')) pick(slots[i]);
       nnEnqueue(slots[i], null, false); /* serialized by the shared lock, in DOM order */
     }

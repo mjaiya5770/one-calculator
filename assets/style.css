@@ -1603,3 +1603,15 @@ html.nn-embed .inv-toolbar{position:static;box-shadow:none;border-top:none}
 .sig-strip-mlab{position:absolute;top:-1.15rem;left:50%;transform:translateX(-50%);font-size:.68rem;font-weight:700;white-space:nowrap}
 .s-e{background:#0ea5a5}
 @media print{.sig-ruler-mark,.sig-strip-mark{background:#000}}
+
+/* NN-HERO-SEAT (Nov 9, 2026): homepage hero prime seat — AdSense first claim,
+   Adsterra backfill, preloaded house floor. The stage reserves its height up
+   front (90px desktop / 50px under 760px, the fleet's own banner heights) and
+   every stage of the chain renders in the same 728px box, so a fill never
+   shifts the hero; label + stage stay under the 120px seat bound. */
+.nn-hero-seat{margin:0 auto 18px;width:100%}
+.nn-hero-stage{position:relative;height:90px;max-height:120px;width:100%;max-width:728px;margin:0 auto}
+.nn-hero-stage .nn-house{position:absolute;inset:0;margin:0 auto}
+.nn-hero-stage ins.adsbygoogle{position:absolute;inset:0;width:100%;height:100%}
+.nn-hero-fill{position:absolute;inset:0;text-align:center}
+@media (max-width:759px){.nn-hero-stage{height:50px}}
