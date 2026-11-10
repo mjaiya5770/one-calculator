@@ -6,6 +6,27 @@
 /* NN-ADS-V2: seats load one at a time (queue) so concurrent invokes cannot race on the shared atOptions global;
    the house fallback waits ~30s and never wipes a seat — a MutationObserver lets a late real iframe replace the promo. */
 (function () {
+  /* NN-SHELL-GATE (Nov 10, 2026 — Capacitor app route, muni order via main
+     chat): inside the native shell, AdMob is the ONLY ad stack and every web
+     ad layer stays OFF. The native bridge (window.Capacitor) exists only in
+     the shell — browsers and installed PWAs/TWAs never see it — so this gate
+     is inert on the web. ads.js is the FIRST shared script on every page
+     type that carries ads (verified Nov 10, 2026 — index, calculators,
+     tools, guides, embed, creator hub; the NN-APP-MODE block in track.js
+     runs after it), so detection here provably precedes NN-ADS-V2
+     initialization: in shell mode the loader never initializes (no Adsterra
+     invokes, no hero chain, no house promos, no adsbygoogle pushes,
+     __nnLoadSeat is never defined), and the .nn-shell class on <html>
+     collapses every seat via assets/style.css. window.__nnShell is the flag
+     assets/nn-tools.js reads to gate NN-MODAL and emit the 'nn:calculated'
+     signal the shell's AdMob interstitial keys off. */
+  var NN_SHELL = false;
+  try { NN_SHELL = !!window.Capacitor; } catch (e) { NN_SHELL = false; }
+  if (NN_SHELL) {
+    try { document.documentElement.classList.add('nn-shell'); } catch (e) {}
+  }
+  window.__nnShell = NN_SHELL;
+  if (NN_SHELL) return; /* NN-SHELL-GATE: all web ad layers stay OFF in the shell */
   if (/[?&]embed=1(&|$)/.test(window.location.search)) return; /* NN-EMBED: ads off inside embeds */
   /* NN-MODAL-V2: every seat load — page queue and modal alike — goes through
      ONE serialized lock, so two invokes can never race on the atOptions

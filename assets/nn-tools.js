@@ -597,10 +597,30 @@
     overlay._nnTimer = setTimeout(function () { nnCloseModal(overlay, 'auto'); }, 20000);
     window.addEventListener('beforeprint', function bp() { nnCloseModal(overlay, 'print'); window.removeEventListener('beforeprint', bp); });
   }
+  /* NN-SHELL-GATE (Nov 10, 2026 — Capacitor app route): inside the native
+     shell AdMob is the only ad stack, so the web interstitial never opens.
+     The calculate moment is instead SIGNALLED at the exact point the modal
+     would have fired. The result is already rendered by then — the watchers
+     call nnMaybeModal off the result's own DOM mutation — so the signal
+     never precedes, delays or blocks the answer. 'nn:calculated' fires in
+     BOTH modes (in web mode nothing listens; it is the shell's trigger);
+     the AdMobShell plugin hook fires in shell mode only. The flag is set
+     by assets/ads.js, which loads before this file on every tool page. */
+  function nnShellMode() { try { return window.__nnShell === true; } catch (e) { return false; } }
+  function nnSignalCalculated() {
+    try { document.dispatchEvent(new CustomEvent('nn:calculated')); } catch (e) {}
+    if (!nnShellMode()) return;
+    try {
+      var admobShell = window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.AdMobShell;
+      if (admobShell && typeof admobShell.notifyCalculated === 'function') admobShell.notifyCalculated();
+    } catch (e) {}
+  }
   function nnMaybeModal() {
     if (nnSuppressModalOnce) { nnSuppressModalOnce = false; return; } /* NN-SHELL-P1: silent recalc (print refresh) */
     if (nnModalFired || nnRestoredLink || !nnUserArmed || document.documentElement.classList.contains('nn-embed')) return;
     nnModalFired = true;
+    nnSignalCalculated(); /* NN-SHELL-GATE: both modes — the shell's AdMob interstitial keys off this signal */
+    if (nnShellMode()) return; /* NN-SHELL-GATE: the web interstitial never arms or fires in the shell */
     nnOpenModal();
   }
 
@@ -980,6 +1000,43 @@
     if (nnResultShown()) nnFx.wasShown = true;
   }
 
+  /* ---------- native-ad anchors (NN-NATIVE-SLOT) ----------
+     Designated anchor elements for the native shell's AdMob native units
+     (Nov 10, 2026 addendum). GRID: on /calculators.html, one anchor after
+     every 8th tool card in each category grid. RESULTS: on tool pages, one
+     anchor directly below the primary result card (the fleet's results
+     root: .results, else .stat-grid). COMPLETELY INERT ON THE WEB —
+     assets/style.css keeps .nn-native-slot display:none outside the shell,
+     so web layout is unchanged; in shell mode (html.nn-shell) the anchors
+     reserve the standard native heights so the native side fills them
+     with zero layout shift. They are NOT .nn-ad seats: NN-ADS-V2 never
+     sees them. Deliberate exceptions (no clean results root, skipped):
+     the invoice generator (its #preview IS the printable document) and
+     the password generator (#pwout output only, no result card). */
+  function nnNativeSlots() {
+    try {
+      function anchor(placement) {
+        var d = document.createElement('div');
+        d.className = 'nn-native-slot';
+        d.setAttribute('data-placement', placement);
+        d.setAttribute('aria-hidden', 'true');
+        return d;
+      }
+      if (/\/calculators\.html$/.test(location.pathname)) {
+        $all('.tool-grid').forEach(function (grid) {
+          var cards = $all('.tool-card', grid);
+          for (var i = 7; i < cards.length; i += 8) {
+            grid.insertBefore(anchor('grid'), cards[i].nextSibling);
+          }
+        });
+      }
+      var root = document.querySelector('.results') || document.querySelector('.stat-grid');
+      if (root && root.parentNode) {
+        root.parentNode.insertBefore(anchor('results'), root.nextSibling);
+      }
+    } catch (e) { /* anchors are an app enhancement — never break a tool */ }
+  }
+
   /* ---------- init ---------- */
   function init() {
     /* print scoping: mark cards that hold results. Markers: .results /
@@ -1014,6 +1071,7 @@
     }
     /* NN-MODAL: capture this site's own 300x250 key for the interstitial seat */
     nnModalKey = nnSiteAdKey('300');
+    nnNativeSlots(); /* NN-NATIVE-SLOT */
     nnShellInit(); /* NN-SHELL-P1 */
     nnFxInit(); /* NN-EFFECTS-P1 */
   }

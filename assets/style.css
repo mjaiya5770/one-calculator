@@ -1688,3 +1688,26 @@ html.nn-embed .inv-toolbar{position:static;box-shadow:none;border-top:none}
 @media print {
   .card table, .results table { display: table; overflow: visible; max-width: none; }
 }
+
+/* NN-SHELL-GATE (Nov 10, 2026 — Capacitor app route): inside the native
+   shell, AdMob is the only ad stack and every web ad layer stays off.
+   assets/ads.js adds .nn-shell to <html> before NN-ADS-V2 can initialize,
+   and every ad seat collapses entirely — no empty labeled boxes. Web and
+   installed-PWA rendering is untouched: the class exists only in the
+   shell. The overlay rule is belt-and-braces — the modal can never be
+   created in shell mode (assets/nn-tools.js gates nnMaybeModal). */
+html.nn-shell .nn-ad{display:none!important}
+html.nn-shell .nn-modal-overlay{display:none!important}
+
+/* NN-NATIVE-SLOT (Nov 10, 2026 addendum): native-ad anchors emitted by
+   assets/nn-tools.js for the shell's AdMob native units. On the web they
+   are display:none — zero height, no visual trace, no layout effect, and
+   not ad seats (NN-ADS-V2 never touches them). In shell mode they reserve
+   the standard native heights (grid 120px, results 280px — the web-side
+   contract in play-store/SHELL-SPEC.md) so the native side fills them
+   with zero layout shift; grid anchors span the full grid row, and hide
+   while the catalog search is spotlighting matches. */
+.nn-native-slot{display:none}
+html.nn-shell .nn-native-slot{display:block;grid-column:1/-1;height:120px}
+html.nn-shell .nn-native-slot[data-placement="results"]{height:280px}
+html.nn-shell .tool-grid.is-searching .nn-native-slot{display:none}
