@@ -149,9 +149,20 @@
       }
       return null;
     }
-    /* NN-HERO-FIX: only a GENUINE fill displaces the floor promo — a filled
-       AdSense unit (its status attribute) or a backfill iframe with a real
-       size and a real ad URL. A sized-but-empty iframe never does. */
+    /* NN-HERO-FIX2: only a GENUINE fill displaces the floor promo — a
+       filled AdSense unit (its status attribute), a backfill iframe with a
+       real size and a real ad URL, or an Adsterra banner. A genuine
+       Adsterra banner IS an about:blank iframe: the invoke writes the
+       creative into the iframe's own document (live probe, Nov 9, 2026 —
+       src="about:blank" at full size with the document populated: 3 body
+       children, ~9KB of markup, an <img> and an <a>; the filled mid-page
+       seat on the same page load carried the identical shape). The
+       NN-HERO-FIX src test rejected every such banner as "empty", and the
+       20s guard then re-layered the floor over it — heroes ended on the
+       house promo despite a filled banner sitting in the stage. What
+       separates a banner from an empty shell is the DOCUMENT, not the
+       src: a populated same-origin document is a fill; an empty one (a
+       withheld render, the stub shape) is not, and never displaces. */
     function genuineFill() {
       if (adsenseFilled(stage.querySelector('ins.adsbygoogle'))) return true;
       var fill = stage.querySelector('.nn-hero-fill');
@@ -160,6 +171,10 @@
         if (f && f.offsetWidth > 0 && f.offsetHeight > 0) {
           var src = f.getAttribute('src') || '';
           if (src && src !== 'about:blank') return true;
+          try {
+            var d = f.contentDocument;
+            if (d && d.body && (d.body.childElementCount > 0 || (d.body.innerHTML || '').length > 0)) return true;
+          } catch (e) {}
         }
       }
       return false;
@@ -199,6 +214,11 @@
     }
     setTimeout(function () { guard(false); }, 20000);
     setTimeout(function () { guard(true); }, OBSERVE_MS);
+    /* NN-HERO-FIX2: a banner whose document populates only after the
+       observe window must still displace a restored floor — two late
+       sweep passes (sweep() no-ops unless a genuine fill is present). */
+    setTimeout(sweep, OBSERVE_MS + 30000);
+    setTimeout(sweep, OBSERVE_MS + 90000);
     /* the shared loader's own in-fill house fallback (watchSeat) can also
        land while the stage floor is showing — an identical promo stacked
        pixel-perfect underneath it. Drop the duplicate so exactly one

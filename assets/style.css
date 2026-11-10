@@ -1385,14 +1385,19 @@ html.nn-embed body{background:transparent}
 @media (max-width: 480px) {
   .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.04em; padding: 5px 11px; max-width: 100%; }
 }
-/* NN-HERO-FIX: the longer eyebrow copy (brand taglines added after the
-   redesign) overflowed the pill's rounded border on narrow screens under
-   nowrap — "NO SIGNUP" spilled out on 6 of 10 sites. Below 720px the text
-   now wraps INSIDE the pill, centered; text, colors and position unchanged,
-   and nothing changes where the copy already fits on one line. */
-@media (max-width: 720px) {
-  .hero-eyebrow { white-space: normal; text-align: center; justify-content: center; }
-}
+/* NN-HERO-FIX2: the wrap applies at EVERY width, not just below 720px.
+   Live measurement (Nov 9, 2026, desktop emulation): under nowrap the
+   pill's border box ends up NARROWER than its own rendered text on
+   desktop too (Monster Calculator at 1280px: pill 637px vs text 662px) —
+   the shrink-to-fit width is measured from the un-transformed copy while
+   text-transform:uppercase renders it wider, so "NO SIGNUP" spilled past
+   the border at every width >= 721px on the 6 long-copy sites (and the
+   narrower hero column caps the pill further below 1024px). With
+   wrapping allowed everywhere, the copy wraps INSIDE the pill whenever
+   it cannot fit on one line; where it fits, nothing changes (Number
+   Nest's metrics are identical before and after). Text, colors and
+   position unchanged. */
+.hero-eyebrow { white-space: normal; text-align: center; justify-content: center; }
 .breadcrumb { row-gap: 4px; }
 .breadcrumb a { white-space: nowrap; }
 @media (max-width: 480px) {
