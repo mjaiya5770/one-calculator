@@ -1,7 +1,7 @@
 {
   "name": "One Calculator — Free Online Calculators",
   "short_name": "One Calculator",
-  "description": "One Calculator is the minimal calculator library: one clean, single-purpose tool for each job — 154 of them — with no clutter, no signup and nothing between you and the answer.",
+  "description": "One Calculator is the minimal calculator library: one clean, single-purpose tool for each job — 176 of them — with no clutter, no signup and nothing between you and the answer.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
