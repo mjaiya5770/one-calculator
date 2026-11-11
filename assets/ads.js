@@ -132,14 +132,21 @@
   function pick(el) {
     var wide = (window.innerWidth || 1024) >= 760;
     var key = wide ? el.getAttribute('data-k728') : el.getAttribute('data-k320');
-    if (key) { el.setAttribute('data-key', key); el.setAttribute('data-w', wide ? '728' : '320'); el.setAttribute('data-h', wide ? '90' : '50'); }
+    var w = wide ? '728' : '320', h = wide ? '90' : '50';
+    /* NN-TRAILING-SEAT (Nov 10, 2026): footer-position seats carry the
+       data-k300/data-k320 pair instead of data-k728 — wide screens resolve
+       the site's 300x250, phones keep the 320x50. Before this, the
+       homepage trailing seat had no key attributes at all and could only
+       ever paint the house promo. */
+    if (!key && wide) { key = el.getAttribute('data-k300'); if (key) { w = '300'; h = '250'; } }
+    if (key) { el.setAttribute('data-key', key); el.setAttribute('data-w', w); el.setAttribute('data-h', h); }
   }
 
 
   function init() {
     var slots = document.querySelectorAll('.nn-ad');
     for (var i = 0; i < slots.length; i++) {
-      if (slots[i].hasAttribute('data-k728')) pick(slots[i]);
+      if (slots[i].hasAttribute('data-k728') || slots[i].hasAttribute('data-k300')) pick(slots[i]);
       nnEnqueue(slots[i], null, false); /* serialized by the shared lock, in DOM order */
     }
   }
