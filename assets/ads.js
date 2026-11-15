@@ -46,8 +46,8 @@
       if (nxt) nnRunJob(nxt); else nnLockBusy = false;
     });
   }
-  window.__nnLoadSeat = function (el, done) { el.setAttribute('data-prime-slot', PRIME_SLOT_MODAL); nnEnqueue(el, done, false); }; /* NN-PRIME-CHAIN: fresh single-seat loads are the modal seat — interstitial unit */ /* NN-MODAL: fresh single-seat loads (result interstitial) reuse this loader */
-  window.__nnLoadSeatPriority = function (el, done) { el.setAttribute('data-prime-slot', PRIME_SLOT_MODAL); nnEnqueue(el, done, true); }; /* NN-PRIME-CHAIN: modal seat — interstitial unit */
+  window.__nnLoadSeat = function (el, done) { el.setAttribute('data-prime-slot', PRIME_SLOT_MODAL); nnEnsureWatch(el); nnEnqueue(el, done, false); }; /* NN-PRIME-CHAIN: fresh single-seat loads are the modal seat — interstitial unit */ /* NN-MODAL: fresh single-seat loads (result interstitial) reuse this loader */
+  window.__nnLoadSeatPriority = function (el, done) { el.setAttribute('data-prime-slot', PRIME_SLOT_MODAL); nnEnsureWatch(el); nnEnqueue(el, done, true); }; /* NN-PRIME-CHAIN: modal seat — interstitial unit */
   var HOST = 'https://bauval.org/22/';
   var SEAT_SETTLE_MS = 15000; /* per-seat wait for an iframe before the queue starts the next seat */
   var WATCHDOG_MS = 30000;    /* house promo only if the seat still has no iframe by now */
@@ -58,6 +58,14 @@
     return '<a class="nn-house" href="' + (deep ? '../' : '') + 'calculators.html">' +
       '<strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a>';
   }
+
+  /* NN-MODAL-FIX (Nov 14, 2026): start a seat's house-floor watchdog NOW, at
+     enqueue time, not when its serialized queue job finally runs. Page seats
+     queued ahead of the modal can hold the lock ~18s (3s prime + 15s settle),
+     so a watchdog started at job-run painted the modal's floor at ~24s —
+     after the modal's 20s auto-dismiss. The modal seat's 6s watchdog must
+     tick from modal-open. primeChain/loadBanner never double-watch. */
+  function nnEnsureWatch(el) { if (!el.getAttribute('data-watching')) { el.setAttribute('data-watching', '1'); watchSeat(el, Date.now()); } }
 
   function watchSeat(el, startedAt) {
     /* per-seat override (the modal seat uses ~6s so its fallback paints inside the modal's lifetime) */
@@ -123,8 +131,7 @@
 
   function primeChain(el, done) {
     var startedAt = Date.now();
-    el.setAttribute('data-watching', '1');
-    watchSeat(el, startedAt); /* floor + promote machinery from t=0, exactly as the pre-chain loader started it inside loadBanner */
+    if (!el.getAttribute('data-watching')) { el.setAttribute('data-watching', '1'); watchSeat(el, startedAt); } /* floor + promote machinery from t=0 — NN-MODAL-FIX (Nov 14, 2026): a seat whose watchdog was pre-started at enqueue (the modal seat) keeps its original t=0; restarting it here would push its house floor past the modal's 20s lifetime (the Nov 11-13 blank-modal defect) */
     var ins = document.createElement('ins');
     ins.className = 'adsbygoogle';
     ins.setAttribute('style', 'display:block');
