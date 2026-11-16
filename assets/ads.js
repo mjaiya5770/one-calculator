@@ -181,9 +181,7 @@
     if (!key || !w || !h || el.getAttribute('data-loaded')) { if (!el.getAttribute('data-watching')) { el.setAttribute('data-watching', '1'); watchSeat(el, Date.now()); } done(); return; } /* NN-PRIME-CHAIN: watchdog may already run */ /* NN-KEYLESS-WATCHDOG: a keyless seat still gets the house fallback — never a blank seat */
     el.setAttribute('data-loaded', '1');
     var startedAt = Date.now();
-    var s1 = document.createElement('script');
-    s1.textContent = "atOptions = {'key':'" + key + "','format':'iframe','height':" + h + ",'width':" + w + ",'params':{}};";
-    el.appendChild(s1);
+    window.atOptions = { key: key, format: 'iframe', height: h, width: w, params: {} }; /* NN-AUDIT (Nov 15, 2026): object assignment instead of a string-built script — the invoke reads the same global; no interpolation into code */
     var s2 = document.createElement('script');
     s2.src = HOST + key; s2.async = false;
     el.appendChild(s2);

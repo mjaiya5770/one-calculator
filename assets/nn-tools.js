@@ -171,7 +171,10 @@
       var m = params.__mode;
       if (typeof window.setMode === 'function') { try { window.setMode(m); } catch (e) {} }
       else {
-        var btn = document.querySelector('[data-mode="' + m + '"]');
+        /* NN-AUDIT (Nov 15, 2026): never interpolate a URL value into a selector
+           string — a crafted __mode threw SyntaxError and aborted the restore. */
+        var btn = null, modes = document.querySelectorAll('[data-mode]');
+        for (var mi = 0; mi < modes.length; mi++) { if (modes[mi].getAttribute('data-mode') === m) { btn = modes[mi]; break; } }
         if (btn) btn.click();
       }
     }
@@ -321,10 +324,11 @@
       return;
     }
     list.innerHTML = saves.map(function (s, i) {
-      var href = s.tool + '?' + nnQueryString(s.inputs || {});
+      var tool = /^\/[a-z0-9\-\/\.]*\.html$/.test(s.tool || '') ? s.tool : '/calculators.html'; /* NN-AUDIT: a stored save may only ever link to a fleet tool page */
+      var href = tool + '?' + nnQueryString(s.inputs || {});
       return '<div class="nn-save-item"><div class="nn-save-meta"><strong>' +
         escapeHtml(s.title) + '</strong><span>' + escapeHtml(s.snippet || '') + ' · ' + fmtDate(s.ts) + '</span></div>' +
-        '<div class="nn-save-btns"><a class="nn-mini" href="' + href + '">Open</a>' +
+        '<div class="nn-save-btns"><a class="nn-mini" href="' + escapeHtml(href) + '">Open</a>' +
         '<button type="button" class="nn-mini" data-nn-del="' + i + '">Delete</button></div></div>';
     }).join('');
   }

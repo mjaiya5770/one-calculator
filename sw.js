@@ -1,6 +1,6 @@
 /* One Calculator service worker — app-shell cache, network-first for pages.
    Calculators keep working offline once visited; ads and APIs are never intercepted. */
-const CACHE = 'onecalculator-v16';
+const CACHE = 'onecalculator-v17';
 const SHELL = [
   '/',
   '/index.html',
@@ -23,7 +23,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE && k.indexOf(CACHE.replace(/-v[0-9]+$/, '-')) === 0) /* NN-AUDIT: delete only THIS app's caches */.map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -34,6 +34,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return; // ads / analytics / APIs: untouched
   if (url.pathname.startsWith('/api/')) return;
+  if (url.pathname.startsWith('/admin/')) return; // NN-AUDIT (Nov 15, 2026): the admin gate is never cached
   if (url.pathname === '/ads.txt') return; // ad verification file: always live from network
 
   /* LIB-SWR: static assets (CSS/JS/icons/fonts) are cache-first with
@@ -44,7 +45,7 @@ self.addEventListener('fetch', (event) => {
         const net = fetch(req).then((res) => {
           if (res && res.status === 200) {
             const copy = res.clone();
-            caches.open(CACHE).then((cache) => cache.put(req, copy));
+            event.waitUntil(caches.open(CACHE).then((cache) => cache.put(req, copy)).catch(() => {})); /* NN-AUDIT: keep the worker alive for the write */
           }
           return res;
         }).catch(() => hit);
@@ -57,13 +58,15 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(req)
       .then((res) => {
-        if (res && res.status === 200) {
+        /* NN-AUDIT (Nov 15, 2026): query-bearing page URLs (share links carry
+           calculator inputs) are never written to Cache Storage. */
+        if (res && res.status === 200 && !url.search) {
           const copy = res.clone();
-          caches.open(CACHE).then((cache) => cache.put(req, copy));
+          event.waitUntil(caches.open(CACHE).then((cache) => cache.put(req, copy)).catch(() => {}));
         }
         return res;
       })
       .catch(() => caches.match(req, { ignoreSearch: true })
-        .then((hit) => hit || caches.match('/index.html')))
+        .then((hit) => hit || (req.mode === 'navigate' ? caches.match('/index.html') : Response.error())))
   );
 });
