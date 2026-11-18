@@ -1696,3 +1696,47 @@ html.nn-shell .nn-modal-overlay{display:none!important}
 html.nn-shell .nn-native-slot{display:block;grid-column:1/-1;height:120px}
 html.nn-shell .nn-native-slot[data-placement="results"]{height:280px}
 html.nn-shell .tool-grid.is-searching .nn-native-slot{display:none}
+
+/* NN-HOME-HERO-CATALOG (Nov 17, 2026): calculator hero + homepage shelf module.
+   Palette: the brand's existing vars only — no new colors. */
+.hero-glyphs{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.hero-glyphs span{position:absolute;font-weight:800;color:rgba(255,255,255,.07);font-size:64px;line-height:1;animation:hcFloat 9s ease-in-out infinite alternate}
+.hero-wrap{display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
+.hero-copy{min-width:0}
+@media(min-width:1025px){.hero-wrap{grid-template-columns:minmax(0,1fr) 340px}}
+.hero-calc{background:linear-gradient(160deg,var(--teal-darker),var(--teal-dark));border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:16px;box-shadow:var(--shadow-lg);transform:rotate(-1.2deg);max-width:360px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hc-bar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.hc-title{flex:1;font-weight:800;color:#fff;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+.hc-bar-actions{display:flex;gap:6px;flex:none}
+.hc-bar-btn{appearance:none;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.10);color:#fff;font-size:.78rem;font-weight:700;padding:6px 10px;border-radius:var(--radius-pill);cursor:pointer}
+.hc-bar-btn:hover{background:rgba(255,255,255,.22)}
+.hc-bar-btn:focus-visible,.hc-key:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+.hc-display{background:var(--teal-light);border-radius:12px;padding:12px 14px;text-align:right;min-height:74px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.hc-expr{font-size:.8rem;color:var(--muted);min-height:1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hc-value{font-size:2rem;font-weight:800;color:var(--teal-darker);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hc-keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.hc-key{appearance:none;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.10);color:#fff;font-size:1.05rem;font-weight:700;padding:12px 0;border-radius:12px;cursor:pointer;transition:transform var(--transition),background var(--transition)}
+.hc-key:hover{background:rgba(255,255,255,.20)}
+.hc-key:active{transform:scale(.94)}
+.hc-op{background:var(--amber);border-color:transparent;color:var(--teal-darker)}
+.hc-op:hover{background:var(--amber);filter:brightness(1.08)}
+.hc-eq{background:var(--gold);border-color:transparent;color:var(--teal-darker)}
+.hc-clr{background:rgba(255,255,255,.22)}
+.hc-span2{grid-column:span 2}
+.hc-note{margin:12px 2px 0;font-size:.82rem;color:rgba(255,255,255,.75);text-align:center}
+.hc-tool-foot{margin:10px 2px 0;font-size:.85rem;text-align:center}
+.hc-tool-foot a{color:var(--gold);font-weight:700}
+.hc-history-list{list-style:none;margin:0;padding:0;max-height:420px;overflow:auto}
+.hc-history-list li{padding:8px 4px;border-bottom:1px solid rgba(255,255,255,.14);color:#fff;font-size:.92rem;text-align:left}
+.hc-history-item{appearance:none;background:none;border:0;color:var(--gold);font-weight:700;font-size:.92rem;cursor:pointer;padding:0;text-align:left}
+.hc-history-empty{color:rgba(255,255,255,.75)}
+.hc-receipt{display:none}
+@keyframes hcFloat{from{transform:translateY(0) rotate(-4deg)}to{transform:translateY(-16px) rotate(5deg)}}
+@media (prefers-reduced-motion: reduce){.hero-glyphs span{animation:none}.hero-calc{transform:none}}
+@media print{
+  body.hc-printing>*:not(.hc-receipt){display:none!important}
+  body.hc-printing .hc-receipt{display:block;color:#000;padding:24px}
+  body.hc-printing .hc-receipt h2{margin:0 0 12px}
+  body.hc-printing .hc-receipt p{font-size:1.1rem;margin:4px 0}
+  body.hc-printing .hc-receipt .hc-receipt-date{color:#555;font-size:.85rem;margin-top:16px}
+}

@@ -55,39 +55,97 @@
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="index.html"><img class="brand-icon" src="assets/icon-192.png" alt="One Calculator logo" width="28" height="28">One <span>Calculator</span></a>
-    <nav><a href="calculators.html">Calculators</a><a href="index.html">All Tools</a>
+    <nav><a href="calculators.html">Calculators</a>
       <a href="tools/percentage-calculator.html">Percentage</a>
       <a href="tools/loan-calculator.html">Loan</a></nav>
   </div>
 </header>
 
 <section class="hero">
-  <div class="wrap">
-    <!-- NN-HERO-FIX3: the wrap guarantee also lives INLINE on the pill below. Chrome excludes letter-spacing from intrinsic sizing, so this pill's box is always ~one tracking-width narrower than its rendered text; with wrapping allowed it can never spill past its border. The inline copy outranks every cached stylesheet generation (a warm service-worker profile renders the previous ship's CSS on its first load). Do not remove. -->
+  <div class="hero-glyphs" aria-hidden="true"><span style="left:3%;top:14%">+</span><span style="left:10%;bottom:10%;animation-delay:-3s">&minus;</span><span style="right:5%;top:10%;animation-delay:-5s">&times;</span><span style="right:14%;bottom:14%;animation-delay:-1.5s">&divide;</span><span style="left:45%;top:5%;animation-delay:-6.5s">%</span><span style="left:55%;bottom:5%;animation-delay:-4s">=</span></div>
+  <div class="wrap hero-wrap">
+    <div class="hero-copy">
+      <!-- NN-HERO-FIX3: the wrap guarantee also lives INLINE on the pill below. Chrome excludes letter-spacing from intrinsic sizing, so this pill's box is always ~one tracking-width narrower than its rendered text; with wrapping allowed it can never spill past its border. The inline copy outranks every cached stylesheet generation (a warm service-worker profile renders the previous ship's CSS on its first load). Do not remove. -->
     <p class="hero-eyebrow" style="white-space:normal;text-align:center;justify-content:center">176 free calculators · One job each · No signup</p>
-    <h1>One calculator per job. Nothing else.</h1>
-    <p>Every tool here does exactly one job and does it completely — full modes, the formula shown, a worked example. No accounts, no clutter, no upsells. Pick your one job; get your one answer.</p>
-    <div class="hero-search-wrap">
+      <h1>One calculator per job. Nothing else.</h1>
+      <p>Every tool here does exactly one job and does it completely — full modes, the formula shown, a worked example. No accounts, no clutter, no upsells. Pick your one job; get your one answer.</p>
+      <div class="hero-search-wrap">
       <form class="hero-search" id="heroSearchForm" role="search">
         <input id="heroSearchInput" type="search" placeholder="Search calculators — try “mortgage”, “tip”, “BMI”…" aria-label="Search calculators" autocomplete="off">
         <button class="btn" type="submit">Search</button>
       </form>
       <div class="hero-search-results" id="heroSearchResults" hidden></div>
     </div>
-    <div class="hero-meta">
+      <div class="hero-meta">
       <div><strong>176</strong><span>free calculators</span></div>
       <div><strong>100%</strong><span>runs in your browser</span></div>
       <div><strong>$0</strong><span>no signup, no fees</span></div>
+    </div>
+    </div>
+    <div class="hero-calc" id="heroCalc">
+      <div class="hc-bar">
+        <button type="button" class="hc-bar-btn" id="hcBack" hidden aria-label="Back to the basic calculator">&larr;</button>
+        <span class="hc-title" id="hcTitle">Calculator</span>
+        <span class="hc-bar-actions">
+          <button type="button" class="hc-bar-btn" id="hcHistoryBtn">History</button>
+          <button type="button" class="hc-bar-btn" id="hcShare">Share</button>
+          <button type="button" class="hc-bar-btn" id="hcPrint">Print</button>
+        </span>
+      </div>
+      <div class="hc-view" id="hcDefault">
+      <div class="hc-display"><span class="hc-expr" id="hcExpr"></span><span class="hc-value" id="hcValue" aria-live="polite">0</span></div>
+      <div class="hc-keys">
+        <button type="button" class="hc-key hc-clr" data-k="C" aria-label="Clear">C</button>
+        <button type="button" class="hc-key" data-k="B" aria-label="Backspace">&#9003;</button>
+        <button type="button" class="hc-key hc-op" data-k="%" aria-label="Percent">%</button>
+        <button type="button" class="hc-key hc-op" data-k="/" aria-label="Divide">&divide;</button>
+        <button type="button" class="hc-key" data-k="7">7</button>
+        <button type="button" class="hc-key" data-k="8">8</button>
+        <button type="button" class="hc-key" data-k="9">9</button>
+        <button type="button" class="hc-key hc-op" data-k="*" aria-label="Multiply">&times;</button>
+        <button type="button" class="hc-key" data-k="4">4</button>
+        <button type="button" class="hc-key" data-k="5">5</button>
+        <button type="button" class="hc-key" data-k="6">6</button>
+        <button type="button" class="hc-key hc-op" data-k="-" aria-label="Subtract">&minus;</button>
+        <button type="button" class="hc-key" data-k="1">1</button>
+        <button type="button" class="hc-key" data-k="2">2</button>
+        <button type="button" class="hc-key" data-k="3">3</button>
+        <button type="button" class="hc-key hc-op" data-k="+" aria-label="Add">+</button>
+        <button type="button" class="hc-key hc-span2" data-k="0">0</button>
+        <button type="button" class="hc-key" data-k=".">.</button>
+        <button type="button" class="hc-key hc-eq" data-k="=" aria-label="Equals">=</button>
+      </div>
+      <p class="hc-note">Quick math, right here &mdash; or search and the calculator you pick opens in this module. The full shelf is just below &darr;</p>
+      </div>
+      <div class="hc-view" id="hcTool" hidden>
+        <iframe id="hcFrame" title="Calculator" loading="lazy" style="border:0;width:100%;height:640px;border-radius:12px;background:#fff"></iframe>
+        <p class="hc-tool-foot"><a id="hcOpenFull" href="calculators.html">Open the full calculator page &rarr;</a></p>
+      </div>
+      <div class="hc-view" id="hcHistory" hidden>
+        <ul class="hc-history-list" id="hcHistoryList"></ul>
+        <p class="hc-tool-foot"><button type="button" class="hc-bar-btn" id="hcClearHistory">Clear history</button></p>
+      </div>
     </div>
   </div>
 
   <svg class="nest-motif" viewBox="0 0 640 96" fill="none" aria-hidden="true"><circle cx="320" cy="48" r="34" stroke="#ffffff" stroke-width="5"/><circle cx="320" cy="48" r="10" fill="#dc2626"/></svg>
 </section>
-<div class="wrap"><div class="nn-ad nn-ad-top" data-k728="f9659324b3834602de5ad139f13988d6" data-k320="7ca8d01ff6de0c35ae33df12254574ff"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div></div>
+<nav class="lib-subnav" aria-label="Calculator categories">
+  <div class="wrap">
+      <a href="#cat-real-estate-investor-tools">Real estate investor tools</a>
+      <a href="#cat-debt-money-tools">Debt & money tools</a>
+      <a href="#cat-freelancer-tools">Freelancer tools</a>
+      <a href="#cat-small-business-tools">Small business tools</a>
+      <a href="#cat-everyday-tools">Everyday tools</a>
+      <a href="#cat-home-diy-tools">Home & DIY tools</a>
+  </div>
+</nav>
+
+
 
 <main class="wrap">
-  <div class="section-head"><span class="eyebrow">Most used</span><h2>Popular calculators</h2></div>
-  <div class="tool-grid">
+  <div class="section-head lib-sec" id="cat-real-estate-investor-tools"><span class="eyebrow">Real estate</span><h2>Real estate investor tools</h2><svg class="nest-arc" viewBox="0 0 120 12" fill="none" aria-hidden="true" focusable="false"><circle cx="60" cy="6" r="3.4" fill="#dc2626"/></svg></div>
+  <div class="tool-grid lib-grid">
     <a class="tool-card" href="tools/buy-vs-lease-car-calculator.html"><div class="icon">🚙</div><h3>Buy vs Lease Car Calculator</h3><p>True monthly cost of leasing vs buying over your horizon — resale equity counted, mileage overage priced.</p></a>
     <a class="tool-card" href="tools/cash-out-refinance-calculator.html"><div class="icon">🏠</div><h3>Cash-Out Refinance Calculator</h3><p>New payment, total-interest change and break-even when you refinance and take cash out.</p></a>
     <a class="tool-card" href="tools/heloc-vs-home-equity-loan-calculator.html"><div class="icon">⚖️</div><h3>HELOC vs Home Equity Loan Calculator</h3><p>Draw-period interest-only vs a fixed installment loan — total cost of both structures on the same dollars.</p></a>
@@ -96,25 +154,199 @@
     <a class="tool-card" href="tools/ev-vs-gas-calculator.html"><div class="icon">⚡</div><h3>EV vs Gas Calculator</h3><p>Price premium after incentives vs fuel and maintenance savings — the break-even year, in your prices.</p></a>
     <a class="tool-card" href="tools/closing-cost-estimator.html"><div class="icon">🔑</div><h3>Closing Cost Estimator</h3><p>Itemized closing costs — lender, title, government, prepaids and escrows — low/mid/high, by state.</p></a>
     <a class="tool-card" href="tools/property-tax-calculator.html"><div class="icon">🗺️</div><h3>Property Tax Calculator</h3><p>Home value × your state's real average effective rate — all 50 states, exemption and escrow views.</p></a>
+    <a class="tool-card" href="tools/home-equity-calculator.html"><div class="icon">🏡</div><h3>Home Equity Calculator</h3><p>Equity in dollars and percent, CLTV, and borrowable room at 80% and 85% caps.</p></a>
+    <a class="tool-card" href="tools/solar-cost-estimator.html"><div class="icon">☀️</div><h3>Solar Cost Estimator</h3><p>System size, panels, gross and net cost, yearly savings and honest payback from your usage.</p></a>
+    <a class="tool-card" href="tools/ev-charging-cost-estimator.html"><div class="icon">🔌</div><h3>EV Charging Cost Estimator</h3><p>Home charging cost with charging losses included, against the same miles in a gas car.</p></a>
+    <a class="tool-card" href="tools/home-addition-cost-estimator.html"><div class="icon">🏗️</div><h3>Home Addition Cost Estimator</h3><p>Room additions, bump-outs, second stories, garage conversions and sunrooms by type and area.</p></a>
+    <a class="tool-card" href="tools/house-building-cost-estimator.html"><div class="icon">🏘️</div><h3>House Building Cost Estimator</h3><p>New-home build cost by tier and region factor — land excluded and stated.</p></a>
+    <a class="tool-card" href="tools/cap-rate-calculator.html"><div class="icon">🏠</div><h3>Cap Rate Calculator</h3><p>Measure a rental property's return in seconds.</p></a>
+    <a class="tool-card" href="tools/cash-on-cash-calculator.html"><div class="icon">💵</div><h3>Cash-on-Cash Return Calculator</h3><p>See what your actual cash invested earns each year.</p></a>
+    <a class="tool-card" href="tools/mortgage-calculator.html"><div class="icon">🏦</div><h3>Mortgage Payment Calculator</h3><p>Monthly payment, total interest & payoff schedule.</p></a>
+    <a class="tool-card" href="tools/rental-property-analyzer.html"><div class="icon">📊</div><h3>Rental Property Analyzer</h3><p>Full deal analysis: cash flow, cap rate, CoC return.</p></a>
+    <a class="tool-card" href="tools/roi-calculator.html"><div class="icon">🎯</div><h3>ROI Calculator</h3><p>Measure return on investment & annualized ROI.</p></a>
+    <a class="tool-card" href="tools/break-even-calculator.html"><div class="icon">⚖️</div><h3>Break-Even Calculator</h3><p>How many units you must sell to break even.</p></a>
+    <a class="tool-card" href="tools/home-affordability-calculator.html"><div class="icon">🏡</div><h3>Home Affordability Calculator</h3><p>Max home price from income, debts & rate.</p></a>
+    <a class="tool-card" href="tools/mortgage-payoff-calculator.html"><div class="icon">🔑</div><h3>Mortgage Payoff Calculator</h3><p>Extra payments, debt-free date & interest saved.</p></a>
+    <a class="tool-card" href="tools/rent-vs-buy-calculator.html"><div class="icon">🏘️</div><h3>Rent vs Buy Calculator</h3><p>True cost of each, side by side, with the break-even year.</p></a>
+    <a class="tool-card" href="tools/rent-affordability-calculator.html"><div class="icon">🏠</div><h3>Rent Affordability Calculator</h3><p>Three rent ceilings at once: 28% rule, 30% rule, and the debts-aware 28/36 rule.</p></a>
+    <a class="tool-card" href="tools/lease-break-calculator.html"><div class="icon">🔑</div><h3>Lease Break Calculator</h3><p>Early-exit math both ways: the termination fee vs your mitigated remaining-rent liability, deposit accounted.</p></a>
   </div>
-  <p style="margin:2px 0 10px"><a href="calculators.html"><strong>Browse all 176 calculators →</strong></a></p>
-
-<div class="card">
-    <h2>Why One Calculator?</h2>
-    <p style="color:var(--muted);margin:0">Every tool runs entirely in your browser — your numbers never leave your device.</p>
+<div class="nn-ad nn-ad-top" data-k728="f9659324b3834602de5ad139f13988d6" data-k320="7ca8d01ff6de0c35ae33df12254574ff"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+<div class="section-head lib-sec" id="cat-debt-money-tools"><span class="eyebrow">Debt &amp; money</span><h2>Debt & money tools</h2><svg class="nest-arc" viewBox="0 0 120 12" fill="none" aria-hidden="true" focusable="false"><circle cx="60" cy="6" r="3.4" fill="#dc2626"/></svg></div>
+  <div class="tool-grid lib-grid">
+    <a class="tool-card" href="tools/college-cost-estimator.html"><div class="icon">🎓</div><h3>College Cost Estimator</h3><p>Future college cost year by year, your savings credited, the monthly gap deposit.</p></a>
+    <a class="tool-card" href="tools/trump-accounts-calculator.html"><div class="icon">🧒</div><h3>Trump Accounts Calculator</h3><p>The $1,000 federal seed for children born 2025–2028, plus family and employer contributions, projected to age 18 with a year-by-year table.</p></a>
+    <a class="tool-card" href="tools/heloc-calculator.html"><div class="icon">🏦</div><h3>HELOC Calculator</h3><p>Draw & repayment phases priced: interest-only first, then the amortizing bill.</p></a>
+    <a class="tool-card" href="tools/debt-avalanche-calculator.html"><div class="icon">🏔️</div><h3>Debt Avalanche Calculator</h3><p>Up to six debts: avalanche vs snowball raced side by side.</p></a>
+    <a class="tool-card" href="tools/apr-calculator.html"><div class="icon">🧾</div><h3>APR Calculator</h3><p>The true APR once fees count — plus the loan’s total cost.</p></a>
+    <a class="tool-card" href="tools/cd-calculator.html"><div class="icon">💿</div><h3>CD Calculator</h3><p>Maturity value & interest at any APY, with a year-by-year table.</p></a>
+    <a class="tool-card" href="tools/personal-loan-calculator.html"><div class="icon">💸</div><h3>Personal Loan Calculator</h3><p>APR, origination fee & extra payments — plus the true APR.</p></a>
+    <a class="tool-card" href="tools/student-loan-calculator.html"><div class="icon">🎓</div><h3>Student Loan Calculator</h3><p>Up to five loans at once: combined payment & fastest payoff.</p></a>
+    <a class="tool-card" href="tools/debt-snowball-calculator.html"><div class="icon">❄️</div><h3>Debt Snowball Calculator</h3><p>Snowball vs avalanche on your debts, raced side by side.</p></a>
+    <a class="tool-card" href="tools/down-payment-calculator.html"><div class="icon">🔑</div><h3>Down Payment Calculator</h3><p>Cash to close: down payment, closing costs & the PMI line.</p></a>
+    <a class="tool-card" href="tools/debt-payoff-calculator.html"><div class="icon">💳</div><h3>Debt Payoff Calculator</h3><p>See when you'll be debt-free & interest saved.</p></a>
+    <a class="tool-card" href="tools/discount-calculator.html"><div class="icon">🏷️</div><h3>Discount Calculator</h3><p>Sale price, savings & total with tax.</p></a>
+    <a class="tool-card" href="tools/sales-tax-calculator.html"><div class="icon">🧾</div><h3>Sales Tax Calculator</h3><p>Add sales tax to any price instantly.</p></a>
+    <a class="tool-card" href="tools/hourly-salary-converter.html"><div class="icon">💰</div><h3>Hourly to Salary Converter</h3><p>Convert hourly wage ↔ annual salary.</p></a>
+    <a class="tool-card" href="tools/car-loan-calculator.html"><div class="icon">🚗</div><h3>Car Loan Calculator</h3><p>Auto payments, total interest & true cost.</p></a>
+    <a class="tool-card" href="tools/refinance-calculator.html"><div class="icon">🔄</div><h3>Refinance Calculator</h3><p>Should you refinance? Savings & break-even.</p></a>
+    <a class="tool-card" href="tools/savings-goal-calculator.html"><div class="icon">🎯</div><h3>Savings Goal Calculator</h3><p>Monthly deposits to hit any savings target.</p></a>
+    <a class="tool-card" href="tools/credit-card-payoff-calculator.html"><div class="icon">💳</div><h3>Credit Card Payoff Calculator</h3><p>Months to debt-free & total interest cost.</p></a>
+    <a class="tool-card" href="tools/salary-raise-calculator.html"><div class="icon">📈</div><h3>Salary Raise Calculator</h3><p>New salary, raise amount & per-paycheck.</p></a>
+    <a class="tool-card" href="tools/loan-calculator.html"><div class="icon">💸</div><h3>Loan Calculator</h3><p>Solve for payment, amount, term or rate — any loan.</p></a>
+    <a class="tool-card" href="tools/amortization-calculator.html"><div class="icon">🗓️</div><h3>Amortization Calculator</h3><p>Full payment schedule with extra-payment impact.</p></a>
+    <a class="tool-card" href="tools/paycheck-calculator.html"><div class="icon">💵</div><h3>Paycheck Calculator</h3><p>Gross-to-net for every pay frequency, overtime included.</p></a>
+    <a class="tool-card" href="tools/retirement-calculator.html"><div class="icon">🏖️</div><h3>Retirement Calculator</h3><p>Year-by-year projection with employer match & goal check.</p></a>
   </div>
 
-  <div class="section-head"><span class="eyebrow">Browse</span><h2>Every category, one shelf</h2></div>
-  <div class="cat-teaser-grid">
-    <a class="cat-teaser" href="calculators.html#cat-real-estate-investor-tools">Real estate investor tools <span>22 tools →</span></a>
-    <a class="cat-teaser" href="calculators.html#cat-debt-money-tools">Debt & money tools <span>23 tools →</span></a>
-    <a class="cat-teaser" href="calculators.html#cat-freelancer-tools">Freelancer tools <span>7 tools →</span></a>
-    <a class="cat-teaser" href="calculators.html#cat-small-business-tools">Small business tools <span>4 tools →</span></a>
-    <a class="cat-teaser" href="calculators.html#cat-everyday-tools">Everyday tools <span>40 tools →</span></a>
-    <a class="cat-teaser" href="calculators.html#cat-home-diy-tools">Home & DIY tools <span>58 tools →</span></a>
+  </div>
+<div class="section-head lib-sec" id="cat-freelancer-tools"><span class="eyebrow">Freelance</span><h2>Freelancer tools</h2><svg class="nest-arc" viewBox="0 0 120 12" fill="none" aria-hidden="true" focusable="false"><circle cx="60" cy="6" r="3.4" fill="#dc2626"/></svg></div>
+  <div class="tool-grid lib-grid">
+    <a class="tool-card" href="tools/llm-api-cost-estimator.html"><div class="icon">🤖</div><h3>LLM API Token Cost Estimator</h3><p>Price the same AI workload across GPT-5, Claude and Gemini list prices — caching and words-to-tokens included.</p></a>
+    <a class="tool-card" href="tools/youtube-earnings-calculator.html"><div class="icon">▶️</div><h3>YouTube Earnings Calculator</h3><p>Views × honest RPM ranges by niche — long-form and Shorts priced separately, low/mid/high.</p></a>
+    <a class="tool-card" href="tools/tiktok-earnings-calculator.html"><div class="icon">🎵</div><h3>TikTok Earnings Calculator</h3><p>View rewards with the qualified-views share most calculators skip, in labeled ranges.</p></a>
+    <a class="tool-card" href="tools/sponsorship-rate-calculator.html"><div class="icon">💼</div><h3>Sponsorship Rate Calculator</h3><p>Price a sponsored post or video from views, engagement, niche and scope — every multiplier shown.</p></a>
+    <a class="tool-card" href="tools/freelance-rate-calculator.html"><div class="icon">⏱️</div><h3>Freelance Hourly Rate Calculator</h3><p>Price your work from your real income goal.</p></a>
+    <a class="tool-card" href="tools/invoice-generator.html"><div class="icon">🧾</div><h3>Invoice Generator</h3><p>Create a clean, printable invoice in a minute.</p></a>
+    <a class="tool-card" href="tools/compound-interest-calculator.html"><div class="icon">📈</div><h3>Compound Interest Calculator</h3><p>Watch savings and investments grow over time.</p></a>
   </div>
 
-<div class="section-head" id="cat-guides-and-articles"><span class="eyebrow">Learn</span><h2>Guides &amp; articles</h2><svg class="nest-arc" viewBox="0 0 120 12" fill="none" aria-hidden="true" focusable="false"><circle cx="60" cy="6" r="3.4" fill="#dc2626"/></svg></div>
+  
+<div class="section-head lib-sec" id="cat-small-business-tools"><span class="eyebrow">Small business</span><h2>Small business tools</h2><svg class="nest-arc" viewBox="0 0 120 12" fill="none" aria-hidden="true" focusable="false"><circle cx="60" cy="6" r="3.4" fill="#dc2626"/></svg></div>
+  <div class="tool-grid lib-grid">
+    <a class="tool-card" href="tools/payment-fee-calculator.html"><div class="icon">💳</div><h3>Payment Fee Calculator</h3><p>Stripe, PayPal and Square fees: what you net, what volume costs, and the gross-up charge that nets you exactly $X.</p></a>
+    <a class="tool-card" href="tools/mileage-deduction-calculator.html"><div class="icon">🚗</div><h3>Mileage Deduction Calculator</h3><p>Estimate your IRS mileage deduction for 2026.</p></a>
+    <a class="tool-card" href="tools/quarterly-tax-calculator.html"><div class="icon">🧮</div><h3>Quarterly Tax Estimator</h3><p>Estimate self-employment quarterly payments.</p></a>
+    <a class="tool-card" href="tools/business-loan-calculator.html"><div class="icon">💼</div><h3>Business Loan Calculator</h3><p>Payments, total cost & amortization for business loans.</p></a>
+  </div>
+
+  
+<div class="section-head lib-sec" id="cat-everyday-tools"><span class="eyebrow">Everyday</span><h2>Everyday tools</h2><svg class="nest-arc" viewBox="0 0 120 12" fill="none" aria-hidden="true" focusable="false"><circle cx="60" cy="6" r="3.4" fill="#dc2626"/></svg></div>
+  <div class="tool-grid lib-grid">
+    <a class="tool-card" href="tools/water-bill-estimator.html"><div class="icon">🚿</div><h3>Water Bill Estimator</h3><p>Your water + sewer bill built fixture by fixture — showers, flushes, laundry — at your local rate.</p></a>
+    <a class="tool-card" href="tools/house-cleaning-cost-estimator.html"><div class="icon">🧹</div><h3>House Cleaning Cost Estimator</h3><p>Per-visit cleaning price by size, bedrooms and service type, frequency discounts applied.</p></a>
+    <a class="tool-card" href="tools/lawn-care-cost-estimator.html"><div class="icon">🍃</div><h3>Lawn Care Cost Estimator</h3><p>Mowing per visit by lawn size and the full season — fertilisation and leaf cleanups itemised.</p></a>
+    <a class="tool-card" href="tools/catering-estimator.html"><div class="icon">🍽️</div><h3>Catering Estimator</h3><p>Food and drink quantities per guest — protein and sides in pounds, drinks, ice, beer and wine.</p></a>
+    <a class="tool-card" href="tools/wedding-cost-estimator.html"><div class="icon">💍</div><h3>Wedding Cost Estimator</h3><p>Wedding total by guest count and category, contingency and per-guest cost included.</p></a>
+    <a class="tool-card" href="tools/pet-cost-estimator.html"><div class="icon">🐾</div><h3>Pet Cost Estimator</h3><p>First-year and lifetime cost of a dog or cat, by size and monthly spend.</p></a>
+    <a class="tool-card" href="tools/trip-cost-estimator.html"><div class="icon">✈️</div><h3>Trip Cost Estimator</h3><p>The full vacation total — transport, lodging, food, activities — split per person.</p></a>
+    <a class="tool-card" href="tools/ai-job-risk-calculator.html"><div class="icon">🤖</div><h3>AI Job Risk Calculator</h3><p>Your week scored task by task — which tasks AI can reach and which anchor you, weights shown openly.</p></a>
+    <a class="tool-card" href="tools/time-card-calculator.html"><div class="icon">🕒</div><h3>Time Card Calculator</h3><p>A full 7-day timesheet: overnight shifts, 15-minute rounding, daily and weekly overtime without double-counting, gross pay.</p></a>
+    <a class="tool-card" href="tools/inflation-calculator.html"><div class="icon">📈</div><h3>Inflation Calculator</h3><p>Future prices & today’s-money values — both directions at once.</p></a>
+    <a class="tool-card" href="tools/body-fat-calculator.html"><div class="icon">📏</div><h3>Body Fat Calculator</h3><p>US Navy tape method: body fat %, category, fat & lean mass.</p></a>
+    <a class="tool-card" href="tools/macro-calculator.html"><div class="icon">🥗</div><h3>Macro Calculator</h3><p>Protein, carb & fat grams for balanced, high-protein, low-carb or keto.</p></a>
+    <a class="tool-card" href="tools/hours-calculator.html"><div class="icon">🕐</div><h3>Hours Calculator</h3><p>Between two clock times — overnight-safe, decimal hours & pay.</p></a>
+    <a class="tool-card" href="tools/test-grade-calculator.html"><div class="icon">📝</div><h3>Test Grade Calculator</h3><p>What you need on the final — needed, safe, or out of reach.</p></a>
+    <a class="tool-card" href="tools/dog-age-calculator.html"><div class="icon">🐶</div><h3>Dog Age Calculator</h3><p>Human years on the modern log model — not the flat ×7 myth.</p></a>
+    <a class="tool-card" href="tools/overtime-calculator.html"><div class="icon">⏰</div><h3>Overtime Calculator</h3><p>Time-and-a-half & double time — weekly, monthly, annual gross.</p></a>
+    <a class="tool-card" href="tools/electricity-cost-calculator.html"><div class="icon">💡</div><h3>Electricity Cost Calculator</h3><p>What any appliance costs to run, by watts & hours.</p></a>
+    <a class="tool-card" href="tools/sleep-calculator.html"><div class="icon">😴</div><h3>Sleep Calculator</h3><p>Bedtimes & wake times in 90-minute sleep cycles.</p></a>
+    <a class="tool-card" href="tools/days-until-calculator.html"><div class="icon">📆</div><h3>Days Until Calculator</h3><p>Count down to any date — or count up from a past one.</p></a>
+    <a class="tool-card" href="tools/love-calculator.html"><div class="icon">💘</div><h3>Love Calculator</h3><p>A name-match score that never changes — computed, not random.</p></a>
+    <a class="tool-card" href="tools/tip-calculator.html"><div class="icon">🍽️</div><h3>Tip Calculator</h3><p>Split the bill and tip fairly in seconds.</p></a>
+    <a class="tool-card" href="tools/password-generator.html"><div class="icon">🔐</div><h3>Password Generator</h3><p>Strong random passwords, generated locally.</p></a>
+    <a class="tool-card" href="tools/word-counter.html"><div class="icon">✏️</div><h3>Word Counter</h3><p>Count words, characters & reading time instantly.</p></a>
+    <a class="tool-card" href="tools/gpa-calculator.html"><div class="icon">🎓</div><h3>GPA Calculator</h3><p>Compute your grade point average from courses.</p></a>
+    <a class="tool-card" href="tools/age-calculator.html"><div class="icon">🎂</div><h3>Age Calculator</h3><p>Exact age, days lived & next birthday countdown.</p></a>
+    <a class="tool-card" href="tools/unit-price-calculator.html"><div class="icon">⚖️</div><h3>Unit Price Calculator</h3><p>Compare products by price per oz, lb & more.</p></a>
+    <a class="tool-card" href="tools/bmi-calculator.html"><div class="icon">⚕️</div><h3>BMI Calculator</h3><p>Body mass index, imperial & metric.</p></a>
+    <a class="tool-card" href="tools/time-duration-calculator.html"><div class="icon">⏳</div><h3>Time Duration Calculator</h3><p>Hours between times; add & subtract durations.</p></a>
+    <a class="tool-card" href="tools/percentage-calculator.html"><div class="icon">💯</div><h3>Percentage Calculator</h3><p>Six modes: of, as %, increase, decrease, change & difference.</p></a>
+    <a class="tool-card" href="tools/scientific-calculator.html"><div class="icon">🔬</div><h3>Scientific Calculator</h3><p>Trig, logs, powers, factorials, memory & history tape.</p></a>
+    <a class="tool-card" href="tools/fraction-calculator.html"><div class="icon">½</div><h3>Fraction Calculator</h3><p>Add, subtract, multiply & divide — with steps shown free.</p></a>
+    <a class="tool-card" href="tools/date-calculator.html"><div class="icon">📅</div><h3>Date Calculator</h3><p>Days between dates, add/subtract & business days.</p></a>
+    <a class="tool-card" href="tools/currency-converter.html"><div class="icon">💱</div><h3>Currency Converter</h3><p>Live rates for 30+ currencies, with swap & quick amounts.</p></a>
+    <a class="tool-card" href="tools/pregnancy-due-date-calculator.html"><div class="icon">🤰</div><h3>Pregnancy Due Date Calculator</h3><p>Due date from LMP, conception or ultrasound — plus milestones.</p></a>
+    <a class="tool-card" href="tools/calorie-calculator.html"><div class="icon">🔥</div><h3>Calorie Calculator</h3><p>TDEE for your goal, with protein, carb & fat targets.</p></a>
+    <a class="tool-card" href="tools/bmr-calculator.html"><div class="icon">⚡</div><h3>BMR Calculator</h3><p>Three BMR formulas side by side, plus TDEE by activity.</p></a>
+    <a class="tool-card" href="tools/ovulation-calculator.html"><div class="icon">🌸</div><h3>Ovulation Calculator</h3><p>Fertile window, ovulation day & a 3-cycle calendar.</p></a>
+    <a class="tool-card" href="tools/standard-deviation-calculator.html"><div class="icon">📊</div><h3>Standard Deviation Calculator</h3><p>Mean, median, mode & SD — paste data or upload a CSV.</p></a>
+    <a class="tool-card" href="tools/random-number-generator.html"><div class="icon">🎲</div><h3>Random Number Generator</h3><p>Numbers, coin flips & dice rolls with unique/sorted options.</p></a>
+    <a class="tool-card" href="tools/final-grade-calculator.html"><div class="icon">📝</div><h3>Final Grade Calculator</h3><p>The score you need on the final — or your grade if you get X.</p></a>
+    <a class="tool-card" href="tools/overtime-pay-calculator.html"><div class="icon">⏰</div><h3>Overtime Pay Calculator</h3><p>Total hours in — automatic regular / 1.5× / 2× split under federal or CA-style rules, gross and blended rate.</p></a>
+    <a class="tool-card" href="tools/severance-pay-calculator.html"><div class="icon">📦</div><h3>Severance Pay Calculator</h3><p>Severance by weeks per year of service, plus notice pay and unused PTO — the full exit total.</p></a>
+    <a class="tool-card" href="tools/child-support-calculator.html"><div class="icon">🧒</div><h3>Child Support Calculator</h3><p>Income-shares guideline estimate with the statutory percentages and pro-rata split printed. Estimate only.</p></a>
+    <a class="tool-card" href="tools/spousal-support-calculator.html"><div class="icon">⚖️</div><h3>Spousal Support Calculator</h3><p>SSAG without-child formula: support range and duration from the income gap and years married. Estimate only.</p></a>
+    <a class="tool-card" href="tools/wedding-budget-calculator.html"><div class="icon">💍</div><h3>Wedding Budget Calculator</h3><p>Any total budget split across 10 wedding categories by published percentages, with per-guest cost.</p></a>
+    <a class="tool-card" href="tools/baby-cost-calculator.html"><div class="icon">🍼</div><h3>Baby Cost Calculator</h3><p>First-year baby costs itemized: feeding, gear, birth costs and childcare by type — survey-anchored defaults.</p></a>
+    <a class="tool-card" href="tools/moving-box-calculator.html"><div class="icon">📦</div><h3>Moving Box Calculator</h3><p>Box counts by size for your home, plus tape, paper and the supply budget.</p></a>
+  </div>
+
+  
+<div class="section-head lib-sec" id="cat-home-diy-tools"><span class="eyebrow">Home &amp; DIY</span><h2>Home & DIY tools</h2><svg class="nest-arc" viewBox="0 0 120 12" fill="none" aria-hidden="true" focusable="false"><circle cx="60" cy="6" r="3.4" fill="#dc2626"/></svg></div>
+  <div class="tool-grid lib-grid">
+    <a class="tool-card" href="tools/asphalt-estimator.html"><div class="icon">🛣️</div><h3>Asphalt Estimator</h3><p>Hot-mix tons and cubic yards by area and compacted depth — plus the coverage-per-ton check for quotes.</p></a>
+    <a class="tool-card" href="tools/grass-seed-estimator.html"><div class="icon">🌱</div><h3>Grass Seed Estimator</h3><p>Pounds and bags by grass type — new-lawn and overseed rates for bluegrass, fescue, ryegrass, bermuda and blends.</p></a>
+    <a class="tool-card" href="tools/retaining-wall-estimator.html"><div class="icon">🧱</div><h3>Retaining Wall Estimator</h3><p>Segmental blocks, cap blocks and the gravel — base plus drainage backfill — for any wall.</p></a>
+    <a class="tool-card" href="tools/framing-estimator.html"><div class="icon">🔨</div><h3>Framing Estimator</h3><p>Studs and plates for any wall — corners, openings and the end stud everyone forgets, counted.</p></a>
+    <a class="tool-card" href="tools/rebar-estimator.html"><div class="icon">⛓️</div><h3>Rebar Estimator</h3><p>Slab grid bars each way, 20-ft sticks and total steel weight by spacing and bar size.</p></a>
+    <a class="tool-card" href="tools/stone-estimator.html"><div class="icon">🪨</div><h3>Stone Estimator</h3><p>River rock and decorative stone in tons, yards and 50-lb bags, with coverage per ton.</p></a>
+    <a class="tool-card" href="tools/plywood-estimator.html"><div class="icon">🪵</div><h3>Plywood Estimator</h3><p>4×8 (and larger) sheet counts for floors, roofs and walls with the cutting allowance in.</p></a>
+    <a class="tool-card" href="tools/roof-pitch-calculator.html"><div class="icon">📐</div><h3>Roof Pitch Calculator</h3><p>Pitch to angle to slope percent, the roof-area factor, and rafter length per foot of run.</p></a>
+    <a class="tool-card" href="tools/metal-roofing-estimator.html"><div class="icon">🏠</div><h3>Metal Roofing Estimator</h3><p>Panel count and length, screws and ridge for a gable roof — ag panel or standing seam.</p></a>
+    <a class="tool-card" href="tools/concrete-block-fill-estimator.html"><div class="icon">▦</div><h3>Concrete Block Fill Estimator</h3><p>Core-fill grout yards by block size and fill pattern, with the 80-lb bag equivalent.</p></a>
+    <a class="tool-card" href="tools/concrete-mix-estimator.html"><div class="icon">🥄</div><h3>Concrete Mix Estimator</h3><p>Cement bags, sand and aggregate for any volume at 1:2:4, 1:1.5:3 and other standard ratios.</p></a>
+    <a class="tool-card" href="tools/baluster-estimator.html"><div class="icon">📏</div><h3>Baluster Estimator</h3><p>Baluster count at the 4-inch code gap, with the true spacer-block size for an even layout.</p></a>
+    <a class="tool-card" href="tools/deck-stain-estimator.html"><div class="icon">🖌️</div><h3>Deck Stain Estimator</h3><p>Stain gallons and quarts by deck size, wood condition and coats — railings counted, not guessed.</p></a>
+    <a class="tool-card" href="tools/epoxy-estimator.html"><div class="icon">💧</div><h3>Epoxy Estimator</h3><p>Mixed resin volume by dimensions and pour depth, in the 1- and 3-gallon kits stores sell.</p></a>
+    <a class="tool-card" href="tools/plant-spacing-estimator.html"><div class="icon">🌷</div><h3>Plant Spacing Estimator</h3><p>Plant counts for any bed by spacing — square grid or staggered — spares included.</p></a>
+    <a class="tool-card" href="tools/french-drain-estimator.html"><div class="icon">🌧️</div><h3>French Drain Estimator</h3><p>Drainage gravel in yards and tons with pipe volume subtracted, plus pipe and fabric lengths.</p></a>
+    <a class="tool-card" href="tools/tank-volume-estimator.html"><div class="icon">🐠</div><h3>Tank Volume Estimator</h3><p>Gallons and litres for rectangular and round tanks, the full water weight, and substrate bags.</p></a>
+    <a class="tool-card" href="tools/btu-estimator.html"><div class="icon">♨️</div><h3>BTU Estimator</h3><p>Heating and cooling loads by area, climate zone, insulation, sun, occupants and kitchen.</p></a>
+    <a class="tool-card" href="tools/deck-cost-estimator.html"><div class="icon">🏖️</div><h3>Deck Cost Estimator</h3><p>Installed deck cost by material — platform, railing and stairs itemised as separate lines.</p></a>
+    <a class="tool-card" href="tools/fence-cost-estimator.html"><div class="icon">💲</div><h3>Fence Cost Estimator</h3><p>Installed fence cost per foot by material, with gates and tear-out priced separately.</p></a>
+    <a class="tool-card" href="tools/driveway-cost-estimator.html"><div class="icon">🚗</div><h3>Driveway Cost Estimator</h3><p>Asphalt, concrete, gravel or paver driveway cost installed, tear-out as its own line.</p></a>
+    <a class="tool-card" href="tools/siding-cost-estimator.html"><div class="icon">🏡</div><h3>Siding Cost Estimator</h3><p>Vinyl, fiber-cement, wood or stucco siding cost by wall area, tear-off itemised.</p></a>
+    <a class="tool-card" href="tools/painting-cost-estimator.html"><div class="icon">🎨</div><h3>Painting Cost Estimator</h3><p>Pro interior and exterior painting ranges plus the paint gallons — DIY vs pro on one screen.</p></a>
+    <a class="tool-card" href="tools/window-replacement-cost-estimator.html"><div class="icon">🪟</div><h3>Window Replacement Cost Estimator</h3><p>Installed cost per window by type and frame material — quote-check any window company.</p></a>
+    <a class="tool-card" href="tools/gutter-cost-estimator.html"><div class="icon">☔</div><h3>Gutter Cost Estimator</h3><p>Gutter cost by material per foot, downspouts each, guards as a separate honest line.</p></a>
+    <a class="tool-card" href="tools/shed-cost-estimator.html"><div class="icon">🏚️</div><h3>Shed Cost Estimator</h3><p>Kit, prefab or custom shed cost by footprint — the three build routes priced separately.</p></a>
+    <a class="tool-card" href="tools/hvac-cost-estimator.html"><div class="icon">❄️</div><h3>HVAC Cost Estimator</h3><p>AC, furnace, heat pump and mini-split replacement cost scaled by tonnage.</p></a>
+    <a class="tool-card" href="tools/water-heater-cost-estimator.html"><div class="icon">🔥</div><h3>Water Heater Cost Estimator</h3><p>Tank, tankless and heat-pump water heater replacement cost by type and size.</p></a>
+    <a class="tool-card" href="tools/roofing-estimator.html"><div class="icon">🏠</div><h3>Roofing Estimator</h3><p>Roof area from footprint and pitch — shingle bundles, squares, underlayment rolls, ridge cap and nails.</p></a>
+    <a class="tool-card" href="tools/brick-estimator.html"><div class="icon">🧱</div><h3>Brick Estimator</h3><p>Bricks and mortar bags for any wall, by brick size and joint thickness.</p></a>
+    <a class="tool-card" href="tools/concrete-block-estimator.html"><div class="icon">▦</div><h3>Concrete Block Estimator</h3><p>CMU blocks and mortar bags for any wall — standard, half-high and 12-inch block.</p></a>
+    <a class="tool-card" href="tools/insulation-estimator.html"><div class="icon">🌡️</div><h3>Insulation Estimator</h3><p>Batt packages or blown-in bags by area and target R-value, R-13 to R-49.</p></a>
+    <a class="tool-card" href="tools/siding-estimator.html"><div class="icon">🏡</div><h3>Siding Estimator</h3><p>Siding squares, boxes, planks or lap from your walls minus the openings.</p></a>
+    <a class="tool-card" href="tools/fence-estimator.html"><div class="icon">🚧</div><h3>Fence Estimator</h3><p>Posts, rails, pickets and concrete bags for any fence run.</p></a>
+    <a class="tool-card" href="tools/carpet-estimator.html"><div class="icon">🛋️</div><h3>Carpet Estimator</h3><p>Carpet and padding in square yards for one or two rooms, roll length included.</p></a>
+    <a class="tool-card" href="tools/wallpaper-estimator.html"><div class="icon">🖼️</div><h3>Wallpaper Estimator</h3><p>Rolls by room size with pattern-repeat waste honestly counted.</p></a>
+    <a class="tool-card" href="tools/topsoil-estimator.html"><div class="icon">🚜</div><h3>Topsoil Estimator</h3><p>Cubic yards, tons and bags for beds and lawns by area and depth.</p></a>
+    <a class="tool-card" href="tools/sand-estimator.html"><div class="icon">🏖️</div><h3>Sand Estimator</h3><p>Sand in yards, tons and 50-lb bags — densities by sand type.</p></a>
+    <a class="tool-card" href="tools/paver-estimator.html"><div class="icon">🧩</div><h3>Paver Estimator</h3><p>Pavers plus gravel base, bedding and jointing sand — the whole patio list.</p></a>
+    <a class="tool-card" href="tools/sod-estimator.html"><div class="icon">🌿</div><h3>Sod Estimator</h3><p>Sod pallets and rolls by lawn area, cutting waste included.</p></a>
+    <a class="tool-card" href="tools/board-foot-estimator.html"><div class="icon">🪵</div><h3>Board Foot Estimator</h3><p>Board feet from dimensions and quantity, priced at your rate per board foot.</p></a>
+    <a class="tool-card" href="tools/stair-estimator.html"><div class="icon">🪜</div><h3>Stair Estimator</h3><p>Risers, treads, total run and stringer length from your floor-to-floor rise.</p></a>
+    <a class="tool-card" href="tools/pool-volume-estimator.html"><div class="icon">🏊</div><h3>Pool Volume Estimator</h3><p>Gallons for rectangular, round and oval pools from dimensions and depth.</p></a>
+    <a class="tool-card" href="tools/countertop-estimator.html"><div class="icon">🔳</div><h3>Countertop Estimator</h3><p>Counter square feet, slab count and installed cost from your runs.</p></a>
+    <a class="tool-card" href="tools/roof-replacement-cost-estimator.html"><div class="icon">💰</div><h3>Roof Replacement Cost Estimator</h3><p>Full tear-off and replacement cost ranges by material and complexity.</p></a>
+    <a class="tool-card" href="tools/bathroom-remodel-estimator.html"><div class="icon">🛁</div><h3>Bathroom Remodel Estimator</h3><p>Bathroom remodel ranges by size and finish tier, fixtures itemised.</p></a>
+    <a class="tool-card" href="tools/kitchen-remodel-estimator.html"><div class="icon">🍳</div><h3>Kitchen Remodel Estimator</h3><p>Kitchen remodel ranges by tier — cabinet and counter shares spelled out.</p></a>
+    <a class="tool-card" href="tools/home-renovation-estimator.html"><div class="icon">🔨</div><h3>Home Renovation Estimator</h3><p>Whole-home renovation ranges by area and scope: cosmetic, full or gut.</p></a>
+    <a class="tool-card" href="tools/drywall-calculator.html"><div class="icon">🧱</div><h3>Drywall Calculator</h3><p>Sheets, screws & cost for any room — ceiling in or out.</p></a>
+    <a class="tool-card" href="tools/flooring-calculator.html"><div class="icon">🪵</div><h3>Flooring Calculator</h3><p>Boxes with waste counted, plus the true material cost.</p></a>
+    <a class="tool-card" href="tools/tile-calculator.html"><div class="icon">🔲</div><h3>Tile Calculator</h3><p>Tiles, boxes & cost — grout gap and 10% waste included.</p></a>
+    <a class="tool-card" href="tools/gravel-calculator.html"><div class="icon">🪨</div><h3>Gravel Calculator</h3><p>Cubic yards, tons & bags for driveways and paths.</p></a>
+    <a class="tool-card" href="tools/mulch-calculator.html"><div class="icon">🌱</div><h3>Mulch Calculator</h3><p>Cubic yards & bags for garden beds, costs compared.</p></a>
+    <a class="tool-card" href="tools/paint-coverage-calculator.html"><div class="icon">🖌️</div><h3>Paint Coverage Calculator</h3><p>How many gallons for your room & coats.</p></a>
+    <a class="tool-card" href="tools/deck-material-estimator.html"><div class="icon">🪵</div><h3>Deck Material Estimator</h3><p>Boards, screws & concrete for your deck.</p></a>
+    <a class="tool-card" href="tools/moving-cost-estimator.html"><div class="icon">🚚</div><h3>Moving Cost Estimator</h3><p>Compare movers vs DIY truck rental.</p></a>
+    <a class="tool-card" href="tools/concrete-calculator.html"><div class="icon">🏗️</div><h3>Concrete Calculator</h3><p>Yards, bag counts & cost for slabs, footings, tubes & steps.</p></a>
+    <a class="tool-card" href="tools/square-footage-calculator.html"><div class="icon">📐</div><h3>Square Footage Calculator</h3><p>Four shapes, a rooms list & cost per sq ft totals.</p></a>
+    <a class="tool-card" href="tools/rafter-length-calculator.html"><div class="icon">📐</div><h3>Rafter Length Calculator</h3><p>Common + hip rafter lengths with ridge deduction, birdsmouth and overhang tail — the full cut list.</p></a>
+    <a class="tool-card" href="tools/drywall-cost-estimator.html"><div class="icon">🧱</div><h3>Drywall Cost Estimator</h3><p>Installed drywall cost: sheets, mud and labor priced by finish level, tear-out included if you need it.</p></a>
+    <a class="tool-card" href="tools/tree-removal-cost-estimator.html"><div class="icon">🌳</div><h3>Tree Removal Cost Estimator</h3><p>Removal cost by height band and access, with stump grinding, haul-away and crane priced in.</p></a>
+    <a class="tool-card" href="tools/material-weight-calculator.html"><div class="icon">⚖️</div><h3>Material Weight Calculator</h3><p>Weight of steel, concrete, lumber, gravel and 14 more materials across five shapes — densities printed.</p></a>
+    <a class="tool-card" href="tools/trim-molding-estimator.html"><div class="icon">🪟</div><h3>Trim & Molding Estimator</h3><p>Baseboard, crown, chair rail and casing by room: door deductions, waste, stick counts and cost.</p></a>
+    <a class="tool-card" href="tools/wainscoting-calculator.html"><div class="icon">🖼️</div><h3>Wainscoting Calculator</h3><p>Panel and stile counts, chair rail and sheet goods from wall lengths, panel width and spacing.</p></a>
+    <a class="tool-card" href="tools/cabinet-door-calculator.html"><div class="icon">🚪</div><h3>Cabinet Door Calculator</h3><p>Replacement cabinet doors and drawer fronts priced by material, hinges included.</p></a>
+    <a class="tool-card" href="tools/generator-sizing-calculator.html"><div class="icon">🔌</div><h3>Generator Sizing Calculator</h3><p>Appliance checklist to running watts, motor surge, recommended size and generator class.</p></a>
+    <a class="tool-card" href="tools/pool-chemical-calculator.html"><div class="icon">🏊</div><h3>Pool Chemical Calculator</h3><p>Chlorine, shock, alkalinity and pH doses from volume + current/target readings. Hot-tub mode included.</p></a>
+    <a class="tool-card" href="tools/snow-load-calculator.html"><div class="icon">❄️</div><h3>Snow Load Calculator</h3><p>ASCE 7 design snow load from ground load and roof factors — plus actual snow weight in tons and depth.</p></a>
+    <a class="tool-card" href="tools/water-heater-sizing-calculator.html"><div class="icon">🚿</div><h3>Water Heater Sizing Calculator</h3><p>First-hour rating from household size and tubs, matched to the tank size that delivers it.</p></a>
+    <a class="tool-card" href="tools/electrical-load-calculator.html"><div class="icon">⚡</div><h3>Electrical Load Calculator</h3><p>NEC 220.82 dwelling load calculation: demand-factored load, total amps, and spare panel capacity.</p></a>
+    <a class="tool-card" href="tools/voltage-drop-calculator.html"><div class="icon">🧵</div><h3>Voltage Drop & Wire Size Calculator</h3><p>Voltage drop for any gauge plus the recommended AWG meeting NEC ampacity and a 3% drop limit. Cu and Al.</p></a>
+  </div><div class="section-head" id="cat-guides-and-articles"><span class="eyebrow">Learn</span><h2>Guides &amp; articles</h2><svg class="nest-arc" viewBox="0 0 120 12" fill="none" aria-hidden="true" focusable="false"><circle cx="60" cy="6" r="3.4" fill="#dc2626"/></svg></div>
   <div class="tool-grid">
     <a class="tool-card" href="guides/get-out-of-debt-avalanche-vs-snowball.html"><div class="icon">💳</div><h3>Get Out of Debt: Avalanche vs Snowball</h3><p>Two proven payoff orders, one worked $500-a-month example, and how to pick the one you’ll finish.</p></a><a class="tool-card" href="guides/calculate-mortgage-payment-by-hand.html"><div class="icon">🏦</div><h3>Calculate a Mortgage Payment by Hand</h3><p>The formula, a full worked example, and how to check your lender’s quote in minutes.</p></a><a class="tool-card" href="guides/compound-interest-explained.html"><div class="icon">📈</div><h3>Compound Interest, Explained With Real Numbers</h3><p>How $10,000 and $200 a month actually grow over 10, 20 and 30 years — plus the rule of 72.</p></a><a class="tool-card" href="guides/work-out-percentages-without-a-calculator.html"><div class="icon">💯</div><h3>Percentages Without a Calculator</h3><p>The 10% anchor trick, reverse percentages and stacked discounts — mental math that works anywhere.</p></a><a class="tool-card" href="guides/why-every-calculator-solves-backwards.html"><div class="icon">↩️</div><h3>Why Our Calculators Solve Backwards Too</h3><p>Most calculators answer one way. Ours solve for whichever number you’re missing — here’s why.</p></a><a class="tool-card" href="guides/mathway-alternatives.html"><div class="icon">📐</div><h3>Mathway Alternatives: Free Step-by-Step Math Help</h3><p>Need the working shown, free? An honest comparison — including where Mathway is stronger.</p></a><a class="tool-card" href="guides/heloc-draw-vs-repayment-guide.html"><div class="icon">🏦</div><h3>HELOC: Draw vs Repayment, With Real Numbers</h3><p>Interest-only payments, then an 82% payment jump — both phases of a $20,000 line, priced.</p></a><a class="tool-card" href="guides/how-to-read-an-amortization-schedule.html"><div class="icon">🗓️</div><h3>How to Read an Amortization Schedule</h3><p>What every column means, where the interest hides, and the month principal finally wins.</p></a><a class="tool-card" href="guides/calculator-net-alternatives.html"><div class="icon">🔍</div><h3>Calculator.net Alternatives</h3><p>Two decades and ~200 tools, honestly credited — and the solve-backwards workflow we built instead.</p></a><a class="tool-card" href="guides/how-much-house-can-i-afford.html"><div class="icon">🏡</div><h3>How Much House Can I Afford?</h3><p>The 28/36 rule worked end to end — and why your tax bill, not your salary, sets the ceiling.</p></a><a class="tool-card" href="guides/how-to-calculate-overtime-pay.html"><div class="icon">⏰</div><h3>How to Calculate Overtime Pay</h3><p>Time-and-a-half and double time in three buckets, with a full worked week at $20 an hour.</p></a><a class="tool-card" href="guides/cd-vs-savings-account.html"><div class="icon">💿</div><h3>CD vs Savings Account</h3><p>The APY gap on $10,000 over five years, the penalty priced, and the ladder that splits the difference.</p></a>
   </div>
@@ -188,6 +420,219 @@
   });
   document.addEventListener('click',function(e){
     if(!box.contains(e.target)&&e.target!==input)box.hidden=true;
+  });
+})();
+</script>
+<script>
+/* NN-HOME-REDESIGN (Nov 17, 2026): sticky category bar scrollspy (the bar
+   follows the scroll), the hero calculator module — a basic calculator by
+   default; a calculator picked from search or the shelf below loads into the
+   module (embed mode) and the page scrolls up to it — plus a universal
+   history, print and share for whatever the module is showing. */
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ---------- sticky category bar ---------- */
+  var navLinks={}, navWrap=document.querySelector('.lib-subnav .wrap'), lastActive=null;
+  document.querySelectorAll('.lib-subnav a').forEach(function(a){ navLinks[a.getAttribute('href').slice(1)]=a; });
+  var heads=Array.prototype.slice.call(document.querySelectorAll('.lib-sec[id]'));
+  if(heads.length && navWrap){
+    function spy(){
+      var y=window.scrollY+170, cur=heads[0];
+      heads.forEach(function(h){ if(h.offsetTop<=y) cur=h; });
+      Object.keys(navLinks).forEach(function(k){ navLinks[k].classList.toggle('is-active',!!cur&&k===cur.id); });
+      if(cur && navLinks[cur.id] && lastActive!==cur.id){
+        lastActive=cur.id;
+        var a=navLinks[cur.id];
+        navWrap.scrollTo({left: a.offsetLeft - navWrap.clientWidth/2 + a.offsetWidth/2, behavior: reduced?'auto':'smooth'});
+      }
+    }
+    window.addEventListener('scroll',spy,{passive:true}); spy();
+  }
+  /* ---------- module elements ---------- */
+  var card=document.getElementById('heroCalc');
+  if(!card) return;
+  var val=document.getElementById('hcValue'), expr=document.getElementById('hcExpr'),
+      titleEl=document.getElementById('hcTitle'), backBtn=document.getElementById('hcBack'),
+      vDefault=document.getElementById('hcDefault'), vTool=document.getElementById('hcTool'),
+      vHistory=document.getElementById('hcHistory'), frame=document.getElementById('hcFrame'),
+      openFull=document.getElementById('hcOpenFull'),
+      histBtn=document.getElementById('hcHistoryBtn'), shareBtn=document.getElementById('hcShare'),
+      printBtn=document.getElementById('hcPrint'), histList=document.getElementById('hcHistoryList'),
+      clearHistBtn=document.getElementById('hcClearHistory');
+  var view='default', viewBeforeHistory='default', currentTool=null;
+  function siteName(){ var m=document.querySelector('meta[property="og:site_name"]'); return m?m.getAttribute('content'):document.title; }
+  function showView(v){
+    view=v;
+    vDefault.hidden = v!=='default';
+    vTool.hidden = v!=='tool';
+    vHistory.hidden = v!=='history';
+    backBtn.hidden = v!=='tool';
+    if(v==='default') titleEl.textContent='Calculator';
+  }
+  function scrollToModule(){
+    var r=card.getBoundingClientRect();
+    if(r.top<76||r.bottom>window.innerHeight){ card.scrollIntoView({behavior:reduced?'auto':'smooth', block:'center'}); }
+  }
+  /* ---------- universal history (localStorage, one history for everything) ---------- */
+  var HKEY='nnHeroHistory', history=[];
+  try{ history=JSON.parse(window.localStorage.getItem(HKEY)||'[]'); if(!Array.isArray(history)) history=[]; }catch(e){ history=[]; }
+  function saveHistory(){ try{ window.localStorage.setItem(HKEY, JSON.stringify(history.slice(0,20))); }catch(e){} }
+  function pushHistory(entry){
+    entry.ts=Date.now();
+    var last=history[0];
+    if(last && last.text===entry.text && last.href===entry.href) return;
+    history.unshift(entry); history=history.slice(0,20); saveHistory();
+  }
+  function renderHistory(){
+    histList.innerHTML='';
+    if(!history.length){
+      var li=document.createElement('li'); li.className='hc-history-empty';
+      li.textContent='Nothing here yet. Finish a calculation or open a calculator and it will show up here — one history for everything.';
+      histList.appendChild(li); return;
+    }
+    history.forEach(function(en){
+      var li=document.createElement('li');
+      if(en.t==='tool' && en.href){
+        var b=document.createElement('button'); b.type='button'; b.className='hc-history-item';
+        b.textContent=en.text;
+        b.addEventListener('click',function(){ loadTool(en.href, en.text); });
+        li.appendChild(b);
+      } else {
+        li.className='hc-history-calc'; li.textContent=en.text;
+      }
+      histList.appendChild(li);
+    });
+  }
+  /* ---------- loading a calculator into the module ---------- */
+  function loadTool(href, name){
+    if(!href || href.indexOf('tools/')!==0) return false;
+    currentTool={href:href, name:name||'Calculator'};
+    titleEl.textContent=currentTool.name;
+    frame.src=href+(href.indexOf('?')>-1?'&':'?')+'embed=1';
+    openFull.href=href;
+    showView('tool');
+    pushHistory({t:'tool', text:currentTool.name, href:href});
+    scrollToModule();
+    return true;
+  }
+  window.nnHeroLoadTool=loadTool;
+  document.addEventListener('click',function(e){
+    if(e.ctrlKey||e.metaKey||e.shiftKey||e.button!==0) return;
+    var t=e.target; if(!t||!t.closest) return;
+    var a=t.closest('#heroSearchResults a')||t.closest('a.tool-card');
+    if(!a) return;
+    var href=a.getAttribute('href')||'';
+    if(href.indexOf('tools/')!==0) return;
+    var h3=a.querySelector('h3');
+    e.preventDefault();
+    loadTool(href, h3?h3.textContent:'');
+    var box=document.getElementById('heroSearchResults'); if(box) box.hidden=true;
+  }, true);
+  document.addEventListener('submit',function(e){
+    if(e.target.id!=='heroSearchForm') return;
+    var input=document.getElementById('heroSearchInput');
+    var q=(input.value||'').trim().toLowerCase(); if(q.length<2) return;
+    var cards=document.querySelectorAll('.lib-grid .tool-card');
+    for(var i=0;i<cards.length;i++){
+      if(cards[i].textContent.toLowerCase().indexOf(q)>-1){
+        e.preventDefault(); e.stopPropagation();
+        var h3=cards[i].querySelector('h3');
+        loadTool(cards[i].getAttribute('href'), h3?h3.textContent:'');
+        var box=document.getElementById('heroSearchResults'); if(box) box.hidden=true;
+        return;
+      }
+    }
+  }, true);
+  /* ---------- basic calculator (the module's default) ---------- */
+  var cur='0', acc=null, op=null, fresh=true;
+  function sym(o){ return {'+':'+','-':'\u2212','*':'\u00d7','/':'\u00f7'}[o]||o; }
+  function fmt(n){
+    if(!isFinite(n)) return 'Error';
+    var r=parseFloat(n.toPrecision(12)), s=String(r);
+    if(s.indexOf('e')>-1||s.indexOf('E')>-1) return s;
+    var parts=s.split('.');
+    parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,',');
+    return parts.join('.');
+  }
+  function show(){
+    val.textContent = (cur==='Error') ? 'Error' : fmt(parseFloat(cur));
+    expr.textContent = (acc!==null&&op) ? fmt(parseFloat(acc))+' '+sym(op) : '';
+  }
+  function calc(a,b,o){
+    a=parseFloat(a); b=parseFloat(b);
+    if(o==='+') return a+b; if(o==='-') return a-b;
+    if(o==='*') return a*b; if(o==='/') return b===0?NaN:a/b;
+    return b;
+  }
+  function press(k){
+    if(cur==='Error'&&k!=='C') cur='0';
+    if(/^[0-9]$/.test(k)){
+      if(fresh||cur==='0'){ cur=k; fresh=false; }
+      else if(cur.replace(/[-.,]/g,'').length<12){ cur+=k; }
+    }
+    else if(k==='.'){ if(fresh){ cur='0.'; fresh=false; } else if(cur.indexOf('.')===-1) cur+='.'; }
+    else if(k==='C'){ cur='0'; acc=null; op=null; fresh=true; }
+    else if(k==='B'){ cur=cur.length>1?cur.slice(0,-1):'0'; if(cur==='-'||cur==='') cur='0'; }
+    else if(k==='%'){ var p=parseFloat(cur)/100; cur=isFinite(p)?String(p):'Error'; fresh=true; }
+    else if(k==='='){
+      if(acc!==null&&op){
+        var exprTxt=fmt(parseFloat(acc))+' '+sym(op)+' '+fmt(parseFloat(cur));
+        var r=calc(acc,cur,op); cur=isFinite(r)?String(r):'Error';
+        if(cur!=='Error') pushHistory({t:'calc', text:exprTxt+' = '+fmt(parseFloat(cur))});
+        acc=null; op=null; fresh=true;
+      }
+    }
+    else if('+-*/'.indexOf(k)>-1){
+      if(acc!==null&&op&&!fresh){ var r2=calc(acc,cur,op); cur=isFinite(r2)?String(r2):'Error'; }
+      acc=cur; op=k; fresh=true;
+    }
+    show();
+  }
+  card.addEventListener('click',function(e){
+    var b=e.target.closest?e.target.closest('[data-k]'):null;
+    if(b) press(b.getAttribute('data-k'));
+  });
+  card.setAttribute('tabindex','0');
+  card.addEventListener('keydown',function(e){
+    var k=e.key;
+    if(/^[0-9.]$/.test(k)||'+-*/'.indexOf(k)>-1) press(k);
+    else if(k==='Enter'||k==='='){ e.preventDefault(); press('='); }
+    else if(k==='Escape') press('C');
+    else if(k==='Backspace') press('B');
+    else if(k==='%') press('%');
+  });
+  show();
+  /* ---------- module bar: back / history / share / print ---------- */
+  backBtn.addEventListener('click',function(){ frame.src='about:blank'; currentTool=null; showView('default'); });
+  histBtn.addEventListener('click',function(){
+    if(view==='history'){ showView(viewBeforeHistory); }
+    else { viewBeforeHistory=view; renderHistory(); showView('history'); }
+  });
+  clearHistBtn.addEventListener('click',function(){ history=[]; saveHistory(); renderHistory(); });
+  function flashBtn(btn, txt){ var old=btn.textContent; btn.textContent=txt; setTimeout(function(){ btn.textContent=old; },1600); }
+  shareBtn.addEventListener('click',function(){
+    var url, text;
+    if(view==='tool'&&currentTool){ url=new URL(currentTool.href, window.location.href).href; text=currentTool.name+' — free online calculator'; }
+    else { url=window.location.href; text=((expr.textContent?expr.textContent+' ':'')+val.textContent)+' — calculated with the '+siteName()+' calculator'; }
+    if(navigator.share){ navigator.share({title:titleEl.textContent||'Calculator', text:text, url:url}).catch(function(){}); }
+    else if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text+' '+url).then(function(){ flashBtn(shareBtn,'Copied'); },function(){}); }
+  });
+  printBtn.addEventListener('click',function(){
+    if(view==='tool'){ try{ frame.contentWindow.focus(); frame.contentWindow.print(); return; }catch(e){} }
+    var lines=[];
+    if(view==='history'){ history.forEach(function(en){ lines.push(en.text); }); if(!lines.length) lines.push('No history yet.'); }
+    else { if(expr.textContent) lines.push(expr.textContent); lines.push(val.textContent); }
+    var rec=document.createElement('div'); rec.className='hc-receipt';
+    var h=document.createElement('h2'); h.textContent=siteName()+' — '+(view==='tool'&&currentTool?currentTool.name:'Calculator'); rec.appendChild(h);
+    lines.forEach(function(L){ var p=document.createElement('p'); p.textContent=L; rec.appendChild(p); });
+    var d=document.createElement('p'); d.className='hc-receipt-date'; d.textContent=new Date().toLocaleString(); rec.appendChild(d);
+    document.body.appendChild(rec);
+    document.body.classList.add('hc-printing');
+    var done=false;
+    function cleanup(){ if(done) return; done=true; document.body.classList.remove('hc-printing'); if(rec.parentNode) rec.parentNode.removeChild(rec); window.removeEventListener('afterprint',cleanup); }
+    window.addEventListener('afterprint',cleanup);
+    setTimeout(cleanup,1500);
+    window.print();
   });
 })();
 </script>
