@@ -1,8 +1,8 @@
 /* One Calculator — Adsterra banner loader: serialized seat queue +
    non-destructive fill watchdog (NN-ADS-V2 standard). Adsterra website
-   registration for onecalculator.site is PENDING — until real keys are
-   issued, every seat carries the zero key and the watchdog paints the
-   house promo. AdSense loader is live on every page. */
+   registration for onecalculator.site is LIVE (website ID 6188133) — real keys wired
+   Nov 9, 2026, impressions recording; the zero-key guard in loadBanner is
+   legacy.  AdSense loader is live on every page. */
 /* NN-ADS-V2: seats load one at a time (queue) so concurrent invokes cannot race on the shared atOptions global;
    the house fallback waits ~30s and never wipes a seat — a MutationObserver lets a late real iframe replace the promo. */
 (function () {
@@ -213,6 +213,7 @@
     var slots = document.querySelectorAll('.nn-ad');
     for (var i = 0; i < slots.length; i++) {
       if (slots[i].hasAttribute('data-k728') || slots[i].hasAttribute('data-k300')) pick(slots[i]);
+      nnEnsureWatch(slots[i]); /* NN-FLOOR-UNIFORM (Nov 19, 2026): every page seat's house-floor watchdog starts at init, not when its serialized queue job finally runs — under blocked/silent networks (adblockers) each queued seat burned a 3s prime + 15s settle, so the last seat's floor could land ~66s after load while the first seat's landed at ~30s. The modal's NN-MODAL-FIX pattern, generalized: the floor deadline is now uniform (30s from load) for every seat; primeChain/loadBanner already respect a pre-started watch. */
       nnEnqueue(slots[i], null, false); /* serialized by the shared lock, in DOM order */
     }
   }
