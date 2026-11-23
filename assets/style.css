@@ -1954,3 +1954,11 @@ html.nn-embed .hz-tbl{overflow-x:auto}
    horizontal calculator (form + results side by side) has room. */
 .nn-uh-calc .hero-calc{max-width:none}
 @media (min-width:1025px){.nn-under-hero .wrap{max-width:1320px}}
+
+/* NN-FIT15 (2026-11-23): styled selects lost their native dropdown arrow (the
+   background/border styling displaces it) and long option labels clipped
+   mid-word. Give every calculator select an explicit chevron + ellipsis, and
+   in horizontal mode let any row containing a select take the full form width
+   so labels have room. */
+.nn-calc-card .field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23586a61' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px!important;text-overflow:ellipsis}
+@media (min-width:861px){.hz-form .row:has(> .field select){grid-template-columns:1fr}}
