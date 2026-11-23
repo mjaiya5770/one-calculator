@@ -1918,3 +1918,39 @@ html.nn-embed .results .big{font-size:2.1rem}
   html.nn-embed .results{padding:13px 14px}
   html.nn-embed .results .big{font-size:1.75rem}
 }
+
+/* NN-FIT12 (2026-11-22, owner ruling: ONE calculator under the hero — it swaps
+   when another calculator is selected; no hero calculator, no duplicate): the
+   single module sits flush in the under-hero band beside the ad seat. */
+@media(min-width:1025px){.hero-wrap{grid-template-columns:1fr!important}}
+.hero-copy{max-width:780px}
+.nn-uh-calc.card{background:transparent;border:0;box-shadow:none;padding:0}
+.nn-uh-calc .hero-calc{margin:0;width:100%}
+
+/* NN-FIT13 (2026-11-22): swap scroll lands the module under the sticky nav, not beneath it */
+#heroCalc{scroll-margin-top:76px}
+/* NN-FIT14 (2026-11-22): signature text readable on the dark results panel —
+   explicit light palette (the old --ink/--muted legend colours were
+   near-invisible on the panel). */
+.nn-signature{color:#e8f2ec}
+.nn-signature .sig-title,.nn-signature .nn-sig-title{color:#fff}
+.nn-signature .sig-leg-row{color:#cfe0d8}
+.nn-signature .sig-leg-label{color:#f2f8f4}
+.nn-signature .sig-leg-row strong{color:#fff}
+.nn-signature .sig-delta{color:#ffd98a}
+.nn-signature .sig-note{color:#cfe0d8}
+
+/* NN-HZ (2026-11-23): horizontal embed layout — results beside the form on
+   wide frames, stacked on narrow ones. */
+html.nn-embed .hz-tbl{overflow-x:auto}
+@media (min-width:861px){
+  html.nn-embed .hz-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:16px;align-items:start}
+  html.nn-embed .hz-side .results, html.nn-embed .hz-side #results{margin-top:0}
+  html.nn-embed .hz-form .btn{margin-top:2px}
+}
+
+/* NN-HZ2 (2026-11-23): the module was still capped at the old hero width
+   (440px) — uncap it, and give the under-hero band a wider measure so the
+   horizontal calculator (form + results side by side) has room. */
+.nn-uh-calc .hero-calc{max-width:none}
+@media (min-width:1025px){.nn-under-hero .wrap{max-width:1320px}}
