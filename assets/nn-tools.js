@@ -1165,28 +1165,32 @@
     card.insertBefore(wrap, res);
     fin.appendChild(res);
     utils.forEach(function(u){ fin.appendChild(u); });
-    var all = steps.concat([fin]), total = all.length, cur = 0;
+    var all = steps.concat([fin]), allTitles = titles.concat(['Your result']), cur = 0;
     var bar = head.querySelector('.wz-prog i'), lab = head.querySelector('.wz-step-label'), q = head.querySelector('.wz-q');
     var back = nav.querySelector('.wz-back'), next = nav.querySelector('.wz-next'), restart = nav.querySelector('.wz-restart');
+    function isActive(s){ return s === fin || (!s.hidden && s.style.display !== 'none'); }
+    function activeList(){ return all.filter(isActive); }
     function show(i){
+      var act = activeList(), total = act.length;
       cur = Math.max(0, Math.min(i, total - 1));
-      all.forEach(function(s, j){ s.classList.toggle('on', j === cur); });
+      var current = act[cur], onFin = current === fin;
+      all.forEach(function(s){ s.classList.toggle('on', s === current); });
       bar.style.width = Math.round((cur + 1) / total * 100) + '%';
       lab.textContent = 'Step ' + (cur + 1) + ' of ' + total;
-      q.textContent = cur < steps.length ? titles[cur] : 'Your result';
+      q.textContent = allTitles[all.indexOf(current)];
       back.style.visibility = cur === 0 ? 'hidden' : 'visible';
-      back.innerHTML = cur === total - 1 ? '&larr; Edit answers' : '&larr; Back';
-      next.style.display = cur === total - 1 ? 'none' : '';
-      restart.style.display = cur === total - 1 ? '' : 'none';
+      back.innerHTML = onFin ? '&larr; Edit answers' : '&larr; Back';
+      next.style.display = onFin ? 'none' : '';
+      restart.style.display = onFin ? '' : 'none';
       next.innerHTML = cur === total - 2 ? 'See my result &rarr;' : 'Continue &rarr;';
-      if (cur === total - 1 && calcBtn) { try { calcBtn.click(); } catch(e){} }
+      if (onFin && calcBtn) { try { calcBtn.click(); } catch(e){} }
       try { window.scrollTo(0, 0); } catch(e){}
       try { window.dispatchEvent(new Event('resize')); } catch(e){}
     }
     back.addEventListener('click', function(){ show(cur - 1); });
     next.addEventListener('click', function(){ show(cur + 1); });
     restart.addEventListener('click', function(){ try { location.reload(); } catch(e){} });
-    card.addEventListener('keydown', function(e){ if (e.key === 'Enter' && /INPUT|SELECT/.test((e.target || {}).tagName || '')) { e.preventDefault(); if (cur < total - 1) show(cur + 1); } });
+    card.addEventListener('keydown', function(e){ if (e.key === 'Enter' && /INPUT|SELECT/.test((e.target || {}).tagName || '')) { e.preventDefault(); if (cur < activeList().length - 1) show(cur + 1); } });
     show(0);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wz);

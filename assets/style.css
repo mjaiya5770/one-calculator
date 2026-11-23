@@ -1983,3 +1983,5 @@ html.nn-embed .hz-tbl{overflow-x:auto}
 /* NN-WZ2: disclosures inside a wizard step open flat — no summary row. */
 .wz-step details>summary{display:none}
 .wz-step details{display:block}
+
+.wz-step[hidden]{display:none!important}
