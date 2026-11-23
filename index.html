@@ -481,9 +481,9 @@
     backBtn.hidden = v!=='tool';
     if(v==='default') titleEl.textContent='Calculator';
   }
-  function scrollToModule(){
+  function scrollToModule(){ if(window.__nnPreloadAt && Date.now()-window.__nnPreloadAt<2500) return;
     var r=card.getBoundingClientRect();
-    if(r.top<76||r.bottom>window.innerHeight){ card.scrollIntoView({behavior:reduced?'auto':'smooth', block:'center'}); }
+    if(r.top<76||r.bottom>window.innerHeight){ card.scrollIntoView({behavior:reduced?'auto':'smooth', block:'start'}); }
   }
   /* ---------- universal history (localStorage, one history for everything) ---------- */
   var HKEY='nnHeroHistory', history=[];
@@ -518,7 +518,7 @@
   /* ---------- loading a calculator into the module ---------- */
   var NN_WIDGETS={'currency-converter':1,'discount-calculator':1,'password-generator':1,'random-number-generator':1,'sales-tax-calculator':1,'tip-calculator':1,'unit-price-calculator':1};
   function loadTool(href, name){
-    if(!href || href.indexOf('tools/')!==0) return false;
+    if(!href || href.indexOf('tools/')!==0) return false; window.__nnAlign=1;
     if(!name||name==='Calculator'){var ca=document.querySelector('a[href="'+href+'"]'); if(ca) name=ca.textContent.trim();}
     currentTool={href:href, name:name||'Calculator'};
     titleEl.textContent=currentTool.name;
@@ -534,7 +534,7 @@
   /* Deep link from guide pages: ?use=tools/<slug>.html opens that calculator here */
   (function(){ var m=/[?&]use=(tools\/[a-z0-9\-]+\.html)/.exec(window.location.search); if(!m) return; var a=document.querySelector('a[href="'+m[1]+'"]'); loadTool(m[1], a?a.textContent.trim():undefined); })();
   /* Niche default: preload the flagship calculator in the hero */
-  (function(){ if(/[?&]use=/.test(window.location.search)) return; var href='tools/tip-calculator.html'; var a=document.querySelector('a[href="'+href+'"]'); if(a) loadTool(href, a.textContent.trim()); })();
+  (function(){ if(/[?&]use=/.test(window.location.search)) return; var href='tools/tip-calculator.html'; var a=document.querySelector('a[href="'+href+'"]'); if(a){ window.__nnPreloadAt=Date.now(); loadTool(href, a.textContent.trim()); } })();
   window.addEventListener('message', function(e){
     if (e.origin !== window.location.origin) return;
     var h = e.data && e.data.nnEmbedHeight;
@@ -542,7 +542,7 @@
     var target = null;
     if (e.source === frame.contentWindow) { if (view !== 'tool') return; target = frame; }
     else { var uh = document.getElementById('uhFrame'); if (uh && e.source === uh.contentWindow) target = uh; }
-    if (target) target.style.height = Math.max(300, Math.min(Math.ceil(h) + 10, 4000)) + 'px';
+    if (target) { target.style.height = Math.max(300, Math.min(Math.ceil(h) + 10, 4000)) + 'px'; if (target === frame && window.__nnAlign) { window.__nnAlign = 0; if (!(window.__nnPreloadAt && Date.now() - window.__nnPreloadAt < 2500)) { var c = document.getElementById('heroCalc'); if (c) setTimeout(function(){ c.scrollIntoView({behavior:'smooth', block:'start'}); }, 60); } } }
   });
   document.addEventListener('click',function(e){
     if(e.ctrlKey||e.metaKey||e.shiftKey||e.button!==0) return;

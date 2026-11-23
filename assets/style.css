@@ -1926,3 +1926,6 @@ html.nn-embed .results .big{font-size:2.1rem}
 .hero-copy{max-width:780px}
 .nn-uh-calc.card{background:transparent;border:0;box-shadow:none;padding:0}
 .nn-uh-calc .hero-calc{margin:0;width:100%}
+
+/* NN-FIT13 (2026-11-22): swap scroll lands the module under the sticky nav, not beneath it */
+#heroCalc{scroll-margin-top:76px}
