@@ -1893,3 +1893,28 @@ html.nn-embed main .wrap{padding-bottom:8px}
 html.nn-embed main.wrap{padding-top:12px!important;padding-bottom:10px!important}
 html.nn-embed .nn-calc-card{margin-bottom:0!important}
 html.nn-embed main>.nn-actions{display:flex!important}
+
+/* NN-FIT11 (2026-11-22, owner order: full calculator redesign — compact, flush,
+   polished, no oversize): embed-mode compaction for every calculator module. */
+html.nn-embed .nn-calc-card{padding:18px 18px 12px}
+html.nn-embed .nn-calc-card .field{margin-bottom:10px}
+html.nn-embed .nn-calc-card label{font-size:.82rem;margin-bottom:5px}
+html.nn-embed .nn-calc-card input,html.nn-embed .nn-calc-card select,html.nn-embed .nn-calc-card textarea{padding:9px 12px;font-size:15px}
+html.nn-embed .nn-calc-card .btn{padding:10px 18px}
+html.nn-embed .nn-calc-card .mode-btn{padding:7px 13px;font-size:.85rem}
+html.nn-embed .nn-calc-card table{font-size:.86rem}
+html.nn-embed .nn-calc-card th,html.nn-embed .nn-calc-card td{padding:6px 8px}
+html.nn-embed .nn-calc-card div[style*="space-between"]{flex-wrap:wrap;row-gap:3px}
+html.nn-embed .results{padding:16px 18px}
+html.nn-embed .results .big{font-size:2.1rem}
+@media (max-width:720px){
+  html.nn-embed .nn-calc-card{padding:14px 12px 10px;border-radius:14px}
+  html.nn-embed .nn-calc-card .row:has(>.field:nth-child(2)):not(:has(>.field:nth-child(3))){display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  html.nn-embed .nn-calc-card input,html.nn-embed .nn-calc-card select,html.nn-embed .nn-calc-card textarea{padding:8px 10px;font-size:14.5px}
+  html.nn-embed .nn-calc-card .btn{padding:9px 15px;font-size:.92rem}
+  html.nn-embed .nn-calc-card .mode-btn{padding:6px 10px;font-size:.8rem}
+  html.nn-embed .nn-calc-card table{font-size:.8rem}
+  html.nn-embed .nn-calc-card th,html.nn-embed .nn-calc-card td{padding:5px 6px}
+  html.nn-embed .results{padding:13px 14px}
+  html.nn-embed .results .big{font-size:1.75rem}
+}
