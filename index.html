@@ -520,7 +520,7 @@
   function loadTool(href, name){
     if(!href || href.indexOf('tools/')!==0) return false; window.__nnAlign=1;
     if(!name||name==='Calculator'){var ca=document.querySelector('a[href="'+href+'"]'); if(ca) name=ca.textContent.trim();}
-    currentTool={href:href, name:name||'Calculator'};
+    var _ca=document.querySelector('a[href="'+href+'"]'); if(_ca){var _h3=_ca.querySelector('h3'); if(_h3) name=_h3.textContent.trim();} currentTool={href:href, name:name||'Calculator'};
     titleEl.textContent=currentTool.name;
     var slug=href.replace('tools/','').replace('.html','');
     frame.src=(NN_WIDGETS[slug]?'widgets/'+slug+'.html':href)+'?embed=1';
