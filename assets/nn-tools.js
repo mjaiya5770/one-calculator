@@ -1116,6 +1116,88 @@
   post();
 } catch(e){} })();
 
+/* NN-WZ (2026-11-23): compact step-by-step wizard in embed mode — one
+   clear step at a time, big Continue/Back buttons, plain progress
+   ("Step 2 of 6"), results as the final step. Replaces the all-at-once
+   form (and the NN-HZ side-by-side) for multi-block calculators.
+   Keypad / invoice / scientific calculators stay as-is. */
+(function(){ try {
+  if (!document.documentElement.classList.contains('nn-embed')) return;
+  function wz(){
+    var card = document.querySelector('.nn-calc-card');
+    if (!card || card.querySelector('.wz')) return;
+    var res = card.querySelector('#results, .results');
+    if (!res) return;
+    if (res.querySelector('.inv-editor, .inv-preview, .keypad') || card.querySelector('.keypad')) return;
+    var steps = [], utils = [], calcBtn = null, node = card.firstElementChild, guard = 0;
+    while (node && node !== res && guard++ < 80) {
+      var nx = node.nextElementSibling;
+      if (node.classList.contains('nn-stale-line')) { node.classList.add('wz-calc-hide'); }
+      else if (node.tagName !== 'H2' && node.tagName !== 'P' && !node.classList.contains('nn-ad') && !node.classList.contains('nn-embed-link')) {
+        if (node.classList.contains('nn-actions') || node.classList.contains('nn-saves')) { utils.push(node); }
+        else if (node.tagName === 'BUTTON') { calcBtn = node; node.classList.add('wz-calc-hide'); }
+        else if (!node.querySelector('input, select, textarea') && node.querySelector('button.btn')) { calcBtn = node.querySelector('button.btn'); node.classList.add('wz-calc-hide'); }
+        else if (node.querySelector('input, select, textarea, .segmented')) { steps.push(node); }
+      }
+      node = nx;
+    }
+    if (steps.length < 2) return;
+    if (!calcBtn) { var cb = card.querySelector('button.btn'); if (cb && !cb.closest('.nn-actions')) calcBtn = cb; }
+    var wrap = document.createElement('div'); wrap.className = 'wz';
+    var head = document.createElement('div'); head.className = 'wz-head';
+    head.innerHTML = '<div class="wz-prog"><i></i></div><div class="wz-step-label"></div><div class="wz-q"></div>';
+    var body = document.createElement('div'); body.className = 'wz-body';
+    var nav = document.createElement('div'); nav.className = 'wz-nav';
+    nav.innerHTML = '<button type="button" class="wz-back">&larr; Back</button><button type="button" class="wz-next">Continue &rarr;</button><button type="button" class="wz-restart" style="display:none">&#8635; Start over</button>';
+    var titles = [];
+    steps.forEach(function(st){
+      st.classList.add('wz-step');
+      if (st.tagName === 'DETAILS') st.open = true;
+      st.querySelectorAll('details').forEach(function(d){ d.open = true; });
+      var labs = st.querySelectorAll('label'), t = '';
+      for (var i = 0; i < labs.length && i < 2; i++) { var tx = (labs[i].textContent || '').replace(/\s+/g, ' ').replace(/[:\s]+$/, ''); if (tx) t = t ? t + ' & ' + tx : tx; }
+      titles.push(t || 'Your details');
+      body.appendChild(st);
+    });
+    var fin = document.createElement('div'); fin.className = 'wz-step wz-final';
+    body.appendChild(fin);
+    wrap.appendChild(head); wrap.appendChild(body); wrap.appendChild(nav);
+    card.insertBefore(wrap, res);
+    fin.appendChild(res);
+    utils.forEach(function(u){ fin.appendChild(u); });
+    var all = steps.concat([fin]), allTitles = titles.concat(['Your result']), cur = 0;
+    var bar = head.querySelector('.wz-prog i'), lab = head.querySelector('.wz-step-label'), q = head.querySelector('.wz-q');
+    var back = nav.querySelector('.wz-back'), next = nav.querySelector('.wz-next'), restart = nav.querySelector('.wz-restart');
+    function isActive(s){ return s === fin || (!s.hidden && s.style.display !== 'none'); }
+    function activeList(){ return all.filter(isActive); }
+    function show(i){
+      var act = activeList(), total = act.length;
+      cur = Math.max(0, Math.min(i, total - 1));
+      var current = act[cur], onFin = current === fin;
+      all.forEach(function(s){ s.classList.toggle('on', s === current); });
+      bar.style.width = Math.round((cur + 1) / total * 100) + '%';
+      lab.textContent = 'Step ' + (cur + 1) + ' of ' + total;
+      q.textContent = allTitles[all.indexOf(current)];
+      back.style.visibility = cur === 0 ? 'hidden' : 'visible';
+      back.innerHTML = onFin ? '&larr; Edit answers' : '&larr; Back';
+      next.style.display = onFin ? 'none' : '';
+      restart.style.display = onFin ? '' : 'none';
+      next.innerHTML = cur === total - 2 ? 'See my result &rarr;' : 'Continue &rarr;';
+      if (onFin && calcBtn) { try { calcBtn.click(); } catch(e){} }
+      try { window.scrollTo(0, 0); } catch(e){}
+      try { window.dispatchEvent(new Event('resize')); } catch(e){}
+    }
+    card.addEventListener('click', function(e){ if (e.target && e.target.closest && e.target.closest('.segmented, .seg-btn, select')) setTimeout(function(){ show(cur); }, 90); });
+    back.addEventListener('click', function(){ show(cur - 1); });
+    next.addEventListener('click', function(){ show(cur + 1); });
+    restart.addEventListener('click', function(){ try { location.reload(); } catch(e){} });
+    card.addEventListener('keydown', function(e){ if (e.key === 'Enter' && /INPUT|SELECT/.test((e.target || {}).tagName || '')) { e.preventDefault(); if (cur < activeList().length - 1) show(cur + 1); } });
+    show(0);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wz);
+  else wz();
+} catch(e){} })();
+
 /* NN-HZ (2026-11-23): horizontal layout in embed mode — form on the left,
    results on the right, so the calculator uses the module's width instead
    of stacking everything vertically. Narrow frames keep the stack. */
@@ -1123,7 +1205,7 @@
   if (!document.documentElement.classList.contains('nn-embed')) return;
   function hz(){
     var card = document.querySelector('.nn-calc-card');
-    if (!card || card.querySelector('.hz-grid')) return;
+    if (!card || card.querySelector('.hz-grid') || card.querySelector('.wz')) return;
     var res = card.querySelector('#results, .results');
     if (!res) return;
     if (res.querySelector('.inv-editor, .inv-preview, .keypad')) return;

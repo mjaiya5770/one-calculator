@@ -1962,3 +1962,26 @@ html.nn-embed .hz-tbl{overflow-x:auto}
    so labels have room. */
 .nn-calc-card .field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23586a61' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px!important;text-overflow:ellipsis}
 @media (min-width:861px){.hz-form .row:has(> .field select){grid-template-columns:1fr}}
+/* NN-WZ (2026-11-23): compact wizard — one step at a time, big type,
+   big buttons, progress bar. Embed mode only (JS builds .wz). */
+.wz{margin-top:4px}
+.wz-prog{height:7px;border-radius:99px;background:#e2eae4;overflow:hidden}
+.wz-prog i{display:block;height:100%;width:10%;background:var(--accent,#1f9d66);border-radius:99px;transition:width .25s ease}
+.wz-step-label{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
+.wz-q{font-size:21px;line-height:1.25;font-weight:800;color:var(--ink);margin:4px 0 12px}
+.wz-step{display:none!important}
+.wz-step.on{display:block!important}
+.wz-step .field label{font-size:15px}
+.wz-step .field input,.wz-step .field select{font-size:17px;padding:13px 12px}
+.wz-nav{display:flex;gap:10px;margin-top:18px}
+.wz-nav button{min-height:54px;border-radius:13px;font-size:17px;font-weight:700;cursor:pointer;padding:0 18px}
+.wz-back{flex:0 0 40%;background:var(--surface);border:1.5px solid var(--border);color:var(--ink)}
+.wz-next{flex:1;background:var(--accent,#1f9d66);border:none;color:#fff}
+.wz-restart{flex:1;background:var(--surface);border:1.5px solid var(--border);color:var(--ink)}
+.wz-calc-hide{display:none!important}
+.wz-final #results,.wz-final .results{display:block}
+/* NN-WZ2: disclosures inside a wizard step open flat — no summary row. */
+.wz-step details>summary{display:none}
+.wz-step details{display:block}
+
+.wz-step[hidden]{display:none!important}
