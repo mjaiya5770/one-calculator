@@ -88,6 +88,7 @@
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8058544460943611" crossorigin="anonymous"></script>
 <!-- NN-EMBED --><script>if(/[?&]embed=1(&|$)/.test(window.location.search))document.documentElement.classList.add("nn-embed");</script>
+<script>if(/[?&]embed=1(&|$)/.test(window.location.search))window.location.replace("../widgets/random-number-generator.html?embed=1");</script>
 </head>
 <body>
 <header class="site-header">
@@ -101,60 +102,15 @@
   <div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../calculators.html#cat-everyday-tools">Everyday tools</a> › Random Number Generator</div>
 <div class="nn-ad nn-ad-top" data-k728="f9659324b3834602de5ad139f13988d6" data-k320="7ca8d01ff6de0c35ae33df12254574ff"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
   <h1 class="tool-title">Random Number Generator</h1>
+   <div class="card nn-use-cta">
+     <h2>Use the Random Number Generator</h2>
+     <p>The calculator itself lives on the landing page — open it there and it is ready in the module, sized to fit your screen with no scrolling through a long page to find the form.</p>
+     <p><a class="btn" href="../index.html?use=tools/random-number-generator.html">Open the Random Number Generator &rarr;</a></p>
+   </div>
+   
   <p class="lede">One tool, three games of chance done properly: random numbers with unique/sorted/decimal control, a coin flipper with tallies, and a dice roller that shows every die — all using your browser's strong random source.</p>
 
-  <div class="card nn-calc-card">
-
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px">
-      <button type="button" class="btn mode-btn" data-mode="numbers" onclick="setMode('numbers')">Numbers</button>
-      <button type="button" class="btn mode-btn" data-mode="coin" onclick="setMode('coin')">Coin flip</button>
-      <button type="button" class="btn mode-btn" data-mode="dice" onclick="setMode('dice')">Dice roller</button>
-    </div>
-    <div class="mode-panel" id="panel-numbers">
-      <div class="row">
-        <div class="field"><label for="rMin">Minimum</label><input id="rMin" type="number" value="1" step="any"></div>
-        <div class="field"><label for="rMax">Maximum</label><input id="rMax" type="number" value="100" step="any"></div>
-      </div>
-      <div class="row">
-        <div class="field"><label for="rCount">How many numbers (max 1000)</label><input id="rCount" type="number" value="10" min="1" max="1000" step="1"></div>
-        <div class="field"><label for="rDec">Decimal places</label><select id="rDec"><option value="0">0 — whole numbers</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
-      </div>
-      <div class="row">
-        <div class="field"><label for="rSort">Sort</label><select id="rSort"><option value="none">As generated</option><option value="asc">Low to high</option><option value="desc">High to low</option></select></div>
-        <div class="field"><label>&nbsp;</label><label style="display:flex;gap:8px;align-items:center;font-weight:600"><input id="rUnique" type="checkbox" style="width:20px;height:20px"> No duplicates (unique)</label></div>
-      </div>
-    </div>
-    <div class="mode-panel" id="panel-coin" style="display:none">
-      <div class="row">
-        <div class="field"><label for="cFlips">Number of flips (max 1000)</label><input id="cFlips" type="number" value="10" min="1" max="1000" step="1"></div>
-        <div class="field"><label>&nbsp;</label><span class="hint">Great for settling arguments and probability homework alike.</span></div>
-      </div>
-    </div>
-    <div class="mode-panel" id="panel-dice" style="display:none">
-      <div class="row">
-        <div class="field"><label for="dCount">Number of dice (max 20)</label><input id="dCount" type="number" value="2" min="1" max="20" step="1"></div>
-        <div class="field"><label for="dSides">Sides per die</label><select id="dSides"><option value="4">d4</option><option value="6" selected>d6</option><option value="8">d8</option><option value="10">d10</option><option value="12">d12</option><option value="20">d20</option><option value="100">d100</option></select></div>
-      </div>
-    </div>
-
-    <button class="btn" onclick="calc()">Generate</button>
-    <div class="nn-actions no-print" data-nn-actions>
-  <button type="button" class="nn-btn" data-nn="share">🔗 Copy link to this result</button>
-  <button type="button" class="nn-btn" data-nn="copy">📋 Copy result</button>
-  <button type="button" class="nn-btn" data-nn="save">💾 Save this calculation</button>
-  <button type="button" class="nn-btn" data-nn="print">🖨️ Print / Save PDF</button>
-</div>
-<div class="nn-saves no-print" id="nnSavesPanel" hidden></div>
-<p class="nn-embed-link no-print"><a href="../embed.html#random-number-generator">Embed this calculator on your site — free</a></p>
-<div class="results" id="results">
-      <div style="color:var(--muted);font-size:.9rem">Your result</div>
-      <div id="verdict" style="font-weight:700;font-size:1.02rem;margin:2px 0 6px"></div>
-      <div class="big" id="rMain">—</div>
-      <table><tbody id="rows"></tbody></table>
-    
-<div class="nn-signature no-print" data-nn-signature hidden><div class="nn-sig-title">Your draw, placed</div><div class="nn-sig-body"></div></div>
-</div>
-  </div>
+  
 <div class="nn-ad" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
 
   <div class="card">
@@ -211,7 +167,12 @@
   </div>
 </main>
 <div class="nn-ad nn-ad-bottom" data-key="b9dc96b7df5afb3dad7e055d2965709a" data-w="300" data-h="250"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="../calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
-<section class="related-tools">
+<div class="card nn-use-cta">
+     <h2>Ready to run your numbers?</h2>
+     <p>The calculator itself lives on the landing page — open it there and it is ready in the module, sized to fit your screen with no scrolling through a long page to find the form.</p>
+     <p><a class="btn" href="../index.html?use=tools/random-number-generator.html">Open the Random Number Generator &rarr;</a></p>
+   </div>
+   <section class="related-tools">
   <h2>Related tools</h2>
   <ul>
     <li><a href="password-generator.html">Password Generator</a></li>
@@ -222,116 +183,7 @@
   </ul>
 </section>
 <footer class="site-footer"><div class="wrap"><div>© 2026 One Calculator</div><div><a href="../terms.html">Terms</a> · <a href="../privacy.html">Privacy</a> · <a href="../index.html">All tools</a> · <a href="../calculators.html">Calculators</a> · <a href="../embed.html">Embed</a> · <a href="../partnerships.html">Partnerships</a> · <a href="../creator-roi-calculators.html">Creator ROI</a></div></div></footer>
-<script>
 
-function v(id){return +document.getElementById(id).value||0;}
-function s(id){return document.getElementById(id).value;}
-/*PURE-BEGIN*/
-function makeRng(seed){var st=(seed>>>0)||1;return function(){st=(st*1664525+1013904223)>>>0;return st/4294967296;};}
-function genNumbers(min,max,count,unique,decimals,rng){
-  rng=rng||Math.random;
-  if(count<1||max<min)return null;
-  var out=[],seen={},guard=0,limit=Math.pow(10,decimals);
-  while(out.length<count){
-    if(++guard>count*200+1000)return null;
-    var raw=min+rng()*(max-min);
-    var val=decimals>0?Math.round(raw*limit)/limit:Math.floor(raw)+ (min%1!==0?0:0);
-    if(decimals===0){val=Math.floor(min+rng()*(max-min+1));if(val>max)val=max;}
-    if(unique){var key=val.toFixed(decimals);if(seen[key])continue;seen[key]=1;}
-    out.push(val);
-  }
-  return out;
-}
-function flipCoins(n,rng){rng=rng||Math.random;var heads=0,seq='';for(var i=0;i<n;i++){if(rng()<0.5){heads++;seq+='H';}else seq+='T';}return {heads:heads,tails:n-heads,seq:seq};}
-function rollDice(count,sides,rng){rng=rng||Math.random;var rolls=[],total=0;for(var i=0;i<count;i++){var r=Math.floor(rng()*sides)+1;rolls.push(r);total+=r;}return {rolls:rolls,total:total};}
-/*PURE-END*/
-/*P4SIG*/
-function sigSlotBody(){var s=document.querySelector('[data-nn-signature]');return s?s.querySelector('.nn-sig-body'):null;}
-function sigSet(title,html){var b=sigSlotBody();if(!b)return;b.innerHTML=(title?'<p class="sig-title">'+title+'</p>':'')+html;}
-function sigMoney(v){return (v<0?'-$':'$')+Math.abs(Math.round(v)).toLocaleString('en-US');}
-var fmt0=(typeof fmt0==='function')?fmt0:function(n){return n.toLocaleString('en-US',{maximumFractionDigits:0});};
-var fmt1=(typeof fmt1==='function')?fmt1:function(n){return n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1});};
-var money=(typeof money==='function')?money:function(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
-var money0=(typeof money0==='function')?money0:function(n){return '$'+Math.round(n).toLocaleString('en-US');};
-
-function sigStripHTML(min,max,segs,markers,note){
-  if(!(max>min))return '';
-  var span=max-min;
-  function pct(v){ return Math.max(0,Math.min(100,(v-min)/span*100)); }
-  var cells=segs.map(function(s,i){
-    return '<span class="sig-strip-seg s-'+String.fromCharCode(97+(i%5))+'" style="left:'+pct(s[0]).toFixed(2)+'%;width:'+Math.max(0,pct(s[1])-pct(s[0])).toFixed(2)+'%"><span class="sig-strip-lab">'+s[2]+'</span></span>';
-  }).join('');
-  var marks=(markers||[]).map(function(mk){
-    return '<span class="sig-strip-mark" style="left:'+pct(mk[0]).toFixed(2)+'%"><span class="sig-strip-mlab">'+mk[1]+'</span></span>';
-  }).join('');
-  var aria=segs.map(function(s){return s[2];}).join('; ');
-  return '<div class="sig-strip" role="img" aria-label="'+aria+'"><div class="sig-strip-track">'+cells+marks+'</div></div>'+(note?'<div class="sig-note">'+note+'</div>':'');
-}
-/*P4STRIP-END*/
-function sigStackHTML(segs,total,fmt,note){
-  var vis=segs.filter(function(s){return s[1]>0;});
-  if(!vis.length||!(total>0))return '';
-  var bar=vis.map(function(s,i){
-    var pct=Math.max(0,Math.min(100,s[1]/total*100));
-    return '<span class="sig-stack-seg s-'+String.fromCharCode(97+(i%5))+'" style="width:'+pct.toFixed(2)+'%"></span>';
-  }).join('');
-  var leg=vis.map(function(s,i){
-    return '<div class="sig-leg-row"><span class="sig-dot s-'+String.fromCharCode(97+(i%5))+'"></span><span class="sig-leg-label">'+s[0]+'</span><strong>'+fmt(s[1])+' · '+(s[1]/total*100).toFixed(0)+'%</strong></div>';
-  }).join('');
-  return '<div class="sig-stackbar" role="img" aria-label="Composition breakdown">'+bar+'</div>'+leg+(note?'<div class="sig-note">'+note+'</div>':'');
-}
-/*P4STACK-END*/
-function sigLadderHTML(steps,note){var h='<div class="sig-ladder">';for(var i=0;i<steps.length;i++){var s=steps[i];h+='<div class="sig-lstep"><span class="sig-lstep-main"><span class="sig-dot s-'+(i%4===0?'a':i%4===1?'b':i%4===2?'c':'d')+'"></span>'+s[0]+'</span><strong>'+s[1]+'</strong></div>';if(s[2]){h+='<div class="sig-lstep-sub">'+s[2]+'</div>';}}h+='</div>';if(note){h+='<p class="sig-note">'+note+'</p>';}return h;}
-
-var mode='numbers';
-function setMode(m){
-  mode=m;
-  document.querySelectorAll('.mode-panel').forEach(function(p){p.style.display='none';});
-  document.getElementById('panel-'+m).style.display='';
-  document.querySelectorAll('.mode-btn').forEach(function(b){
-    var on=b.getAttribute('data-mode')===m;
-    b.style.background=on?'':'var(--teal-light)'; b.style.color=on?'':'var(--teal-dark)'; b.style.boxShadow=on?'':'none';
-  });
-  calc();
-}
-function row(l,val){return '<tr><td>'+l+'</td><td>'+val+'</td></tr>';}
-function calc(){
-  var big='',verd='',rows='';
-  if(mode==='numbers'){
-    var min=v('rMin'),max=v('rMax'),count=Math.min(1000,Math.max(1,Math.round(v('rCount')))),dec=+s('rDec'),uniq=document.getElementById('rUnique').checked;
-    if(dec===0&&uniq&&count>(max-min+1)){document.getElementById('rMain').textContent='Impossible';document.getElementById('verdict').textContent='You asked for '+count+' unique whole numbers from '+min+' to '+max+', but only '+(max-min+1)+' exist. Widen the range or lower the count.';document.getElementById('rows').innerHTML='';document.getElementById('results').classList.add('show');return;}
-    var nums=genNumbers(min,max,count,uniq,dec);
-    if(!nums){document.getElementById('rMain').textContent='—';return;}
-    var disp=nums.slice();
-    if(s('rSort')==='asc')disp.sort(function(a,b){return a-b;});
-    if(s('rSort')==='desc')disp.sort(function(a,b){return b-a;});
-    var joined=disp.map(function(n){return dec>0?n.toFixed(dec):''+n;}).join(', ');
-    big=count<=20?joined:disp.slice(0,20).map(function(n){return dec>0?n.toFixed(dec):''+n;}).join(', ')+'…';
-    verd='Drew '+count+' number'+(count===1?'':'s')+' between '+min+' and '+max+(uniq?', all unique':'')+'.';
-    rows=row('Full list',joined)+row('Count',count)+row('Lowest drawn',Math.min.apply(null,nums))+row('Highest drawn',Math.max.apply(null,nums));
-  } else if(mode==='coin'){
-    var n=Math.min(1000,Math.max(1,Math.round(v('cFlips')))),r=flipCoins(n);
-    big='Heads '+r.heads+' · Tails '+r.tails;
-    verd='In '+n+' flips: heads '+r.heads+' ('+(r.heads/n*100).toFixed(1)+'%), tails '+r.tails+' ('+(r.tails/n*100).toFixed(1)+'%).';
-    rows=row('Sequence',r.seq)+row('Heads',r.heads)+row('Tails',r.tails)+row('Longest possible streak check','Run more flips and watch the percentages settle toward 50/50.');
-  } else {
-    var dc=Math.min(20,Math.max(1,Math.round(v('dCount')))),sides=+s('dSides'),roll=rollDice(dc,sides);
-    big='Total: '+roll.total;
-    verd='Rolled '+dc+'d'+sides+': '+roll.rolls.join(' + ')+(dc>1?' = '+roll.total:'')+'.';
-    rows=row('Dice',roll.rolls.join(', '))+row('Total',roll.total)+row('Average per die',(roll.total/dc).toFixed(2))+row('Best possible',dc*sides);
-  }
-  document.getElementById('rMain').textContent=big;
-  document.getElementById('verdict').textContent=verd;
-  document.getElementById('rows').innerHTML=rows;
-  if(mode==='numbers'&&typeof nums!=='undefined'&&nums){var __mk=nums.slice(0,50).map(function(x){return [x,''];});sigSet(null,sigStripHTML(min,max,[],__mk,'Drawn values on the '+min+'–'+max+' range — smallest '+Math.min.apply(null,nums)+', largest '+Math.max.apply(null,nums)+'.'))}else if(mode==='coin'){sigSet(null,sigStackHTML([['Heads',r.heads],['Tails',r.tails]],n,function(x){return ''+x;},'Across '+n+' flips — streaks are normal; the share settles near 50/50 only over many flips.'))}else{sigSet(null,sigLadderHTML(roll.rolls.slice(0,10).map(function(x,i){return ['Roll '+(i+1),''+x];}),'Total '+roll.total+' across '+roll.rolls.length+' dice.'))}
-  document.getElementById('results').classList.add('show');
-}
-
-function live(){document.querySelectorAll('input,select,textarea').forEach(function(el){el.addEventListener('input',calc);el.addEventListener('change',calc);});}
-
-live(); setMode('numbers');
-
-</script>
 <script src="../assets/ads.js"></script>
 <script src="../assets/track.js"></script>
 <script src="../assets/nn-tools.js"></script>

@@ -1704,7 +1704,7 @@ html.nn-shell .tool-grid.is-searching .nn-native-slot{display:none}
 .hero-wrap{display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
 .hero-copy{min-width:0}
 @media(min-width:1025px){.hero-wrap{grid-template-columns:minmax(0,1fr) 340px}}
-.hero-calc{background:linear-gradient(160deg,var(--teal-darker),var(--teal-dark));border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:16px;box-shadow:var(--shadow-lg);transform:rotate(-1.2deg);max-width:360px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-calc{background:linear-gradient(160deg,var(--teal-darker),var(--teal-dark));border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:16px;box-shadow:var(--shadow-lg);max-width:360px;margin:0 auto;width:100%;position:relative;z-index:1}
 .hc-bar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .hc-title{flex:1;font-weight:800;color:#fff;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
 .hc-bar-actions{display:flex;gap:6px;flex:none}
@@ -1740,3 +1740,156 @@ html.nn-shell .tool-grid.is-searching .nn-native-slot{display:none}
   body.hc-printing .hc-receipt p{font-size:1.1rem;margin:4px 0}
   body.hc-printing .hc-receipt .hc-receipt-date{color:#555;font-size:.85rem;margin-top:16px}
 }
+
+/* ============================================================
+   NN-FIT (2026-11-21, emergency redesign): NO-SCROLL FIT SYSTEM
+   Rule: the working calculator — fields, actions and result —
+   fits within one viewport height and is fully operable without
+   scrolling. Nothing in calculator UI is rotated. Teaching
+   content (formula, examples, FAQ) stays below the fold.
+   ============================================================ */
+/* Hero calculator: viewport-aware frame instead of a fixed 640px box */
+#hcFrame{height:min(560px,calc(100dvh - 190px));min-height:400px;border-radius:12px}
+@media (max-width:560px){#hcFrame{height:calc(100dvh - 170px);min-height:400px}}
+.hero-calc{max-width:440px}
+/* Compact calculator card: tightened spacing scale */
+.nn-calc-card{padding:clamp(12px,2.4vw,20px)}
+.nn-calc-card .field{margin-bottom:9px}
+.nn-calc-card .field label{margin-bottom:4px;font-size:.86rem}
+.nn-calc-card .field input,.nn-calc-card .field select,.nn-calc-card .field textarea{padding:9px 11px;font-size:16px}
+.nn-calc-card .row{gap:9px}
+.nn-calc-card>.btn{margin-top:2px;padding:11px 18px}
+.nn-calc-card .nn-actions{margin-top:9px;gap:6px}
+.nn-calc-card .results{margin-top:11px;padding:12px 14px}
+.nn-calc-card .results .big{font-size:clamp(1.45rem,5.2vw,1.9rem)}
+/* Short-answer block above the card: tighter so the card reaches the first screen */
+.short-answer,.nn-short-answer{padding:11px 14px;margin-bottom:11px}
+/* Embed mode: the widget alone must fit its frame — compact chrome */
+html.nn-embed .nn-calc-card{padding:12px}
+html.nn-embed main .wrap{padding-top:8px;padding-bottom:8px}
+html.nn-embed .nn-embed-bar{margin-bottom:9px;padding:7px 11px}
+/* Embed v2: the widget alone fills the frame — no short-answer box, tighter fields */
+html.nn-embed .nn-answer{display:none!important}
+html.nn-embed .tool-title{display:none!important}
+html.nn-embed .nn-calc-card .field{margin-bottom:7px}
+html.nn-embed .nn-calc-card .field input,html.nn-embed .nn-calc-card .field select{padding:8px 10px}
+html.nn-embed .nn-calc-card>.btn{padding:10px 16px}
+html.nn-embed .nn-calc-card .results{margin-top:9px;padding:10px 12px}
+/* Very short screens: squeeze further rather than scroll */
+@media (max-height:700px){
+  .nn-calc-card{padding:10px 12px}
+  .nn-calc-card .field{margin-bottom:7px}
+  .nn-calc-card .field input,.nn-calc-card .field select{padding:8px 10px}
+  #hcFrame{min-height:400px}
+}
+
+/* Guide pages: the Use-the-calculator call to action */
+.nn-use-cta{text-align:center;padding:clamp(16px,3vw,26px)}
+.nn-use-cta h2{margin-top:0}
+.nn-use-cta .btn{display:inline-block;font-size:1.05rem;padding:13px 26px}
+
+/* ============================================================
+   NN-DESIGN (2026-11-21): modern, techy, easy.
+   Design brief (owner): easy to use, easy to read, easy to
+   understand — with a modern tech look. Clean surfaces, crisp
+   type, one obvious primary action per calculator, results
+   that read at a glance. No decoration that costs clarity.
+   ============================================================ */
+/* Crisp, modern type */
+body{letter-spacing:-0.011em}
+h1,h2,h3{letter-spacing:-0.022em}
+.nn-calc-card .results .big,.results .big{font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+/* Guide prose: a comfortable reading measure and rhythm */
+main .card p,main .card li{line-height:1.62}
+main .card h2{margin-bottom:.45em}
+/* Modern surfaces */
+.card{border-radius:16px;border:1px solid var(--border);box-shadow:0 1px 2px rgba(16,24,20,.05),0 10px 30px -18px rgba(16,24,20,.25)}
+.nn-calc-card{border-radius:18px}
+/* Inputs: rounded, quiet border, clear focus glow */
+.nn-calc-card .field input,.nn-calc-card .field select,.nn-calc-card .field textarea{border-radius:10px;border:1px solid var(--border-strong,var(--border));background:var(--surface);transition:border-color .15s ease,box-shadow .15s ease}
+.nn-calc-card .field input:focus,.nn-calc-card .field select:focus,.nn-calc-card .field textarea:focus{outline:none;border-color:var(--teal,#0e7a5f);box-shadow:0 0 0 3px rgba(14,122,95,.22)}
+/* One obvious primary action: full-width gradient button, thumb-sized */
+.nn-calc-card>.btn{display:block;width:100%;min-height:48px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--teal,#0e7a5f),var(--teal-dark,#0a5c48));color:#fff;font-weight:700;font-size:1.02rem;box-shadow:0 8px 20px -8px rgba(10,92,72,.55);cursor:pointer}
+.nn-calc-card>.btn:active{transform:translateY(1px)}
+/* Secondary actions: quiet pills, still easy to tap */
+.nn-calc-card .nn-actions .nn-btn{min-height:40px;border-radius:999px;padding:8px 13px}
+/* Segmented controls as modern pills */
+.nn-seg{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--surface-warm,var(--surface));border:1px solid var(--border)}
+.nn-seg button{border-radius:999px;min-height:38px;padding:7px 14px}
+/* Result panel: dark techy readout, hairline rows, accent number */
+.nn-calc-card .results{border-radius:14px}
+.nn-calc-card .results .row,.nn-calc-card .results table tr{border-color:rgba(127,127,127,.18)}
+/* The guide-page call to action: one clear gradient button */
+.nn-use-cta{border-radius:18px;background:linear-gradient(160deg,var(--surface),var(--surface-warm,var(--surface)))}
+.nn-use-cta .btn{display:inline-block;min-height:50px;line-height:1.25;padding:14px 30px;border-radius:12px;background:linear-gradient(135deg,var(--teal,#0e7a5f),var(--teal-dark,#0a5c48));color:#fff;font-weight:700;box-shadow:0 10px 24px -10px rgba(10,92,72,.55);text-decoration:none}
+/* Hero module: sleeker frame edge */
+#hcFrame{border-radius:14px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.hero-calc{border-radius:20px}
+/* Respect users who ask for less motion */
+@media (prefers-reduced-motion: reduce){.nn-calc-card>.btn:active{transform:none}}
+
+/* Under-hero featured calculator + ad band */
+.nn-under-hero{margin:8px 0 4px}
+.nn-uh-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start}
+@media (max-width:920px){.nn-uh-grid{grid-template-columns:1fr}}
+.nn-uh-calc h2{margin-top:0}
+.nn-uh-sub{color:var(--muted)}
+#uhFrame{height:560px;border-radius:14px}
+.nn-uh-foot{margin-bottom:0}
+@media (min-width:921px){.nn-uh-ad .nn-ad{position:sticky;top:84px}}
+/* Clean hero: no floating glyph decorations — headline, search, calculator */
+.hero-glyphs{display:none!important}
+
+/* NN-FIT2: under-hero house promo uncapped (narrow column wraps taller than the
+   120px base cap); hero bar tightened so calculator titles stop truncating. */
+.nn-uh-ad .nn-house{max-height:none}
+.hc-bar-btn{font-size:.78rem;padding:4px 7px}
+.hc-title{font-size:.94rem;min-width:0}
+
+/* NN-COMPACT (2026-11-21, owner: "optimize and compact each calculator"):
+   tighter embed-mode spacing across every calculator widget — less padding,
+   slimmer fields and result panel — so each calculator sits shorter in the
+   hero frame while tap targets stay comfortable. */
+html.nn-embed .nn-calc-card{padding:10px 12px;border-radius:14px}
+html.nn-embed .nn-calc-card .field{margin-bottom:6px}
+html.nn-embed .nn-calc-card input,html.nn-embed .nn-calc-card select{padding:7px 9px}
+html.nn-embed .nn-calc-card .seg{gap:4px}
+html.nn-embed .nn-calc-card .seg button{padding:5px 10px}
+html.nn-embed .nn-calc-card .btn{padding:9px 14px;margin-top:2px}
+html.nn-embed .nn-result{margin-top:8px;padding:10px 12px}
+html.nn-embed .nn-result .rv{font-size:1.4rem}
+html.nn-embed .nn-result .rl{font-size:.8rem}
+
+/* NN-FIT3: under-hero ad fully uncapped + visible overflow; hero bar compacted
+   harder so long calculator titles fit beside the action buttons. */
+.nn-uh-ad .nn-ad{overflow:visible}
+.nn-uh-ad .nn-house{max-height:none;height:auto}
+.hc-bar{gap:6px}
+.hc-bar-actions{display:flex;gap:2px}
+.hc-bar-btn{padding:3px 5px;font-size:.72rem}
+.hc-title{flex:1 1 40%}
+
+/* NN-FIT4: widgets are block-laid-out in embed mode (the tool template's flex
+   main centres content and corrupts height maths); hero title squeeze v2. */
+html.nn-embed main{display:block}
+.hc-bar{padding:8px 10px}
+.hc-title{font-size:.85rem}
+.hc-bar-btn{font-size:.7rem;padding:3px 4px}
+
+
+/* NN-FIT6: spare the actions toolbar (invoice totals/print live there, after
+   the cards); un-stretch body/main in embed mode — a flex-stretched main was
+   coupling the document height to the frame height. */
+html.nn-embed .nn-calc-card ~ .nn-actions{display:flex!important}
+html.nn-embed body{display:block!important;min-height:0!important}
+html.nn-embed main{flex:none!important;height:auto!important;min-height:0!important}
+html.nn-embed main .wrap{padding-bottom:8px}
+
+/* NN-FIT7: the wrap's page padding (56px top / 80px bottom) and the card's
+   28px bottom margin are page breathing room — inside an embed frame they
+   render as dead white space above and below the calculator. Trim them in
+   embed mode only, and show the toolbar that is a direct child of main
+   (invoice totals / Print / Save PDF live there). */
+html.nn-embed main.wrap{padding-top:12px!important;padding-bottom:10px!important}
+html.nn-embed .nn-calc-card{margin-bottom:0!important}
+html.nn-embed main>.nn-actions{display:flex!important}
