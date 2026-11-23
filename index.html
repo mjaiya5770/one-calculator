@@ -82,7 +82,16 @@
       <div><strong>$0</strong><span>no signup, no fees</span></div>
     </div>
     </div>
-    <div class="hero-calc" id="heroCalc">
+    
+  </div>
+
+  <svg class="nest-motif" viewBox="0 0 640 96" fill="none" aria-hidden="true"><circle cx="320" cy="48" r="34" stroke="#ffffff" stroke-width="5"/><circle cx="320" cy="48" r="10" fill="#dc2626"/></svg>
+</section>
+<section class="nn-under-hero">
+  <div class="wrap">
+    <div class="nn-uh-grid">
+      <div class="nn-uh-calc card">
+<div class="hero-calc" id="heroCalc">
       <div class="hc-bar">
         <button type="button" class="hc-bar-btn" id="hcBack" hidden aria-label="Back to the basic calculator">&larr;</button>
         <span class="hc-title" id="hcTitle">Calculator</span>
@@ -118,7 +127,7 @@
       <p class="hc-note">Quick math, right here &mdash; or search and the calculator you pick opens in this module. The full shelf is just below &darr;</p>
       </div>
       <div class="hc-view" id="hcTool" hidden>
-        <iframe id="hcFrame" title="Calculator" loading="lazy" style="border:0;width:100%;height:640px;border-radius:12px;background:#fff"></iframe>
+        <iframe id="hcFrame" title="Calculator" loading="lazy" style="border:0;width:100%;border-radius:12px;background:#fff"></iframe>
         <p class="hc-tool-foot"><a id="hcOpenFull" href="calculators.html">Open the full calculator page &rarr;</a></p>
       </div>
       <div class="hc-view" id="hcHistory" hidden>
@@ -126,9 +135,12 @@
         <p class="hc-tool-foot"><button type="button" class="hc-bar-btn" id="hcClearHistory">Clear history</button></p>
       </div>
     </div>
+</div>
+      <div class="nn-uh-ad">
+        <div class="nn-ad nn-ad-top" data-k728="f9659324b3834602de5ad139f13988d6" data-k320="7ca8d01ff6de0c35ae33df12254574ff"><div class="nn-ad-label">Advertisement</div><a class="nn-house" href="calculators.html"><strong>One Calculator — one tool per job, done properly</strong><span>176 single-purpose calculators. No signup, ever →</span></a></div>
+      </div>
+    </div>
   </div>
-
-  <svg class="nest-motif" viewBox="0 0 640 96" fill="none" aria-hidden="true"><circle cx="320" cy="48" r="34" stroke="#ffffff" stroke-width="5"/><circle cx="320" cy="48" r="10" fill="#dc2626"/></svg>
 </section>
 <nav class="lib-subnav" aria-label="Calculator categories">
   <div class="wrap">
@@ -504,11 +516,14 @@
     });
   }
   /* ---------- loading a calculator into the module ---------- */
+  var NN_WIDGETS={'currency-converter':1,'discount-calculator':1,'password-generator':1,'random-number-generator':1,'sales-tax-calculator':1,'tip-calculator':1,'unit-price-calculator':1};
   function loadTool(href, name){
     if(!href || href.indexOf('tools/')!==0) return false;
+    if(!name||name==='Calculator'){var ca=document.querySelector('a[href="'+href+'"]'); if(ca) name=ca.textContent.trim();}
     currentTool={href:href, name:name||'Calculator'};
     titleEl.textContent=currentTool.name;
-    frame.src=href+(href.indexOf('?')>-1?'&':'?')+'embed=1';
+    var slug=href.replace('tools/','').replace('.html','');
+    frame.src=(NN_WIDGETS[slug]?'widgets/'+slug+'.html':href)+'?embed=1';
     openFull.href=href;
     showView('tool');
     pushHistory({t:'tool', text:currentTool.name, href:href});
@@ -516,6 +531,19 @@
     return true;
   }
   window.nnHeroLoadTool=loadTool;
+  /* Deep link from guide pages: ?use=tools/<slug>.html opens that calculator here */
+  (function(){ var m=/[?&]use=(tools\/[a-z0-9\-]+\.html)/.exec(window.location.search); if(!m) return; var a=document.querySelector('a[href="'+m[1]+'"]'); loadTool(m[1], a?a.textContent.trim():undefined); })();
+  /* Niche default: preload the flagship calculator in the hero */
+  (function(){ if(/[?&]use=/.test(window.location.search)) return; var href='tools/tip-calculator.html'; var a=document.querySelector('a[href="'+href+'"]'); if(a) loadTool(href, a.textContent.trim()); })();
+  window.addEventListener('message', function(e){
+    if (e.origin !== window.location.origin) return;
+    var h = e.data && e.data.nnEmbedHeight;
+    if (!h) return;
+    var target = null;
+    if (e.source === frame.contentWindow) { if (view !== 'tool') return; target = frame; }
+    else { var uh = document.getElementById('uhFrame'); if (uh && e.source === uh.contentWindow) target = uh; }
+    if (target) target.style.height = Math.max(300, Math.min(Math.ceil(h) + 10, 4000)) + 'px';
+  });
   document.addEventListener('click',function(e){
     if(e.ctrlKey||e.metaKey||e.shiftKey||e.button!==0) return;
     var t=e.target; if(!t||!t.closest) return;

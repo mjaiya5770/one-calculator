@@ -1082,3 +1082,36 @@
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); }
   else { init(); }
 })();
+
+/* NN-EMBED-FIT (2026-11-21): in embed mode, report the content height to the
+   parent page so the hero frame sizes itself to the calculator — the widget
+   fits fully with no internal scrolling. Height = the lowest visible content
+   edge anywhere in the document (rect-based; never scrollHeight, which is
+   clamped to the frame height and would inflate the frame it measures). */
+(function(){ try {
+  if (!document.documentElement.classList.contains('nn-embed')) return;
+  if (window.parent === window) return;
+  var last = 0;
+  function post() {
+    var sy = window.scrollY || 0;
+    var max = 0;
+    var all = document.body ? document.body.querySelectorAll('*') : [];
+    for (var i = 0; i < all.length; i++) {
+      var el = all[i];
+      if (!el.offsetHeight) continue;
+      if (el.closest('.nn-ad')) continue;
+      var pos = getComputedStyle(el).position;
+      if (pos === 'fixed') continue;
+      var b = el.getBoundingClientRect().bottom + sy;
+      if (b > max) max = b;
+    }
+    if (!max) return;
+    var h = Math.round(max) + 4;
+    if (h !== last) { last = h; window.parent.postMessage({ nnEmbedHeight: h }, '*'); }
+  }
+  window.addEventListener('load', post);
+  window.addEventListener('resize', post);
+  document.addEventListener('click', function(){ setTimeout(post, 60); setTimeout(post, 350); }, true);
+  setInterval(post, 900);
+  post();
+} catch(e){} })();
