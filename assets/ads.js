@@ -169,7 +169,7 @@
        promo is preloaded in the markup; make sure it is present and SKIP
        the pointless network invoke entirely (no 15s settle burn, no
        30s blank window). */
-    if (key && /^0+$/.test(key)) {
+    if (key) { /* NN-ADSENSE-PRIORITY (2026-11-27): widened from the zero-key dormant guard — Adsterra disabled fleet-wide (account suspended 2026-11-24); every seat takes the dormant path (house promo, no network invoke). AdSense prime chain above is untouched and still runs first. Restore the /^0+$/ test to re-enable. */
       if (!el.querySelector('.nn-house')) {
         var zw = document.createElement('div');
         zw.innerHTML = houseHTML();
